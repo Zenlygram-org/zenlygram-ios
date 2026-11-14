@@ -1,0 +1,871 @@
+"Settings.ContentSettings" = "Kontent sozlamalari";
+"Settings.UnlimitedPinnedChats" = "Cheksiz mahkamlangan chatlar";
+"Settings.UnlimitedPinnedChats.Notice" = "Telegram limitidan ortiq mahkamlangan chatlar faqat shu qurilmada, sinxronlanganlardan pastda saqlanadi.";
+"Settings.HelperBots" = "Yordamchi botlar";
+"Settings.HelperBots.Downloaders" = "YUKLAB OLUVCHILAR";
+"Settings.HelperBots.MediaTools" = "MEDIA VOSITALAR";
+"Settings.HelperBots.Utilities" = "UTILITALAR";
+"Settings.HelperBots.FunInfo" = "KO'NGILOCHAR VA MA'LUMOT";
+"Settings.Tasks" = "Vazifalar";
+"Settings.ChatLock" = "Chat qulfi";
+"Settings.RoundVideoFromGallery" = "Galereyadan dumaloq video";
+"Settings.UnreadReminder" = "O'qilmagan xabar eslatmasi";
+"Settings.UnreadReminder.Notice" = "Agar o'qilmagan xabarlaringiz qolsa, orqa fonda 5 daqiqadan so'ng mahalliy eslatma yuboradi.";
+"Settings.BlockForeignUsers" = "Chet raqamlarni yashirish";
+"Settings.BlockForeignUsers.Notice" = "Davlat kodi siznikidan farq qiluvchi shaxsiy chatlarni yashiradi. Faqat mahalliy vizual filtr — hech kimni bloklamaydi va raqamini yashirganlarni yashira olmaydi. Qo'llash uchun qayta ishga tushirish kerak.";
+
+"Settings.Tabs.Header" = "OYNALAR";
+"Settings.Tabs.HideTabBar" = "Oynalar panelini yashirish";
+"Settings.Tabs.ShowContacts" = "Kontaktlar oynasini ko'rsatish";
+"Settings.Tabs.ShowTasks" = "Vazifalar oynasini ko'rsatish";
+"Settings.Tabs.ShowNames" = "Oyna nomlarini ko'rsatish";
+
+"Settings.Folders.BottomTab" = "Jildlar pastda";
+"Settings.Folders.BottomTabStyle" = "Pastki jildlar uslubi";
+
+/* Do not translate */
+"Settings.Folders.BottomTabStyle.ios" = "iOS";
+/* Do not translate */
+"Settings.Folders.BottomTabStyle.telegram" = "Telegram";
+/* Example: Hide "All Chats" */
+"Settings.Folders.AllChatsHidden" = "\"%@\"ni yashirish";
+"Settings.Folders.RememberLast" = "Oxirgi Jildni ochish";
+"Settings.Folders.DisplayStyle" = "Jild ko'rinish uslubi";
+"Settings.Folders.DisplayStyle.auto" = "Avtomatik";
+"Settings.Folders.DisplayStyle.icon" = "Ikonkalar";
+"Settings.Folders.DisplayStyle.text" = "Matn";
+"Settings.Folders.RememberLast.Notice" = "Ilovani qayta ishga tushirganingizda yoki hisoblarni almashtirganingizda Zenlygram oxirgi foydalanilgan jildni ochadi.";
+
+"Settings.Folders.CompactNames" = "Kichikroq oraliq";
+"Settings.Folders.AllChatsTitle" = "\"Barcha Chatlar\" nomi";
+"Settings.Folders.AllChatsTitle.short" = "Qisqa";
+"Settings.Folders.AllChatsTitle.long" = "Uzun";
+/* Default behaviour for All Chats Folder Title. "All Chats" title: Default */
+"Settings.Folders.AllChatsTitle.none" = "Standart";
+
+
+"Settings.ChatList.Header" = "CHAT RO'YXATI";
+"Settings.PrivacySecurity.Header" = "MAXFIYLIK VA XAVFSIZLIK";
+"Settings.Messages.Header" = "CHATLAR VA XABARLAR";
+"Settings.Media.Header" = "MEDIA VA YUKLAMALAR";
+"Settings.Tools.Header" = "VOSITALAR";
+"Settings.Advanced.Header" = "QO'SHIMCHA";
+"Settings.CompactChatList" = "Ixcham chat ro'yxati";
+"Settings.CompactChatList.Desc" = "Ixcham joylashuv bilan ekranga ko'proq chat sig'adi.";
+"Settings.RestartRequiredHint" = " (qayta ishga tushiring)";
+"Settings.SecretVault.Title" = "Maxfiy seyf";
+"Settings.SecretVault.Desc" = "Chatlarni alohida PIN ortiga yashirish — bu PIN qurilma kod-parolidan boshqa. Bu shu qurilmadagi ilova ichidagi lokal qulf, shifrlash emas.";
+"Settings.SecretVault.Notice" = "Yashirin chatlar shu ilovadagi ro'yxatdan yo'qoladi va faqat seyf PIN'i kiritilgandan keyin ochiladi. Chatni bosib turib \"Seyfga qo'shish\"ni tanlang. O'chirganda PIN so'raladi va barcha yashirin chatlar qaytadi.\n\nSeyf PIN'i qurilma kod-parolidan boshqa. Bu shu qurilmadagi ilova ichidagi lokal qulf, shifrlash emas: yashirin chatlar Telegram hisobingizda qoladi va boshqa Telegram mijozlarida ko'rinaveradi.\n\nPIN'ni unutsangiz, Face ID yoki Touch ID bilan (yuz yoki barmoq izi o'zgarmagan bo'lsa) yoki Chat qulfining asosiy pinkodi bilan kira olasiz — agar seyf PIN'ini o'rnatganingizda asosiy pinkod allaqachon o'rnatilgan bo'lsa (asosiy pinkodni keyinroq yaratgan bo'lsangiz, ularni bog'lash uchun seyf PIN'ini bir marta o'zgartiring). Qurilma kod-paroli qabul qilinmaydi.\n\nYashirin chatlar va Chat qulfi faqat shu qurilmada saqlanadi — yangi qurilmaga ko'chmaydi, u yerda ularni qaytadan sozlash kerak.";
+"Settings.SecretVault.ChangePin" = "Seyf PIN'ini o'zgartirish";
+"Settings.SecretVault.UseSecretCode" = "Maxfiy kod bilan ochish";
+"Settings.SecretVault.UseSecretCode.Desc" = "Seyfni \"Chatlar\" sarlavhasini bosib turish o‘rniga, chat qidiruviga PIN yozib oching. Sozlamani o‘zgartirish uchun seyf PIN’i so‘raladi.";
+"Settings.SecretVault.UseSecretCode.Notice" = "Yoqilganda ko'rinadigan imo-ishora yo'q: chat ro'yxati qidiruviga seyf PIN'ini to'liq yozing va bir lahza to'xtang — seyf ochiladi. Seyfda matnli parol bo'lsa, uni yozib, keyin \"Search\" tugmasini bosing.\n\nYozayotganingizda o'z chatlaringiz va kontaktlaringiz ko'rinaveradi, lekin matn shu qurilmada qoladi: \"Search\" tugmasini bosmaguningizcha Telegram qidiruviga hech narsa yuborilmaydi. Bir necha marta noto'g'ri kod kiritilsa, tekshiruv bir muddat to'xtatiladi.\n\nSeyf PIN'i qurilma kod-parolidan boshqa va bu shu qurilmadagi ilova ichidagi lokal qulf, shifrlash emas — yashirin chatlar Telegram hisobingizda qoladi va boshqa Telegram mijozlarida ko'rinaveradi. Unutdingizmi? Face ID yoki Touch ID (yuz/barmoq izi o'zgarmagan bo'lsa) yoki Chat qulfining asosiy pinkodidan foydalaning — asosiy pinkod faqat seyf PIN'ini o'rnatganingizda allaqachon o'rnatilgan bo'lsa ishlaydi; qurilma kod-paroli qabul qilinmaydi. Yashirin chatlar va Chat qulfi yangi qurilmaga ko'chirilmaydi.";
+"Settings.SecretVault.RevealHint.Title" = "Maxfiy seyf yoqildi";
+"Settings.SecretVault.RevealHint.SecretCode" = "Yashirin chatlaringiz endi himoyada. Ularni keyin qayta ochish uchun chat qidiruviga PIN'ni to'liq yozing va bir lahza to'xtang (matnli parol bo'lsa, yozgandan keyin \"Search\" tugmasini bosing). Bu yoqilgan paytda yozganlaringiz shu qurilmada qoladi — butun Telegram bo'ylab qidirish uchun klaviaturadagi \"Search\" tugmasini bosing.";
+"Settings.SecretVault.RevealHint.LongTap" = "Seyfni ochish uchun chat ro‘yxati tepasidagi \"Chatlar\" sarlavhasini bosib turing.";
+"SecretVault.Screenshot.NoticeTitle" = "Skrinshot aniqlandi";
+"SecretVault.Screenshot.NoticeText" = "Skrinshot yashirin chatlaringizni oshkor qilishi mumkin.";
+"Settings.CompactMessagePreview.Desc" = "Xabar ko'rinishini bitta qatorda ko'rsatish.";
+"Settings.ChatSwipeOptions.Desc" = "Chat ro'yxatida surish amallarini yoqish.";
+"Settings.DeleteChatSwipeOption.Desc" = "Surib o'chirish amalini ko'rsatish.";
+
+"Settings.Profiles.Header" = "PROFILLAR";
+
+"Settings.Stories.Hide" = "Hikoyalarni yashirish";
+"Settings.Stories.WarnBeforeView" = "Ko'rishdan avval tasdiqlash";
+"Settings.Stories.DisableSwipeToRecord" = "Surib yozib olishni o'chirish";
+
+"Settings.Translation.QuickTranslateButton" = "Tezkor tarjima tugmasi";
+
+"Stories.Warning.Author" = "Muallif";
+"Stories.Warning.ViewStory" = "Hikoyani ko'rasizmi?";
+/* Author will be able to see that you viewed their Story */
+"Stories.Warning.Notice" = "%@ siz ularning Hikoyasini ko'rganingizni KO'RA OLADI.";
+"Stories.Warning.NoticeStealth" = "%@ siz ularning Hikoyasini ko'rganingizni ko'ra olmaydi.";
+
+"Settings.Photo.Quality.Notice" = "Yuklanadigan fotosuratlar va hikoyalarning sifati. Yuqori sifat rasmlarni tiniq saqlaydi, ammo fayllar kattaroq bo'ladi; past sifat trafikni tejaydi, lekin siqilish izlari ko'rinadi.";
+"Settings.Photo.SendLarge" = "Katta rasmlarni yuborish";
+"Settings.Photo.SendLarge.Notice" = "Siqilgan rasmlar hajmi chegarasini eng uzun tomoni bo'yicha 2560px gacha oshiradi, shunda katta rasmlar kichraytirilmasdan tiniq qoladi.";
+
+"Settings.VideoNotes.Header" = "AYLANA VIDEOLAR";
+"Settings.VideoNotes.StartWithRearCam" = "Orqa kamerada boshlash";
+
+"Settings.CustomColors.Header" = "HISOB RANGLARI";
+"Settings.CustomColors.Saturation" = "SATURATSIYA";
+/* Make sure to escape Percentage sign % */
+"Settings.CustomColors.Saturation.Notice" = "Hisob ranglarini o'chirish uchun 0%% ga sozlang.";
+
+"Settings.UploadsBoost" = "Yuborishni kuchaytirish";
+"Settings.DownloadsBoost" = "Yuklab olishni kuchaytirish";
+"Settings.DownloadsBoost.Notice" = "Parallel ulanishlar sonini va fayl bo'laklari o'lchamini oshiradi. Yuqori qiymatlarda bir vaqtda ko'proq parallel ulanish ochiladi: yuklab olish tezroq bo'ladi, lekin tarmoq faoliyatingiz trafikni kuzatayotganlar uchun yanada ajralib turadigan naqshga aylanadi. Agar tarmog'ingiz yuklamani boshqarolmasa, ulanishingizga mos keladigan kichikroq variantni tanlang.";
+"Settings.DownloadsBoost.none" = "O'chirilgan";
+"Settings.DownloadsBoost.medium" = "O'rtacha";
+"Settings.DownloadsBoost.maximum" = "Maksimum";
+
+"Settings.ShowProfileID" = "Profil Id'ni ko'rsatish";
+"Settings.ViewFirstMessage" = "Birinchi xabarga o'tish";
+"Settings.ViewFirstMessage.Desc" = "Profil menyusiga \"Birinchi xabar\" bandini qo'shadi.";
+"Settings.ShowDeletedMessages" = "O'chirilgan xabarlarni ko'rsatish";
+"Settings.ShowDeletedMessages.Desc" = "Boshqalar shaxsiy chatlar va guruhlarda o'chirgan xabarlar nusxasini saqlaydi va 🗑 belgisi bilan belgilaydi. Faqat shu qurilmada saqlanadi va 30 kundan so'ng avtomatik o'chiriladi. Ularda nima yozilganini ko'rish — Zenlygram Pro qismi.";
+/* Zenlygram — hech bir Pro ekrani ko'rsatilmayotganda (imzolangan siyosat bepul, obuna yo'q) o'sha tavsif: Pro eslatilmaydi. */
+"Settings.ShowDeletedMessages.Desc.Free" = "Boshqalar shaxsiy chatlar va guruhlarda o'chirgan xabarlar nusxasini saqlaydi va 🗑 belgisi bilan belgilaydi. Faqat shu qurilmada saqlanadi va 30 kundan so'ng avtomatik o'chiriladi.";
+"Settings.ShowDeletedMessages.Notice" = "Telegram xabarni kim o'chirganini bildirmaydi, shuning uchun shaxsiy chatlar va kichik guruhlarda boshqa qurilmada o'zingiz uchun o'chirgan xabarlar ham saqlanib qolishi mumkin. Saqlanmaydi: o'z xabarlaringiz, «Saqlangan xabarlar», xizmat va o'zi o'chadigan xabarlar, kanal postlari, guruh adminlari yoki Telegram antispami tomonidan ommaviy o'chirishlar, sizning xabarlaringiz bilan birga o'chirilganlar (masalan, chat tozalanganda) va boshqalarning xabarini o'chira oladigan chatlaringiz. Har bir akkaunt uchun ko'pi bilan 5000 ta xabar saqlanadi. Telegram keshini tozalash saqlangan xabarlarning medialarini ham butunlay o'chiradi. Saqlangan xabarni olib tashlash uchun uni bosib turing → «O'chirish». O'chirib qo'yilsa, saqlangan barcha xabarlar o'chiriladi.";
+"Settings.ShowDC" = "Ma'lumotlar markazini ko'rsatish";
+"Settings.ShowCreationDate" = "Chat yaratilgan sanasini ko'rsatish";
+"Settings.ShowCreationDate.Notice" = "Ba'zi chatlarning yaratilgan sanasi noma'lum bo'lishi mumkin.";
+
+"Settings.ShowRegDate" = "Ro'yxatdan o'tish sanasini ko'rsatish";
+"Settings.ShowRegDate.Notice" = "Ro'yxatdan o'tgan sana taxminiy.";
+
+"Settings.SendWithReturnKey" = "Enter orqali yuborish";
+"Settings.HidePhoneInSettingsUI" = "Telefonni sozlamalarda yashirish";
+"Settings.HidePhoneInSettingsUI.Notice" = "Bu telefon raqamingizni faqat sozlamalar interfeysida yashiradi. Uni boshqalardan yashirish uchun Maxfiylik va xavfsizlik bo'limiga o'ting.";
+
+"PasscodeSettings.AutoLock.InFiveSeconds" = "5 soniya foydalanilmasa";
+
+"ProxySettings.UseSystemDNS" = "Tizim DNS'idan foydalanish";
+"ProxySettings.UseSystemDNS.Notice" = "Google DNS'ga kirish imkoni bo'lmasa, kutish vaqtini chetlab o'tish uchun tizim DNS'idan foydalaning.";
+
+/* Preserve markdown asterisks! Example: You **don't** need Telegram Premium! */
+"Common.NoTelegramPremiumNeeded" = "Sizga %@ **kerak emas**!";
+"Common.RestartRequired" = "Qayta ishga tushirish lozim";
+"Common.RestartNow" = "Hozir qayta ishga tushirish";
+"Common.OpenTelegram" = "Telegramni ochish";
+"Common.UseTelegramForPremium" = "Telegram Premium'ni Zenlygram'da sotib olib bo'lmaydi.";
+"Common.StarsUnavailable" = "Telegram Stars'ni Zenlygram'da sotib olib bo'lmaydi.";
+
+"Message.HoldToShowOrReport" = "Ko'rsatish yoki shikoyat qilish uchun bosib turing.";
+
+"Auth.AccountBackupReminder" = "Zaxira kirish usulingiz borligiga ishonch hosil qiling. Hisobdan ajralib qolmaslik uchun SMS oladigan SIM-kartani saqlang yoki tizimga kirilgan qo'shimcha sessiya qoldiring.";
+"Auth.UnofficialAppCodeTitle" = "Kodni faqat rasmiy ilova orqali olishingiz mumkin";
+"Auth.UnofficialClientNotice" = "Zenlygram — norasmiy Telegram mijozi.";
+"Auth.Fee.Unavailable" = "Telegram bu telefon raqamini ro'yxatdan o'tkazish uchun to'lov talab qiladi va uni bu ilovada to'lab bo'lmaydi.";
+
+"Settings.SmallReactions" = "Kichik reaksiyalar";
+"Settings.HideReactions" = "Reaksiyalarni yashirish";
+
+"ContextMenu.SaveToCloud" = "Bulutga saqlash";
+"ContextMenu.SelectFromUser" = "Muallifdan tanlash";
+"ContextMenu.EditedHistory" = "Tahrir tarixi";
+
+"Settings.ContextMenu" = "KONTEKST MENYUSI";
+"Settings.ContextMenu.Notice" = "O'chirilgan bandlar \"Zenlygram\" pastki menyusida mavjud bo'ladi.";
+
+
+"Settings.ChatSwipeOptions" = "Chat ro'yxatida surish amallari";
+"Settings.DeleteChatSwipeOption" = "Chatni surib o'chirish";
+/* Re-word like this string on offical app https://translations.telegram.org/en/ios/groups_and_channels/Chat.NextChannelSameLocationSwipeProgress */
+"Settings.PullToNextChannel" = "Keyingi o'qilmagan kanalga tortish";
+/* Re-word like this string on offical app https://translations.telegram.org/en/ios/groups_and_channels/Chat.NextUnreadTopicSwipeProgress */
+"Settings.PullToNextTopic" = "Keyingi mavzuga tortish";
+"Settings.GalleryCamera" = "Galereyadagi Kamera";
+/* "Send Message As..." button */
+"Settings.SendAsButton" = "\"%@\" tugmasi";
+"Settings.SnapDeletionEffect" = "Xabar o'chirish effektlari";
+
+"Settings.Stickers.Size" = "O'LCHAM";
+"Settings.Stickers.Timestamp" = "Vaqtni ko'rsatish";
+
+"Settings.RecordingButton" = "Ovoz yozish tugmasi";
+
+"Settings.DefaultEmojisFirst" = "Avval standart emojilar";
+"Settings.DefaultEmojisFirst.Notice" = "Emoji klaviaturasida standart emojilarni premium emojilardan oldin ko'rsatish";
+
+/* Date when chat was created. "created: 24 May 2016" */
+"Chat.Created" = "yaratildi: %@";
+
+/* Date when user joined the chat. "Joined Swiftgram Chat" */
+"Chat.JoinedDateTitle" = "%@ ga qo'shildi";
+/* Date when user registered in Telegram. Will be shown like "Registered\n24 May 2016" */
+"Chat.RegDate" = "Ro'yxatdan o'tgan";
+
+"Settings.messageDoubleTapActionOutgoingEdit" = "Xabarni tahrirlash uchun ikki marta bosing";
+
+"Settings.wideChannelPosts" = "Kanallarda keng postlar";
+"Settings.ForceEmojiTab" = "Avval emoji varag'i";
+
+"Settings.forceBuiltInMic" = "Qurilma mikrofonini majburlash";
+"Settings.forceBuiltInMic.Notice" = "Agar yoqilsa, ilova quloqchinlar ulangan bo'lsa ham faqat qurilma mikrofonidan foydalanadi.";
+
+"Settings.CallConfirmation" = "Qo'ng'iroqni tasdiqlash";
+"Settings.CallConfirmation.Notice" = "Zenlygram sizdan qo'ng'iroq qilishdan oldin tasdiqlashni so'raydi.";
+
+/* Confirmation before making a Call */
+"CallConfirmation.Audio.Title" = "Qo'ng'iroq qilish?";
+
+/* Confirmation before making a Video Call */
+"CallConfirmation.Video.Title" = "Video qo'ng'iroq qilish?";
+
+"MutualContact.Label" = "o'zaro kontakt";
+
+"Settings.swipeForVideoPIP" = "Surish bilan video PIP";
+"Settings.swipeForVideoPIP.Notice" = "Agar yoqilgan bo'lsa, videoni surish uni Tasvir ichida Tasvir rejimida ochadi.";
+
+"Settings.AiAssistant" = "AI YORDAMCHI";
+"Settings.AiAssistant.Enable" = "AI yordamchini yoqish";
+"Settings.AiAssistant.ApiKey" = "Anthropic API kaliti";
+"Settings.AiAssistant.Notice" = "Faqat shu qurilmaning Keychain'ida saqlanadi va to'g'ridan-to'g'ri api.anthropic.com'ga yuboriladi. Kalitni console.anthropic.com'dan oling.";
+"Settings.AiAssistant.Save" = "Saqlash";
+"Settings.AiAssistant.Clear" = "Tozalash";
+"Settings.AiAssistant.Cancel" = "Bekor qilish";
+"Settings.AiAssistant.ApiKey.Missing" = "Avval Anthropic API kalitini kiriting.";
+"Chat.ContextMenu.AiAssistant" = "AI yordamchi";
+"Chat.ContextMenu.AiAssistant.Summarize" = "Xabarni qisqartirish";
+"Chat.ContextMenu.AiAssistant.Translate" = "Tarjima qilish";
+"Chat.ContextMenu.AiAssistant.DraftReply" = "Javob loyihasi";
+"Chat.ContextMenu.AiAssistant.InsertReply" = "Xabarga qo'shish";
+"Chat.ContextMenu.AiAssistant.SetApiKey" = "API kalitini kiritish…";
+"Settings.AiAssistant.ApiKey.MissingDetail" = "AI yordamchiga sizning shaxsiy Anthropic API kalitingiz kerak. U faqat shu qurilmaning Keychain'ida saqlanadi va so'rovlarni to'g'ridan-to'g'ri api.anthropic.com'ga yuborish uchun ishlatiladi. Kalitni console.anthropic.com'dan oling.";
+"Chat.ContextMenu.AiAssistant.SendNotice" = "Tanlangan xabar matni qayta ishlash uchun Anthropic'ga (api.anthropic.com) yuboriladi. Faqat ulashishga tayyor bo'lgan kontent bilan davom eting.";
+"Chat.ContextMenu.AiAssistant.SendNotice.Continue" = "Anthropic'ga yuborish";
+"AiAssistant.Disclosure.Text" = "AI yordamchidan foydalanganda tanlangan xabar matni qayta ishlash uchun Anthropic serverlariga (api.anthropic.com) yuboriladi. API kalitingiz faqat shu qurilmaning Keychain'ida saqlanadi va faqat shu so'rovlar uchun ishlatiladi.";
+"AiAssistant.Disclosure.Continue" = "Davom etish";
+"AiAssistant.KeychainError.Title" = "Keychain xatosi";
+"AiAssistant.KeychainError.Save" = "API kalitni qurilma Keychain'iga saqlab bo'lmadi. Qaytadan urinib ko'ring.";
+"AiAssistant.KeychainError.Clear" = "API kalitni qurilma Keychain'idan o'chirib bo'lmadi. Qaytadan urinib ko'ring.";
+"AiAssistant.Error.KeychainRead" = "API kalitni qurilma Keychain'idan o'qib bo'lmadi. Qurilma qulfini ochib, qaytadan urinib ko'ring.";
+"AiAssistant.Error.InvalidKey" = "Anthropic API kalitingiz rad etildi: u yaroqsiz yoki muddati o'tgan. Kalitni tekshirib, qaytadan urinib ko'ring.";
+"AiAssistant.Error.RateLimited" = "Hozir so'rovlar juda ko'p. Keyinroq qaytadan urinib ko'ring.";
+"AiAssistant.Error.RateLimited.Retry" = "Hozir so'rovlar juda ko'p. %@ soniyadan keyin qaytadan urinib ko'ring.";
+"AiAssistant.Error.Network" = "So'rov bajarilmadi. Internet aloqasini tekshirib, qaytadan urinib ko'ring.";
+
+"Settings.AutoProxy" = "Avto-proksi";
+"Settings.DisableAutoDownload" = "Avto-yuklab olishni o'chirish";
+"Settings.DisableAutoDownload.Desc" = "Barcha tarmoqlarda media avto-yuklab olishni o'chiradi.";
+"Settings.AutoAcceptRequests" = "So'rovlarni avto-qabul";
+"Settings.AutoAcceptRequests.Desc" = "Siz admin bo'lgan guruh va kanallarga qo'shilish so'rovlarini avtomatik qabul qiladi.";
+"Settings.AutoProxy.Notice" = "Yoqilganda, ilova ishga tushganda ichki ro'yxatdan ishlaydigan proksini avtomatik tanlaydi va ushlab turadi. O'zingiz sozlagan proksi hech qachon almashtirilmaydi. Standart holatda o'chirilgan.";
+"AutoProxy.Title" = "Avto-proksi";
+"AutoProxy.Status.On" = "Avto-proksi yoqilgan. Ishlaydigan proksi avtomatik tanlab turiladi.";
+"AutoProxy.Status.Off" = "Avto-proksi o'chirilgan. Ulanish bloklangan bo'lsa, ishlaydigan proksini avtomatik tanlash uchun yoqing.";
+"AutoProxy.Enable" = "Avto-proksini yoqish";
+"AutoProxy.Disable" = "Avto-proksini o'chirish";
+
+// MARK: Novagram-style setting descriptions
+"Settings.AutoProxy.Desc" = "Telegram bloklanganda proksini avtomatik yoqadi.";
+"Settings.HelperBots.Desc" = "Tez kirish uchun yordamchi botlarni boshqaring.";
+"Settings.HelperBots.Unavailable" = "Bu yordamchi bot hozircha mavjud emas.";
+"Settings.Tasks.Desc" = "Ilova ichida shaxsiy vazifalar ro'yxatini yuriting.";
+"Settings.ChatLock.Desc" = "Tanlangan chatlarni alohida pinkod bilan himoyalang — bu pinkod qurilma kod-parolidan boshqa.";
+"Settings.ChatLock.On" = "Yoniq";
+"Settings.ChatLock.Off" = "O'chiq";
+"Settings.ChatLock.Disable.Title" = "Chat qulfi o'chirilsinmi?";
+"Settings.ChatLock.Disable.Text" = "Bu asosiy pinkodni o'chiradi va barcha chatlarni ochadi. Xabarlaringiz o'chmaydi.";
+"Settings.ChatLock.Disable.Action" = "O'chirish";
+"ChatLock.Notification.RedactedTitle" = "Yangi xabar";
+"ChatLock.Notification.RedactedText" = "Qulflangan chatdagi xabar";
+"Settings.UnreadReminder.Desc" = "O'qilmagan xabarlar haqida eslatib turadi.";
+"Settings.BlockForeignUsers.Desc" = "Davlat kodi siznikidan farq qiluvchi shaxsiy chatlaringizni yashiradi. Faqat mahalliy vizual filtr — hech kimni bloklamaydi va filtrlamaydi.";
+"Settings.RoundVideoFromGallery.Desc" = "Galereyadan dumaloq video xabarlar yuboring.";
+"Settings.Translation.QuickTranslateButton.Desc" = "Xabar menyusida tez tarjima tugmasini ko'rsatish. Maxfiy chatlarda va nusxa olish taqiqlangan xabarlarda ko'rsatilmaydi.";
+"Settings.forceBuiltInMic.Desc" = "Ovozli xabarlarni doim ichki mikrofon bilan yozish.";
+"Settings.ForceTCP" = "TCP majburlash";
+"Settings.ForceTCP.Desc" = "Qo'ng'iroqlar uchun UDP o'rniga TCP dan foydalanishga majbur qilish.";
+"Settings.Photo.SendLarge.Desc" = "Rasmlarni yuqori aniqlikda yuborish.";
+"Settings.Stickers.Timestamp.Desc" = "Suhbatlarda stikerlarda vaqtni ko'rsatish.";
+"Settings.VideoNotes.StartWithRearCam.Desc" = "Video xabarlarni yozishni orqa kamera bilan boshlash.";
+"Settings.Tabs.HideTabBar.Desc" = "Pastki oynalar panelini butunlay yashirish.";
+"Settings.Tabs.ShowContacts.Desc" = "Oynalar panelida Kontaktlar bo'limini ko'rsatish.";
+"Settings.Tabs.ShowCalls.Desc" = "Oynalar panelida Qo'ng'iroqlar bo'limini ko'rsatish.";
+"Settings.Tabs.ShowTasks.Desc" = "Oynalar panelida Vazifalar bo'limini ko'rsatish. Yashirish faqat oynani olib tashlaydi: vazifalaringiz saqlanadi va Sozlamalar → Zenlygram → «Vazifalar» orqali ochiladi.";
+"Settings.Tabs.ShowNames.Desc" = "Oyna ikonalari ostida yozuvlarni ko'rsatish.";
+"Settings.Tabs.SearchButton.Desc" = "Oynalar paneliga qidiruv tugmasini qo'shish.";
+"Settings.Tabs.WideTabBar.Desc" = "Oynalar paneli uchun kengroq ko'rinishdan foydalanish.";
+"Settings.Folders.BottomTab.Desc" = "Papkalarni ekranning pastki panelida ko'rsatish.";
+"Settings.Folders.AllChatsHidden.Desc" = "«Barcha chatlar» papkasi bo'limini yashirish.";
+"Settings.Folders.CompactNames.Desc" = "Joy tejash uchun qisqa papka nomlaridan foydalanish.";
+"Settings.Folders.RememberLast.Desc" = "Ishga tushganda oxirgi ochilgan papkani qayta ochish.";
+"Settings.ShowProfileID.Desc" = "Foydalanuvchi va chat profillarida ichki Telegram ID sini ko'rsatish.";
+"Settings.ShowDC.Desc" = "Akkaunt qaysi ma'lumot markazida joylashganini ko'rsatish.";
+"Settings.ShowRegDate.Desc" = "Profilda akkauntning taxminiy ro'yxatdan o'tgan sanasini ko'rsatish.";
+"Settings.ShowCreationDate.Desc" = "Chat va kanallarning taxminiy yaratilgan sanasini ko'rsatish.";
+"Settings.CallConfirmation.Desc" = "Qo'ng'iroqni boshlashdan oldin tasdiqlashni so'rash.";
+"Settings.Stories.Hide.Desc" = "Chatlar ro'yxatidan hikoyalar panelini yashirish.";
+"Settings.Stories.DisableSwipeToRecord.Desc" = "Kamerada surib hikoya yozishni o'chirib qo'yish.";
+"Settings.Stories.WarnBeforeView.Desc" = "Hikoyani ochishdan oldin ogohlantirish, muallif tasodifan xabardor bo'lmasligi uchun.";
+"Settings.Stories.RepostToStory.Desc" = "Xabarlarda hikoyaga qayta joylash tugmasini ko'rsatish.";
+"Settings.Stories.StealthMode.Desc" = "Ko'rganlar ro'yxatida iz qoldirmasdan hikoyalarni ko'rish.";
+"Settings.AiAssistant.Enable.Desc" = "Chatlarda o'rnatilgan sun'iy intellekt yordamchisini yoqish.";
+"Settings.AiAssistant.ApiKey.Desc" = "Sun'iy intellekt yordamchisi uchun API kalitini kiriting.";
+"ContextMenu.SaveToCloud.Desc" = "Xabar kontekst menyusida \"Bulutga saqlash\" ni ko'rsatish.";
+"Settings.ContextShowHideForwardName.Desc" = "Yo'naltirishda jo'natuvchi ismlarini yashirish opsiyasini ko'rsatish.";
+"ContextMenu.SelectFromUser.Desc" = "Menyuda \"Ushbu foydalanuvchi xabarlarini tanlash\" ni ko'rsatish.";
+"Settings.ContextShowRestrict.Desc" = "Kontekst menyusida cheklash/bloklash opsiyasini ko'rsatish.";
+"Settings.ContextShowReport.Desc" = "Kontekst menyusida shikoyat opsiyasini ko'rsatish.";
+"Settings.ContextShowReply.Desc" = "Kontekst menyusida javob berish opsiyasini ko'rsatish.";
+"Settings.ContextShowPin.Desc" = "Kontekst menyusida mahkamlash opsiyasini ko'rsatish.";
+"Settings.ContextShowSaveMedia.Desc" = "Kontekst menyusida media uchun \"Fayllarga saqlash\" ni ko'rsatish.";
+"Settings.ContextShowMessageReplies.Desc" = "Kontekst menyusida mavzuni ko'rish opsiyasini ko'rsatish.";
+"Settings.ContextShowJson.Desc" = "Kontekst menyusida xabarning JSON ko'rinishini ko'rsatish.";
+"ContextMenu.EditedHistory.Desc" = "Kontekst menyusidan xabarning tahrirlash tarixini ko'rsatish. Xabarning faqat oxirgi 20 ta tahriri saqlanadi.";
+"Settings.swipeForVideoPIP.Desc" = "Videoni yuqoriga surib, tasvir ichida tasvir rejimini oching.";
+"Settings.showChannelBottomButton.Desc" = "Kanallar pastida qo'shilish yoki ovozsiz qilish tugmasini ko'rsatish.";
+"Settings.wideChannelPosts.Desc" = "Kanal postlarini ekranning butun kengligida ko'rsatish.";
+"Settings.secondsInMessages.Desc" = "Xabar vaqtlarida soniyalarni ko'rsatish.";
+"Settings.messageDoubleTapActionOutgoingEdit.Desc" = "O'z xabaringizni ikki marta bosib tahrirlash.";
+"Settings.RecordingButton.Desc" = "Kiritish panelida ovoz va video yozish tugmasini ko'rsatish.";
+"Settings.SnapDeletionEffect.Desc" = "Xabar o'chirilganda tarqalish animatsiyasini o'ynatish.";
+"Settings.SendAsButton.Desc" = "Xabarni kim nomidan yuborishni tanlash tugmasini ko'rsatish.";
+"Settings.GalleryCamera.Desc" = "Media galereyada kamera katakchasini ko'rsatish.";
+"Settings.GalleryCameraPreview.Desc" = "Galereya kamera katakchasida jonli ko'rinishni ko'rsatish.";
+"Settings.PullToNextChannel.Desc" = "Oxiridan o'tib suring, keyingi o'qilmagan kanalni oching.";
+"Settings.PullToNextTopic.Desc" = "Oxiridan o'tib suring, keyingi mavzuni oching.";
+"Settings.HideReactions.Desc" = "Xabarlardagi reaksiyalarni yashirish.";
+"Settings.UploadsBoost.Desc" = "Ko'proq parallel ulanish orqali media yuklashni tezlashtiradi. Tezroq, lekin tarmoq naqshi yanada ajralib turadi.";
+"Settings.SendWithReturnKey.Desc" = "Xabarlarni Enter tugmasini bosib yuborish.";
+"Settings.ForceEmojiTab.Desc" = "Stiker panelida doim avval emoji varag'ini ochish.";
+"Settings.DefaultEmojisFirst.Desc" = "Standart emojilarni maxsuslaridan oldin ko'rsatish.";
+"Settings.HidePhoneInSettingsUI.Desc" = "Sozlamalar ekranida telefon raqamingizni yashirish.";
+"Settings.CompactMessagePreview" = "Ixcham xabar ko'rinishi";
+"Settings.secondsInMessages" = "Xabarlarda soniyalar";
+"Settings.GalleryCameraPreview" = "Galereyada kamera ko'rinishi";
+"Settings.showChannelBottomButton" = "Kanal pastki paneli";
+"Settings.Tabs.WideTabBar" = "Keng oynalar paneli";
+"Settings.Tabs.WideTabBar.Notice" = "Ba'zi oynalar yashirilganda oynalar panelining to'liq kengligini saqlaydi.";
+"Settings.Tabs.SearchButton" = "Qidiruv tugmasi";
+"Settings.ChatList.Lines" = "Chat ro'yxati qatorlari";
+"Settings.ChatList.Lines.1" = "1 qator";
+"Settings.ChatList.Lines.2" = "2 qator";
+"Settings.ChatList.Lines.3" = "3 qator (Standart)";
+"Settings.NY.Header" = "BAYRAM EFFEKTLARI";
+"Settings.NY.Notice" = "Faqat cheklangan vaqt uchun mavjud!";
+"Settings.NY.Style" = "Uslub";
+"Settings.NY.Style.default" = "O'chirilgan";
+"Settings.NY.Style.lightning" = "Chaqmoq";
+"Settings.NY.Style.snow" = "Qor";
+"Settings.Transcription.Header" = "OVOZDAN MATNGA";
+"Settings.Transcription.Backend" = "Xizmat";
+"Settings.Transcription.Backend.Notice" = "Tanlangan transkripsiya xizmati mavjud bo'lmasa, Zenlygram %@ dan foydalanadi.";
+"Settings.Transcription.Backend.apple" = "Apple";
+"Settings.Transcription.Backend.default" = "Telegram";
+"Settings.Translation.Backend" = "Xizmat";
+"Settings.Translation.Backend.Notice" = "Boshqa xizmatga avtomatik o'tilmaydi. «Tizim» tanlanganda tarjima oynasi qurilmaning o'zida tarjima qiladi (nusxa olish taqiqlangan xabarlardan tashqari); tezkor tarjima, mahkamlangan xabar, butun chat va yuborish menyusidagi tarjimani Telegram bajaradi. Telegram Premium'siz butun chatni tarjima qilish faqat %@ orqali ishlaydi.";
+"Settings.Translation.EntireChat.Notice" = "Butun chatni tarjima qilish tanlangan xizmat orqali ishlaydi. Telegram bilan buning uchun %@ kerak, avtotarjima yoqilgan kanallar bundan mustasno. Google Translate bilan tarjima faqat «Tarjima qilish» tugmasini bosganingizdan keyin boshlanadi. Maxfiy chatlar hech qachon tarjima qilinmaydi, nusxa olish taqiqlangan xabarlar esa hech qachon Google'ga yuborilmaydi.";
+"Settings.Translation.Backend.Notice.Google" = "Tezkor tarjima, mahkamlangan xabar va butun chat tarjimasi, shuningdek yuborish tugmasi menyusidan (tugmani bosib turing) matningizni tarjima qilish matnni qurilmangizdan Google Translate'ga yuboradi. Tarjima oynasi Telegram'dan foydalanadi.";
+"Settings.Translation.EntireChat.PremiumRequired" = "Telegram orqali butun chatlarni tarjima qilish uchun %@ kerak. Usiz tarjima qilish uchun Zenlygram sozlamalari → Tarjima va ovoz → Xizmat bo'limida Google Translate'ni tanlang.";
+"Settings.Translation.Backend.default" = "Telegram";
+"Settings.Translation.Backend.system" = "Tizim";
+"Settings.Translation.Backend.gtranslate" = "Google Translate";
+
+
+/* Zenlygram — new IA section headers */
+"Settings.Privacy.HiddenChats.Header" = "YASHIRIN VA QULFLANGAN CHATLAR";
+"Settings.Privacy.Invisible.Header" = "QO'SHIMCHA MAXFIYLIK";
+"Settings.Composing.Header" = "YOZISH VA KIRITISH";
+"Settings.CameraPicker.Header" = "KAMERA VA GALEREYA";
+
+
+/* Zenlygram — 75 missing uz strings (SessionBackup / PayWall / Notifications / MessageFilter / Common / AppBadge) */
+"Common.UpdateOS" = "iOS yangilanishi talab qilinadi";
+"Common.KnowWhatYouDo" = "Iltimos, bu sozlamalarni faqat ular nima qilishini bilsangizgina o'zgartiring.";
+"SessionBackup.Title" = "Hisoblar zaxirasi";
+"SessionBackup.Sessions.Title" = "Sessiyalar";
+"SessionBackup.Actions.Backup" = "Keychain'ga zaxiralash";
+"SessionBackup.Actions.Restore" = "Keychain'dan tiklash";
+"SessionBackup.Actions.DeleteAll" = "Keychain zaxirasini o'chirish";
+"SessionBackup.Actions.DeleteOne" = "Zaxiradan o'chirish";
+"SessionBackup.Actions.RemoveFromApp" = "Ilovadan o'chirish";
+"SessionBackup.LastBackupAt" = "Oxirgi zaxira: %@";
+"SessionBackup.RestoreOK" = "OK. Tiklangan sessiyalar: %@";
+"SessionBackup.LoggedIn" = "Kirilgan";
+"SessionBackup.LoggedOut" = "Chiqilgan";
+"SessionBackup.DeleteAll.Title" = "Barcha sessiyalar o'chirilsinmi?";
+"SessionBackup.DeleteAll.Text" = "Barcha sessiyalar Keychain'dan o'chiriladi.\n\nHisoblar Zenlygram'dan chiqarilmaydi.";
+"SessionBackup.DeleteSingle.Title" = "1 (bitta) sessiya o'chirilsinmi?";
+"SessionBackup.DeleteSingle.Text" = "%@ sessiyasi Keychain'dan o'chiriladi.\n\nHisob Zenlygram'dan chiqarilmaydi.";
+"SessionBackup.RemoveFromApp.Title" = "Hisob ilovadan o'chirilsinmi?";
+"SessionBackup.RemoveFromApp.Text" = "%@ sessiyasi Zenlygram'dan O'CHIRILADI! Sessiya faol qoladi, shuning uchun uni keyinroq tiklashingiz mumkin.";
+"SessionBackup.Notice" = "Sessiyalar shifrlanadi va shu qurilmaning Keychain'ida \"faqat shu qurilma uchun\" belgisi bilan saqlanadi.\n\nMUHIM: ular yangi qurilmaga KO'CHIRILMAYDI — na shifrlangan zaxira nusxasi, na Quick Start ularni o'tkazadi. Shu qurilmani o'chirishdan (erase) oldin yangi qurilmada hisobingizga kiring.\n\nShu bilan birga, Zenlygram'ni shu qurilmadan o'chirib qayta o'rnatsangiz ham saqlanib qoladi. Saqlangan sessiyani ko'rish yoki tiklash uchun Face ID, Touch ID yoki qurilma kod-paroli so'raladi.\n\nESLATMA: sessiyalar hali ham Telegram tomonidan yoki boshqa qurilmadan bekor qilinishi mumkin.";
+"SessionBackup.Locked.Title" = "Hisoblar zaxirasi qulflangan";
+"SessionBackup.Locked.Text" = "Saqlangan sessiyalar hisoblaringizga kirish imkonini beradi. Ularni ko'rish uchun Face ID, Touch ID yoki qurilma kod-paroli bilan qulfni oching.";
+"SessionBackup.Locked.Action" = "Qulfni ochish";
+"SessionBackup.AuthReason" = "Hisoblar zaxirasi qulfini ochish";
+"SessionBackup.RestoreConfirm.Title" = "Sessiyalar tiklansinmi?";
+"SessionBackup.RestoreConfirm.Text" = "Zenlygram'ga zaxiradan %@ ta hisob qo'shiladi. Har bir tiklangan sessiya kodsiz kiradi.";
+"SessionBackup.PreviousInstall.Notice" = "Bu sessiyalar Zenlygram'ning shu qurilmadagi oldingi o'rnatmasi tomonidan saqlangan.";
+"SessionBackup.ReadError" = "Zaxirani o'qib bo'lmadi. Qurilma qulfini ochib, qayta urinib ko'ring.";
+"MessageFilter.Title" = "Xabar filtri";
+"MessageFilter.SubTitle" = "Diqqatni chalg'ituvchi omillarni olib tashlaydi va quyidagi kalit so'zlarni o'z ichiga olgan xabarlar ko'rinishini kamaytiradi.\nKalit so'zlar katta-kichik harflarga sezgir.";
+"MessageFilter.Keywords.Title" = "Kalit so'zlar";
+"MessageFilter.InputPlaceholder" = "Kalit so'z kiriting";
+"InputToolbar.Title" = "Formatlash paneli";
+"Notifications.MentionsAndReplies.Title" = "@Eslatmalar va javoblar";
+"Notifications.MentionsAndReplies.value.default" = "Standart";
+"Notifications.MentionsAndReplies.value.silenced" = "Ovozsiz";
+"Notifications.MentionsAndReplies.value.disabled" = "O'chirilgan";
+"Notifications.PinnedMessages.Title" = "Mahkamlangan xabarlar";
+"Notifications.PinnedMessages.value.default" = "Standart";
+"Notifications.PinnedMessages.value.silenced" = "Ovozsiz";
+"Notifications.PinnedMessages.value.disabled" = "O'chirilgan";
+"PayWall.Text" = "Maxfiy xazina, chat qulfi, vazifalar va tahrir tarixi — bitta obunada.";
+"PayWall.SessionBackup.Title" = "Hisoblar zaxirasi";
+"PayWall.SessionBackup.Notice" = "Kod kiritmasdan, hatto shu qurilmada qayta o'rnatgandan keyin ham hisoblarga kiring. Qurilmadagi Keychain bilan xavfsiz saqlash.";
+"PayWall.SessionBackup.Description" = "Zenlygram'ni shu qurilmadan o'chirib, qayta o'rnatish endi muammo emas. Telegram serverlarida hali ham faol bo'lgan barcha sessiyalarni tiklang. Saqlangan sessiyalar shu qurilmada qoladi va yangi qurilmaga ko'chirilmaydi.";
+"PayWall.MessageFilter.Title" = "Xabar filtri";
+"PayWall.MessageFilter.Notice" = "SPAM, reklama va bezovta qiluvchi xabarlar ko'rinishini kamaytiring.";
+"PayWall.MessageFilter.Description" = "Tez-tez ko'rishni istamaydigan kalit so'zlar ro'yxatini tuzing va Zenlygram diqqatingizni chalg'ituvchi omillarni kamaytiradi.";
+"PayWall.Notifications.Title" = "@Eslatmalar va javoblarni o'chirish";
+"PayWall.Notifications.Notice" = "Muhim bo'lmagan bildirishnomalarni yashiring yoki ovozsiz qiling.";
+"PayWall.Notifications.Description" = "Tinchlik kerak bo'lganda boshqa mahkamlangan xabarlar yoki @eslatmalar bo'lmaydi.";
+"PayWall.InputToolbar.Title" = "Formatlash paneli";
+"PayWall.InputToolbar.Notice" = "Qalin, Kursiv, Havolalar? Bir marta bosish bilan formatlash.";
+"PayWall.InputToolbar.Description" = "Pro kabi formatlashni qo'llang va tozalang yoki yangi qatorlar qo'shing.";
+"PayWall.AppIcons.Title" = "Noyob ilova ikonkalari va nishonlari";
+"PayWall.AppIcons.Notice" = "Zenlygram ko'rinishini bosh ekraningizda va skrinshotlarda sozlang.";
+"PayWall.About.Title" = "Zenlygram Pro haqida";
+"PayWall.About.Notice" = "Zenlygram — maxfiyligingizni hurmat qiladigan va o'zidan hech qanday reklama yoki kuzatuv qo'shmaydigan ochiq kodli Telegram mijozi. Uni Telegram'ning oylik yangilanishlari bilan mos ushlab turish vaqt va texnika talab qiladi; ana shu ishni Zenlygram Pro to'laydi.\n\nZenlygram'dagi qolgan hamma narsa bepul bo'lib qoladi.";
+"PayWall.RestorePurchases" = "Xaridlarni tiklash";
+"PayWall.Terms" = "Foydalanish shartlari";
+"PayWall.Privacy" = "Maxfiylik siyosati";
+"PayWall.Notice.Markdown" = "Obuna boʻlish orqali siz [Foydalanish shartlari (EULA)](%1$@) va [Maxfiylik siyosati](%2$@)ga rozilik bildirasiz.";
+"PayWall.Notice.Raw" = "Obuna boʻlish orqali siz Foydalanish shartlari (EULA) va Maxfiylik siyosatiga rozilik bildirasiz.";
+"PayWall.Button.OpenPro" = "Pro funksiyalaridan foydalanish";
+"PayWall.Button.Purchasing" = "Xarid qilinmoqda...";
+"PayWall.Button.Restoring" = "Xaridlar tiklanmoqda...";
+"PayWall.Button.Validating" = "Tasdiqlanmoqda…";
+"PayWall.Button.PaymentsUnavailable" = "To'lovlar mavjud emas";
+"PayWall.Button.Subscribe" = "%@ evaziga obuna boʻlish";
+"PayWall.Button.ContactingAppStore" = "App Store'ga ulanmoqda...";
+"Paywall.Error.Title" = "Xatolik";
+"PayWall.ValidationError" = "Tekshiruv xatosi";
+"PayWall.ValidationError.TryAgain" = "Xaridni tekshirish vaqtida nimadir noto'g'ri ketdi. Xavotir olmang! Birozdan so'ng Xaridlarni tiklashga urinib ko'ring.";
+"PayWall.ValidationError.Expired" = "Obunangiz muddati tugadi. Pro funksiyalariga qayta kirish uchun yana obuna bo'ling.";
+"AppBadge.Title" = "Ilova nishoni";
+"AppBadge.Notice" = "Skrinshotlarda ko'rsatiladigan ilova nishonini sozlang";
+
+/* Zenlygram — kept-deleted messages and edit history retention (Batch 6) */
+"Settings.ShowDeletedMessages.Disable.Title" = "O'chirilgan xabarlarni saqlash to'xtatilsinmi?";
+"Settings.ShowDeletedMessages.Disable.Text" = "Shu qurilmada saqlangan xabarlar soni: %@. Ular o'chiriladi. Buni qaytarib bo'lmaydi.";
+"Settings.ShowDeletedMessages.Disable.Action" = "To'xtatish va o'chirish";
+"Settings.EditHistory" = "Tahrir tarixini saqlash";
+"Settings.EditHistory.Desc" = "Tahrirlangan xabarlarning oldingi versiyalarini faqat shu qurilmada saqlaydi: har bir xabar uchun 20 tagacha, har biri 30 kundan so'ng o'chiriladi. Ochish: xabarni bosib turing → «Tahrir tarixi». Versiyalarni ko'rish — Zenlygram Pro qismi. O'chirilsa, saqlangan versiyalar o'chiriladi.";
+/* Zenlygram — hech bir Pro ekrani ko'rsatilmayotganda (imzolangan siyosat bepul, obuna yo'q) o'sha tavsif: Pro eslatilmaydi. */
+"Settings.EditHistory.Desc.Free" = "Tahrirlangan xabarlarning oldingi versiyalarini faqat shu qurilmada saqlaydi: har bir xabar uchun 20 tagacha, har biri 30 kundan so'ng o'chiriladi. Ochish: xabarni bosib turing → «Tahrir tarixi». O'chirilsa, saqlangan versiyalar o'chiriladi.";
+"Settings.EditHistory.Disable.Title" = "Tahrir tarixi o'chirilsinmi?";
+"Settings.EditHistory.Disable.Text" = "Shu qurilmada saqlangan versiyasi bor xabarlar soni: %@. Saqlangan versiyalar o'chiriladi. Buni qaytarib bo'lmaydi.";
+"Settings.EditHistory.Disable.Action" = "O'chirish va tozalash";
+"Settings.Retention.Removed" = "Shu qurilmadan o'chirildi";
+"ContextMenu.KeptDeleted.RemoveAllInChat" = "Bu chatdagi o'chirilganlarni olib tashlash";
+"ContextMenu.KeptDeleted.RemoveAllInChat.Text" = "Bu chatda saqlangan o'chirilgan xabarlar soni: %@. Ular shu qurilmadan o'chiriladi.";
+"Chat.KeptDeleted.VoiceOver" = "O'chirilgan xabar, o'chirilgan vaqti: %@";
+"Chat.KeptDeleted.VoiceOver.NoDate" = "O'chirilgan xabar";
+"Chat.KeptDeleted.MediaUnavailable" = "Mavjud emas";
+"Chat.KeptDeleted.MediaUnavailable.Text" = "Bu media qurilmada saqlanmagan va xabar o'chirilgani uchun uni yuklab bo'lmaydi.";
+
+
+/* Zenlygram — obuna (SGEntitlement): cheklangan rejim, akkauntni bog'lash va 401 oilasi. */
+"Entitlement.Message.NotLinked" = "Bu qurilmada Zenlygram Pro'dan foydalanish uchun Telegram akkauntingizni bog'lang.";
+"Entitlement.Message.SubscriptionEnded" = "Zenlygram Pro obunangiz tugadi. Xazina, qulflangan chatlar va vazifalar ochiq qoladi, allaqachon saqlangan oʻchirilgan va tahrirlangan xabarlarni esa avvalgidek oʻqish mumkin. Qayta obuna boʻlmaguningizcha yangilari saqlanmaydi.";
+"Entitlement.Message.PaidModeNotice" = "Zenlygram Pro endi obuna asosida ishlaydi. Xazina, qulflangan chatlar va vazifalar ochiq qoladi, allaqachon saqlangan oʻchirilgan va tahrirlangan xabarlarni esa avvalgidek oʻqish mumkin. Yangilarini yaratish uchun Zenlygram Pro kerak.";
+"Entitlement.Message.ReconnectToRestore" = "Zenlygram Pro'ni tiklash uchun qayta ulaning. Xazina, qulflangan chatlar va vazifalar ochiq qoladi, allaqachon saqlangan oʻchirilgan va tahrirlangan xabarlarni esa avvalgidek oʻqish mumkin.";
+"Entitlement.Message.UpdateTheApp" = "Pro imkoniyatlaridan foydalanishda davom etish uchun Zenlygram'ni yangilang.";
+"Entitlement.Message.CheckDateAndTime" = "Qurilmangizdagi sana va vaqtni tekshiring va qaytadan urinib ko'ring.";
+"Entitlement.Message.SignInAgain" = "Bu qurilmani bog'lash uchun qaytadan kiring.";
+"Entitlement.Message.SignedOutForSecurity" = "Bu qurilma xavfsizlik uchun tizimdan chiqarildi. Bog'lash uchun qaytadan kiring.";
+"Entitlement.Message.LinkingUnavailable" = "Bog'lash vaqtincha ishlamaydi. Birozdan keyin urinib ko'ring.";
+"Entitlement.Message.LinkingDeclined" = "Bog'lash rad etildi.";
+"Entitlement.Message.LinkingCodeExpired" = "Bu kodning muddati tugadi.";
+"Entitlement.Message.LinkingDidNotGoThrough" = "Bu amalga oshmadi. Yangi kod oling va qaytadan urinib ko'ring.";
+"Entitlement.Message.LinkingMergeConflict" = "Siz kirdingiz. Bu qurilmada alohida obuna allaqachon bor edi — hech narsa yo'qolmadi, ikkalasi ham faol qoladi.";
+"Entitlement.Message.NoConnection" = "Aloqa yo'q.";
+"Entitlement.Message.TooManyAttempts" = "Juda ko'p urinish. Birozdan keyin qayta urinib ko'ring.";
+"Entitlement.Message.TrialAlreadyUsed" = "Bepul sinov muddatidan allaqachon foydalangansiz.";
+"Entitlement.Message.TrialDeviceCap" = "Bu qurilmada bepul sinov muddatidan allaqachon foydalanilgan.";
+"Entitlement.Message.TrialDeviceBlocked" = "Bu qurilmada bepul sinov muddati mavjud emas.";
+"Entitlement.Message.TrialUnavailable" = "Bepul sinov muddati vaqtincha mavjud emas.";
+"Entitlement.Message.TrialNotOffered" = "Hozir bepul sinov taklif qilinmaydi.";
+"Entitlement.Message.PurchaseNeedsHelp" = "Xaridingiz hali tasdiqlanmadi. Pul ikki marta yechilmadi — “Xaridlarni tiklash”ni bosing.";
+"Entitlement.Message.TemporarilyUnavailable" = "Vaqtincha mavjud emas. Keyinroq urinib ko'ring.";
+
+
+/* Zenlygram — sozlamalardagi obuna qatorlari (design §8.3 item 20).
+   Ularning hech biri App Store'dan tashqaridagi xaridga havola yoki chaqiriq bo'lmasligi shart (3.1.3(b)). */
+"Settings.Pro.Header" = "ZENLYGRAM PRO";
+"Settings.Pro.Subscription" = "Obuna";
+"Settings.Pro.Status.Inactive" = "O'chiq";
+"Settings.Pro.Status.FreeUntil" = "%@ gacha bepul";
+"Settings.Pro.Restore" = "Xaridlarni tiklash";
+"Settings.Pro.Restore.InProgress" = "Tiklanmoqda…";
+"Settings.Pro.Restore.Done" = "Tayyor. Bu Apple Account'da topilgan xaridlar tiklandi.";
+"Settings.Pro.LinkAccount" = "Telegram akkaunti";
+"Settings.Pro.LinkAccount.Linked" = "Ulangan";
+"Settings.Pro.LinkAccount.NotLinked" = "Ulanmagan";
+"Settings.Pro.Notice" = "Pro Maxfiy seyf, Chat qulfi, Vazifalar va Tahrir tarixini ochadi. Siz yashirgan, qulflagan yoki yozgan hamma narsa — obuna bor-yo'qligidan qat'i nazar — to'liq ochiq qoladi. O'chirilgan va tahrirlangan xabarlar «O'chirilgan xabarlarni ko'rsatish» va «Tahrir tarixini saqlash» yoqilgan («O'chirilgan va tahrirlangan» bo'limida, sukut bo'yicha yoqiq) hamda Pro bepul yoki obunangiz faol bo'lganda saqlanadi; saqlanganlarni har doim o'qish va o'chirish mumkin.";
+"Settings.Pro.Restore.NothingFound" = "Bu Apple Account'da Zenlygram Pro xaridi topilmadi. Boshqa akkaunt bilan to'lagan bo'lsangiz, sozlamalarda unga kiring va qayta urinib ko'ring.";
+/* Zenlygram — «Telegram akkaunti» qatori ustidagi neytral sarlavha: ulash — identifikatsiya qadami
+   (bulutli Vazifalar, ma'lumotlarga rozilik), ZENLYGRAM PRO bo'limidan qat'i nazar ko'rsatiladi. */
+"Settings.Account.Header" = "AKKAUNT";
+/* Zenlygram — Sozlamalar → Zenlygram: hub va sahifalar (sozlamalar IA, 2026-11): hub'ning uchta blok
+   sarlavhasi va sahifa ochadigan qatorlarning nomlari (ular sahifa sarlavhalari ham). Settings.Account.Header,
+   Settings.Tools.Header, Settings.Privacy.HiddenChats.Header va Settings.CallRecording jadvallarda qoladi,
+   bu ekranda ishlatilmaydi — keyingi satrlar tozalashigacha. Settings.AccountData.Header'dagi ʼ (U+02BC)
+   ataylab: ostidagi qator «Maʼlumotlar va rozilik» shu harf bilan yozilgan; qolganlari Settings oilasidagidek
+   ASCII apostrof bilan. */
+"Settings.Hub.Features.Header" = "ASOSIY FUNKSIYALAR";
+"Settings.AccountData.Header" = "AKKAUNT VA MAʼLUMOTLAR";
+"Settings.Hub.Groups.Header" = "BOSHQA SOZLAMALAR";
+"Settings.Hub.History" = "O'chirilgan va tahrirlangan";
+"Settings.Hub.CallRecording" = "Qo'ng'iroq yozuvi";
+"Settings.Hub.Chats" = "Chatlar va jildlar";
+"Settings.Hub.Messages" = "Xabarlar va kiritish";
+"Settings.Hub.MessageMenu" = "Xabar menyusi";
+"Settings.Hub.TabBar" = "Oynalar paneli";
+"Settings.Hub.Privacy" = "Maxfiylik va profillar";
+"Settings.Hub.Translation" = "Tarjima va ovoz";
+"Settings.Hub.Media" = "Media";
+"Settings.Hub.Colors" = "Ranglar va effektlar";
+"Settings.Hub.CallsAdvanced" = "Qo'ng'iroqlar va qo'shimcha";
+"Settings.DeletedMessages.Header" = "O'CHIRILGAN XABARLAR";
+"Settings.Reminders.Header" = "ESLATMALAR";
+
+
+/* Zenlygram — App Store xaridlari (SGIAP). Bu satrlarning hech biri App Store'dan tashqaridagi to'lovga olib bormaydi. */
+"IAP.Message.PaymentsUnavailable" = "Bu qurilmada xaridlar mavjud emas.";
+"IAP.Message.RequiresNewerOS" = "Obuna bo'lish uchun iOS'ning yangiroq versiyasi kerak. Xazina, qulflangan chatlar va vazifalar ochiq qoladi.";
+"IAP.Message.ProductsUnavailable" = "App Store javob bermadi. Birozdan keyin qayta urinib ko'ring.";
+"IAP.Message.PurchasePending" = "Tasdiqlash kutilmoqda. Xarid tasdiqlanishi bilan Zenlygram Pro ochiladi.";
+"IAP.Message.StoreOperationInProgress" = "App Store'dagi boshqa xarid yoki tiklash hali tugamagan. Yangi hech narsa boshlanmadi va hech narsa yechilmadi — tugashini kuting, keyin qayta urinib ko'ring.";
+"IAP.Message.PurchaseCompleted" = "Zenlygram Pro faol. Rahmat!";
+"IAP.Message.RestoreCompleted" = "Xaridingiz tiklandi.";
+"IAP.Message.NothingToRestore" = "Bu Apple ID uchun xarid topilmadi. Obuna bo'lgan Apple ID bilan kirganingizni tekshiring.";
+
+
+/* Zenlygram — obuna ekrani, akkauntni bogʻlash va cheklangan rejim (SGPayWall). */
+"Common.Cancel" = "Bekor qilish";
+"Common.Close" = "Yopish";
+"PayWall.Vault.Title" = "Maxfiy xazina";
+"PayWall.Vault.Notice" = "Chatlarni alohida PIN ortiga yashiring.";
+"PayWall.Vault.Description" = "Yashirilgan chatlar chatlar roʻyxatidan, ilova ichidagi qidiruvdan va kontaktlardan yoʻqoladi va faqat xazina PIN kodi kiritilgandan keyin qaytadi. Bu — shu qurilmadagi shu ilova ichidagi mahalliy qulf: chatlaringiz Telegram akkauntingizda qoladi.";
+"PayWall.ChatLock.Title" = "Chat qulfi";
+"PayWall.ChatLock.Notice" = "Alohida chatlarni pinkod bilan qulflang.";
+"PayWall.ChatLock.Description" = "Qulflangan chat faqat oʻz pinkodi bilan ochiladi, xabar koʻrinishlari esa chatlar roʻyxatida va bildirishnomalarda yashirin qoladi. Koʻrinishlarni yashirish — maxfiylik sozlamasi: u obunadan qat'i nazar ishlayveradi.";
+"PayWall.Tasks.Title" = "Vazifalar";
+"PayWall.Tasks.Notice" = "Chatlaringiz yonidagi ishlar roʻyxati.";
+"PayWall.Tasks.Description" = "Vazifalar va roʻyxatlar. Maʼlumotlarga roziligingiz bilan ular Zenlygram serveri orqali sinxronlanadi va shu qurilmadagi mavjud vazifalar u yerga bir marta koʻchiriladi; roziliksiz ular shu qurilmada qoladi.";
+"PayWall.EditHistory.Title" = "Tahrir tarixi";
+"PayWall.EditHistory.Notice" = "Oʻchirilgan va tahrirlangan xabarlarni saqlang.";
+"PayWall.EditHistory.Description" = "«Oʻchirilgan xabarlarni koʻrsatish» va «Tahrir tarixini saqlash» standart holatda yoqilgan, ularni Sozlamalarda oʻchirib qoʻyish mumkin. Ular yoqilgan paytda Zenlygram boshqalar oʻchirgan xabarlarni va ular tahrirlagan xabarlarning oldingi versiyalarini saqlaydi — faqat shu qurilmada, 30 kunga (har bir akkaunt uchun 5 000 tagacha oʻchirilgan xabar, har bir xabar uchun 20 tagacha versiya). Saqlangan hamma narsani obuna bor-yoʻqligidan qatʼi nazar oʻqish va oʻchirish mumkin. Zenlygram Pro pullik obuna boʻlganda yangilarini saqlash uchun u kerak.";
+"PayWall.LapsePolicy.Short" = "Obuna tugasa, xazina, qulflangan chatlar va vazifalar avvalgidek ochiq qoladi, allaqachon saqlangan oʻchirilgan va tahrirlangan xabarlarni esa oʻqish mumkin. Obuna boʻlganingizdan keyin yangilari yana saqlanadi.";
+"PayWall.Degraded.Reassurance" = "Hech narsa oʻchirilmadi, ochib qoʻyilmadi va qulfdan chiqarilmadi. Xazinangiz, qulflangan chatlaringiz va vazifalaringiz avvalgidek ochiladi, allaqachon saqlangan oʻchirilgan va tahrirlangan xabarlarni esa oʻqish mumkin.";
+"PayWall.Degraded.StillWorks.Title" = "Obunasiz ham ishlaydi";
+"PayWall.Degraded.StillWorks.Vault" = "Maxfiy xazinani PIN bilan ochish, yashirilgan chatlarni oʻqish va istalganini qaytarish";
+"PayWall.Degraded.StillWorks.ChatLock" = "Qulflangan chatni pinkod bilan ochish, pinkodni olib tashlash va koʻrinishlarni chatlar roʻyxatida hamda bildirishnomalarda yashirin saqlash";
+"PayWall.Degraded.StillWorks.Tasks" = "Mavjud vazifalarni oʻqish, tahrirlash, yakunlash va oʻchirish";
+"PayWall.Degraded.StillWorks.EditHistory" = "Allaqachon saqlangan oʻchirilgan va tahrirlangan xabarlarni oʻqish va oʻchirish — ular odatdagidek 30 kundan keyin oʻchadi";
+"PayWall.Degraded.Blocked.Title" = "Faol obuna talab qiladi";
+"PayWall.Degraded.Blocked.Vault" = "Xazinaga yangi chat qoʻshish";
+"PayWall.Degraded.Blocked.ChatLock" = "Hali pinkodi yoʻq chatga pinkod oʻrnatish";
+"PayWall.Degraded.Blocked.Tasks" = "Yangi vazifa yaratish";
+"PayWall.Degraded.Blocked.EditHistory" = "Yangi oʻchirilgan va tahrirlangan xabarlarni saqlash";
+"PayWall.Degraded.Nothing" = "Obuna hech qachon hech narsani oʻchirmaydi, ochib qoʻymaydi va qulfdan chiqarmaydi; allaqachon sizda boʻlgan narsaga yetib borish uchun esa u kerak emas — xazina, qulflangan chatlar, vazifalar va saqlangan xabarlar oflayn ham ishlaydi, hatto Zenlygram obunani boshqa hech qachon tekshira olmasa ham.";
+"PayWall.Plan.Monthly" = "Oylik";
+"PayWall.Plan.Yearly" = "Yillik";
+"PayWall.Plan.Other" = "Obuna";
+"PayWall.Plan.PerMonth" = "%@ / oyiga";
+"PayWall.Plan.PerYear" = "%@ / yiliga";
+"PayWall.Plan.Save" = "%@ tejang";
+"PayWall.Plan.Trial" = "%@ kun bepul";
+"PayWall.Button.StartTrial" = "Bepul sinovni boshlash";
+"PayWall.Trial.Notice" = "%1$@ kun bepul, keyin %2$@. Istalgan payt bekor qilasiz.";
+"PayWall.ServerTrial.Button.One" = "%@ kun bepul sinab ko'ring";
+"PayWall.ServerTrial.Button.Few" = "%@ kun bepul sinab ko'ring";
+"PayWall.ServerTrial.Button.Many" = "%@ kun bepul sinab ko'ring";
+"PayWall.ServerTrial.Disclosure.One" = "Bu %@ kunlik sinovni App Store emas, Zenlygram beradi: to'lov ma'lumotlari so'ralmaydi va muddati tugaganda hech narsa yechilmaydi. Keyin Xazina, qulflangan chatlar va vazifalarda yangi elementlar yaratish hamda yangi o'chirilgan yoki tahrirlangan xabarlarni saqlash uchun obuna kerak; allaqachon saqlanganlar ochiq qoladi.";
+"PayWall.ServerTrial.Disclosure.Few" = "Bu %@ kunlik sinovni App Store emas, Zenlygram beradi: to'lov ma'lumotlari so'ralmaydi va muddati tugaganda hech narsa yechilmaydi. Keyin Xazina, qulflangan chatlar va vazifalarda yangi elementlar yaratish hamda yangi o'chirilgan yoki tahrirlangan xabarlarni saqlash uchun obuna kerak; allaqachon saqlanganlar ochiq qoladi.";
+"PayWall.ServerTrial.Disclosure.Many" = "Bu %@ kunlik sinovni App Store emas, Zenlygram beradi: to'lov ma'lumotlari so'ralmaydi va muddati tugaganda hech narsa yechilmaydi. Keyin Xazina, qulflangan chatlar va vazifalarda yangi elementlar yaratish hamda yangi o'chirilgan yoki tahrirlangan xabarlarni saqlash uchun obuna kerak; allaqachon saqlanganlar ochiq qoladi.";
+"PayWall.Grace.Notice" = "Zenlygram Pro'dagi hamma narsa %@ gacha bepul — hech narsa qilish shart emas. Keyin obuna yangi himoyalangan elementlar yaratish va yangi oʻchirilgan hamda tahrirlangan xabarlarni saqlash imkonini beradi; allaqachon saqlanganlar ochiq qoladi.";
+"PayWall.Disclosure" = "Zenlygram Pro — avtomatik yangilanadigan obuna. Toʻlov xaridni tasdiqlaganingizda Apple hisobingizdan yechiladi. Obuna avtomatik uzayadi — agar joriy muddat tugashiga kamida 24 soat qolganda avtomatik uzaytirish oʻchirilmasa; uzaytirish uchun toʻlov muddat tugashidan oldingi 24 soat ichida yechiladi. Uni Sozlamalar > [ismingiz] > Obunalar boʻlimida boshqaring yoki bekor qiling.";
+"PayWall.Disclosure.Short" = "Bekor qilinmaguncha avtomatik yangilanadi.";
+"PayWall.ManageSubscription" = "Obunani boshqarish";
+"PayWall.EULA" = "Foydalanish shartlari (EULA)";
+"PayWall.LinkAccount.Notice" = "Ixtiyoriy. Bogʻlash obunangizni boshqa qurilmalaringizga ham olib oʻtadi; xarid qilish bogʻlamasdan ham ishlaydi.";
+"LinkAccount.Title" = "Telegram akkauntini bogʻlash";
+"LinkAccount.Intro" = "Bogʻlash bu obuna qaysi Telegram akkauntiga tegishli ekanini tasdiqlaydi: shunda u boshqa qurilmalaringizda ham ishlaydi va qayta oʻrnatgandan keyin tiklanadi. Yashirin va qulflangan chatlaringiz shu qurilmada qoladi. Maʼlumotlarga roziligingiz bilan vazifalaringiz serverimizda sinxronlanadi.";
+"LinkAccount.Intro.Free" = "Bogʻlash bu qaysi Telegram akkaunti ekanini tasdiqlaydi: shunda maʼlumotlarga roziligingiz va sinxronlangan vazifalaringiz boshqa qurilmalaringizda ham ishlaydi va qayta oʻrnatgandan keyin tiklanadi. Yashirin va qulflangan chatlaringiz shu qurilmada qoladi. Maʼlumotlarga roziligingiz bilan vazifalaringiz serverimizda sinxronlanadi.";
+"LinkAccount.Linking" = "Bogʻlanmoqda…";
+"LinkAccount.Step.Code" = "BOGʻLASH KODINGIZ";
+"LinkAccount.Code.Hint" = "Bu kodni Telegram'da @%@ botiga yuboring.";
+"LinkAccount.Code.Copied" = "Nusxalandi.";
+"LinkAccount.Code.CopyHint" = "Kodni nusxalaydi.";
+"LinkAccount.Expires" = "%@ dan keyin tugaydi";
+"LinkAccount.Waiting" = "Tasdiqlash kutilmoqda…";
+"LinkAccount.Warning" = "Faqat shu qurilmada Zenlygram'da «Bogʻlash» tugmasini hozirgina bosgan boʻlsangiz tasdiqlang.";
+"LinkAccount.GetNewCode" = "Yangi kod olish";
+"LinkAccount.Success.Title" = "Telegram akkaunti bogʻlandi";
+"LinkAccount.Success.Text" = "Endi Zenlygram Pro siz bogʻlagan har bir qurilmada shu Telegram akkaunti bilan birga yuradi.";
+"LinkAccount.Success.Text.Free" = "Endi Zenlygram siz bogʻlagan har bir qurilmada shu Telegram akkauntini taniydi.";
+"LinkAccount.Unlink" = "Bu qurilmani uzish";
+"LinkAccount.Unlink.Text" = "Uzish shu qurilmadagi seansni tugatadi. Bu obunani bekor qilmaydi — qayta bogʻlasangiz, toʻlangan davr oʻz oʻrnidan davom etadi. Xazina, qulflangan chatlar, vazifalar va saqlangan versiyalarga tegilmaydi. Maʼlumotlarga roziligingiz amalda boʻlsa ham, Zenlygram bu akkauntni oʻzi qayta bogʻlamaydi; uni shu yerda qayta bogʻlang.";
+"LinkAccount.Unlink.Text.Free" = "Uzish shu qurilmadagi Zenlygram seansini tugatadi. Xazina, qulflangan chatlar, vazifalar va saqlangan versiyalarga tegilmaydi. Maʼlumotlarga roziligingiz amalda boʻlsa ham, Zenlygram bu akkauntni oʻzi qayta bogʻlamaydi; uni shu yerda qayta bogʻlang.";
+"LinkAccount.Unlink.Action" = "Uzish";
+"Entitlement.Status.AvailableUntil" = "Pro %@ gacha mavjud";
+"Entitlement.Status.Available" = "Pro mavjud";
+"Entitlement.Status.ViaAppStore" = "App Store obunangiz orqali faol";
+"Entitlement.Status.UnlockedBuild" = "Bu yigʻmada barcha funksiyalar ochiq";
+"Entitlement.Status.Reconnect" = "Hozir tekshirib boʻlmadi — internetga ulaning";
+"Entitlement.Status.Lapsed" = "Obuna tugagan";
+"Entitlement.Status.OtherAccount" = "Boshqa akkaunt faol";
+"Entitlement.Status.OtherAccount.Notice" = "Bu ekran boshqa akkaunt uchun ochilgan. Faol akkauntni koʻrish uchun orqaga qayting va Zenlygram Pro'ni qayta oching.";
+"Entitlement.Status.Linked" = "Bogʻlangan. Obunangiz shu Telegram akkaunti bilan boshqa qurilmalaringizda ham ishlaydi.";
+"Entitlement.Status.Restore.Detail" = "Shu qurilmadagi Apple ID bilan sotib olingan obunani qidiradi.";
+"Entitlement.Plan.RenewsOn" = "App Store obunasi %@ kuni yangilanadi.";
+"Entitlement.Plan.EndsOn" = "App Store obunasi %@ kuni tugaydi va yangilanmaydi.";
+"Entitlement.Plan.Active" = "Bu Apple ID'da App Store obunasi faol.";
+"Entitlement.Plan.BillingRetry" = "Apple App Store obunangizni yangilay olmadi. Toʻlov usulini «Obunani boshqarish» boʻlimida yangilang.";
+"Entitlement.Plan.None" = "Bu Apple ID'da faol App Store obunasi yoʻq.";
+"Entitlement.Status.Inactive" = "Bu qurilmada faol emas";
+"Entitlement.Status.Subscribe" = "Obuna boʻlish";
+"Entitlement.Status.ViewPlans" = "Tariflar";
+"Entitlement.Status.FreeUntil" = "%@ gacha bepul";
+/* Zenlygram — bepul rejim: imzolangan monetizatsiya siyosati Pro hamma uchun bepul ekanini aytadi. Teskari sanoq yoʻq, xarid yoʻq, obuna haqida daʼvo yoʻq. Mavjud App Store obunalari Apple'niki, ilova ularni bekor qilmaydi. */
+"Entitlement.Status.FreeAccess" = "Hozir hamma uchun bepul";
+"Entitlement.Status.FreeAccess.Notice" = "Zenlygram Pro hozir hamma uchun bepul. Ilovada hech narsa sotilmaydi va pul yechilmaydi.";
+"Entitlement.Status.FreeAccess.ExistingSubscription" = "Mavjud App Store obunangizni Apple boshqaradi va uni «Obunani boshqarish» boʻlimida bekor qilmaguningizcha yangilanib turadi.";
+"Entitlement.Status.FreeAccess.ManagedByApple" = "Mavjud App Store obunasini Apple boshqaradi. Uni «Obunani boshqarish» boʻlimida tekshirish, oʻzgartirish yoki bekor qilish mumkin.";
+"Entitlement.Status.FreeAccess.AccountUntil" = "Akkauntingizning oʻz Pro huquqi %@ gacha amal qiladi.";
+"PayWall.Text.Free" = "Maxfiy xazina, chat qulfi, vazifalar va tahrir tarixi — hozir hamma uchun bepul.";
+"PayWall.FreeAccess.Notice" = "Zenlygram Pro hozir hamma uchun bepul. Hech narsa sotib olish shart emas.";
+"Settings.Pro.Status.Free" = "Bepul";
+"IAP.Message.SubscriptionsNotOffered" = "Zenlygram Pro hozir bepul, shuning uchun yangi narsa sotib olib boʻlmaydi. Hech narsa yechilmadi.";
+"IAP.Message.PurchaseCheckFailed" = "Obuna mavjudligini tekshirib boʻlmadi. Ulanishni hamda sana va vaqtni tekshirib, qayta urinib koʻring. Hech narsa yechilmadi.";
+"IAP.Message.PurchaseCheckBusy" = "Tekshiruv hali davom etmoqda — birozdan soʻng qayta urinib koʻring. Hech narsa yechilmadi.";
+"PayWall.Button.CurrentPlan" = "Joriy tarifingiz";
+"PayWall.Button.Upgrade" = "%@ evaziga oʻtish";
+"PayWall.Button.SwitchPlan" = "Bu tarifga oʻtish";
+"PayWall.Plan.DowngradeNotice" = "Oʻtish joriy davr tugagach kuchga kiradi. Hozir hech narsa yechilmaydi.";
+"PayWall.Plan.Renews" = "%@ da yangilanadi";
+"PayWall.Plan.Ends" = "%@ da tugaydi";
+"PayWall.Plan.ChangesAtRenewal" = "%1$@ gacha amal qiladi, keyin «%2$@» tarifi boshlanadi. Bu tarifni saqlab qolish uchun «Obunani boshqarish»ni oching.";
+"PayWall.Plan.ScheduledNotice" = "%@ da, joriy tarif tugagach boshlanadi. Ungacha hech narsa yechilmaydi. Bekor qilish yoki oʻzgartirish uchun «Obunani boshqarish»ni oching.";
+"PayWall.Plan.Badge.Current" = "Joriy";
+"PayWall.Plan.Badge.Scheduled" = "Rejalashtirilgan";
+
+/* Zenlygram — qoʻngʻiroqlarni lokal yozib olish. en.lproj dagi izohga qarang. */
+"Settings.CallRecording" = "QOʻNGʻIROQ YOZUVI";
+"Settings.CallRecording.Notify" = "Suhbatdoshga bildirish";
+"Settings.CallRecording.Notify.Desc" = "Yozuv boshlanganda chatga shu haqda xabar yuboriladi va sizga qisqa signal eshittiriladi. Qoʻngʻiroqning oʻziga ovoz qoʻshib boʻlmaydi — suhbatdosh yangi hech narsa eshitmaydi.";
+"Settings.CallRecording.Notice" = "Yozuvlar shu qurilmada yaratiladi va zaxira nusxasiga kiritilmaydi. Ular «Ulashish» yoki «Saqlangan xabarlar» orqali qurilmadan tashqariga yuborilishi mumkin. Avtomatik yuborish boshida o‘chiq. «Saqlangan xabarlar» — Telegram bulut chati: u yerdagi yozuvlar Telegram serverlarida saqlanadi va uchdan-uchgacha shifrlanmaydi. Yozish uchun suhbatdoshning roziligi kerak bo‘lishi mumkin; uni olish sizning javobgarligingiz.";
+"CallRecording.Button" = "Yozish";
+"CallRecording.Indicator" = "Qoʻngʻiroq yozilmoqda";
+"CallRecording.Consent.Title" = "Bu qoʻngʻiroq yozilsinmi?";
+"CallRecording.Consent.Text" = "Qo‘ng‘iroqning ikkala tomoni yoziladi: sizning ovozingiz ham, suhbatdoshning ovozi ham. Yozuv shu qurilmada saqlanadi.\n\n«Ulashish» yozuv nusxasini siz tanlagan ilova yoki manzilga yuboradi. «Saqlangan xabarlar»ga yuborish uni Telegram serverlariga yuklaydi; u yerda yozuv uchdan-uchgacha shifrlanmaydi. Avtomatik yuborish faqat tegishli sozlamani o‘zingiz yoqsangiz ishlaydi.\n\nSuhbatni yozish uchun barcha ishtirokchilarning roziligi talab qilinishi mumkin. Yozishdan oldin zarur rozilikni olish sizning javobgarligingiz.";
+"CallRecording.Consent.Accept" = "Tushundim, yozishni boshlash";
+"CallRecording.Notice.Message" = "🔴 Men bu qoʻngʻiroqni yozib olyapman.";
+"CallRecording.List.Title" = "Qoʻngʻiroq yozuvlari";
+"CallRecording.List.Empty" = "Hozircha yozuv yoʻq. Qoʻngʻiroq paytida «Yozish» tugmasi bilan boshlang.";
+"CallRecording.List.Empty.NoCallKit" = "Hozircha yozuv yoʻq. Bu qurilmada qoʻngʻiroqlarni yozib boʻlmaydi: yozish uchun iOS qoʻngʻiroq integratsiyasi kerak, bu yerda esa u mavjud emas.";
+"CallRecording.List.Footer" = "Shu qurilmada saqlanadi. Yozuv qurilmadan faqat siz uni ulashsangiz yoki «Saqlangan xabarlar»ga yuborsangiz chiqadi — «Saqlangan xabarlar»ga yuborilgani esa Telegram serverlarida saqlanadi va uchdan-uchgacha shifrlanmaydi.";
+"CallRecording.List.DeleteAll" = "Hamma yozuvni oʻchirish";
+"CallRecording.Play" = "Eshitish";
+"CallRecording.Stop" = "Toʻxtatish";
+"CallRecording.Playing" = "Ijro etilmoqda";
+"CallRecording.Share" = "Ulashish…";
+"CallRecording.Delete" = "Oʻchirish";
+"CallRecording.Delete.Title" = "Yozuvni oʻchirish";
+"CallRecording.Delete.Text" = "Asl yozuv «Qo‘ng‘iroq yozuvlari»dan o‘chiriladi. Yuborilgan, tashqariga ulashilgan yoki Telegram keshidagi nusxalar qolishi mumkin. O‘chirishni qaytarib bo‘lmaydi.";
+"CallRecording.DeleteAll.Title" = "Hamma yozuvni oʻchirish";
+"CallRecording.DeleteAll.Text" = "Barcha asl yozuvlar «Qo‘ng‘iroq yozuvlari»dan o‘chiriladi. Yuborilgan, tashqariga ulashilgan yoki Telegram keshidagi nusxalar qolishi mumkin. O‘chirishni qaytarib bo‘lmaydi.";
+"CallRecording.UnknownPeer" = "Nomaʼlum";
+"CallRecording.Indicator.Short" = "YOZUV";
+"CallRecording.Incomplete" = "uzilib qolgan";
+"CallRecording.NeedsCallKit" = "Qoʻngʻiroqni yozish uchun iOS qoʻngʻiroq integratsiyasi yoqilgan boʻlishi kerak. Ilovadan chiqqaningizdan keyin yozuv belgisini faqat u koʻrsata oladi, belgisiz esa ilova yozmaydi.\n\nUni «Sozlamalar ▸ Maxfiylik va xavfsizlik ▸ Qoʻngʻiroqlar» boʻlimida yoqing.";
+"CallRecording.Problem.Title" = "Qoʻngʻiroq yozuvi";
+"CallRecording.Problem.Lost" = "Yozuvni saqlab boʻlmadi, hech narsa qolmadi. Odatda sabab — qurilmada joy yetishmasligi.";
+"CallRecording.Problem.Truncated" = "Yozuv saqlandi, lekin diskka yozishda xatolik boʻldi, shuning uchun u qoʻngʻiroq tugashidan oldin uzilib qoladi.";
+"CallRecording.Problem.NoSpace" = "Yozuvni boshlash uchun bu qurilmada yetarli boʻsh joy yoʻq.";
+"Settings.CallRecording.SendToSaved" = "«Saqlangan xabarlar»ga yuborish";
+"Settings.CallRecording.SendToSaved.Desc" = "Tugagan, himoyalanmagan yozuvlarni o‘zingizning «Saqlangan xabarlar»ingizga avtomatik yuboradi. Bu bulut chatida ikkala ovoz ham Telegram serverlarida uchdan-uchgacha shifrlashsiz saqlanadi. Yetkazilgani tasdiqlangach asl yozuv «Qo‘ng‘iroq yozuvlari»dan o‘chiriladi; Telegram keshida nusxalar qolishi mumkin. Boshlang‘ich holatda o‘chiq. Sozlamani o‘chirish Telegram navbatiga allaqachon qo‘shilgan yuborishlarni bekor qilmaydi. Alohida yozuvni ro‘yxatdan qo‘lda yuborish mumkin.";
+"CallRecording.SendToSaved" = "«Saqlangan xabarlar»ga yuborish";
+"CallRecording.SendToSaved.Again" = "Qayta yuborib koʻrish";
+"CallRecording.SendToSaved.Waiting" = "«Saqlangan xabarlar»ga yuborilmoqda";
+"CallRecording.SendToSaved.Failed" = "yuborilmadi";
+"CallRecording.SendToSaved.Caption" = "Qoʻngʻiroq yozuvi · %1$@ · %2$@";
+"CallRecording.SendToSaved.Leg.Local" = "sizning mikrofoningiz";
+"CallRecording.SendToSaved.Leg.Remote" = "suhbatdosh";
+"CallRecording.SendToSaved.Confirm.Title" = "«Saqlangan xabarlar»ga yuborish";
+"CallRecording.SendToSaved.Confirm.Text" = "Ikkala ovoz ham Telegram serverlaridagi «Saqlangan xabarlar»ingizga uchdan-uchgacha shifrlashsiz yuboriladi. Asl yozuv yetkazilgani tasdiqlanguncha «Qo‘ng‘iroq yozuvlari»da qoladi, so‘ng o‘chiriladi. Shu qurilmadagi Telegram keshida nusxalar qolishi mumkin; tashqariga ulashilgan nusxalar o‘chirilmaydi.";
+"CallRecording.SendToSaved.Confirm.Send" = "Yuborish";
+"CallRecording.Delete.CancelFailed" = "Bu yozuv hali «Saqlangan xabarlar»ga yuborilmoqda va yuborishni hozir bekor qilib bo'lmadi, shuning uchun yozuv O'CHIRILMADI. Bir lahzadan keyin qayta urinib ko'ring.";
+"CallRecording.Delete.Text.Sending" = "Asl yozuvni o‘chirishdan oldin kutilayotgan yuborishlarni bekor qilish so‘raladi. Bekor qilish so‘rovini berib bo‘lmasa, hech narsa o‘chirilmaydi. Yuborilgan, tashqariga ulashilgan yoki Telegram keshidagi nusxalar qolishi mumkin. O‘chirishni qaytarib bo‘lmaydi.";
+"CallRecording.DeleteAll.Text.Sending" = "Barcha asl qo‘ng‘iroq yozuvlarini o‘chirish. Avval kutilayotgan yuborishlarni bekor qilish so‘raladi; biror so‘rov bajarilmasa, hech narsa o‘chirilmaydi. Yuborilgan, tashqariga ulashilgan yoki Telegram keshidagi nusxalar qolishi mumkin. O‘chirishni qaytarib bo‘lmaydi.";
+"CallRecording.DeleteAll.CancelFailed" = "«Saqlangan xabarlar»ga ayrim yuborishlarni bekor qilib bo‘lmadi. Hech qanday yozuv o‘chirilmadi. Birozdan keyin qayta urinib ko‘ring.";
+"Tasks.Cloud.LogoutNotice" = "Vazifalaringizdagi yuborilmagan oʻzgarishlar yoʻqoladi. Sinxronlangan vazifalar serverda qoladi.";
+"CallRecording.Live" = "yozilmoqda";
+"CallRecording.Live.Text" = "Bu qo‘ng‘iroq hali yozilmoqda. Qo‘ng‘iroq tugagach yozuvni eshitish yoki ulashish mumkin.";
+"CallRecording.Protected.Title" = "Himoyalangan yozuv";
+"CallRecording.Protected.Unverifiable.Text" = "Bu yozuv himoyalangan chatga yoki shu iPhone’da tekshirib bo‘lmaydigan hisobga tegishli. Kirish huquqi tasdiqlanmaguncha uni eshitish, ulashish yoki yuborish mumkin emas. Yozuvni o‘chirish mumkin.";
+"CallRecording.Play.DuringCall" = "Qo‘ng‘iroq paytida yozuvni eshitib bo‘lmaydi.";
+"CallRecording.Play.Failed" = "Hozir bu yozuvni ijro etib bo‘lmadi.";
+"CallRecording.Delete.Failed" = "Hozir yozuvni o‘chirib bo‘lmadi. Birozdan keyin qayta urinib ko‘ring.";
+"CallRecording.Started" = "Yozish boshlandi";
+"CallRecording.Stopped" = "Yozish to‘xtatildi";
+"CallRecording.Problem.NoticeNotSent" = "Yozuv haqidagi xabarni yuborib bo‘lmadi. Davom etishdan oldin suhbatdosh yozuvdan xabardor va rozi ekaniga ishonch hosil qiling.";
+"CallRecording.DeleteAll.Failed" = "Ayrim yozuvlarni o‘chirib bo‘lmadi. iPhone qulfini ochib, qayta urinib ko‘ring.";
+"CallRecording.Problem.NoticeUnconfirmed" = "Yozuv haqidagi xabar yuborilgani hali tasdiqlanmadi. Unga tayanmang: suhbatdoshni yozuvdan xabardor qilib, roziligini oling.";
+"CallRecording.SendToSaved.Caption.Neutral" = "Qo‘ng‘iroq yozuvi · %@";
+"CallRecording.Problem.CleanupPending" = "Xotiraga kirib bo‘lmagani yoki tozalash hali tugamagani sababli yozish boshlanmadi. iPhone qulfini ochib, Sozlamalardagi «Qo‘ng‘iroq yozuvlari» bo‘limini tekshiring.";
+"CallRecording.Damaged.Title" = "Yozuvni ochib bo‘lmaydi";
+"CallRecording.Damaged.Text" = "Bu yozuvni hozir ushbu iPhone’da ochib bo‘lmaydi. Uni o‘chirishingiz mumkin.";
+"CallRecording.SendToSaved.AccountUnavailable" = "Yozuv olingan hisobga bu iPhone’da kirilmagan, shuning uchun uni yuborib bo‘lmaydi.";
+"CallRecording.SendToSaved.Refused" = "Bu yozuvni «Saqlangan xabarlar»ga yuborib bo‘lmaydi.";
+"CallRecording.SendToSaved.NotQueued" = "Hozir yozuvni «Saqlangan xabarlar»ga yuborib bo‘lmadi. Birozdan keyin qayta urinib ko‘ring.";
+"CallRecording.Unavailable.Text" = "Bu versiyada yangi yozuv yoki eksportni boshlash mumkin emas. Mavjud yozuvlarni boshqarish yoki o‘chirish mumkin. Yuborilgan, tashqariga ulashilgan yoki Telegram keshidagi nusxalar qolishi mumkin.";
+
+/* Zenlygram — maʼlumotlarga ishlov berishga rozilik (design 40 §14). en.lproj dagi izohga qarang. */
+"Consent.Wall.Title" = "Maʼlumotlar va rozilik";
+"Consent.Wall.Account" = "Akkaunt: %@";
+"Consent.Wall.Summary" = "Zenlygramdan shu akkaunt bilan foydalanish uchun uning Telegram ID, telefon raqami, ismi, foydalanish statistikasi, obuna holati va sinxronlangan vazifalarini Toshkentdagi serverimizda saqlashga roziligingiz kerak.";
+"Consent.Wall.Language" = "Matn tili";
+"Consent.Wall.Agree" = "Roziman";
+"Consent.Wall.Decline" = "Rozi emasman";
+"Consent.Wall.AgeHint" = "Davom etish uchun yoshingizni tasdiqlang.";
+"Consent.Wall.ModeNote.Required" = "Bu rozilik boʻlmasa, shu Telegram akkaunti bilan Zenlygramdan foydalanib boʻlmaydi. Boshqa akkauntlaringizga taʼsir qilmaydi.";
+"Consent.Wall.ModeNote.Optional" = "Rozilik ixtiyoriy. Rozi boʻlmasangiz, bu akkaunt uchun profil, statistika va sinxronlangan vazifalar yigʻilmaydi va akkaunt avtomatik bogʻlanmaydi; ilova shu qurilmada avvalgidek ishlayveradi. Keyinroq Sozlamalar → Zenlygram → Maʼlumotlar va rozilik boʻlimida rozilik berishingiz mumkin.";
+"Consent.Wall.Notice.Reconsent" = "Rozilik matni yangilandi. Uni oʻqib chiqing va qayta rozilik bering.";
+"Consent.Wall.Notice.Withdrawn" = "Siz %@ kuni rozilikni qaytarib olgansiz.";
+"Consent.Wall.Notice.WithdrawnRemote" = "Bu akkaunt uchun rozilik %@ kuni boshqa qurilmada qaytarib olingan.";
+"Consent.Wall.Notice.LinkEnded" = "Bu akkauntning serverimiz bilan bogʻlanishi tugagan (masalan, uning Zenlygram hisobi oʻchirilgan). Qayta rozilik bermaguningizcha Zenlygram uni oʻzi qayta bogʻlamaydi.";
+"Consent.Wall.TextUnavailable" = "Zenlygramning bu versiyasi rozilik matnini koʻrsata olmaydi. Ilovani yangilang.";
+"Consent.Wall.SaveFailed" = "Tanlovingizni saqlab boʻlmadi. Qayta urinib koʻring.";
+"Consent.Declined.Title" = "Rozilik kerak";
+"Consent.Declined.Text" = "Zenlygram obunangizni, sinxronlangan vazifalaringizni va akkaunt maʼlumotlaringizni oʻz serverida saqlaydi va buning uchun roziligingiz kerak. Rozilik boʻlmasa, shu Telegram akkaunti bilan Zenlygramdan foydalanib boʻlmaydi.\n\nRozilik matnini qayta oʻqishingiz, Zenlygram hisobingizni va serverimizdagi maʼlumotlarni oʻchirishingiz yoki shu qurilmada bu akkauntdan chiqishingiz mumkin. Akkauntdan chiqish Telegram akkauntingizni oʻchirmaydi: u boshqa Telegram ilovalarida ishlashda davom etadi. Bu akkauntning faqat shu qurilmada saqlangan Zenlygram maʼlumotlari (masalan, mahalliy vazifalar) chiqishda oʻchishi mumkin.";
+"Consent.Declined.Back" = "Orqaga";
+"Consent.Declined.Delete" = "Zenlygram hisobim va maʼlumotlarimni oʻchirish";
+"Consent.Declined.Logout" = "Bu akkauntdan chiqish";
+"Consent.Declined.SwitchAccount" = "Boshqa akkauntdan foydalanish";
+"Consent.Declined.PrivacyPolicy" = "Maxfiylik siyosati";
+"Consent.Declined.Logout.LastAccount" = "Bu qurilmada faqat shu akkaunt kirgan. Akkauntdan chiqish bu qurilmadagi Zenlygram maʼlumotlarini ham oʻchiradi: mahalliy vazifalar, sinxronlangan vazifalar nusxasi, qoʻngʻiroq yozuvlari hamda Maxfiy seyf va Chat qulfi sozlamalari.";
+"Settings.Data.Header" = "Maʼlumotlar va maxfiylik";
+"Settings.Data.Consent" = "Maʼlumotlar va rozilik";
+"Settings.Data.State.Granted" = "Berilgan";
+"Settings.Data.State.None" = "Berilmagan";
+"Settings.Data.State.Declined" = "Rad etilgan";
+"Settings.Data.State.Withdrawn" = "Qaytarib olingan";
+"Settings.Data.State.Review" = "Koʻrib chiqing";
+"Settings.Data.PrivacyPolicy" = "Maxfiylik siyosati";
+"DataConsent.Title" = "Maʼlumotlar va rozilik";
+"DataConsent.Status.Granted" = "Rozilik berilgan: %@ (matn versiyasi %@).";
+"DataConsent.Status.Pending" = "Rozilik berilgan; serverga hali yuborilmagan.";
+"DataConsent.Status.None" = "Rozilik berilmagan. Bu akkaunt uchun profil, statistika va sinxronlangan vazifalar yigʻilmaydi.";
+"DataConsent.Status.Declined" = "Siz rozilik bermadingiz. Bu akkaunt uchun profil, statistika va sinxronlangan vazifalar yigʻilmaydi.";
+"DataConsent.Status.Withdrawn" = "Siz %@ kuni rozilikni qaytarib oldingiz. Serverimizdagi maʼlumotlaringiz keyingi ish kunidan kechiktirmay oʻchiriladi.";
+"DataConsent.Status.WithdrawPending" = "Siz %@ kuni rozilikni qaytarib oldingiz. Bu xabar hali serverimizga yetib bormagan; ilova yuborishga urinishda davom etadi.";
+"DataConsent.Status.Reconsent" = "Rozilik matni yangilangan — qayta koʻrib chiqing.";
+"DataConsent.Status.LinkEnded" = "Serverimiz bilan bogʻlanish tugagan. Akkaunt avtomatik bogʻlanishi uchun qayta rozilik bering.";
+"DataConsent.Status.Rejected" = "Roziligingizni qayd etib boʻlmadi. Ilovani yangilang va qayta rozilik bering.";
+"DataConsent.ReadText" = "Rozilik matni";
+"DataConsent.Grant" = "Rozilik berish";
+"DataConsent.MyData" = "Mening maʼlumotlarim";
+"DataConsent.Withdraw" = "Rozilikni qaytarib olish";
+"DataConsent.Delete" = "Zenlygram hisobim va maʼlumotlarimni oʻchirish";
+"DataConsent.Operator" = "Maʼlumotlar operatori: %@ · %@";
+"DataConsent.Storage" = "Maʼlumotlar Toshkentdagi (Oʻzbekiston) serverda saqlanadi.";
+"DataConsent.Footer" = "Bu boʻlim faqat shu Telegram akkauntiga tegishli.";
+"DataConsent.ResetDebug" = "Reset consent on this device (debug build)";
+"DataConsent.Withdraw.Confirm.Title" = "Rozilik qaytarib olinsinmi?";
+"DataConsent.Withdraw.Confirm.Text" = "Rozilikni qaytarib olganingiz haqidagi xabar serverimizga yetib kelgach, profilingiz, statistikangiz va sinxronlangan vazifalaringiz keyingi ish kunidan kechiktirmay oʻchiriladi. Sinxronlangan vazifalaringiz shu qurilmada faqat oʻqish uchun nusxa sifatida qoladi. Bu akkaunt bilan Zenlygram hisobingiz oʻrtasidagi bogʻlanish obuna uchun saqlanadi; bogʻlanishni va barcha maʼlumotlarni ham olib tashlash uchun buning oʻrniga Zenlygram hisobingizni oʻchiring.";
+"DataConsent.Withdraw.Confirm.Unsent.One" = "Hali yuborilmagan %d ta vazifa oʻzgarishi yoʻqoladi.";
+"DataConsent.Withdraw.Confirm.Unsent.Few" = "Hali yuborilmagan %d ta vazifa oʻzgarishi yoʻqoladi.";
+"DataConsent.Withdraw.Confirm.Unsent.Many" = "Hali yuborilmagan %d ta vazifa oʻzgarishi yoʻqoladi.";
+"DataConsent.Withdraw.Confirm.UnsentUnknown" = "Serverga hali yetib bormagan vazifa oʻzgarishlari yoʻqoladi.";
+"DataConsent.Withdraw.Required" = "Shundan keyin bu akkaunt bilan Zenlygramdan faqat qayta rozilik berib foydalanish mumkin.";
+"DataConsent.Withdraw.Optional" = "Ilova shu qurilmada ishlashda davom etadi va bu akkaunt uchun profil, statistika yoki sinxronlangan vazifalarni boshqa yubormaydi.";
+"DataConsent.Withdraw.Confirm.Action" = "Qaytarib olish";
+"DataConsent.Withdraw.DeleteInstead" = "Zenlygram hisobim va maʼlumotlarimni oʻchirish";
+"DataConsent.Withdraw.PendingUpload" = "Bu qurilma serverimizga bogʻlanmagan, shuning uchun rozilikni qaytarib olganingiz haqidagi xabarni bu yerdan yuborib boʻlmaydi; qurilmani yana bogʻlasangiz, u yuboriladi. Bu Telegram akkauntidan boshqa qurilmadagi Zenlygramda ham foydalansangiz, u yerda ham rozilikni qaytarib oling yoki maʼlumotlaringizni zenlygram.org/account/delete sahifasida oʻchiring yoxud quyida koʻrsatilgan manzilga yozing.";
+"DataConsent.Withdraw.Sending" = "Rozilikni qaytarib olganingiz haqidagi xabar yuborilmoqda…";
+"AccountDelete.Title" = "Zenlygram hisobini oʻchirish";
+"AccountDelete.Deleted" = "Zenlygram hisobingiz va u uchun saqlanayotgan maʼlumotlar oʻchiriladi: profil, qurilmalar, statistika, sinxronlangan vazifalar, takliflar va akkaunt bogʻlanishi. Bu hisobga bogʻlangan barcha qurilmalar Zenlygramdan chiqariladi.";
+"AccountDelete.Kept" = "Toʻlov yozuvlari faqat qonun talab qiladigan muddat saqlanadi, ulardan sizni aniqlashga imkon beradigan maʼlumotlar olib tashlanadi. Rozilik berganingiz va qaytarib olganingiz haqidagi yozuv (hisob raqami, matn versiyalari va sanalar) 3 yil saqlanadi.";
+"AccountDelete.Telegram" = "Telegram akkauntingiz oʻchirilmaydi.";
+"AccountDelete.Timing" = "Oʻchirish darhol boshlanadi va keyingi ish kunidan kechiktirmay yakunlanadi. Shifrlangan zaxira nusxalar va server jurnallaridagi nusxalar 14 kun ichida yoʻqoladi.";
+"AccountDelete.Billing" = "Obunangiz boʻlsa, uni %@ ilovasida bekor qilmaguningizcha u yangilanib, toʻlov olinishda davom etadi. Kerak boʻlmasa, avval obunani bekor qiling.";
+"AccountDelete.ManageSubscription" = "Obunani boshqarish";
+"AccountDelete.Confirm" = "Hisobim va maʼlumotlarimni oʻchirish";
+"AccountDelete.Confirm2.Title" = "Zenlygram hisobingiz oʻchirilsinmi?";
+"AccountDelete.Confirm2.Text" = "Buni ortga qaytarib boʻlmaydi.";
+"AccountDelete.Confirm2.Action" = "Oʻchirish";
+"AccountDelete.Done.Title" = "Zenlygram hisobi oʻchirildi";
+"AccountDelete.Done.Text" = "Zenlygram hisobingiz oʻchirildi. Boshqa xizmatlarimizdagi nusxalar keyingi ish kunidan kechiktirmay, shifrlangan zaxira nusxalar va server jurnallaridagilar esa 14 kun ichida oʻchiriladi. Bu akkaunt bilan Zenlygramdan yana foydalansangiz, rozilik qaytadan soʻraladi.";
+"AccountDelete.NotLinked" = "Bu akkaunt shu qurilmadan Zenlygram serveriga bogʻlanmagan. Zenlygram hisobini oʻchirish uchun zenlygram.org/account/delete sahifasini oching va Telegram orqali kiring.";
+"AccountDelete.OpenWeb" = "Sahifani ochish";
+"AccountDelete.Error.Offline" = "Internet aloqasi yoʻq. Aloqani tekshirib, qayta urinib koʻring yoki zenlygram.org/account/delete sahifasidan foydalaning.";
+"AccountDelete.Error.RateLimited" = "Urinishlar juda koʻp. Birozdan keyin qayta urinib koʻring.";
+"AccountDelete.Error.Unavailable" = "Server hozir javob bermayapti. Keyinroq urinib koʻring yoki zenlygram.org/account/delete sahifasidan foydalaning.";
+"AccountDelete.Failed" = "Hisobni hozir oʻchirib boʻlmadi. Internet aloqasini tekshirib, qayta urinib koʻring yoki zenlygram.org/account/delete sahifasidan foydalaning.";
+"MyData.Title" = "Mening maʼlumotlarim";
+"MyData.Loading" = "Yuklanmoqda…";
+"MyData.NotLinked" = "Bu akkaunt shu qurilmadan Zenlygram serveriga bogʻlanmagan, shuning uchun koʻrsatadigan server maʼlumotlari yoʻq.";
+"MyData.Unavailable" = "Hozir maʼlumotlarni yuklab boʻlmadi. Keyinroq urinib koʻring.";
+"MyData.Error.Offline" = "Internet aloqasi yoʻq.";
+"MyData.Error.Unavailable" = "Server hozir javob bermayapti. Keyinroq urinib koʻring.";
+"MyData.Error.RateLimited" = "Soʻrovlar juda koʻp. Keyinroq urinib koʻring.";
+"MyData.Retry" = "Qayta urinish";
+"MyData.Section.Account" = "Hisob";
+"MyData.Section.Consent" = "Rozilik";
+"MyData.Section.History" = "Rozilik tarixi";
+"MyData.Section.Profile" = "Profil";
+"MyData.Section.Devices" = "Qurilmalar";
+"MyData.Section.Activity" = "Faollik";
+"MyData.Section.Events" = "Statistika hodisalari (oxirgi 180 kun)";
+"MyData.Section.Subscription" = "Obuna";
+"MyData.Section.Retention" = "Saqlash muddatlari";
+"MyData.Source.telegram_attest" = "Telegram tasdiqlagan";
+"MyData.Source.telegram_bot" = "Telegram (bot orqali)";
+"MyData.Source.client" = "Ilovadan";
+"MyData.Source.telegram_session" = "Telegram seansidan";
+"MyData.Field.Id" = "Hisob ID";
+"MyData.Field.TelegramId" = "Telegram ID";
+"MyData.Field.Created" = "Yaratilgan";
+"MyData.Field.Phone" = "Telefon raqami";
+"MyData.Field.Country" = "Mamlakat (telefon kodi boʻyicha)";
+"MyData.Field.Usernames" = "Foydalanuvchi nomlari";
+"MyData.Field.FirstName" = "Ism";
+"MyData.Field.LastName" = "Familiya";
+"MyData.Field.Language" = "Telegram tili";
+"MyData.Field.Premium" = "Telegram Premium";
+"MyData.Field.Model" = "Qurilma modeli";
+"MyData.Field.Os" = "Operatsion tizim";
+"MyData.Field.App" = "Ilova versiyasi";
+"MyData.Field.Locale" = "Mintaqaviy format";
+"MyData.Field.TimeZone" = "Vaqt mintaqasi";
+"MyData.Field.Distribution" = "Oʻrnatish manbai";
+"MyData.Field.FirstSeen" = "Birinchi marta koʻrilgan";
+"MyData.Field.LastSeen" = "Oxirgi marta koʻrilgan";
+"MyData.Field.FirstActive" = "Birinchi faollik";
+"MyData.Field.LastActive" = "Oxirgi faollik";
+"MyData.Field.ActiveDays" = "Faol kunlar";
+"MyData.Field.Sessions30" = "Seanslar (30 kun)";
+"MyData.Field.Seconds30" = "Foydalanish vaqti (30 kun)";
+"MyData.Field.Total" = "Hodisalar soni";
+"MyData.Field.Retained" = "Saqlash muddati";
+"LinkAccount.AttestDisclosure" = "Kodsiz bogʻlash uchun Zenlygram fonda, shu akkaunt nomidan Telegramdan %@ botining Mini App ilovasi orqali tasdiq soʻraydi; shunda Telegram botga ochiq profilingizni beradi. Maʼlumotlarga rozilik bermagan boʻlsangiz, faqat Telegram ID raqamingizni saqlaymiz. Ilova botga hech qachon xabar yubormaydi, Mini App ilovasini ochmaydi va kontaktingizni ulashmaydi.";
+"PayWall.LinkAccount.Notice.Required" = "Maʼlumotlarga rozilik berganingizdan keyin akkauntingiz avtomatik bogʻlanadi, shunda obunangiz boshqa qurilmalaringizda ham ishlaydi.";
+
+/* Zenlygram Pro paywall — cosmic design */
+"PayWall.Hero.Subtitle" = "Zenlygram'ning premium versiyasi — koʻproq nazorat, maxfiylik va kuchli imkoniyatlar.";
+"PayWall.Hero.Premium" = "PREMIUM";
+"PayWall.Hero.Features" = "Imkoniyatlar";
+"PayWall.Hero.Unlimited" = "Cheksiz";
+"PayWall.Hero.Freedom" = "erkinlik";
+"PayWall.Plan.Yearly.Short" = "Yiliga";
+"PayWall.Plan.Monthly.Short" = "Oyiga";
+"PayWall.Plan.Summary" = "%1$@ oy • %2$@";
+"PayWall.Plan.PerMonth.Compact" = "%@/oy";
+"PayWall.Plan.PerYear.Compact" = "%@/yil";
+"PayWall.Plan.Discount" = "-%@";
+"PayWall.Button.GoPro" = "Zenlygram Pro'ga oʻtish";
+"PayWall.Disclosure.WithPrice" = "%@. Bekor qilinmaguncha avtomatik yangilanadi.";
+"Contacts.SelectAll" = "Hammasi";
+"Contacts.DeselectAll" = "Hech biri";
+// MARK: Zenlygram — the app-update policy (update_policy_spec §4i): the "Update required" block and the "Update available" reminder
+"AppUpdate.Required.Title" = "Yangilash talab qilinadi";
+"AppUpdate.Required.Text" = "Zenlygram'ning bu versiyasi endi qo'llab-quvvatlanmaydi. Davom etish uchun ilovani yangilang.";
+"AppUpdate.Required.Button" = "App Store'ni ochish";
+"AppUpdate.Required.TestFlightButton" = "TestFlight'ni ochish";
+"AppUpdate.Required.Help" = "Yordam";
+"AppUpdate.Required.DeviceNote" = "Yangilanish bu qurilma uchun taklif qilinmasa, yangiroq iOS kerak bo'lishi mumkin; App Store ham uni kechikib ko'rsatishi mumkin.";
+"AppUpdate.Available.Title" = "Yangilanish mavjud";
+"AppUpdate.Available.Text" = "App Store'da Zenlygram %@ versiyasi mavjud.";
+"AppUpdate.Available.Update" = "Yangilash";
+"AppUpdate.Available.Later" = "Keyinroq";

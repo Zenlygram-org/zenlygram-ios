@@ -1,0 +1,1 @@
+# Fill with your own UZ-reachable SOCKS5 endpoints, one per line: HOST:PORT:USER:PASS

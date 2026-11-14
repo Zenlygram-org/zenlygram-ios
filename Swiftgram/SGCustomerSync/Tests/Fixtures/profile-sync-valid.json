@@ -1,0 +1,344 @@
+{
+  "schema": "zenlygram-profile-sync-fixture/1",
+  "description": "Valid POST /v1/profile/sync bodies (contract §2.4.3) and what the server makes of them when it receives them at received_at, for a linked binding of binding_platform whose account (Telegram id tg_user_id, an obviously fake id) has a grant of every scope in effect, recorded through /v1/profile/consents, so profile holds no observation and no device row before the sync. expected.response is the 200 body without server_time; expected.profile is the profile section and expected.device the item of this binding in devices of GET /v1/profile/me (contract §2.4.4) right after the sync, without its device_id (core's binding id); expected.core_device is what core's devices row of the binding holds afterwards (the body's top-level app_version and os_version). A profile field is null when the service holds no value of it: never observed (language_code comes only from verified sources, a first_name of null is no observation) or observed as null or as an empty usernames list. A client_built body is one a conforming client builds (both clients compare their bodies with those as parsed JSON); the other shows what the server tolerates from a client that does not conform.",
+  "received_at": "2026-11-01T10:00:00Z",
+  "tg_user_id": 555000111,
+  "cases": [
+    {
+      "id": "ios-phone",
+      "client_built": true,
+      "description": "An iPhone of the App Store build, the contract §2.4.3 example: a phone, the editable username first, then a collectible one, no last name. Every value is stored as sent; the null last_name is an observation (the user has none), so profile holds no last name.",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "observed_at": "2026-11-01T09:59:30Z",
+        "app_version": "12.0.1",
+        "os_version": "18.1",
+        "telegram": {
+          "user_id": 555000111,
+          "phone": "+998901234567",
+          "usernames": [
+            "primary_name",
+            "collectible1"
+          ],
+          "first_name": "Alisher",
+          "last_name": null,
+          "is_premium": false
+        },
+        "device": {
+          "platform": "ios",
+          "device_class": "phone",
+          "device_model": "iPhone17,1",
+          "app_build": "1234",
+          "ui_language": "uz",
+          "locale": "uz-UZ",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        }
+      },
+      "expected": {
+        "response": {
+          "schema_version": 1,
+          "ingest": "stored",
+          "min_interval_s": 21600
+        },
+        "profile": {
+          "phone": {
+            "value": "+998901234567",
+            "source": "telegram_session",
+            "observed_at": "2026-11-01T09:59:30Z"
+          },
+          "country": "UZ",
+          "usernames": {
+            "value": [
+              "primary_name",
+              "collectible1"
+            ],
+            "source": "client",
+            "observed_at": "2026-11-01T09:59:30Z"
+          },
+          "first_name": {
+            "value": "Alisher",
+            "source": "client",
+            "observed_at": "2026-11-01T09:59:30Z"
+          },
+          "last_name": null,
+          "language_code": null,
+          "is_premium": {
+            "value": false,
+            "source": "client",
+            "observed_at": "2026-11-01T09:59:30Z"
+          }
+        },
+        "device": {
+          "platform": "ios",
+          "device_class": "phone",
+          "device_model": "iPhone17,1",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "ui_language": "uz",
+          "locale": "uz-UZ",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore",
+          "first_seen_at": "2026-11-01T10:00:00Z",
+          "last_seen_at": "2026-11-01T10:00:00Z",
+          "revoked_at": null
+        },
+        "core_device": {
+          "app_version": "12.0.1",
+          "os_version": "18.1"
+        }
+      }
+    },
+    {
+      "id": "android-phone",
+      "client_built": true,
+      "description": "An Android phone of the Play build: Cyrillic first and last name, a +7 7… number (Kazakhstan, not Russia), usernames whose case is kept as sent.",
+      "binding_platform": "android",
+      "body": {
+        "schema_version": 1,
+        "observed_at": "2026-11-01T09:58:00Z",
+        "app_version": "12.1.0",
+        "os_version": "15",
+        "telegram": {
+          "user_id": 555000111,
+          "phone": "+77011234567",
+          "usernames": [
+            "nodira_test",
+            "Nodira_Shop"
+          ],
+          "first_name": "Нодира",
+          "last_name": "Тестова",
+          "is_premium": true
+        },
+        "device": {
+          "platform": "android",
+          "device_class": "phone",
+          "device_model": "samsung SM-S928B",
+          "app_build": "52345",
+          "ui_language": "ru",
+          "locale": "ru-KZ",
+          "timezone": "Asia/Almaty",
+          "distribution": "play"
+        }
+      },
+      "expected": {
+        "response": {
+          "schema_version": 1,
+          "ingest": "stored",
+          "min_interval_s": 21600
+        },
+        "profile": {
+          "phone": {
+            "value": "+77011234567",
+            "source": "telegram_session",
+            "observed_at": "2026-11-01T09:58:00Z"
+          },
+          "country": "KZ",
+          "usernames": {
+            "value": [
+              "nodira_test",
+              "Nodira_Shop"
+            ],
+            "source": "client",
+            "observed_at": "2026-11-01T09:58:00Z"
+          },
+          "first_name": {
+            "value": "Нодира",
+            "source": "client",
+            "observed_at": "2026-11-01T09:58:00Z"
+          },
+          "last_name": {
+            "value": "Тестова",
+            "source": "client",
+            "observed_at": "2026-11-01T09:58:00Z"
+          },
+          "language_code": null,
+          "is_premium": {
+            "value": true,
+            "source": "client",
+            "observed_at": "2026-11-01T09:58:00Z"
+          }
+        },
+        "device": {
+          "platform": "android",
+          "device_class": "phone",
+          "device_model": "samsung SM-S928B",
+          "os_version": "15",
+          "app_version": "12.1.0",
+          "app_build": "52345",
+          "ui_language": "ru",
+          "locale": "ru-KZ",
+          "timezone": "Asia/Almaty",
+          "distribution": "play",
+          "first_seen_at": "2026-11-01T10:00:00Z",
+          "last_seen_at": "2026-11-01T10:00:00Z",
+          "revoked_at": null
+        },
+        "core_device": {
+          "app_version": "12.1.0",
+          "os_version": "15"
+        }
+      }
+    },
+    {
+      "id": "ios-tablet-nothing-known",
+      "client_built": true,
+      "description": "An iPad of a TestFlight build whose Telegram name cleans to nothing (first_name null: no observation), with no phone and no username (observed as null and as an empty list). Profile holds only is_premium.",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "observed_at": "2026-11-01T09:59:59Z",
+        "app_version": "12.0.1",
+        "os_version": "18.1",
+        "telegram": {
+          "user_id": 555000111,
+          "phone": null,
+          "usernames": [],
+          "first_name": null,
+          "last_name": null,
+          "is_premium": false
+        },
+        "device": {
+          "platform": "ios",
+          "device_class": "tablet",
+          "device_model": "iPad16,3",
+          "app_build": "1234",
+          "ui_language": "en",
+          "locale": "en-GB",
+          "timezone": "Europe/London",
+          "distribution": "testflight"
+        }
+      },
+      "expected": {
+        "response": {
+          "schema_version": 1,
+          "ingest": "stored",
+          "min_interval_s": 21600
+        },
+        "profile": {
+          "phone": null,
+          "country": null,
+          "usernames": null,
+          "first_name": null,
+          "last_name": null,
+          "language_code": null,
+          "is_premium": {
+            "value": false,
+            "source": "client",
+            "observed_at": "2026-11-01T09:59:59Z"
+          }
+        },
+        "device": {
+          "platform": "ios",
+          "device_class": "tablet",
+          "device_model": "iPad16,3",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "ui_language": "en",
+          "locale": "en-GB",
+          "timezone": "Europe/London",
+          "distribution": "testflight",
+          "first_seen_at": "2026-11-01T10:00:00Z",
+          "last_seen_at": "2026-11-01T10:00:00Z",
+          "revoked_at": null
+        },
+        "core_device": {
+          "app_version": "12.0.1",
+          "os_version": "18.1"
+        }
+      }
+    },
+    {
+      "id": "tolerated-values",
+      "client_built": false,
+      "description": "Not built by a conforming client: every descriptive device value fails its pattern and is stored as null (device_model is not printable ASCII, app_build is longer than 32, locale is not bcp47, timezone is not iana_tz) except ui_language, which keeps its lower-cased primary subtag; observed_at, ten minutes after the receipt, is clamped to the receipt + 300 s.",
+      "binding_platform": "android",
+      "body": {
+        "schema_version": 1,
+        "observed_at": "2026-11-01T10:10:00Z",
+        "app_version": "12.1.0",
+        "os_version": "14",
+        "telegram": {
+          "user_id": 555000111,
+          "phone": "+5511987654321",
+          "usernames": [
+            "Ana_Test"
+          ],
+          "first_name": "Ana",
+          "last_name": "Test",
+          "is_premium": false
+        },
+        "device": {
+          "platform": "android",
+          "device_class": "tablet",
+          "device_model": "Pixel Tablet – QA",
+          "app_build": "build 52345 of the internal QA channel",
+          "ui_language": "pt-BR",
+          "locale": "pt_BR",
+          "timezone": "UTC+05:00",
+          "distribution": "direct"
+        }
+      },
+      "expected": {
+        "response": {
+          "schema_version": 1,
+          "ingest": "stored",
+          "min_interval_s": 21600
+        },
+        "profile": {
+          "phone": {
+            "value": "+5511987654321",
+            "source": "telegram_session",
+            "observed_at": "2026-11-01T10:05:00Z"
+          },
+          "country": "BR",
+          "usernames": {
+            "value": [
+              "Ana_Test"
+            ],
+            "source": "client",
+            "observed_at": "2026-11-01T10:05:00Z"
+          },
+          "first_name": {
+            "value": "Ana",
+            "source": "client",
+            "observed_at": "2026-11-01T10:05:00Z"
+          },
+          "last_name": {
+            "value": "Test",
+            "source": "client",
+            "observed_at": "2026-11-01T10:05:00Z"
+          },
+          "language_code": null,
+          "is_premium": {
+            "value": false,
+            "source": "client",
+            "observed_at": "2026-11-01T10:05:00Z"
+          }
+        },
+        "device": {
+          "platform": "android",
+          "device_class": "tablet",
+          "device_model": null,
+          "os_version": "14",
+          "app_version": "12.1.0",
+          "app_build": null,
+          "ui_language": "pt",
+          "locale": null,
+          "timezone": null,
+          "distribution": "direct",
+          "first_seen_at": "2026-11-01T10:00:00Z",
+          "last_seen_at": "2026-11-01T10:00:00Z",
+          "revoked_at": null
+        },
+        "core_device": {
+          "app_version": "12.1.0",
+          "os_version": "14"
+        }
+      }
+    }
+  ]
+}

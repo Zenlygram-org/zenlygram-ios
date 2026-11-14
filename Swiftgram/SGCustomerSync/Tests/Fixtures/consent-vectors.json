@@ -1,0 +1,96 @@
+{
+  "algorithm": "zenlygram-consent-canonical/1",
+  "vectors": [
+    {
+      "id": "v1-uz",
+      "kind": "locale_text",
+      "text_version": 1,
+      "locale": "uz",
+      "file": "v1/uz.md",
+      "values": {
+        "OPERATOR_NAME": "«Zenlygram» MChJ",
+        "OPERATOR_STIR": "123456789",
+        "RESPONSIBLE_PERSON": "\u00a0Ali Valiyev\u2003",
+        "CONTACT_EMAIL": "privacy@zenlygram.org"
+      },
+      "template_sha256": "384fe0cb77d998b29fa1e6843feea647b80cd69b1af35bf4d146b6be2d07df65",
+      "text_sha256": "229fd61b5ac4c2711e1b9635b6e5b24ab44ab5564baac8a2c1067a5b127f64d9",
+      "canonical_length_scalars": 11434,
+      "canonical_utf8_bytes": 11632
+    },
+    {
+      "id": "v1-ru",
+      "kind": "locale_text",
+      "text_version": 1,
+      "locale": "ru",
+      "file": "v1/ru.md",
+      "values": {
+        "OPERATOR_NAME": "«Zenlygram» MChJ",
+        "OPERATOR_STIR": "123456789",
+        "RESPONSIBLE_PERSON": "Ali Valiyev",
+        "CONTACT_EMAIL": "privacy@zenlygram.org"
+      },
+      "template_sha256": "6a05dd9db184d84911b0a3459b8e93c8000ad3bfec87381fb784d066f5e6b06b",
+      "text_sha256": "7aeb6fe1bd40dff533c6d54469532a5362064053e245415ec595fc0e6684fa51",
+      "canonical_length_scalars": 10691,
+      "canonical_utf8_bytes": 18360
+    },
+    {
+      "id": "v1-en",
+      "kind": "locale_text",
+      "text_version": 1,
+      "locale": "en",
+      "file": "v1/en.md",
+      "values": {
+        "OPERATOR_NAME": "Zeno\u0301 Test",
+        "OPERATOR_STIR": "12345678901234",
+        "RESPONSIBLE_PERSON": " Ali Valiyev ",
+        "CONTACT_EMAIL": "privacy@zenlygram.org"
+      },
+      "template_sha256": "daae5d134f3774b2638a1e72e53bb6e4881d1ca22eec6da73e29179feb50441e",
+      "text_sha256": "de08af6602187a485a663b08e689c5d8678b9c3f10d6917a48c443aebe56a26b",
+      "canonical_length_scalars": 9995,
+      "canonical_utf8_bytes": 10012
+    },
+    {
+      "id": "V1",
+      "kind": "algorithm",
+      "description": "Placeholders filled, CRLF to LF, trailing spaces and the final blank lines removed.",
+      "template": "Operator: {{OPERATOR_NAME}} ({{OPERATOR_STIR}})\r\nEmail: {{CONTACT_EMAIL}}  \r\n\r\n",
+      "values": {
+        "OPERATOR_NAME": "Zenlygram MChJ",
+        "OPERATOR_STIR": "123456789",
+        "CONTACT_EMAIL": "privacy@zenlygram.org"
+      },
+      "canonical": "Operator: Zenlygram MChJ (123456789)\nEmail: privacy@zenlygram.org",
+      "template_sha256": "92f61b9765f93e8c336c0c99153150389807ff727fc30e8adbea7b830c346a2d",
+      "text_sha256": "c7ecb28d27e873d1a917e3849202f728287e165c163bfb91964cba732a1df2a2",
+      "canonical_length_scalars": 65,
+      "canonical_utf8_bytes": 65
+    },
+    {
+      "id": "V2",
+      "kind": "algorithm",
+      "description": "A leading U+FEFF stripped, e + U+0301 composed to U+00E9 (NFC), U+02BB kept, the trailing tab and LF removed.",
+      "template": "\ufeff# Rozilik\n\nCafe\u0301 oʻzbek\t\n",
+      "values": {},
+      "canonical": "# Rozilik\n\nCafé oʻzbek",
+      "template_sha256": "560fb9efb2279bd727779cba65fe67ae05b5a14aa25821f98903ae5e28b3f8a8",
+      "text_sha256": "560fb9efb2279bd727779cba65fe67ae05b5a14aa25821f98903ae5e28b3f8a8",
+      "canonical_length_scalars": 22,
+      "canonical_utf8_bytes": 24
+    },
+    {
+      "id": "V3",
+      "kind": "algorithm",
+      "description": "No values (a debug build): the placeholder stays literally.",
+      "template": "Masʼul shaxs: {{RESPONSIBLE_PERSON}}\n",
+      "values": {},
+      "canonical": "Masʼul shaxs: {{RESPONSIBLE_PERSON}}",
+      "template_sha256": "89751cc5539c18b0e936bde8c955ae1af6e901065bdcc7643ed306409dfda67f",
+      "text_sha256": "89751cc5539c18b0e936bde8c955ae1af6e901065bdcc7643ed306409dfda67f",
+      "canonical_length_scalars": 36,
+      "canonical_utf8_bytes": 37
+    }
+  ]
+}

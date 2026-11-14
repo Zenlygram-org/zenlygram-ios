@@ -1,0 +1,4117 @@
+{
+  "schema": "zenlygram-events-fixture/1",
+  "description": "Invalid POST /v1/profile/events bodies, received at received_at for a linked binding of binding_platform whose account has a grant in effect: one case per per-event rejection reason of contract §3.5 (reason unknown_event, invalid_props, invalid_envelope, stale, future: the batch is answered 200, offending_event is the index of the rejected event and the other events are stored) and the batch-level refusals (reason batch: the whole batch is answered 422 and nothing is stored). No client ever produces any of these bodies.",
+  "received_at": "2026-11-01T10:00:00Z",
+  "cases": [
+    {
+      "id": "unknown-event",
+      "reason": "unknown_event",
+      "description": "A name the registry does not hold.",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "4f1c3638-dde7-46bb-ba74-081fb1238d20",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "618b80cd-b8ec-43c2-96b3-0eb2f84a7019",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:00Z",
+            "session_id": "1a68d125-6c38-42c8-8384-2a15989f0817",
+            "seq": 0,
+            "props": {
+              "screen": "tg.chat_list"
+            }
+          },
+          {
+            "id": "30100b08-4662-4c89-a020-25d3fa7143a3",
+            "name": "app.crashed",
+            "ts": "2026-11-01T09:58:30Z",
+            "session_id": "1a68d125-6c38-42c8-8384-2a15989f0817",
+            "seq": 1,
+            "props": {}
+          }
+        ]
+      },
+      "offending_event": 1,
+      "expected": {
+        "status": 200,
+        "accepted": 1,
+        "duplicates": 0,
+        "dropped_props": 0,
+        "rejected": [
+          {
+            "id": "30100b08-4662-4c89-a020-25d3fa7143a3",
+            "reason": "unknown_event"
+          }
+        ]
+      }
+    },
+    {
+      "id": "invalid-props-missing-required",
+      "reason": "invalid_props",
+      "description": "screen.view without its required screen.",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "2f171310-5a29-45c5-9ce4-4ad57573b425",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "011698b7-f3d8-45b0-a3a7-663c161217a6",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:00Z",
+            "session_id": "a0dd1a13-e94f-4894-ad63-4fa756e47be5",
+            "seq": 0,
+            "props": {
+              "screen": "tg.chat_list"
+            }
+          },
+          {
+            "id": "17279b21-047f-4f82-98f8-ed59b4162245",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:30Z",
+            "session_id": "a0dd1a13-e94f-4894-ad63-4fa756e47be5",
+            "seq": 1,
+            "props": {}
+          }
+        ]
+      },
+      "offending_event": 1,
+      "expected": {
+        "status": 200,
+        "accepted": 1,
+        "duplicates": 0,
+        "dropped_props": 0,
+        "rejected": [
+          {
+            "id": "17279b21-047f-4f82-98f8-ed59b4162245",
+            "reason": "invalid_props"
+          }
+        ]
+      }
+    },
+    {
+      "id": "invalid-props-enum",
+      "reason": "invalid_props",
+      "description": "A screen outside the screen enum (chat-level screens are never reported).",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "a1e657de-7df1-4813-83e2-1bb5ae5ff7c2",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "3dc5fa60-a147-4b4d-98d7-20408591bda9",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:00Z",
+            "session_id": "c31e309e-f3f1-439e-a253-80a6e738b10c",
+            "seq": 0,
+            "props": {
+              "screen": "tg.chat_list"
+            }
+          },
+          {
+            "id": "ccaf266d-122a-416f-9082-3467d02e174f",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:30Z",
+            "session_id": "c31e309e-f3f1-439e-a253-80a6e738b10c",
+            "seq": 1,
+            "props": {
+              "screen": "tg.chat"
+            }
+          }
+        ]
+      },
+      "offending_event": 1,
+      "expected": {
+        "status": 200,
+        "accepted": 1,
+        "duplicates": 0,
+        "dropped_props": 0,
+        "rejected": [
+          {
+            "id": "ccaf266d-122a-416f-9082-3467d02e174f",
+            "reason": "invalid_props"
+          }
+        ]
+      }
+    },
+    {
+      "id": "invalid-props-range",
+      "reason": "invalid_props",
+      "description": "priority 5 is above the priority type's max (4).",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "6c73b7ef-7371-49f3-bd2f-1aead8787b8c",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "258024c2-7b3f-4f64-b869-9f78e6e6dc05",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:00Z",
+            "session_id": "c7683856-2ea6-4bcb-858b-e718f8105df9",
+            "seq": 0,
+            "props": {
+              "screen": "tg.chat_list"
+            }
+          },
+          {
+            "id": "b47da519-b3ef-49c9-b793-28f1ec7e9c2d",
+            "name": "tasks.task_created",
+            "ts": "2026-11-01T09:58:30Z",
+            "session_id": "c7683856-2ea6-4bcb-858b-e718f8105df9",
+            "seq": 1,
+            "props": {
+              "scope": "cloud",
+              "has_due": false,
+              "priority": 5,
+              "in_list": true
+            }
+          }
+        ]
+      },
+      "offending_event": 1,
+      "expected": {
+        "status": 200,
+        "accepted": 1,
+        "duplicates": 0,
+        "dropped_props": 0,
+        "rejected": [
+          {
+            "id": "b47da519-b3ef-49c9-b793-28f1ec7e9c2d",
+            "reason": "invalid_props"
+          }
+        ]
+      }
+    },
+    {
+      "id": "invalid-props-pattern",
+      "reason": "invalid_props",
+      "description": "An error code that is free text, not a stable code (error_code pattern).",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "39524b88-7564-4abc-aca3-295dcd666e0e",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "bf45ac83-6f45-4b8e-82f1-67cf5a8910e9",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:00Z",
+            "session_id": "0d814822-6c1c-4ab1-b47f-e64be1f31331",
+            "seq": 0,
+            "props": {
+              "screen": "tg.chat_list"
+            }
+          },
+          {
+            "id": "e46ca6cd-8c98-4139-a81b-49170c4f0073",
+            "name": "error.occurred",
+            "ts": "2026-11-01T09:58:30Z",
+            "session_id": "0d814822-6c1c-4ab1-b47f-e64be1f31331",
+            "seq": 1,
+            "props": {
+              "domain": "network",
+              "code": "Connection refused",
+              "count": 1
+            }
+          }
+        ]
+      },
+      "offending_event": 1,
+      "expected": {
+        "status": 200,
+        "accepted": 1,
+        "duplicates": 0,
+        "dropped_props": 0,
+        "rejected": [
+          {
+            "id": "e46ca6cd-8c98-4139-a81b-49170c4f0073",
+            "reason": "invalid_props"
+          }
+        ]
+      }
+    },
+    {
+      "id": "invalid-props-type",
+      "reason": "invalid_props",
+      "description": "A boolean prop sent as a string.",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "63dcdf2a-8831-4269-a227-7bb7bda49a6d",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "7a60f75f-c856-4d98-b245-dd5bf75ed323",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:00Z",
+            "session_id": "1dd434b0-ea8e-4994-b80a-d4ed3083fd7f",
+            "seq": 0,
+            "props": {
+              "screen": "tg.chat_list"
+            }
+          },
+          {
+            "id": "5852a788-508f-4b15-af47-0a81b25d7b40",
+            "name": "feature.toggle",
+            "ts": "2026-11-01T09:58:30Z",
+            "session_id": "1dd434b0-ea8e-4994-b80a-d4ed3083fd7f",
+            "seq": 1,
+            "props": {
+              "feature": "vault",
+              "enabled": "yes"
+            }
+          }
+        ]
+      },
+      "offending_event": 1,
+      "expected": {
+        "status": 200,
+        "accepted": 1,
+        "duplicates": 0,
+        "dropped_props": 0,
+        "rejected": [
+          {
+            "id": "5852a788-508f-4b15-af47-0a81b25d7b40",
+            "reason": "invalid_props"
+          }
+        ]
+      }
+    },
+    {
+      "id": "invalid-props-integer-as-string",
+      "reason": "invalid_props",
+      "description": "An integer prop sent as a numeric string.",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "90f839e9-416d-49e9-a32d-e08a76a6129b",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "51aa5e92-370a-47b3-b020-a51f39ece63c",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:00Z",
+            "session_id": "9e404f00-191b-4609-9ec4-dcd629388f64",
+            "seq": 0,
+            "props": {
+              "screen": "tg.chat_list"
+            }
+          },
+          {
+            "id": "717168c1-fb30-4753-93b4-8977f7bff21b",
+            "name": "error.occurred",
+            "ts": "2026-11-01T09:58:30Z",
+            "session_id": "9e404f00-191b-4609-9ec4-dcd629388f64",
+            "seq": 1,
+            "props": {
+              "domain": "storage",
+              "code": "sqlite_13",
+              "count": "2"
+            }
+          }
+        ]
+      },
+      "offending_event": 1,
+      "expected": {
+        "status": 200,
+        "accepted": 1,
+        "duplicates": 0,
+        "dropped_props": 0,
+        "rejected": [
+          {
+            "id": "717168c1-fb30-4753-93b4-8977f7bff21b",
+            "reason": "invalid_props"
+          }
+        ]
+      }
+    },
+    {
+      "id": "invalid-props-null-optional",
+      "reason": "invalid_props",
+      "description": "An optional prop sent as null: omit it instead.",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "0b54fa77-1699-4a26-af89-dd37b9efb2b4",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "726f93dd-c69b-42d2-a1ab-55ca40804238",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:00Z",
+            "session_id": "5f5fab58-560b-4b85-aa77-46923b9e94ba",
+            "seq": 0,
+            "props": {
+              "screen": "tg.chat_list"
+            }
+          },
+          {
+            "id": "91fb4100-f3b2-487f-a4ce-6f0f3ff7785b",
+            "name": "link.attempt",
+            "ts": "2026-11-01T09:58:30Z",
+            "session_id": "5f5fab58-560b-4b85-aa77-46923b9e94ba",
+            "seq": 1,
+            "props": {
+              "trigger": "manual",
+              "method": "code",
+              "outcome": "failed",
+              "error_code": null
+            }
+          }
+        ]
+      },
+      "offending_event": 1,
+      "expected": {
+        "status": 200,
+        "accepted": 1,
+        "duplicates": 0,
+        "dropped_props": 0,
+        "rejected": [
+          {
+            "id": "91fb4100-f3b2-487f-a4ce-6f0f3ff7785b",
+            "reason": "invalid_props"
+          }
+        ]
+      }
+    },
+    {
+      "id": "invalid-envelope-id",
+      "reason": "invalid_envelope",
+      "description": "An id that is not a uuid4; echoed in rejected[].id (a string of at most 64 bytes).",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "1ff7202c-d8d0-45aa-b931-e0ef944c8071",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "4bd2af94-4487-4f5a-954e-a8faa4046d15",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:00Z",
+            "session_id": "8de55f57-6e95-4ecd-9a96-b0fafa121793",
+            "seq": 0,
+            "props": {
+              "screen": "tg.chat_list"
+            }
+          },
+          {
+            "id": "not-a-uuid",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:30Z",
+            "session_id": "8de55f57-6e95-4ecd-9a96-b0fafa121793",
+            "seq": 1,
+            "props": {
+              "screen": "zg.hub"
+            }
+          }
+        ]
+      },
+      "offending_event": 1,
+      "expected": {
+        "status": 200,
+        "accepted": 1,
+        "duplicates": 0,
+        "dropped_props": 0,
+        "rejected": [
+          {
+            "id": "not-a-uuid",
+            "reason": "invalid_envelope"
+          }
+        ]
+      }
+    },
+    {
+      "id": "invalid-envelope-id-uppercase",
+      "reason": "invalid_envelope",
+      "description": "An upper-case uuid4 (ids are lower-case, as Foundation's uuidString is not).",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "5600bf93-a851-470e-b81c-323d290672f3",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "fb933c28-63aa-4ed6-a609-94482f4377e6",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:00Z",
+            "session_id": "79d89ea1-5a86-43ac-aeac-cd8dc7c52ed1",
+            "seq": 0,
+            "props": {
+              "screen": "tg.chat_list"
+            }
+          },
+          {
+            "id": "CDDD65EF-0E77-4BD5-B5E9-E701AC575DC3",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:30Z",
+            "session_id": "79d89ea1-5a86-43ac-aeac-cd8dc7c52ed1",
+            "seq": 1,
+            "props": {
+              "screen": "zg.hub"
+            }
+          }
+        ]
+      },
+      "offending_event": 1,
+      "expected": {
+        "status": 200,
+        "accepted": 1,
+        "duplicates": 0,
+        "dropped_props": 0,
+        "rejected": [
+          {
+            "id": "CDDD65EF-0E77-4BD5-B5E9-E701AC575DC3",
+            "reason": "invalid_envelope"
+          }
+        ]
+      }
+    },
+    {
+      "id": "invalid-envelope-id-not-string",
+      "reason": "invalid_envelope",
+      "description": "An id that is not a string: rejected[].id is null.",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "4b8ac83e-72af-4ce4-81fa-27ae3e7fa90d",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "986e1509-e47d-4227-b777-452225ead6a4",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:00Z",
+            "session_id": "e8cfffd6-468e-4fc0-803b-8d94386442a5",
+            "seq": 0,
+            "props": {
+              "screen": "tg.chat_list"
+            }
+          },
+          {
+            "id": 12345,
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:30Z",
+            "session_id": "e8cfffd6-468e-4fc0-803b-8d94386442a5",
+            "seq": 1,
+            "props": {
+              "screen": "zg.hub"
+            }
+          }
+        ]
+      },
+      "offending_event": 1,
+      "expected": {
+        "status": 200,
+        "accepted": 1,
+        "duplicates": 0,
+        "dropped_props": 0,
+        "rejected": [
+          {
+            "id": null,
+            "reason": "invalid_envelope"
+          }
+        ]
+      }
+    },
+    {
+      "id": "invalid-envelope-ts-offset",
+      "reason": "invalid_envelope",
+      "description": "ts with an offset instead of Z.",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "95df748d-6283-4c98-8d45-c2bf453f599e",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "46468d46-c13d-4b28-bee8-72e8c0a0236b",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:00Z",
+            "session_id": "5de69db4-1c73-46ce-8bf7-254c3c71777a",
+            "seq": 0,
+            "props": {
+              "screen": "tg.chat_list"
+            }
+          },
+          {
+            "id": "f3341f03-a78d-45b6-b7ca-7b8e436a677a",
+            "name": "screen.view",
+            "ts": "2026-11-01T14:58:30+05:00",
+            "session_id": "5de69db4-1c73-46ce-8bf7-254c3c71777a",
+            "seq": 1,
+            "props": {
+              "screen": "zg.hub"
+            }
+          }
+        ]
+      },
+      "offending_event": 1,
+      "expected": {
+        "status": 200,
+        "accepted": 1,
+        "duplicates": 0,
+        "dropped_props": 0,
+        "rejected": [
+          {
+            "id": "f3341f03-a78d-45b6-b7ca-7b8e436a677a",
+            "reason": "invalid_envelope"
+          }
+        ]
+      }
+    },
+    {
+      "id": "invalid-envelope-ts-fraction",
+      "reason": "invalid_envelope",
+      "description": "ts with fractional seconds.",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "3ac89dd5-47c3-42b9-b422-e701ace02a68",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "ea4f1cde-c3e6-403a-a5ca-8471697be62d",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:00Z",
+            "session_id": "9f62b024-600e-40df-8754-475a9bff9bc9",
+            "seq": 0,
+            "props": {
+              "screen": "tg.chat_list"
+            }
+          },
+          {
+            "id": "ade87829-256e-4139-9554-974e86760a87",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:30.250Z",
+            "session_id": "9f62b024-600e-40df-8754-475a9bff9bc9",
+            "seq": 1,
+            "props": {
+              "screen": "zg.hub"
+            }
+          }
+        ]
+      },
+      "offending_event": 1,
+      "expected": {
+        "status": 200,
+        "accepted": 1,
+        "duplicates": 0,
+        "dropped_props": 0,
+        "rejected": [
+          {
+            "id": "ade87829-256e-4139-9554-974e86760a87",
+            "reason": "invalid_envelope"
+          }
+        ]
+      }
+    },
+    {
+      "id": "invalid-envelope-session-id",
+      "reason": "invalid_envelope",
+      "description": "A session_id that is not a uuid4.",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "13f1f05b-5856-4c09-b832-a34b8ae3118b",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "703b0c30-47d4-4866-8f90-a13456e3cb48",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:00Z",
+            "session_id": "28c72064-0198-49cf-b10d-266573682599",
+            "seq": 0,
+            "props": {
+              "screen": "tg.chat_list"
+            }
+          },
+          {
+            "id": "ef29e06b-1212-45c3-9784-8026421c6ae7",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:30Z",
+            "session_id": "session-1",
+            "seq": 1,
+            "props": {
+              "screen": "zg.hub"
+            }
+          }
+        ]
+      },
+      "offending_event": 1,
+      "expected": {
+        "status": 200,
+        "accepted": 1,
+        "duplicates": 0,
+        "dropped_props": 0,
+        "rejected": [
+          {
+            "id": "ef29e06b-1212-45c3-9784-8026421c6ae7",
+            "reason": "invalid_envelope"
+          }
+        ]
+      }
+    },
+    {
+      "id": "invalid-envelope-seq-range",
+      "reason": "invalid_envelope",
+      "description": "seq below 0 (seq is 0..1000000).",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "59f4c696-63cb-447a-b3f6-646b6b81b0a8",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "2e135bd0-4ebe-468d-9bb9-527f8de8be17",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:00Z",
+            "session_id": "0d033747-106f-4b33-9966-bc38d8dbd715",
+            "seq": 0,
+            "props": {
+              "screen": "tg.chat_list"
+            }
+          },
+          {
+            "id": "5aa67bbf-7b63-448a-80d6-d67465bd744c",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:30Z",
+            "session_id": "0d033747-106f-4b33-9966-bc38d8dbd715",
+            "seq": -1,
+            "props": {
+              "screen": "zg.hub"
+            }
+          }
+        ]
+      },
+      "offending_event": 1,
+      "expected": {
+        "status": 200,
+        "accepted": 1,
+        "duplicates": 0,
+        "dropped_props": 0,
+        "rejected": [
+          {
+            "id": "5aa67bbf-7b63-448a-80d6-d67465bd744c",
+            "reason": "invalid_envelope"
+          }
+        ]
+      }
+    },
+    {
+      "id": "invalid-envelope-seq-order",
+      "reason": "invalid_envelope",
+      "description": "seq must strictly increase per session_id within a batch: the third event repeats the second's seq 5 and is rejected; the first two are stored.",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "4b4008e7-6b9c-40fa-b79f-2908362d97ee",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "f2fceadf-67cc-40b5-9a06-407d2fb6c500",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:00Z",
+            "session_id": "b5c30f0a-21d0-4f46-87eb-eb984e656847",
+            "seq": 0,
+            "props": {
+              "screen": "tg.chat_list"
+            }
+          },
+          {
+            "id": "fd453f7c-0d15-472a-b34a-4e93c0c5c004",
+            "name": "feature.used",
+            "ts": "2026-11-01T09:58:10Z",
+            "session_id": "b5c30f0a-21d0-4f46-87eb-eb984e656847",
+            "seq": 5,
+            "props": {
+              "feature": "app_icon"
+            }
+          },
+          {
+            "id": "d3104862-d80e-408e-9670-3381ed55b6a6",
+            "name": "feature.used",
+            "ts": "2026-11-01T09:58:30Z",
+            "session_id": "b5c30f0a-21d0-4f46-87eb-eb984e656847",
+            "seq": 5,
+            "props": {
+              "feature": "folders"
+            }
+          }
+        ]
+      },
+      "offending_event": 2,
+      "expected": {
+        "status": 200,
+        "accepted": 2,
+        "duplicates": 0,
+        "dropped_props": 0,
+        "rejected": [
+          {
+            "id": "d3104862-d80e-408e-9670-3381ed55b6a6",
+            "reason": "invalid_envelope"
+          }
+        ]
+      }
+    },
+    {
+      "id": "invalid-envelope-props-not-object",
+      "reason": "invalid_envelope",
+      "description": "props is a list, not an object.",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "4c6b635c-a3d2-4d47-8726-d587755b72eb",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "6e3fe43d-b836-4cb0-b8fa-311c1404f5d0",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:00Z",
+            "session_id": "8900cf18-a5d6-4b1b-bd11-e61b711e5163",
+            "seq": 0,
+            "props": {
+              "screen": "tg.chat_list"
+            }
+          },
+          {
+            "id": "d3079571-1886-42ee-b670-5250e0e4c059",
+            "name": "vault.chat_added",
+            "ts": "2026-11-01T09:58:30Z",
+            "session_id": "8900cf18-a5d6-4b1b-bd11-e61b711e5163",
+            "seq": 1,
+            "props": []
+          }
+        ]
+      },
+      "offending_event": 1,
+      "expected": {
+        "status": 200,
+        "accepted": 1,
+        "duplicates": 0,
+        "dropped_props": 0,
+        "rejected": [
+          {
+            "id": "d3079571-1886-42ee-b670-5250e0e4c059",
+            "reason": "invalid_envelope"
+          }
+        ]
+      }
+    },
+    {
+      "id": "invalid-envelope-props-missing",
+      "reason": "invalid_envelope",
+      "description": "props is always present (it may be {}).",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "8a98db90-3542-41cc-a43b-bf4e7448cf62",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "249f2e5f-6a0c-489b-8272-9b7bab06636c",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:00Z",
+            "session_id": "cdfbc232-b4f0-4ce6-a3d9-cef7ac15ad26",
+            "seq": 0,
+            "props": {
+              "screen": "tg.chat_list"
+            }
+          },
+          {
+            "id": "3e0e763c-096d-483d-9626-139ad245394f",
+            "name": "vault.chat_added",
+            "ts": "2026-11-01T09:58:30Z",
+            "session_id": "cdfbc232-b4f0-4ce6-a3d9-cef7ac15ad26",
+            "seq": 1
+          }
+        ]
+      },
+      "offending_event": 1,
+      "expected": {
+        "status": 200,
+        "accepted": 1,
+        "duplicates": 0,
+        "dropped_props": 0,
+        "rejected": [
+          {
+            "id": "3e0e763c-096d-483d-9626-139ad245394f",
+            "reason": "invalid_envelope"
+          }
+        ]
+      }
+    },
+    {
+      "id": "invalid-envelope-unknown-key",
+      "reason": "invalid_envelope",
+      "description": "An event-level key outside id, name, ts, session_id, seq, props.",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "d9bb9b61-732f-4baf-9ca3-73cc60b67cc2",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "5aeed0ad-5231-49a8-9c28-479973938054",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:00Z",
+            "session_id": "3449081f-3cbc-4946-b022-5bde998b1324",
+            "seq": 0,
+            "props": {
+              "screen": "tg.chat_list"
+            }
+          },
+          {
+            "id": "f16aa1ec-c61d-455d-bfb4-529c259cad3a",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:30Z",
+            "session_id": "3449081f-3cbc-4946-b022-5bde998b1324",
+            "seq": 1,
+            "props": {
+              "screen": "zg.hub"
+            },
+            "debug": true
+          }
+        ]
+      },
+      "offending_event": 1,
+      "expected": {
+        "status": 200,
+        "accepted": 1,
+        "duplicates": 0,
+        "dropped_props": 0,
+        "rejected": [
+          {
+            "id": "f16aa1ec-c61d-455d-bfb4-529c259cad3a",
+            "reason": "invalid_envelope"
+          }
+        ]
+      }
+    },
+    {
+      "id": "invalid-envelope-not-object",
+      "reason": "invalid_envelope",
+      "description": "An event that is not a JSON object: rejected[].id is null.",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "efa68a34-1af4-46c1-b177-2b87a28e0142",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "d16691bf-57f5-4f12-a205-a00e17154c0d",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:00Z",
+            "session_id": "5fccc3e0-a11f-4aba-934b-447ce800a90d",
+            "seq": 0,
+            "props": {
+              "screen": "tg.chat_list"
+            }
+          },
+          "screen.view"
+        ]
+      },
+      "offending_event": 1,
+      "expected": {
+        "status": 200,
+        "accepted": 1,
+        "duplicates": 0,
+        "dropped_props": 0,
+        "rejected": [
+          {
+            "id": null,
+            "reason": "invalid_envelope"
+          }
+        ]
+      }
+    },
+    {
+      "id": "invalid-envelope-too-large",
+      "reason": "invalid_envelope",
+      "description": "An event of 2049 bytes in its compact JSON serialization (no whitespace, slashes and non-ASCII unescaped), one byte above the 2 KiB limit. The padding is an undeclared prop: the size is checked first, so it is rejected, not trimmed.",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "784594a8-112c-42fa-b8d9-94a19c96bb96",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "46e89bee-324b-41f8-b0a1-711e93e7ccd9",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:00Z",
+            "session_id": "1d562765-d04f-4197-aca3-3efde79571bc",
+            "seq": 0,
+            "props": {
+              "screen": "tg.chat_list"
+            }
+          },
+          {
+            "id": "9799488b-dd99-4ce9-863f-1d82a4331696",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:30Z",
+            "session_id": "1d562765-d04f-4197-aca3-3efde79571bc",
+            "seq": 1,
+            "props": {
+              "screen": "tg.settings",
+              "note": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+            }
+          }
+        ]
+      },
+      "offending_event": 1,
+      "expected": {
+        "status": 200,
+        "accepted": 1,
+        "duplicates": 0,
+        "dropped_props": 0,
+        "rejected": [
+          {
+            "id": "9799488b-dd99-4ce9-863f-1d82a4331696",
+            "reason": "invalid_envelope"
+          }
+        ]
+      }
+    },
+    {
+      "id": "stale",
+      "reason": "stale",
+      "description": "effective_ts 7 days and 1 second before receipt (sent_at equals receipt: no skew).",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "4ea5f866-3b47-411d-a37f-334d91448f74",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "e407c0f8-3763-4c5b-9930-2d9c179f8fef",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:00Z",
+            "session_id": "a61e6ab4-c068-40a6-8669-506874e6e931",
+            "seq": 0,
+            "props": {
+              "screen": "tg.chat_list"
+            }
+          },
+          {
+            "id": "cc585a80-068c-4118-adea-915690808729",
+            "name": "screen.view",
+            "ts": "2026-10-25T09:59:59Z",
+            "session_id": "a61e6ab4-c068-40a6-8669-506874e6e931",
+            "seq": 1,
+            "props": {
+              "screen": "zg.hub"
+            }
+          }
+        ]
+      },
+      "offending_event": 1,
+      "expected": {
+        "status": 200,
+        "accepted": 1,
+        "duplicates": 0,
+        "dropped_props": 0,
+        "rejected": [
+          {
+            "id": "cc585a80-068c-4118-adea-915690808729",
+            "reason": "stale"
+          }
+        ]
+      }
+    },
+    {
+      "id": "future",
+      "reason": "future",
+      "description": "effective_ts 301 seconds after receipt (sent_at equals receipt: no skew).",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "2f0a07b0-2c92-4f91-a675-8dd8c2614d27",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "5cc6f4b2-028b-4ceb-98f9-744225ce7e7a",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:00Z",
+            "session_id": "cab6e92f-9945-4121-8d00-3a6d50cefb47",
+            "seq": 0,
+            "props": {
+              "screen": "tg.chat_list"
+            }
+          },
+          {
+            "id": "fa3cda49-1cdb-444a-bdb1-42f211c69c1d",
+            "name": "screen.view",
+            "ts": "2026-11-01T10:05:01Z",
+            "session_id": "cab6e92f-9945-4121-8d00-3a6d50cefb47",
+            "seq": 1,
+            "props": {
+              "screen": "zg.hub"
+            }
+          }
+        ]
+      },
+      "offending_event": 1,
+      "expected": {
+        "status": 200,
+        "accepted": 1,
+        "duplicates": 0,
+        "dropped_props": 0,
+        "rejected": [
+          {
+            "id": "fa3cda49-1cdb-444a-bdb1-42f211c69c1d",
+            "reason": "future"
+          }
+        ]
+      }
+    },
+    {
+      "id": "batch-unsupported-schema-version",
+      "reason": "batch",
+      "description": "schema_version other than 1.",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 2,
+        "taxonomy_version": 1,
+        "batch_id": "ec687bd5-8fc7-4762-8fc0-a6a996dc62fe",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "09de4595-3a7a-4163-ab74-4a37799d71de",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:00Z",
+            "session_id": "fda2df03-259d-4423-b923-9f857a82198c",
+            "seq": 0,
+            "props": {
+              "screen": "tg.settings"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "status": 422,
+        "error": "unsupported_schema_version",
+        "supported": [
+          1
+        ]
+      }
+    },
+    {
+      "id": "batch-missing-schema-version",
+      "reason": "batch",
+      "description": "No schema_version.",
+      "binding_platform": "ios",
+      "body": {
+        "taxonomy_version": 1,
+        "batch_id": "79c45234-c202-4b94-84e2-95c435de30f3",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "36eedf87-4274-4b4d-8b6c-ef305a2cb12e",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:00Z",
+            "session_id": "280737ad-3521-4efb-bdbb-9806a545e0b4",
+            "seq": 0,
+            "props": {
+              "screen": "tg.settings"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "status": 422,
+        "error": "invalid_request",
+        "field": "schema_version"
+      }
+    },
+    {
+      "id": "batch-unknown-key",
+      "reason": "batch",
+      "description": "A top-level key outside the envelope.",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "8f633b15-d0a9-4e35-b3aa-d74e82d79e98",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "2407b1b4-c66a-4657-992c-3c55588bc3d9",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:00Z",
+            "session_id": "0df80cf4-bf61-4c58-a744-cdd4d0e50644",
+            "seq": 0,
+            "props": {
+              "screen": "tg.settings"
+            }
+          }
+        ],
+        "device_name": "My phone"
+      },
+      "expected": {
+        "status": 422,
+        "error": "invalid_request",
+        "field": "device_name"
+      }
+    },
+    {
+      "id": "batch-credential-in-body",
+      "reason": "batch",
+      "description": "Device credentials travel as headers on every new route, never in the body.",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "0142fae2-7443-48c7-8dd0-1a2643902f81",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "cfec8f3f-5ff2-4890-bc26-6516e78d0945",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:00Z",
+            "session_id": "3cfa2472-40f7-4960-8842-aaba75f7083a",
+            "seq": 0,
+            "props": {
+              "screen": "tg.settings"
+            }
+          }
+        ],
+        "nonce": "0"
+      },
+      "expected": {
+        "status": 422,
+        "error": "invalid_request",
+        "field": "nonce"
+      }
+    },
+    {
+      "id": "batch-taxonomy-version",
+      "reason": "batch",
+      "description": "taxonomy_version is 1..32767.",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 0,
+        "batch_id": "bfffbe16-19a4-4486-b7f7-e5d440e719e8",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "54673e57-fd07-4781-96d5-379221dc03cb",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:00Z",
+            "session_id": "1b6e7a4c-5745-4dda-aaa1-f42768a11f26",
+            "seq": 0,
+            "props": {
+              "screen": "tg.settings"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "status": 422,
+        "error": "invalid_request",
+        "field": "taxonomy_version"
+      }
+    },
+    {
+      "id": "batch-batch-id",
+      "reason": "batch",
+      "description": "batch_id is a uuid4.",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "batch-1",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "0a4dbf15-ecfd-4e45-bb11-06d4f8037de6",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:00Z",
+            "session_id": "abcebc30-1e8c-4561-9908-93263362cfff",
+            "seq": 0,
+            "props": {
+              "screen": "tg.settings"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "status": 422,
+        "error": "invalid_request",
+        "field": "batch_id"
+      }
+    },
+    {
+      "id": "batch-sent-at",
+      "reason": "batch",
+      "description": "sent_at is an instant (UTC, Z).",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "a084de01-043d-4337-accc-5919b394fbf4",
+        "sent_at": "2026-11-01 10:00:00",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "a25538e0-0146-40d9-a10b-5cdfac6d4b2d",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:00Z",
+            "session_id": "f4e9ab3e-5b75-41d2-94d9-d88dbafa8987",
+            "seq": 0,
+            "props": {
+              "screen": "tg.settings"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "status": 422,
+        "error": "invalid_request",
+        "field": "sent_at"
+      }
+    },
+    {
+      "id": "batch-context-not-object",
+      "reason": "batch",
+      "description": "context is an object.",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "e4de8533-8c44-479f-ba7d-63c7225278b9",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": null,
+        "events": [
+          {
+            "id": "1991b142-dbb2-42b9-a633-66fca9c7b72c",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:00Z",
+            "session_id": "b30b433d-3e06-4d3a-8dcc-1cb77523769f",
+            "seq": 0,
+            "props": {
+              "screen": "tg.settings"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "status": 422,
+        "error": "invalid_request",
+        "field": "context"
+      }
+    },
+    {
+      "id": "batch-context-missing-key",
+      "reason": "batch",
+      "description": "Every context key is present (a descriptive one may be null).",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "359064a6-a894-401c-a4f1-e66336937473",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "ee5de3c3-0f86-4322-8db6-95a7d56f8310",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:00Z",
+            "session_id": "4f3f48da-122c-4c04-a1d1-72bd5124d54a",
+            "seq": 0,
+            "props": {
+              "screen": "tg.settings"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "status": 422,
+        "error": "invalid_request",
+        "field": "context.timezone"
+      }
+    },
+    {
+      "id": "batch-context-unknown-key",
+      "reason": "batch",
+      "description": "A context key outside the nine (locale belongs to /v1/profile/sync).",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "e81b0a0a-6c09-4df0-b75e-05c5569844d4",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore",
+          "locale": "uz-UZ"
+        },
+        "events": [
+          {
+            "id": "7be41b58-0f71-4dc1-8a78-c785475d6358",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:00Z",
+            "session_id": "c8bb9bd8-78cb-4032-9398-df211ad7eca3",
+            "seq": 0,
+            "props": {
+              "screen": "tg.settings"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "status": 422,
+        "error": "invalid_request",
+        "field": "context.locale"
+      }
+    },
+    {
+      "id": "batch-context-platform",
+      "reason": "batch",
+      "description": "platform is ios or android.",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "e7d13e35-2a8d-4955-b907-5408e756c4b0",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "web",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "48d6ddb3-3d60-4e05-8936-9096a58c8a5d",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:00Z",
+            "session_id": "a6fcf8af-6867-45de-b7e5-5cc05262169b",
+            "seq": 0,
+            "props": {
+              "screen": "tg.settings"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "status": 422,
+        "error": "invalid_request",
+        "field": "context.platform"
+      }
+    },
+    {
+      "id": "batch-context-platform-mismatch",
+      "reason": "batch",
+      "description": "platform differs from the binding's (an ios binding).",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "5bf04948-c946-45b5-81e7-1b47009ea1ca",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "android",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "c9b01cda-4d8c-44a9-80c4-981a3295cb5c",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:00Z",
+            "session_id": "66c269ad-d67b-4ec8-b490-d266f23ea3b3",
+            "seq": 0,
+            "props": {
+              "screen": "tg.settings"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "status": 422,
+        "error": "invalid_request",
+        "field": "context.platform"
+      }
+    },
+    {
+      "id": "batch-context-device-class",
+      "reason": "batch",
+      "description": "device_class is phone or tablet.",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "4e46ce33-b970-4149-a0ec-682e9390b967",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "desktop",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "6abdf53e-3a0d-4d96-8127-e795852f2b3e",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:00Z",
+            "session_id": "1d3a15b9-055c-4359-b6c8-afcd5aeb2652",
+            "seq": 0,
+            "props": {
+              "screen": "tg.settings"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "status": 422,
+        "error": "invalid_request",
+        "field": "context.device_class"
+      }
+    },
+    {
+      "id": "batch-context-strict-null",
+      "reason": "batch",
+      "description": "A strict context value is never null.",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "4ce4b8a7-9076-488f-89af-fdeb729c7c0d",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": null,
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "f8f36186-6f96-4317-83a4-78b7f6a27114",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:00Z",
+            "session_id": "1b1d1cf4-b1f3-4161-992a-e16717aaae41",
+            "seq": 0,
+            "props": {
+              "screen": "tg.settings"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "status": 422,
+        "error": "invalid_request",
+        "field": "context.device_class"
+      }
+    },
+    {
+      "id": "batch-context-os-version",
+      "reason": "batch",
+      "description": "os_version is a ver (1..32 printable characters).",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "20dca5fc-5a9c-4c7d-a632-c4587a8f3e53",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "bfd8660e-a786-4e9e-80ee-23c1725c63fa",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:00Z",
+            "session_id": "cbbd3506-fe46-4bfb-abed-f25ac1e571b9",
+            "seq": 0,
+            "props": {
+              "screen": "tg.settings"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "status": 422,
+        "error": "invalid_request",
+        "field": "context.os_version"
+      }
+    },
+    {
+      "id": "batch-context-app-version",
+      "reason": "batch",
+      "description": "app_version is a ver (at most 32 characters).",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "85b694fb-f752-4306-b411-166adab1de74",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1 (build 2026-11-01 nightly 7)",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "3a9f6ffd-4e85-4c7a-9b66-647763532fa4",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:00Z",
+            "session_id": "702c2fec-4aad-477d-9a2f-66fbab09f16b",
+            "seq": 0,
+            "props": {
+              "screen": "tg.settings"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "status": 422,
+        "error": "invalid_request",
+        "field": "context.app_version"
+      }
+    },
+    {
+      "id": "batch-context-distribution",
+      "reason": "batch",
+      "description": "distribution is appstore, testflight, play, direct or debug.",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "9051b59c-ea42-4e70-b605-0a04dd7e79b1",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "sideload"
+        },
+        "events": [
+          {
+            "id": "5d2fc649-4e82-46bb-9f1a-75bf3e97a740",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:00Z",
+            "session_id": "7c9374a9-3d27-4337-b931-8dd35f5d7ec2",
+            "seq": 0,
+            "props": {
+              "screen": "tg.settings"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "status": 422,
+        "error": "invalid_request",
+        "field": "context.distribution"
+      }
+    },
+    {
+      "id": "batch-events-empty",
+      "reason": "batch",
+      "description": "events holds 1..200 events.",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "15971d35-eb1b-4952-acf7-d547acee0be1",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": []
+      },
+      "expected": {
+        "status": 422,
+        "error": "invalid_request",
+        "field": "events"
+      }
+    },
+    {
+      "id": "batch-events-not-list",
+      "reason": "batch",
+      "description": "events is a list.",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "17f38a8d-1227-4eaf-92ec-4d363a6e3a1c",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": {}
+      },
+      "expected": {
+        "status": 422,
+        "error": "invalid_request",
+        "field": "events"
+      }
+    },
+    {
+      "id": "batch-events-too-many",
+      "reason": "batch",
+      "description": "201 events: a batch holds at most 200.",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "9876d675-aa0c-4fd3-ae72-5ed6309f06ae",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "b9607de3-ef07-48f8-abe4-ae5df594bb08",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:00Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 0,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "87db7fa3-7f4e-489a-8f6c-d3a3283148f5",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:01Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 1,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "bfb5086f-9d74-4f79-85f3-de29f26645d6",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:02Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 2,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "ec5b1d40-1a07-4466-b8f8-e8228e4bbe6c",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:03Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 3,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "177c9bdd-6d34-4fac-920b-95d55f0ed039",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:04Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 4,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "ececae24-768c-44a3-8ddb-d01d793082e2",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:05Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 5,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "5f48621e-3cd7-4ef0-8ee4-12abe57fce11",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:06Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 6,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "2d7ff40e-ce28-4b53-a9e9-f7731fb461e3",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:07Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 7,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "9b56a443-52a4-450a-b3c3-d22ecbfda247",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:08Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 8,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "27d29cef-99f9-4020-a491-94f97dd5b989",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:09Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 9,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "ec2ef405-86bc-40af-b39c-396764b90a48",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:10Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 10,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "6e32f535-c6c4-4361-ba0a-34648f0ee7e9",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:11Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 11,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "2226735f-a1bb-4915-999f-60d65385d5b0",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:12Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 12,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "20b2e4be-5b91-481d-9d82-b564cd21db90",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:13Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 13,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "8598786c-bd62-49ac-910d-86d4d8c8d2d6",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:14Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 14,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "582f683b-4ed1-4c11-9c35-01d548f40a61",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:15Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 15,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "8cca9f5c-8d11-4e2e-9adc-2016b351a3c5",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:16Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 16,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "d8c02007-7e3e-4f2b-8f19-631718fca936",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:17Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 17,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "0bde7321-8b6b-4f29-a959-e88aa2f8b715",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:18Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 18,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "6c55a287-d14a-43ea-b8c9-87df50b4af43",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:19Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 19,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "485d3a3e-6613-460c-8ab2-23104a15d2f0",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:20Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 20,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "79b75037-b080-4a4e-8259-bdb75ada940f",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:21Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 21,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "4d4fe634-5125-4a19-9a2b-8c024914c71a",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:22Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 22,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "951debc4-41b8-4de1-b529-a63253075330",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:23Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 23,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "b35c40fa-a364-463a-a7cb-dc26c1267fac",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:24Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 24,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "0c5fdf62-bcbc-4c01-b780-2c5a8b6b661b",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:25Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 25,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "f8f94e23-34ec-468f-ba5c-ae7ada616dbd",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:26Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 26,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "9df2c0c7-087d-4028-84e2-fb406570b8b1",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:27Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 27,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "753d21d4-b673-4df2-9de9-900a2f2a1022",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:28Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 28,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "26e09358-df45-485e-ac31-4555952a2286",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:29Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 29,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "abc5b2a4-e7bc-44ee-b7c6-e21f485ced47",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:30Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 30,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "965b5952-c791-400c-968e-4a128b5953ed",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:31Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 31,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "47b53a2d-117f-4a1c-9bdf-785844093eba",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:32Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 32,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "1cb2454f-7e8d-46ee-afbb-63718ac5893d",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:33Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 33,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "ea6c3472-8469-42a5-9e3b-9552bdc86b76",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:34Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 34,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "2976ded1-b39a-4ab3-9a71-f356798af78a",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:35Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 35,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "71421713-8ff9-40e3-b7e7-4ab4c1a4c13d",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:36Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 36,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "b992e850-145c-4fc6-b557-4c0115a74819",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:37Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 37,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "52a78a7a-eb00-4cd0-a9df-3aab49625be8",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:38Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 38,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "a5555bc9-f263-493d-bfe2-d464a439b6b0",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:39Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 39,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "465be7de-f163-46a1-a18b-157b5c9bcc8f",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:40Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 40,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "46b822c5-f892-4823-8d05-bca2a1a219a5",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:41Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 41,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "51da7af3-9fc1-4ac7-9aff-a538c6ab82f4",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:42Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 42,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "3a315705-ca37-425c-bf69-89ab03af1da7",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:43Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 43,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "19858677-bac0-4268-addc-79a355690d52",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:44Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 44,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "73c819d1-6c86-40d6-bf23-8652d80e3afd",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:45Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 45,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "3b75d60c-b1c5-49a2-87a8-0bd385f2ac00",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:46Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 46,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "22da79ed-b274-4bb7-9c1c-d8455a1cfda4",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:47Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 47,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "1448f15a-5f2c-419f-8a96-b4c883ffaaa4",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:48Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 48,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "9c6d1e7f-8763-4ce5-8dea-5548a34de9be",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:49Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 49,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "391e4727-e76e-4f63-8fc9-70f9d1cb345d",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:50Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 50,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "1c2e83c8-38eb-462f-93d7-8271bef0e466",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:51Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 51,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "9d38f6c7-4204-423d-8038-53c72c2e23b6",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:52Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 52,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "699a0097-40ef-46a2-b6a4-93252804051d",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:53Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 53,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "8d08de89-dde4-45f0-a3f6-ec3c2a96b504",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:54Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 54,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "e8fa5b53-c036-4190-b328-9e003b4919a2",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:55Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 55,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "faaa96e4-c4e3-4646-964e-666d2a566f02",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:56Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 56,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "95386cbe-029f-4cc8-96dc-c6b8725b68e5",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:57Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 57,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "687e85a3-49c4-419c-9260-b42bfa646733",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:58Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 58,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "0847f5b6-af35-45ea-8e1a-9c12c39dea13",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:00:59Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 59,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "20980f35-2790-4783-bc52-cbee7dfbf4be",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:00Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 60,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "0338142e-7837-4c6c-a7a8-18ff258c72a9",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:01Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 61,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "5eaaef6d-07f7-4be0-a103-0044c389c059",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:02Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 62,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "fcde3418-f840-46f1-87e0-7ffd011fddf1",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:03Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 63,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "f43afcd3-9197-4fbb-ba34-f5992842a4fc",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:04Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 64,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "9cda5470-77ed-49b0-9eb3-2e4039711045",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:05Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 65,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "1b8d188c-f8bf-4398-9023-b8eb4a486598",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:06Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 66,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "d916f410-8da3-4abe-9e35-ef3fca5f8cdf",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:07Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 67,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "b1332bc2-ed13-4136-89ab-0dc17335ffd0",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:08Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 68,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "a23916e0-75ca-4953-ad48-ee9cd9e69762",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:09Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 69,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "f5e10362-fdf9-4ced-b023-d8351c517652",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:10Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 70,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "94e6d868-bd68-4654-8e98-366f715e3f96",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:11Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 71,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "b272e991-855a-4807-85fb-bec4dcce5ea2",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:12Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 72,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "7744a203-0821-439f-becb-86b2084aac22",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:13Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 73,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "572cef66-3571-45a5-99fd-62e08f88de45",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:14Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 74,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "5c1b9791-7481-4aee-bec5-eba81bfc1706",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:15Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 75,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "e086153d-a487-46ce-9797-696a8832d055",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:16Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 76,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "fecc4a22-39ac-4bc1-ad2a-d6bdc1c0989e",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:17Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 77,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "c7d73be2-3c27-4d3e-8363-76c7555c05db",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:18Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 78,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "6cff64a2-950d-4b5c-ae96-f9f4636283dd",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:19Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 79,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "f6c29ccd-e079-4003-a68c-f208e19235ea",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:20Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 80,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "0bc34751-a4e7-40d7-bd62-2e7afd4c45e0",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:21Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 81,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "1c48b286-e5d4-4811-b80d-46e926cefc33",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:22Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 82,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "a4f02342-c46a-4108-80a0-f30675e2b6fe",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:23Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 83,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "8e6c1a2a-ff1f-4ae0-aedc-c7f6465d9e80",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:24Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 84,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "3c74b9b6-ad28-4419-928b-42c40dc9560a",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:25Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 85,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "b914ae64-6934-4840-9d7f-4a76927926c4",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:26Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 86,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "81fdd184-d3f8-4a14-aa77-1ced636d0da7",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:27Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 87,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "7d7c1f03-4088-4c7e-b22a-40d92bcc5de4",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:28Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 88,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "f3538d16-c5a6-4212-8898-02527fdf54ab",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:29Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 89,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "1b687cbd-e3b0-4db1-961f-d5a93caee60c",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:30Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 90,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "41c7966e-4e0e-430a-b92b-00cc700034e4",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:31Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 91,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "fb58d3e4-4d72-4163-8fa1-3d0d6763e904",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:32Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 92,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "c490326e-1bf0-4430-9ec9-37302663a7ed",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:33Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 93,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "9fb7d0a0-9d4a-4e45-b7a0-cc30a653b841",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:34Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 94,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "9d43ed81-4c33-4832-bc26-26d2f41dfa27",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:35Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 95,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "1e839ce7-f323-4273-9d02-54246b4a4a77",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:36Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 96,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "b93abe00-5364-494e-9e90-7531d8032a76",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:37Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 97,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "2af78f18-da1c-449c-9dc9-75b6a9133e3c",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:38Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 98,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "73de33c0-d160-405a-a933-c01a6358d69d",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:39Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 99,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "fd89ce4f-bb76-4d40-b2a5-db996b43435f",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:40Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 100,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "6980ff5a-14f4-48f6-93b0-795a6c35fa28",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:41Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 101,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "855e9356-143b-4c8b-a1d4-7c7a682a981f",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:42Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 102,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "7ab6b7ba-b6a5-4b76-95a7-debd9e5f782c",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:43Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 103,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "61fb1ed6-75e8-481b-a555-9590a3fa18ad",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:44Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 104,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "b02592ba-1aa3-4c78-8bb3-f587d7872b3d",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:45Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 105,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "817bafa6-1b99-4dfc-89a1-9927f83a4909",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:46Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 106,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "ae11a013-bbed-4545-836d-14805e34de10",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:47Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 107,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "88df66fd-5dfa-42ec-ac31-83471481c8f9",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:48Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 108,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "391f014e-46d3-4b27-8703-b3b524e96834",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:49Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 109,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "06485e36-0b3b-48f8-b347-227f12788b38",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:50Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 110,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "7e69e841-9b37-4da1-8b87-88863c975775",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:51Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 111,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "0ca63dbf-4a19-4685-ba0b-dbb3ebc6988f",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:52Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 112,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "98d1be64-a22b-4f2f-85b6-2f4ad3a58384",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:53Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 113,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "2c1419b6-3ef5-4fdc-838f-ad9bae52dd0f",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:54Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 114,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "51d1e46b-2524-46dc-85fa-c623834e9816",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:55Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 115,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "a2c7a0d9-1d01-48ab-b0a5-4bcd9b78b4dd",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:56Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 116,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "d9e6a6e2-c6ea-4964-9217-c4e00cf89746",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:57Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 117,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "e057b041-8dcf-4ea5-9aed-1461014ed38f",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:58Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 118,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "705a1d18-5923-4e18-9e64-7f69712dd56f",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:01:59Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 119,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "4c9e7d78-01bc-4e15-a0c6-3ac96fb0b521",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:00Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 120,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "e8b107e0-76d2-480a-bf85-3fc3ef4bb589",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:01Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 121,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "762855c2-6412-4a16-b047-2ae2deb31e6b",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:02Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 122,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "a14ea16d-8c43-4020-a016-5fc90acc9208",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:03Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 123,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "6874d7cd-0acd-4fb7-a044-c754d6fe35c5",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:04Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 124,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "5df0f10d-06df-4e0b-926f-2a78e6eb8602",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:05Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 125,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "b8f0b65f-a15f-461a-987a-fe2cbaae96f6",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:06Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 126,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "9e5b8508-7920-493c-ac46-7489cefa1e17",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:07Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 127,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "2651da45-ab81-41df-bd80-b7781feeaad3",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:08Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 128,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "1b0adce4-53f7-4195-a30f-cc30c391d741",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:09Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 129,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "359ca10c-2290-4b7d-bc88-cf97155cde43",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:10Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 130,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "1cf9f351-b2a3-4f35-baa1-70640bf0bb03",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:11Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 131,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "df0219a5-b49c-4f55-b266-f67ab07a38da",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:12Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 132,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "30ffec69-66b1-40ba-ad9a-1ee10b44bda7",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:13Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 133,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "4313a538-4abc-4e5b-85a7-9459ae6731dc",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:14Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 134,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "fcf36a06-2f04-4890-839d-f5b2bf4d4be1",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:15Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 135,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "38e951e2-da20-49e1-9699-fb5b5f1629e0",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:16Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 136,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "ba118cf4-60e9-418b-80b2-96a84bd4f00c",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:17Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 137,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "b07824cd-948a-4fe4-970b-850515148e47",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:18Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 138,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "b8ece3ec-0c2e-4a43-af6b-514dd29988aa",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:19Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 139,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "0a6a2a63-2c7c-4897-a931-a5bafc275417",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:20Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 140,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "d9533be7-c85d-4567-b73e-d9706973c8a4",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:21Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 141,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "6de59c21-7a53-4a2f-8cc5-7f75a06f7456",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:22Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 142,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "c61c8565-87e2-40d9-abab-3e688a07560f",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:23Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 143,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "797c402b-eb87-496a-af31-97cbaca8a235",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:24Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 144,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "454919e7-d25a-4b0d-9e23-f471e77fa5ce",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:25Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 145,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "19c27cab-79c9-4212-afb5-8e87283d3bc4",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:26Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 146,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "8c96461e-36b7-447f-90d3-160958c2d823",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:27Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 147,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "9026e5a8-7f33-44ce-b704-d513d5eb0cca",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:28Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 148,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "b2633a7f-f432-4d3d-bf73-b817a451152d",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:29Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 149,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "515d1024-db14-4adb-b712-2823f6c423bf",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:30Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 150,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "69507541-db32-40c0-8cd2-15852a5be6c5",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:31Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 151,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "b2d35971-9579-47e0-9ebe-39fd594f5f7e",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:32Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 152,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "3862174f-8968-474b-9440-d4a84d2d0c71",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:33Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 153,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "c3ef759d-a998-4f1a-8ef9-68b9a40c792e",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:34Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 154,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "8a9bad7e-da7f-4dc5-b15f-740757e6fbfb",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:35Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 155,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "cb43ad7d-ad5f-49a5-a170-890ebd64b9d4",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:36Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 156,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "31d698e4-6742-4265-ba56-07d729909840",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:37Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 157,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "251487f9-55c4-4844-9bfa-fa43499ccc31",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:38Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 158,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "f30ebd47-903b-4f63-8b5f-c9fd5328e563",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:39Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 159,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "db2dccb2-045a-4db1-8498-cf3b0afe23d8",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:40Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 160,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "2f73f92e-4ba3-4432-bafa-85457c93741e",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:41Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 161,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "f2f4536e-33de-4fb5-93ea-1e6e82cbd483",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:42Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 162,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "7e082a32-af9b-4b34-98ba-cf4696dc069b",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:43Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 163,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "dd86cb7b-8de8-4b19-985e-f8b40e498996",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:44Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 164,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "7bba7a4f-2ac2-4812-978c-3c5c936cbfe8",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:45Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 165,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "a9d7418b-0d93-44fb-b162-72f1a072c36c",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:46Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 166,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "60d0b28d-9205-4f74-8a0e-7e6acc4cd0f6",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:47Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 167,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "6d9f1960-2a83-4d42-a06c-a734ea09afa8",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:48Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 168,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "1a4fd88e-cfe2-4d11-bc81-ecc5ee96517f",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:49Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 169,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "b78f53a5-11b1-4955-9c38-fd56f2f3a2db",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:50Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 170,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "d51f63f7-b616-4832-a615-0e451e3c2356",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:51Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 171,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "cd533be9-a5e3-4ad9-87f7-0dbe4037f1c5",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:52Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 172,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "eb428428-9ae4-48aa-a93d-2591b8d2d2f3",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:53Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 173,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "02fc77be-b0fd-4a2c-9d24-f5796e299340",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:54Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 174,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "95cd5090-b954-4751-babd-a23091204f78",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:55Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 175,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "131f7904-b8a4-4b8a-92da-a8a0b52c2942",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:56Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 176,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "dd3b38f7-7153-468b-87dc-ceb219a20931",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:57Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 177,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "52cbc4e0-ed9e-4885-9549-1b74ef343a4b",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:58Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 178,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "4adb0e2b-ade3-4ed2-bddd-dfbfcc82c452",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:02:59Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 179,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "3bbe1835-8a8c-488c-b137-d87531479c8f",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:03:00Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 180,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "38bdcaa4-7a33-4737-863d-d8a685e2b1e6",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:03:01Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 181,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "c94e3206-6497-410d-a46b-e695f07ebb58",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:03:02Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 182,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "ec02a0ca-a419-4416-9df5-d0c11005e819",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:03:03Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 183,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "2ff27c06-d80f-486a-96ee-f5417e4a47fd",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:03:04Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 184,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "d749b169-69cd-4f3d-a73b-4fb7968ff732",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:03:05Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 185,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "47aa68bc-94eb-4db5-9248-6a69d15543ae",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:03:06Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 186,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "a6b6de6b-bcbe-4119-8f3e-65cad9fa6b93",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:03:07Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 187,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "86d79a40-72b1-4f88-9c0d-e073e3d084af",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:03:08Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 188,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "7b68b271-c39d-4b54-a3ad-ef94bc2a53d3",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:03:09Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 189,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "7aec2d2c-a479-4a9c-98b4-31a3e50d5b18",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:03:10Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 190,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "993b15c0-5e49-41ea-8a17-319b98fac702",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:03:11Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 191,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "6ad7edf0-bfac-4993-9d7e-8e61a45a7f14",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:03:12Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 192,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "3cd195f4-9d1b-404b-a6fd-aaa2039dbcec",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:03:13Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 193,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "aaf42938-da27-43d2-9457-56d3ec800bf0",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:03:14Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 194,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "116214dc-c7e7-4dd6-9bca-4330a8fa5b71",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:03:15Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 195,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "67c43619-a910-4483-a14a-f61e3ebd85a7",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:03:16Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 196,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "0d50ddc0-0d7e-4912-b065-b70ca907bf27",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:03:17Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 197,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "50b04164-a740-43ba-9448-553451aae8b3",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:03:18Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 198,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "a1441b5a-8b55-4b09-9329-3abdcccca548",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:03:19Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 199,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          },
+          {
+            "id": "8aa5d30b-ec8d-4e82-ac09-bb4a256dba9a",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:03:20Z",
+            "session_id": "1464b8d8-8c2b-4385-899b-03bc7ba96272",
+            "seq": 200,
+            "props": {
+              "screen": "tg.contacts"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "status": 422,
+        "error": "invalid_request",
+        "field": "events"
+      }
+    }
+  ]
+}

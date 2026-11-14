@@ -1,0 +1,16 @@
+{
+  "_comment": "TEMPLATE (git-tracked, published with the GPL source) - never put real values here. Copy to build-system/zenlygram-appstore.local.json (git-ignored), fill it there and build with --configurationPath build-system/zenlygram-appstore.local.json. See appstore/SECRETS.md and the section Building the App Store configuration of README.md.",
+  "bundle_id": "org.zenlygram.ios",
+  "api_id": "FILL_ME_my.telegram.org_api_id",
+  "api_hash": "FILL_ME_my.telegram.org_api_hash",
+  "team_id": "FILL_ME_paid_team_id",
+  "app_center_id": "0",
+  "is_internal_build": "false",
+  "is_appstore_build": "true",
+  "appstore_id": "FILL_ME_app_store_connect_apple_id",
+  "app_specific_url_scheme": "tg",
+  "premium_iap_product_id": "",
+  "enable_siri": false,
+  "enable_icloud": false,
+  "sg_config": "{\"api_url\":\"https://zenlygram.org\",\"privacy_policy_url\":\"https://zenlygram.org/privacy-policy.html\",\"bot_username\":\"FILL_ME_ZenlygramPayBot\",\"iaps\":[\"org.zenlygram.ios.pro.monthly\",\"org.zenlygram.ios.pro.yearly\"],\"entitlement_keys\":{\"k2026a\":\"MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEaEXLVGbgr1nvSprYzys1YeaC3Zv0RceCityCCsZqJ0pkHwcPsgHZj1XoSYq7Bkr6/uvJKf1D8OaRjMtCdGWwdA==\",\"k2026b\":\"MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAECQ0G5bknPvprKlFKwD77ExAzvPsZkAncNPEkPOy4ofFrOuBEFFZ7sLtTeGbstZcPhY0zWGB1DncZi+D32LWxhg==\"},\"apple_backend_enabled\":true,\"consent_mode\":\"required\",\"consent_operator\":{\"name\":\"FILL_ME\",\"stir\":\"FILL_ME\",\"responsible_person\":\"FILL_ME\",\"contact_email\":\"FILL_ME\"}}"
+}

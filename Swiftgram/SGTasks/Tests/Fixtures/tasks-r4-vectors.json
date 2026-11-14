@@ -1,0 +1,562 @@
+{
+  "about": "Tasks wire R4 shared vectors: resources/contracts/tasks-sync.json revision 4 holds this object as x-r4-vectors and tests/Fixtures/tasks-r4/vectors.json is the same object. iOS copies it verbatim to Swiftgram/SGTasks/Tests/Fixtures/tasks-r4-vectors.json, Android to zenlygram-tests/tasks/fixtures/tasks-r4-vectors.json.",
+  "version": 1,
+  "hash_rule": {
+    "domain": "zenlygram-tasks-business-v1",
+    "canonical": "compact JSON [domain, principal, mutation_id, kind, arguments] as x-mutation-identity.canonical_json (raw UTF-8, unescaped '/', raw U+2028/U+2029); sha256 = lowercase hex SHA-256 of its UTF-8 bytes",
+    "task.patch": "arguments = [task_id, [[field, value], ...] of set in content_order, the same pairs of expect]; an annotation value is [telegram_user_id, display_name] or null",
+    "list.delete": "arguments = [list_id, base_revision], plus base_members_revision when the key is present (R4)",
+    "key_order": "operation is the wire object; JSON key order is irrelevant (V-PATCH-1 lists set and expect out of content_order on purpose)",
+    "wire": "the lowest X-Tasks-Wire that accepts the operation (3 = no header)"
+  },
+  "hash_vectors": [
+    {
+      "id": "V-PATCH-1",
+      "wire": 4,
+      "principal": "01arz3ndektsv4rrffq69g5fav",
+      "mutation_id": "66666666-6666-4666-8666-666666666666",
+      "operation": {
+        "kind": "task.patch",
+        "task_id": "33333333-3333-4333-8333-333333333333",
+        "set": {"priority": 3, "title": "Hisobot 2"},
+        "expect": {"priority": 2, "title": "Hisobot / O‘zbekiston"}
+      },
+      "arguments": [
+        "33333333-3333-4333-8333-333333333333",
+        [["title", "Hisobot 2"], ["priority", 3]],
+        [["title", "Hisobot / O‘zbekiston"], ["priority", 2]]
+      ],
+      "canonical": "[\"zenlygram-tasks-business-v1\",\"01arz3ndektsv4rrffq69g5fav\",\"66666666-6666-4666-8666-666666666666\",\"task.patch\",[\"33333333-3333-4333-8333-333333333333\",[[\"title\",\"Hisobot 2\"],[\"priority\",3]],[[\"title\",\"Hisobot / O‘zbekiston\"],[\"priority\",2]]]]",
+      "sha256": "6193411e93311f66fbad3b0f833a692d44a990ee1ba9c4cb0e357c41f06c3f0c"
+    },
+    {
+      "id": "V-PATCH-2",
+      "wire": 4,
+      "principal": "01arz3ndektsv4rrffq69g5fav",
+      "mutation_id": "77777777-7777-4777-8777-777777777777",
+      "operation": {
+        "kind": "task.patch",
+        "task_id": "33333333-3333-4333-8333-333333333333",
+        "set": {"list_id": null, "sort_order": 2048, "annotation": null},
+        "expect": {
+          "list_id": "22222222-2222-4222-8222-222222222222",
+          "sort_order": -1,
+          "annotation": {"telegram_user_id": "123456789", "display_name": "Ali"}
+        }
+      },
+      "arguments": [
+        "33333333-3333-4333-8333-333333333333",
+        [["list_id", null], ["sort_order", 2048], ["annotation", null]],
+        [["list_id", "22222222-2222-4222-8222-222222222222"], ["sort_order", -1], ["annotation", ["123456789", "Ali"]]]
+      ],
+      "canonical": "[\"zenlygram-tasks-business-v1\",\"01arz3ndektsv4rrffq69g5fav\",\"77777777-7777-4777-8777-777777777777\",\"task.patch\",[\"33333333-3333-4333-8333-333333333333\",[[\"list_id\",null],[\"sort_order\",2048],[\"annotation\",null]],[[\"list_id\",\"22222222-2222-4222-8222-222222222222\"],[\"sort_order\",-1],[\"annotation\",[\"123456789\",\"Ali\"]]]]]",
+      "sha256": "ad41a47effcf0e3022648c4278167ea14f71cc503d8dbd704e3611548f684b83"
+    },
+    {
+      "id": "V-LISTDEL-R3",
+      "wire": 3,
+      "principal": "01arz3ndektsv4rrffq69g5fav",
+      "mutation_id": "88888888-8888-4888-8888-888888888888",
+      "operation": {"kind": "list.delete", "list_id": "22222222-2222-4222-8222-222222222222", "base_revision": "3"},
+      "arguments": ["22222222-2222-4222-8222-222222222222", "3"],
+      "canonical": "[\"zenlygram-tasks-business-v1\",\"01arz3ndektsv4rrffq69g5fav\",\"88888888-8888-4888-8888-888888888888\",\"list.delete\",[\"22222222-2222-4222-8222-222222222222\",\"3\"]]",
+      "sha256": "ac5c6e31a9e616e9608df595538209a3888471fb8456cb549f9ea735885f8a81"
+    },
+    {
+      "id": "V-LISTDEL-R4",
+      "wire": 4,
+      "principal": "01arz3ndektsv4rrffq69g5fav",
+      "mutation_id": "88888888-8888-4888-8888-888888888888",
+      "operation": {
+        "kind": "list.delete",
+        "list_id": "22222222-2222-4222-8222-222222222222",
+        "base_revision": "3",
+        "base_members_revision": "7"
+      },
+      "arguments": ["22222222-2222-4222-8222-222222222222", "3", "7"],
+      "canonical": "[\"zenlygram-tasks-business-v1\",\"01arz3ndektsv4rrffq69g5fav\",\"88888888-8888-4888-8888-888888888888\",\"list.delete\",[\"22222222-2222-4222-8222-222222222222\",\"3\",\"7\"]]",
+      "sha256": "a7fe3b0bfe45cfd11e343bad1095ef5cd52badbc93506cc0aaf7ca6583a5f76b"
+    }
+  ],
+  "normalization_rules": {
+    "scope": "Every create of the automatic first migration and of the R4 explicit copy, identical on iOS and Android; the originals stay unchanged in the local archive. A vector names its platform when its input uses platform units or fields; without platform it holds on both.",
+    "input": "kind task|list; title; description (null or string); due_at, created_at, completed_at in Unix seconds on iOS, due_at_ms, created_at_ms, completed_at_ms in milliseconds on Android; now = the estimated server time in Unix seconds; is_completed; priority; sort_order (iOS only); index = the row's 0-based position among its siblings in the platform's local order (folders among folders, tasks within their folder); local_id of a folder; assignee {peer_id = iOS PeerId.toInt64(), display_name} (iOS only). An absent field is null, false or 0.",
+    "expected": "Wire values of the create (list.create, or task.create with its content flattened) for the listed fields only. cloud_inbox true means no list.create: the folder is the virtual Cloud Inbox and its tasks carry list_id null.",
+    "edge_whitespace": "U+0009..U+000D, U+0085 and the categories Zs, Zl, Zp (x-permissions-and-state.visible_text)",
+    "visible_scalar": "a scalar outside the categories Cc, Cf, Mn, Mc, Me, Zs, Zl, Zp",
+    "truncate": "truncate(s, L, B) = s when s has at most L scalars and B UTF-8 bytes; otherwise the longest prefix of s that ends on an extended-grapheme boundary of the platform and has at most L - 1 scalars and B - 3 bytes, followed by U+2026. Counting scalars keeps the server's grapheme count within L whatever its ICU version.",
+    "list_title": "trim edge whitespace; no visible scalar left -> the placeholder tasks_migration_importedList of the record locale; then truncate(title, 100, 8192)",
+    "task_title": "trim edge whitespace; no visible scalar left -> the placeholder tasks_migration_untitledTask of the record locale; then truncate(title, 200, 8192). When truncate shortened the title, the description becomes the trimmed full title (no description) or the trimmed full title + \"\\n\\n\" + the normalized description, if that has at most 4096 scalars and 16384 bytes; otherwise the normalized description stays",
+    "description": "\"\" -> null; truncate(description, 4096, 16384); no edge rule (trailing whitespace stays)",
+    "due_at": "iOS seconds; Android milliseconds floored to seconds. Negative, above 2147483647 and, on Android, 0 (the local schema requires > 0) -> null",
+    "created_at": "negative or later than now + 300 s -> null (the server stamps its own time); else the Instant",
+    "completed_at": "null when the task is not completed; for a completed task an invalid time (as created_at) -> null (unknown)",
+    "priority": "clamped to 0..4",
+    "sort_order": "lists and tasks: iOS keeps a value that fits Int32; any other value, and every Android row, -> index * 1024",
+    "annotation": "always null: the iOS assignee stays on the device in the archive (a Telegram contact is never sent automatically); Android has no assignee",
+    "inbox": "iOS sgtasks.inbox whose stored title is exactly one of inbox_titles, and Android inbox, map to the virtual Cloud Inbox; a renamed iOS inbox and every other folder become a real list",
+    "inbox_titles": ["Inbox", "Kiruvchi", "Входящие"],
+    "placeholders": {
+      "tasks_migration_untitledTask": {"en": "Untitled task", "uz": "Nomsiz vazifa", "ru": "Задача без названия"},
+      "tasks_migration_importedList": {
+        "en": "Imported list",
+        "uz": "Import qilingan roʻyxat",
+        "ru": "Импортированный список"
+      }
+    },
+    "segmentation": "Expected values assume extended grapheme clusters of Unicode 11 or later (Swift, ICU 62+, JDK 20+). N13a cuts between whole ZWJ families; an older segmenter may cut elsewhere and still meet the server bound. N13b is the same on every segmenter."
+  },
+  "normalization": [
+    {
+      "id": "N1a",
+      "case": "task title: edge whitespace trimmed",
+      "input": {"kind": "task", "title": "  Ish "},
+      "locale": "en",
+      "expected": {"title": "Ish"}
+    },
+    {
+      "id": "N1b",
+      "case": "task title: control and no-break space edges trimmed",
+      "input": {"kind": "task", "title": "\t Ish\u00a0\n"},
+      "locale": "uz",
+      "expected": {"title": "Ish"}
+    },
+    {
+      "id": "N1c",
+      "case": "list title: ideographic space trimmed",
+      "input": {"kind": "list", "local_id": "f1", "title": "\u3000Uy ishlari "},
+      "locale": "ru",
+      "expected": {"cloud_inbox": false, "title": "Uy ishlari"}
+    },
+    {
+      "id": "N2a",
+      "case": "task title of a zero-width space -> placeholder",
+      "input": {"kind": "task", "title": "\u200b"},
+      "locale": "en",
+      "expected": {"title": "Untitled task"}
+    },
+    {
+      "id": "N2b",
+      "case": "task title without a visible scalar -> placeholder (uz)",
+      "input": {"kind": "task", "title": "\u200b\u0301 \t"},
+      "locale": "uz",
+      "expected": {"title": "Nomsiz vazifa"}
+    },
+    {
+      "id": "N2c",
+      "case": "list title without a visible scalar -> placeholder (ru)",
+      "input": {"kind": "list", "local_id": "f1", "title": "\u00a0\u200b"},
+      "locale": "ru",
+      "expected": {"cloud_inbox": false, "title": "Импортированный список"}
+    },
+    {
+      "id": "N2d",
+      "case": "empty title of an ordinary folder -> placeholder (uz)",
+      "input": {"kind": "list", "local_id": "f2", "title": ""},
+      "locale": "uz",
+      "expected": {"cloud_inbox": false, "title": "Import qilingan roʻyxat"}
+    },
+    {
+      "id": "N3a",
+      "case": "250-scalar task title: trimmed, 199 + ellipsis, full title prepended to the description",
+      "input": {
+        "kind": "task",
+        "title": "  aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ",
+        "description": "Batafsil"
+      },
+      "locale": "en",
+      "expected": {
+        "title": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa…",
+        "description": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n\nBatafsil"
+      }
+    },
+    {
+      "id": "N3b",
+      "case": "200-scalar task title stays whole",
+      "input": {
+        "kind": "task",
+        "title": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "description": null
+      },
+      "locale": "en",
+      "expected": {
+        "title": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "description": null
+      }
+    },
+    {
+      "id": "N3c",
+      "case": "201-scalar task title, empty description -> the description is the full title",
+      "input": {
+        "kind": "task",
+        "title": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "description": ""
+      },
+      "locale": "en",
+      "expected": {
+        "title": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa…",
+        "description": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      }
+    },
+    {
+      "id": "N3d",
+      "case": "truncated title whose prepend would exceed 4096 scalars keeps the description",
+      "input": {
+        "kind": "task",
+        "title": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "description": "Batafsil"
+      },
+      "locale": "en",
+      "expected": {
+        "title": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa…",
+        "description": "Batafsil"
+      }
+    },
+    {
+      "id": "N3e",
+      "case": "150-scalar list title -> 99 + ellipsis",
+      "input": {
+        "kind": "list",
+        "local_id": "f1",
+        "title": "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL"
+      },
+      "locale": "en",
+      "expected": {
+        "cloud_inbox": false,
+        "title": "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL…"
+      }
+    },
+    {
+      "id": "N4a",
+      "case": "empty description -> null",
+      "input": {"kind": "task", "title": "Ish", "description": ""},
+      "locale": "en",
+      "expected": {"description": null}
+    },
+    {
+      "id": "N4b",
+      "case": "description keeps its trailing whitespace",
+      "input": {"kind": "task", "title": "Ish", "description": "Eslatma \n"},
+      "locale": "en",
+      "expected": {"description": "Eslatma \n"}
+    },
+    {
+      "id": "N5a",
+      "case": "5000-scalar description -> 4095 + ellipsis",
+      "input": {
+        "kind": "task",
+        "title": "Ish",
+        "description": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "locale": "en",
+      "expected": {
+        "description": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb…"
+      }
+    },
+    {
+      "id": "N5b",
+      "case": "4096-scalar description stays whole",
+      "input": {
+        "kind": "task",
+        "title": "Ish",
+        "description": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "locale": "en",
+      "expected": {
+        "description": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      }
+    },
+    {
+      "id": "N6a",
+      "platform": "ios",
+      "case": "negative deadline -> null",
+      "input": {"kind": "task", "title": "Ish", "due_at": -5},
+      "locale": "en",
+      "expected": {"due_at": null}
+    },
+    {
+      "id": "N6b",
+      "platform": "android",
+      "case": "deadline of 2^31 s -> null",
+      "input": {"kind": "task", "title": "Ish", "due_at_ms": 2147483648000},
+      "locale": "en",
+      "expected": {"due_at": null}
+    },
+    {
+      "id": "N6c",
+      "platform": "android",
+      "case": "deadline 0 ms -> null",
+      "input": {"kind": "task", "title": "Ish", "due_at_ms": 0},
+      "locale": "en",
+      "expected": {"due_at": null}
+    },
+    {
+      "id": "N6d",
+      "platform": "android",
+      "case": "deadline milliseconds floored to seconds",
+      "input": {"kind": "task", "title": "Ish", "due_at_ms": 1792512000999},
+      "locale": "en",
+      "expected": {"due_at": 1792512000}
+    },
+    {
+      "id": "N6e",
+      "platform": "ios",
+      "case": "deadline 0 s stays on iOS",
+      "input": {"kind": "task", "title": "Ish", "due_at": 0},
+      "locale": "en",
+      "expected": {"due_at": 0}
+    },
+    {
+      "id": "N6f",
+      "platform": "android",
+      "case": "largest deadline stays",
+      "input": {"kind": "task", "title": "Ish", "due_at_ms": 2147483647999},
+      "locale": "en",
+      "expected": {"due_at": 2147483647}
+    },
+    {
+      "id": "N7a",
+      "platform": "ios",
+      "case": "created more than 300 s after now -> null",
+      "input": {"kind": "task", "title": "Ish", "now": 1792512000, "created_at": 1792512301},
+      "locale": "en",
+      "expected": {"created_at": null}
+    },
+    {
+      "id": "N7b",
+      "platform": "ios",
+      "case": "created exactly 300 s after now stays",
+      "input": {"kind": "task", "title": "Ish", "now": 1792512000, "created_at": 1792512300},
+      "locale": "en",
+      "expected": {"created_at": "2026-10-20T16:05:00Z"}
+    },
+    {
+      "id": "N7c",
+      "platform": "ios",
+      "case": "negative creation time -> null",
+      "input": {"kind": "task", "title": "Ish", "now": 1792512000, "created_at": -1},
+      "locale": "en",
+      "expected": {"created_at": null}
+    },
+    {
+      "id": "N7d",
+      "platform": "android",
+      "case": "future creation milliseconds -> null",
+      "input": {"kind": "task", "title": "Ish", "now": 1792512000, "created_at_ms": 1792512301000},
+      "locale": "en",
+      "expected": {"created_at": null}
+    },
+    {
+      "id": "N7e",
+      "platform": "android",
+      "case": "creation milliseconds floored to seconds",
+      "input": {"kind": "task", "title": "Ish", "now": 1792512000, "created_at_ms": 1792512000999},
+      "locale": "en",
+      "expected": {"created_at": "2026-10-20T16:00:00Z"}
+    },
+    {
+      "id": "N7f",
+      "platform": "ios",
+      "case": "completion time of an open task -> null",
+      "input": {"kind": "task", "title": "Ish", "now": 1792512000, "is_completed": false, "completed_at": 1792511940},
+      "locale": "en",
+      "expected": {"is_completed": false, "completed_at": null}
+    },
+    {
+      "id": "N7g",
+      "platform": "ios",
+      "case": "future completion time -> null (unknown), still completed",
+      "input": {"kind": "task", "title": "Ish", "now": 1792512000, "is_completed": true, "completed_at": 1792512301},
+      "locale": "en",
+      "expected": {"is_completed": true, "completed_at": null}
+    },
+    {
+      "id": "N7h",
+      "platform": "ios",
+      "case": "valid completion time stays",
+      "input": {"kind": "task", "title": "Ish", "now": 1792512000, "is_completed": true, "completed_at": 1792511940},
+      "locale": "en",
+      "expected": {"is_completed": true, "completed_at": "2026-10-20T15:59:00Z"}
+    },
+    {
+      "id": "N7i",
+      "platform": "android",
+      "case": "completion milliseconds floored to seconds",
+      "input": {
+        "kind": "task",
+        "title": "Ish",
+        "now": 1792512000,
+        "is_completed": true,
+        "completed_at_ms": 1792511940500
+      },
+      "locale": "en",
+      "expected": {"is_completed": true, "completed_at": "2026-10-20T15:59:00Z"}
+    },
+    {
+      "id": "N8a",
+      "case": "priority above 4 -> 4",
+      "input": {"kind": "task", "title": "Ish", "priority": 7},
+      "locale": "en",
+      "expected": {"priority": 4}
+    },
+    {
+      "id": "N8b",
+      "case": "negative priority -> 0",
+      "input": {"kind": "task", "title": "Ish", "priority": -1},
+      "locale": "en",
+      "expected": {"priority": 0}
+    },
+    {
+      "id": "N9a",
+      "platform": "ios",
+      "case": "task sort order beyond Int32 -> index * 1024",
+      "input": {"kind": "task", "title": "Ish", "sort_order": 2147483648, "index": 3},
+      "locale": "en",
+      "expected": {"sort_order": 3072}
+    },
+    {
+      "id": "N9b",
+      "platform": "ios",
+      "case": "task sort order within Int32 stays",
+      "input": {"kind": "task", "title": "Ish", "sort_order": -1, "index": 3},
+      "locale": "en",
+      "expected": {"sort_order": -1}
+    },
+    {
+      "id": "N9c",
+      "platform": "android",
+      "case": "Android task -> index * 1024",
+      "input": {"kind": "task", "title": "Ish", "index": 2},
+      "locale": "en",
+      "expected": {"sort_order": 2048}
+    },
+    {
+      "id": "N9d",
+      "platform": "ios",
+      "case": "list sort order beyond Int32 -> index * 1024",
+      "input": {"kind": "list", "local_id": "f1", "title": "Ishlar", "sort_order": -2147483649, "index": 0},
+      "locale": "en",
+      "expected": {"cloud_inbox": false, "sort_order": 0}
+    },
+    {
+      "id": "N9e",
+      "platform": "android",
+      "case": "Android list -> index * 1024",
+      "input": {"kind": "list", "local_id": "f1", "title": "Ishlar", "index": 5},
+      "locale": "en",
+      "expected": {"cloud_inbox": false, "sort_order": 5120}
+    },
+    {
+      "id": "N10a",
+      "platform": "ios",
+      "case": "default inbox (en title) -> Cloud Inbox",
+      "input": {"kind": "list", "local_id": "sgtasks.inbox", "title": "Inbox"},
+      "locale": "en",
+      "expected": {"cloud_inbox": true}
+    },
+    {
+      "id": "N10b",
+      "platform": "ios",
+      "case": "default inbox (uz title, ru record locale) -> Cloud Inbox",
+      "input": {"kind": "list", "local_id": "sgtasks.inbox", "title": "Kiruvchi"},
+      "locale": "ru",
+      "expected": {"cloud_inbox": true}
+    },
+    {
+      "id": "N10c",
+      "platform": "ios",
+      "case": "default inbox (ru title, uz record locale) -> Cloud Inbox",
+      "input": {"kind": "list", "local_id": "sgtasks.inbox", "title": "Входящие"},
+      "locale": "uz",
+      "expected": {"cloud_inbox": true}
+    },
+    {
+      "id": "N10d",
+      "platform": "ios",
+      "case": "renamed inbox -> a real list",
+      "input": {"kind": "list", "local_id": "sgtasks.inbox", "title": "Ishlarim"},
+      "locale": "en",
+      "expected": {"cloud_inbox": false, "title": "Ishlarim"}
+    },
+    {
+      "id": "N10e",
+      "platform": "ios",
+      "case": "an ordinary folder titled Inbox -> a real list",
+      "input": {"kind": "list", "local_id": "f1", "title": "Inbox"},
+      "locale": "en",
+      "expected": {"cloud_inbox": false, "title": "Inbox"}
+    },
+    {
+      "id": "N10f",
+      "platform": "ios",
+      "case": "the title comparison is exact",
+      "input": {"kind": "list", "local_id": "sgtasks.inbox", "title": "inbox"},
+      "locale": "en",
+      "expected": {"cloud_inbox": false, "title": "inbox"}
+    },
+    {
+      "id": "N11a",
+      "platform": "android",
+      "case": "Android inbox -> Cloud Inbox",
+      "input": {"kind": "list", "local_id": "inbox", "title": ""},
+      "locale": "uz",
+      "expected": {"cloud_inbox": true}
+    },
+    {
+      "id": "N11b",
+      "platform": "android",
+      "case": "an ordinary Android folder titled Inbox -> a real list",
+      "input": {"kind": "list", "local_id": "f3", "title": "Inbox"},
+      "locale": "en",
+      "expected": {"cloud_inbox": false, "title": "Inbox"}
+    },
+    {
+      "id": "N12a",
+      "platform": "ios",
+      "case": "a valid assignee is never sent",
+      "input": {
+        "kind": "task",
+        "title": "Ali bilan uchrashuv",
+        "assignee": {"peer_id": 123456789, "display_name": "Ali"}
+      },
+      "locale": "uz",
+      "expected": {"title": "Ali bilan uchrashuv", "annotation": null}
+    },
+    {
+      "id": "N12b",
+      "platform": "ios",
+      "case": "an unconvertible assignee (not a user peer) is never sent either",
+      "input": {"kind": "task", "title": "Kanal posti", "assignee": {"peer_id": 8589934593, "display_name": "Kanal"}},
+      "locale": "uz",
+      "expected": {"title": "Kanal posti", "annotation": null}
+    },
+    {
+      "id": "N13a",
+      "case": "30 ZWJ families (210 scalars) -> 28 whole families + ellipsis",
+      "input": {
+        "kind": "task",
+        "title": "👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦",
+        "description": null
+      },
+      "locale": "en",
+      "expected": {
+        "title": "👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦…",
+        "description": "👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦"
+      }
+    },
+    {
+      "id": "N13b",
+      "case": "198 + two ZWJ families: no cut inside a family on any segmenter",
+      "input": {
+        "kind": "task",
+        "title": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦",
+        "description": null
+      },
+      "locale": "en",
+      "expected": {
+        "title": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa…",
+        "description": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦"
+      }
+    }
+  ]
+}

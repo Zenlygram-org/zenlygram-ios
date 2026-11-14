@@ -1,0 +1,1073 @@
+{
+  "schema": "zenlygram-events-fixture/1",
+  "description": "Valid POST /v1/profile/events bodies (contract §2.4.5, §3) and what the server answers when it receives them at received_at, for a linked binding of binding_platform whose account has a grant in effect. expected.stored lists the stored events (effective_ts after skew correction, props as kept: undeclared props dropped) and expected.stored_context the stored context. A client_built body is one a conforming client builds (both clients compare their envelopes with those as parsed JSON); the others show what the server tolerates from a client that does not conform. The registry is analytics-events.json.",
+  "received_at": "2026-11-01T10:00:00Z",
+  "cases": [
+    {
+      "id": "every-event",
+      "client_built": true,
+      "description": "One event of every name of the registry (taxonomy v1), one iOS session from app.session_start (seq 0) to app.session_end (seq 28, duration_s = the 840 s from start to end), each with the props a client sends: all required props and some optional ones. Everything is stored as sent.",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "6a816b76-fd7b-43a2-91b9-7034a526b687",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "08782420-8526-4792-823d-e5d7a6f04791",
+            "name": "app.session_start",
+            "ts": "2026-11-01T09:30:00Z",
+            "session_id": "88375902-7c42-43a8-9066-aba2d6d2d42a",
+            "seq": 0,
+            "props": {
+              "trigger": "launch"
+            }
+          },
+          {
+            "id": "dd930567-be9b-41cf-9bf8-199676a2bca3",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:30:30Z",
+            "session_id": "88375902-7c42-43a8-9066-aba2d6d2d42a",
+            "seq": 1,
+            "props": {
+              "screen": "zg.hub"
+            }
+          },
+          {
+            "id": "d2aeafbe-f86f-4f76-8138-1e03527b0e08",
+            "name": "feature.toggle",
+            "ts": "2026-11-01T09:31:00Z",
+            "session_id": "88375902-7c42-43a8-9066-aba2d6d2d42a",
+            "seq": 2,
+            "props": {
+              "feature": "vault",
+              "enabled": true
+            }
+          },
+          {
+            "id": "65383021-3a4a-48cc-8727-a30fb6f697ca",
+            "name": "feature.used",
+            "ts": "2026-11-01T09:31:30Z",
+            "session_id": "88375902-7c42-43a8-9066-aba2d6d2d42a",
+            "seq": 3,
+            "props": {
+              "feature": "translation"
+            }
+          },
+          {
+            "id": "73093638-9f94-4ce3-99c2-dd454804e115",
+            "name": "tasks.task_created",
+            "ts": "2026-11-01T09:32:00Z",
+            "session_id": "88375902-7c42-43a8-9066-aba2d6d2d42a",
+            "seq": 4,
+            "props": {
+              "scope": "cloud",
+              "has_due": true,
+              "priority": 2,
+              "in_list": false
+            }
+          },
+          {
+            "id": "575606e3-3916-4dee-876c-0cb571e115b9",
+            "name": "tasks.task_completed",
+            "ts": "2026-11-01T09:32:30Z",
+            "session_id": "88375902-7c42-43a8-9066-aba2d6d2d42a",
+            "seq": 5,
+            "props": {
+              "scope": "cloud",
+              "reopened": false
+            }
+          },
+          {
+            "id": "beed1dd0-22a8-4c92-bf2f-779f04d6a212",
+            "name": "tasks.task_deleted",
+            "ts": "2026-11-01T09:33:00Z",
+            "session_id": "88375902-7c42-43a8-9066-aba2d6d2d42a",
+            "seq": 6,
+            "props": {
+              "scope": "local"
+            }
+          },
+          {
+            "id": "cdcf7467-cd5b-4a1e-9f13-b228c1b63b9e",
+            "name": "tasks.list_created",
+            "ts": "2026-11-01T09:33:30Z",
+            "session_id": "88375902-7c42-43a8-9066-aba2d6d2d42a",
+            "seq": 7,
+            "props": {
+              "scope": "cloud"
+            }
+          },
+          {
+            "id": "878d60d7-d87d-470c-91e1-54e3555719c4",
+            "name": "tasks.list_deleted",
+            "ts": "2026-11-01T09:34:00Z",
+            "session_id": "88375902-7c42-43a8-9066-aba2d6d2d42a",
+            "seq": 8,
+            "props": {
+              "scope": "cloud",
+              "tasks": 3
+            }
+          },
+          {
+            "id": "0e19cfcb-120b-4a6d-8bcb-4a92856ba0e2",
+            "name": "tasks.shared",
+            "ts": "2026-11-01T09:34:30Z",
+            "session_id": "88375902-7c42-43a8-9066-aba2d6d2d42a",
+            "seq": 9,
+            "props": {
+              "action": "invite_sent"
+            }
+          },
+          {
+            "id": "4cf13def-8d94-4481-b354-b7fe77b3569b",
+            "name": "tasks.migration",
+            "ts": "2026-11-01T09:35:00Z",
+            "session_id": "88375902-7c42-43a8-9066-aba2d6d2d42a",
+            "seq": 10,
+            "props": {
+              "phase": "completed",
+              "lists": 2,
+              "tasks": 14,
+              "skipped": 0,
+              "duration_s": 6
+            }
+          },
+          {
+            "id": "95964718-ffc3-4dc6-b24d-30cafb88f9e9",
+            "name": "tasks.sync_issue",
+            "ts": "2026-11-01T09:35:30Z",
+            "session_id": "88375902-7c42-43a8-9066-aba2d6d2d42a",
+            "seq": 11,
+            "props": {
+              "kind": "conflict_auto_resolved",
+              "count": 1
+            }
+          },
+          {
+            "id": "4087e137-c408-47e0-a21c-74b847a94f49",
+            "name": "vault.unlocked",
+            "ts": "2026-11-01T09:36:00Z",
+            "session_id": "88375902-7c42-43a8-9066-aba2d6d2d42a",
+            "seq": 12,
+            "props": {
+              "method": "biometric"
+            }
+          },
+          {
+            "id": "d755116d-c0eb-4677-aa30-ad04cf9c15cf",
+            "name": "vault.chat_added",
+            "ts": "2026-11-01T09:36:30Z",
+            "session_id": "88375902-7c42-43a8-9066-aba2d6d2d42a",
+            "seq": 13,
+            "props": {}
+          },
+          {
+            "id": "3de6af0c-c3f3-4ad0-9903-5fc76cfd564a",
+            "name": "vault.chat_removed",
+            "ts": "2026-11-01T09:37:00Z",
+            "session_id": "88375902-7c42-43a8-9066-aba2d6d2d42a",
+            "seq": 14,
+            "props": {}
+          },
+          {
+            "id": "fbf10a23-4869-4579-a845-b744c0dba43c",
+            "name": "chat_lock.lock_set",
+            "ts": "2026-11-01T09:37:30Z",
+            "session_id": "88375902-7c42-43a8-9066-aba2d6d2d42a",
+            "seq": 15,
+            "props": {
+              "method": "password",
+              "biometric": true
+            }
+          },
+          {
+            "id": "9675ab66-d3db-4813-8b61-035b4884d65b",
+            "name": "chat_lock.unlocked",
+            "ts": "2026-11-01T09:38:00Z",
+            "session_id": "88375902-7c42-43a8-9066-aba2d6d2d42a",
+            "seq": 16,
+            "props": {
+              "method": "password"
+            }
+          },
+          {
+            "id": "3f47982b-85fc-4d7f-8740-62abb05bdd2a",
+            "name": "chat_lock.lock_removed",
+            "ts": "2026-11-01T09:38:30Z",
+            "session_id": "88375902-7c42-43a8-9066-aba2d6d2d42a",
+            "seq": 17,
+            "props": {}
+          },
+          {
+            "id": "60430819-b338-403a-9b00-a2c99edbb84d",
+            "name": "edit_history.viewed",
+            "ts": "2026-11-01T09:39:00Z",
+            "session_id": "88375902-7c42-43a8-9066-aba2d6d2d42a",
+            "seq": 18,
+            "props": {
+              "kind": "edited"
+            }
+          },
+          {
+            "id": "0456a63e-e82c-4ac7-819a-f7d5844eaca4",
+            "name": "pro.screen_view",
+            "ts": "2026-11-01T09:39:30Z",
+            "session_id": "88375902-7c42-43a8-9066-aba2d6d2d42a",
+            "seq": 19,
+            "props": {
+              "source": "settings",
+              "mode": "free"
+            }
+          },
+          {
+            "id": "9a48db2f-944d-444a-b876-c6dd307f08bc",
+            "name": "pro.plan_select",
+            "ts": "2026-11-01T09:40:00Z",
+            "session_id": "88375902-7c42-43a8-9066-aba2d6d2d42a",
+            "seq": 20,
+            "props": {
+              "product_id": "zenlygram.pro.monthly",
+              "rail": "apple"
+            }
+          },
+          {
+            "id": "a454920b-9356-48aa-b63b-8a309cd32a84",
+            "name": "pro.purchase_start",
+            "ts": "2026-11-01T09:40:30Z",
+            "session_id": "88375902-7c42-43a8-9066-aba2d6d2d42a",
+            "seq": 21,
+            "props": {
+              "product_id": "zenlygram.pro.monthly",
+              "rail": "apple"
+            }
+          },
+          {
+            "id": "259d38a3-3324-43e8-809a-959a94c2a7f2",
+            "name": "pro.purchase_success",
+            "ts": "2026-11-01T09:41:00Z",
+            "session_id": "88375902-7c42-43a8-9066-aba2d6d2d42a",
+            "seq": 22,
+            "props": {
+              "product_id": "zenlygram.pro.monthly",
+              "rail": "apple",
+              "trial": false
+            }
+          },
+          {
+            "id": "a52ff5ee-8022-4af7-a2d5-e11d3465b403",
+            "name": "pro.purchase_fail",
+            "ts": "2026-11-01T09:41:30Z",
+            "session_id": "88375902-7c42-43a8-9066-aba2d6d2d42a",
+            "seq": 23,
+            "props": {
+              "product_id": "zenlygram.pro.yearly",
+              "rail": "apple",
+              "reason": "cancelled",
+              "error_code": "storekit_2"
+            }
+          },
+          {
+            "id": "7675ff4e-203b-48f6-8cd1-9b164fa47011",
+            "name": "pro.restore",
+            "ts": "2026-11-01T09:42:00Z",
+            "session_id": "88375902-7c42-43a8-9066-aba2d6d2d42a",
+            "seq": 24,
+            "props": {
+              "rail": "apple",
+              "outcome": "nothing"
+            }
+          },
+          {
+            "id": "eefd8cfb-1803-4219-bda8-f6db4bd2a777",
+            "name": "pro.trial_start",
+            "ts": "2026-11-01T09:42:30Z",
+            "session_id": "88375902-7c42-43a8-9066-aba2d6d2d42a",
+            "seq": 25,
+            "props": {
+              "outcome": "refused",
+              "error_code": "trial_used"
+            }
+          },
+          {
+            "id": "40c62b8d-c7b3-470d-90e6-0693307fb135",
+            "name": "link.attempt",
+            "ts": "2026-11-01T09:43:00Z",
+            "session_id": "88375902-7c42-43a8-9066-aba2d6d2d42a",
+            "seq": 26,
+            "props": {
+              "trigger": "auto",
+              "method": "attest",
+              "outcome": "success",
+              "duration_s": 4
+            }
+          },
+          {
+            "id": "de36c3e7-7716-49de-8b7d-fb79aec97de9",
+            "name": "error.occurred",
+            "ts": "2026-11-01T09:43:30Z",
+            "session_id": "88375902-7c42-43a8-9066-aba2d6d2d42a",
+            "seq": 27,
+            "props": {
+              "domain": "network",
+              "code": "timeout",
+              "count": 3
+            }
+          },
+          {
+            "id": "2ccc6f35-01e6-4dc9-a683-66f3e792481d",
+            "name": "app.session_end",
+            "ts": "2026-11-01T09:44:00Z",
+            "session_id": "88375902-7c42-43a8-9066-aba2d6d2d42a",
+            "seq": 28,
+            "props": {
+              "duration_s": 840,
+              "reason": "background"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "status": 200,
+        "accepted": 29,
+        "duplicates": 0,
+        "dropped_props": 0,
+        "rejected": [],
+        "stored": [
+          {
+            "id": "08782420-8526-4792-823d-e5d7a6f04791",
+            "name": "app.session_start",
+            "effective_ts": "2026-11-01T09:30:00Z",
+            "props": {
+              "trigger": "launch"
+            }
+          },
+          {
+            "id": "dd930567-be9b-41cf-9bf8-199676a2bca3",
+            "name": "screen.view",
+            "effective_ts": "2026-11-01T09:30:30Z",
+            "props": {
+              "screen": "zg.hub"
+            }
+          },
+          {
+            "id": "d2aeafbe-f86f-4f76-8138-1e03527b0e08",
+            "name": "feature.toggle",
+            "effective_ts": "2026-11-01T09:31:00Z",
+            "props": {
+              "feature": "vault",
+              "enabled": true
+            }
+          },
+          {
+            "id": "65383021-3a4a-48cc-8727-a30fb6f697ca",
+            "name": "feature.used",
+            "effective_ts": "2026-11-01T09:31:30Z",
+            "props": {
+              "feature": "translation"
+            }
+          },
+          {
+            "id": "73093638-9f94-4ce3-99c2-dd454804e115",
+            "name": "tasks.task_created",
+            "effective_ts": "2026-11-01T09:32:00Z",
+            "props": {
+              "scope": "cloud",
+              "has_due": true,
+              "priority": 2,
+              "in_list": false
+            }
+          },
+          {
+            "id": "575606e3-3916-4dee-876c-0cb571e115b9",
+            "name": "tasks.task_completed",
+            "effective_ts": "2026-11-01T09:32:30Z",
+            "props": {
+              "scope": "cloud",
+              "reopened": false
+            }
+          },
+          {
+            "id": "beed1dd0-22a8-4c92-bf2f-779f04d6a212",
+            "name": "tasks.task_deleted",
+            "effective_ts": "2026-11-01T09:33:00Z",
+            "props": {
+              "scope": "local"
+            }
+          },
+          {
+            "id": "cdcf7467-cd5b-4a1e-9f13-b228c1b63b9e",
+            "name": "tasks.list_created",
+            "effective_ts": "2026-11-01T09:33:30Z",
+            "props": {
+              "scope": "cloud"
+            }
+          },
+          {
+            "id": "878d60d7-d87d-470c-91e1-54e3555719c4",
+            "name": "tasks.list_deleted",
+            "effective_ts": "2026-11-01T09:34:00Z",
+            "props": {
+              "scope": "cloud",
+              "tasks": 3
+            }
+          },
+          {
+            "id": "0e19cfcb-120b-4a6d-8bcb-4a92856ba0e2",
+            "name": "tasks.shared",
+            "effective_ts": "2026-11-01T09:34:30Z",
+            "props": {
+              "action": "invite_sent"
+            }
+          },
+          {
+            "id": "4cf13def-8d94-4481-b354-b7fe77b3569b",
+            "name": "tasks.migration",
+            "effective_ts": "2026-11-01T09:35:00Z",
+            "props": {
+              "phase": "completed",
+              "lists": 2,
+              "tasks": 14,
+              "skipped": 0,
+              "duration_s": 6
+            }
+          },
+          {
+            "id": "95964718-ffc3-4dc6-b24d-30cafb88f9e9",
+            "name": "tasks.sync_issue",
+            "effective_ts": "2026-11-01T09:35:30Z",
+            "props": {
+              "kind": "conflict_auto_resolved",
+              "count": 1
+            }
+          },
+          {
+            "id": "4087e137-c408-47e0-a21c-74b847a94f49",
+            "name": "vault.unlocked",
+            "effective_ts": "2026-11-01T09:36:00Z",
+            "props": {
+              "method": "biometric"
+            }
+          },
+          {
+            "id": "d755116d-c0eb-4677-aa30-ad04cf9c15cf",
+            "name": "vault.chat_added",
+            "effective_ts": "2026-11-01T09:36:30Z",
+            "props": {}
+          },
+          {
+            "id": "3de6af0c-c3f3-4ad0-9903-5fc76cfd564a",
+            "name": "vault.chat_removed",
+            "effective_ts": "2026-11-01T09:37:00Z",
+            "props": {}
+          },
+          {
+            "id": "fbf10a23-4869-4579-a845-b744c0dba43c",
+            "name": "chat_lock.lock_set",
+            "effective_ts": "2026-11-01T09:37:30Z",
+            "props": {
+              "method": "password",
+              "biometric": true
+            }
+          },
+          {
+            "id": "9675ab66-d3db-4813-8b61-035b4884d65b",
+            "name": "chat_lock.unlocked",
+            "effective_ts": "2026-11-01T09:38:00Z",
+            "props": {
+              "method": "password"
+            }
+          },
+          {
+            "id": "3f47982b-85fc-4d7f-8740-62abb05bdd2a",
+            "name": "chat_lock.lock_removed",
+            "effective_ts": "2026-11-01T09:38:30Z",
+            "props": {}
+          },
+          {
+            "id": "60430819-b338-403a-9b00-a2c99edbb84d",
+            "name": "edit_history.viewed",
+            "effective_ts": "2026-11-01T09:39:00Z",
+            "props": {
+              "kind": "edited"
+            }
+          },
+          {
+            "id": "0456a63e-e82c-4ac7-819a-f7d5844eaca4",
+            "name": "pro.screen_view",
+            "effective_ts": "2026-11-01T09:39:30Z",
+            "props": {
+              "source": "settings",
+              "mode": "free"
+            }
+          },
+          {
+            "id": "9a48db2f-944d-444a-b876-c6dd307f08bc",
+            "name": "pro.plan_select",
+            "effective_ts": "2026-11-01T09:40:00Z",
+            "props": {
+              "product_id": "zenlygram.pro.monthly",
+              "rail": "apple"
+            }
+          },
+          {
+            "id": "a454920b-9356-48aa-b63b-8a309cd32a84",
+            "name": "pro.purchase_start",
+            "effective_ts": "2026-11-01T09:40:30Z",
+            "props": {
+              "product_id": "zenlygram.pro.monthly",
+              "rail": "apple"
+            }
+          },
+          {
+            "id": "259d38a3-3324-43e8-809a-959a94c2a7f2",
+            "name": "pro.purchase_success",
+            "effective_ts": "2026-11-01T09:41:00Z",
+            "props": {
+              "product_id": "zenlygram.pro.monthly",
+              "rail": "apple",
+              "trial": false
+            }
+          },
+          {
+            "id": "a52ff5ee-8022-4af7-a2d5-e11d3465b403",
+            "name": "pro.purchase_fail",
+            "effective_ts": "2026-11-01T09:41:30Z",
+            "props": {
+              "product_id": "zenlygram.pro.yearly",
+              "rail": "apple",
+              "reason": "cancelled",
+              "error_code": "storekit_2"
+            }
+          },
+          {
+            "id": "7675ff4e-203b-48f6-8cd1-9b164fa47011",
+            "name": "pro.restore",
+            "effective_ts": "2026-11-01T09:42:00Z",
+            "props": {
+              "rail": "apple",
+              "outcome": "nothing"
+            }
+          },
+          {
+            "id": "eefd8cfb-1803-4219-bda8-f6db4bd2a777",
+            "name": "pro.trial_start",
+            "effective_ts": "2026-11-01T09:42:30Z",
+            "props": {
+              "outcome": "refused",
+              "error_code": "trial_used"
+            }
+          },
+          {
+            "id": "40c62b8d-c7b3-470d-90e6-0693307fb135",
+            "name": "link.attempt",
+            "effective_ts": "2026-11-01T09:43:00Z",
+            "props": {
+              "trigger": "auto",
+              "method": "attest",
+              "outcome": "success",
+              "duration_s": 4
+            }
+          },
+          {
+            "id": "de36c3e7-7716-49de-8b7d-fb79aec97de9",
+            "name": "error.occurred",
+            "effective_ts": "2026-11-01T09:43:30Z",
+            "props": {
+              "domain": "network",
+              "code": "timeout",
+              "count": 3
+            }
+          },
+          {
+            "id": "2ccc6f35-01e6-4dc9-a683-66f3e792481d",
+            "name": "app.session_end",
+            "effective_ts": "2026-11-01T09:44:00Z",
+            "props": {
+              "duration_s": 840,
+              "reason": "background"
+            }
+          }
+        ],
+        "stored_context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        }
+      }
+    },
+    {
+      "id": "unknown-props-dropped",
+      "client_built": false,
+      "description": "Props the registry does not declare are dropped, never stored, and counted in dropped_props (here 4); the event itself is accepted with the declared props it carries. An Android batch.",
+      "binding_platform": "android",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "47cd568f-b0ba-459c-953c-18319bf30d29",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "android",
+          "device_class": "phone",
+          "os_version": "14",
+          "app_version": "12.1.0",
+          "app_build": "5678",
+          "device_model": "Google Pixel 8",
+          "ui_language": "ru",
+          "timezone": "Asia/Tashkent",
+          "distribution": "play"
+        },
+        "events": [
+          {
+            "id": "2f7d5942-39d0-474e-aa08-0df77754234a",
+            "name": "app.session_start",
+            "ts": "2026-11-01T09:50:00Z",
+            "session_id": "12356cb3-951b-42b5-87c1-ca2554378456",
+            "seq": 0,
+            "props": {
+              "trigger": "foreground"
+            }
+          },
+          {
+            "id": "0c27b5e5-033b-4ab6-b42f-a3c76ba30ebd",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:50:10Z",
+            "session_id": "12356cb3-951b-42b5-87c1-ca2554378456",
+            "seq": 1,
+            "props": {
+              "screen": "tasks.board",
+              "chat_title": "Family",
+              "peer_id": 777
+            }
+          },
+          {
+            "id": "b6c183cc-f07c-4c4d-a952-a3ee630c137e",
+            "name": "pro.plan_select",
+            "ts": "2026-11-01T09:51:00Z",
+            "session_id": "12356cb3-951b-42b5-87c1-ca2554378456",
+            "seq": 2,
+            "props": {
+              "product_id": "zenlygram_pro",
+              "rail": "google",
+              "base_plan_id": "monthly-base",
+              "price": "9.99 USD"
+            }
+          },
+          {
+            "id": "8c74a094-4814-40d2-bd7c-844c7a4ebafa",
+            "name": "vault.chat_added",
+            "ts": "2026-11-01T09:52:00Z",
+            "session_id": "12356cb3-951b-42b5-87c1-ca2554378456",
+            "seq": 3,
+            "props": {
+              "chat_id": 123456
+            }
+          }
+        ]
+      },
+      "expected": {
+        "status": 200,
+        "accepted": 4,
+        "duplicates": 0,
+        "dropped_props": 4,
+        "rejected": [],
+        "stored": [
+          {
+            "id": "2f7d5942-39d0-474e-aa08-0df77754234a",
+            "name": "app.session_start",
+            "effective_ts": "2026-11-01T09:50:00Z",
+            "props": {
+              "trigger": "foreground"
+            }
+          },
+          {
+            "id": "0c27b5e5-033b-4ab6-b42f-a3c76ba30ebd",
+            "name": "screen.view",
+            "effective_ts": "2026-11-01T09:50:10Z",
+            "props": {
+              "screen": "tasks.board"
+            }
+          },
+          {
+            "id": "b6c183cc-f07c-4c4d-a952-a3ee630c137e",
+            "name": "pro.plan_select",
+            "effective_ts": "2026-11-01T09:51:00Z",
+            "props": {
+              "product_id": "zenlygram_pro",
+              "rail": "google",
+              "base_plan_id": "monthly-base"
+            }
+          },
+          {
+            "id": "8c74a094-4814-40d2-bd7c-844c7a4ebafa",
+            "name": "vault.chat_added",
+            "effective_ts": "2026-11-01T09:52:00Z",
+            "props": {}
+          }
+        ],
+        "stored_context": {
+          "platform": "android",
+          "device_class": "phone",
+          "os_version": "14",
+          "app_version": "12.1.0",
+          "app_build": "5678",
+          "device_model": "Google Pixel 8",
+          "ui_language": "ru",
+          "timezone": "Asia/Tashkent",
+          "distribution": "play"
+        }
+      }
+    },
+    {
+      "id": "descriptive-context",
+      "client_built": false,
+      "description": "Descriptive context values (app_build, device_model, timezone) that are null or fail their pattern are stored as null instead of failing the batch; ui_language keeps its lower-cased primary subtag (pt-BR -> pt). platform, device_class, os_version, app_version and distribution are strict.",
+      "binding_platform": "android",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "540eb633-2e6e-4b0b-bcb8-46f332363833",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "android",
+          "device_class": "tablet",
+          "os_version": "14",
+          "app_version": "12.1.0",
+          "app_build": null,
+          "device_model": "Pixel\tTablet",
+          "ui_language": "pt-BR",
+          "timezone": "Mars/Olympus Mons",
+          "distribution": "direct"
+        },
+        "events": [
+          {
+            "id": "01e44041-11b3-4e37-9161-c69a31040dfb",
+            "name": "feature.used",
+            "ts": "2026-11-01T09:59:00Z",
+            "session_id": "a853d0df-70e8-4bf8-a5d1-6de48b95e5fc",
+            "seq": 4,
+            "props": {
+              "feature": "ocr"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "status": 200,
+        "accepted": 1,
+        "duplicates": 0,
+        "dropped_props": 0,
+        "rejected": [],
+        "stored": [
+          {
+            "id": "01e44041-11b3-4e37-9161-c69a31040dfb",
+            "name": "feature.used",
+            "effective_ts": "2026-11-01T09:59:00Z",
+            "props": {
+              "feature": "ocr"
+            }
+          }
+        ],
+        "stored_context": {
+          "platform": "android",
+          "device_class": "tablet",
+          "os_version": "14",
+          "app_version": "12.1.0",
+          "app_build": null,
+          "device_model": null,
+          "ui_language": "pt",
+          "timezone": null,
+          "distribution": "direct"
+        }
+      }
+    },
+    {
+      "id": "clock-behind",
+      "client_built": true,
+      "description": "The device clock is 10 minutes behind: sent_at 09:50:00 arrives at 10:00:00, |skew| = 600 s > 120 s, so effective_ts = ts + 600 s.",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "d6009cb4-dc20-44d6-a731-5428f964b16f",
+        "sent_at": "2026-11-01T09:50:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "d4ebfa58-1184-427d-95a5-2f801a2ea50b",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:45:00Z",
+            "session_id": "7df6e107-0c29-437b-a98d-63c37c36aba9",
+            "seq": 7,
+            "props": {
+              "screen": "zg.pro"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "status": 200,
+        "accepted": 1,
+        "duplicates": 0,
+        "dropped_props": 0,
+        "rejected": [],
+        "stored": [
+          {
+            "id": "d4ebfa58-1184-427d-95a5-2f801a2ea50b",
+            "name": "screen.view",
+            "effective_ts": "2026-11-01T09:55:00Z",
+            "props": {
+              "screen": "zg.pro"
+            }
+          }
+        ],
+        "stored_context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        }
+      }
+    },
+    {
+      "id": "clock-ahead",
+      "client_built": true,
+      "description": "The device clock is 10 minutes ahead: sent_at 10:10:00 arrives at 10:00:00, skew = -600 s, so the event of 10:08:00 (device time) is stored at 09:58:00 instead of being refused as future.",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "4a8186c1-9cfe-44cd-9f9d-7a14e62781b6",
+        "sent_at": "2026-11-01T10:10:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "1d82f7cb-c960-4499-a81b-a8987d7e2d9c",
+            "name": "screen.view",
+            "ts": "2026-11-01T10:08:00Z",
+            "session_id": "d107d244-04f9-4aef-91ed-2c620d6e8ab4",
+            "seq": 2,
+            "props": {
+              "screen": "tasks.calendar"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "status": 200,
+        "accepted": 1,
+        "duplicates": 0,
+        "dropped_props": 0,
+        "rejected": [],
+        "stored": [
+          {
+            "id": "1d82f7cb-c960-4499-a81b-a8987d7e2d9c",
+            "name": "screen.view",
+            "effective_ts": "2026-11-01T09:58:00Z",
+            "props": {
+              "screen": "tasks.calendar"
+            }
+          }
+        ],
+        "stored_context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        }
+      }
+    },
+    {
+      "id": "skew-within-tolerance",
+      "client_built": true,
+      "description": "sent_at 09:58:30 arrives at 10:00:00: |skew| = 90 s <= 120 s, so ts is kept as effective_ts.",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "29489d25-fb2f-4948-aefb-f7d6d17b2ab8",
+        "sent_at": "2026-11-01T09:58:30Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "8f3c0653-eb1b-477b-aae5-733bf8bc2479",
+            "name": "screen.view",
+            "ts": "2026-11-01T09:58:00Z",
+            "session_id": "eaef78c6-169a-4595-8620-66a414cffbcb",
+            "seq": 1,
+            "props": {
+              "screen": "tasks.lists"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "status": 200,
+        "accepted": 1,
+        "duplicates": 0,
+        "dropped_props": 0,
+        "rejected": [],
+        "stored": [
+          {
+            "id": "8f3c0653-eb1b-477b-aae5-733bf8bc2479",
+            "name": "screen.view",
+            "effective_ts": "2026-11-01T09:58:00Z",
+            "props": {
+              "screen": "tasks.lists"
+            }
+          }
+        ],
+        "stored_context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        }
+      }
+    },
+    {
+      "id": "time-limits",
+      "client_built": false,
+      "description": "The oldest and the newest accepted times: effective_ts exactly 7 days before receipt and exactly 300 s after it.",
+      "binding_platform": "ios",
+      "body": {
+        "schema_version": 1,
+        "taxonomy_version": 1,
+        "batch_id": "eebc54b7-e7ad-4185-8ed1-41da9813dfc0",
+        "sent_at": "2026-11-01T10:00:00Z",
+        "context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        },
+        "events": [
+          {
+            "id": "513eb874-948e-4320-98be-5051228403f7",
+            "name": "feature.used",
+            "ts": "2026-10-25T10:00:00Z",
+            "session_id": "eac27e30-3299-4c2e-8413-35f6d0215b4b",
+            "seq": 3,
+            "props": {
+              "feature": "dictation"
+            }
+          },
+          {
+            "id": "40b272cc-64e1-482f-80f5-dcd69228a15d",
+            "name": "feature.used",
+            "ts": "2026-11-01T10:05:00Z",
+            "session_id": "586e8930-0749-4e12-b146-a70e6784535d",
+            "seq": 3,
+            "props": {
+              "feature": "chat_tools"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "status": 200,
+        "accepted": 2,
+        "duplicates": 0,
+        "dropped_props": 0,
+        "rejected": [],
+        "stored": [
+          {
+            "id": "513eb874-948e-4320-98be-5051228403f7",
+            "name": "feature.used",
+            "effective_ts": "2026-10-25T10:00:00Z",
+            "props": {
+              "feature": "dictation"
+            }
+          },
+          {
+            "id": "40b272cc-64e1-482f-80f5-dcd69228a15d",
+            "name": "feature.used",
+            "effective_ts": "2026-11-01T10:05:00Z",
+            "props": {
+              "feature": "chat_tools"
+            }
+          }
+        ],
+        "stored_context": {
+          "platform": "ios",
+          "device_class": "phone",
+          "os_version": "18.1",
+          "app_version": "12.0.1",
+          "app_build": "1234",
+          "device_model": "iPhone17,1",
+          "ui_language": "uz",
+          "timezone": "Asia/Tashkent",
+          "distribution": "appstore"
+        }
+      }
+    }
+  ]
+}

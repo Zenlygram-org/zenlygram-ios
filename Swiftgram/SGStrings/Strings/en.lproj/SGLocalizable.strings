@@ -1,0 +1,922 @@
+"Settings.ContentSettings" = "Content Settings";
+"Settings.UnlimitedPinnedChats" = "Unlimited Pinned Chats";
+"Settings.UnlimitedPinnedChats.Notice" = "Pins beyond Telegram's limit are kept on this device only, below your synced pins.";
+"Settings.HelperBots" = "Helper Bots";
+"Settings.HelperBots.Downloaders" = "DOWNLOADERS";
+"Settings.HelperBots.MediaTools" = "MEDIA TOOLS";
+"Settings.HelperBots.Utilities" = "UTILITIES";
+"Settings.HelperBots.FunInfo" = "FUN & INFO";
+"Settings.Tasks" = "Tasks";
+"Settings.ChatLock" = "Chat Lock";
+"Settings.RoundVideoFromGallery" = "Round Video from Gallery";
+"Settings.UnreadReminder" = "Unread Message Reminder";
+"Settings.UnreadReminder.Notice" = "Sends a local reminder after 5 minutes in the background if you still have unread messages.";
+"Settings.BlockForeignUsers" = "Hide Foreign Numbers";
+"Settings.BlockForeignUsers.Notice" = "Hides private chats whose phone country code differs from your own. Local visual filter only — it never blocks anyone and can't hide people who hide their phone number. Requires a restart to apply.";
+
+"Settings.Tabs.Header" = "TABS";
+"Settings.Tabs.HideTabBar" = "Hide Tab bar";
+"Settings.Tabs.ShowContacts" = "Show Contacts Tab";
+"Settings.Tabs.ShowTasks" = "Show Tasks Tab";
+"Settings.Tabs.ShowNames" = "Show Tab Names";
+"Settings.Tabs.SearchButton" = "Search Button";
+"Settings.Tabs.WideTabBar" = "Wide Tab bar";
+"Settings.Tabs.WideTabBar.Notice" = "Keeps the full width of Tab bar when some tabs are hidden.";
+
+"Settings.Folders.BottomTab" = "Folders at Bottom";
+"Settings.Folders.BottomTabStyle" = "Bottom Folders Style";
+
+/* Do not translate */
+"Settings.Folders.BottomTabStyle.ios" = "iOS";
+/* Do not translate */
+"Settings.Folders.BottomTabStyle.telegram" = "Telegram";
+/* Example: Hide "All Chats" */
+"Settings.Folders.AllChatsHidden" = "Hide \"%@\"";
+"Settings.Folders.RememberLast" = "Open Last Folder";
+"Settings.Folders.DisplayStyle" = "Folder Display Style";
+"Settings.Folders.DisplayStyle.auto" = "Automatic";
+"Settings.Folders.DisplayStyle.icon" = "Icons";
+"Settings.Folders.DisplayStyle.text" = "Text";
+"Settings.Folders.RememberLast.Notice" = "Zenlygram will open the last used folder when you restart the app or switch accounts.";
+
+"Settings.Folders.CompactNames" = "Smaller spacing";
+"Settings.Folders.AllChatsTitle" = "\"All Chats\" title";
+"Settings.Folders.AllChatsTitle.short" = "Short";
+"Settings.Folders.AllChatsTitle.long" = "Long";
+/* Default behaviour for All Chats Folder Title. "All Chats" title: Default */
+"Settings.Folders.AllChatsTitle.none" = "Default";
+
+
+"Settings.ChatList.Header" = "CHAT LIST";
+"Settings.PrivacySecurity.Header" = "PRIVACY & SECURITY";
+"Settings.Messages.Header" = "CHATS & MESSAGES";
+"Settings.Media.Header" = "MEDIA & DOWNLOADS";
+"Settings.Tools.Header" = "TOOLS";
+"Settings.Advanced.Header" = "ADVANCED";
+"Settings.CompactChatList" = "Compact Chat List";
+"Settings.CompactChatList.Desc" = "Fit more chats on screen with a tighter layout.";
+"Settings.RestartRequiredHint" = " (restart required)";
+"Settings.SecretVault.Title" = "Secret Vault";
+"Settings.SecretVault.Desc" = "Hide chats behind a PIN of their own, separate from your device passcode. A local lock in this app on this device, not encryption.";
+"Settings.SecretVault.Notice" = "Hidden chats disappear from your list in this app and open only after you enter the vault PIN. Long-press a chat and choose \"Add to Vault\" to hide it. Turning this off asks for the PIN and brings all hidden chats back.\n\nThe vault PIN is separate from your device passcode. This is a local lock in this app on this device, not encryption: hidden chats stay in your Telegram account and remain visible in other Telegram clients.\n\nIf you forget the PIN, you can get back in with Face ID or Touch ID (while the enrolled face or fingerprint has not changed) or with the Chat Lock master pincode, if that master was already set when you set the vault PIN (if you create the master later, change the vault PIN once to link them). The device passcode is not accepted.\n\nHidden chats and Chat Lock stay on this device only — they do not transfer to a new device and have to be set up again there.";
+"Settings.SecretVault.ChangePin" = "Change Vault PIN";
+"Settings.SecretVault.UseSecretCode" = "Reveal with a secret code";
+"Settings.SecretVault.UseSecretCode.Desc" = "Open the vault by typing your PIN into chat search instead of holding the \"Chats\" title. Changing this setting asks for the vault PIN.";
+"Settings.SecretVault.UseSecretCode.Notice" = "When on, there is no visible gesture: type your full vault PIN into the chat-list search and pause for a moment — the vault opens. If your vault uses a text password, type it and then tap Search.\n\nYour own chats and contacts still appear while you type, but the text stays on this device: nothing is sent to Telegram's search until you tap Search. After several wrong codes, checking pauses for a while.\n\nThe vault PIN is separate from your device passcode and is a local lock in this app on this device, not encryption — hidden chats stay in your Telegram account and remain visible in other Telegram clients. Forgot it? Use Face ID or Touch ID (unchanged enrollment) or the Chat Lock master pincode — the master works only if it was already set when you set the vault PIN; the device passcode is not accepted. Hidden chats and Chat Lock do not transfer to a new device.";
+"Settings.SecretVault.RevealHint.Title" = "Secret Vault Enabled";
+"Settings.SecretVault.RevealHint.SecretCode" = "Your hidden chats are now safe. To reveal them again later, type your full PIN into the chat search and pause for a moment (with a text password, tap Search after typing it). While this is on, what you type stays on this device — to search all of Telegram, tap Search on the keyboard.";
+"Settings.SecretVault.RevealHint.LongTap" = "To open the vault, press and hold the \"Chats\" title at the top of your chat list.";
+"SecretVault.Screenshot.NoticeTitle" = "Screenshot detected";
+"SecretVault.Screenshot.NoticeText" = "The screenshot may reveal your hidden chats.";
+"Settings.CompactMessagePreview.Desc" = "Show message previews on a single line.";
+"Settings.ChatSwipeOptions.Desc" = "Enable swipe actions on chats in the list.";
+"Settings.DeleteChatSwipeOption.Desc" = "Show the swipe-to-delete action on chats.";
+"Settings.CompactMessagePreview" = "Compact Message Preview";
+"Settings.ChatList.Lines" = "Chat List Lines";
+"Settings.ChatList.Lines.1" = "1 line";
+"Settings.ChatList.Lines.2" = "2 lines";
+"Settings.ChatList.Lines.3" = "3 lines (Default)";
+
+"Settings.Profiles.Header" = "PROFILES";
+
+"Settings.Stories.Hide" = "Hide Stories";
+"Settings.Stories.WarnBeforeView" = "Ask Before Viewing";
+"Settings.Stories.DisableSwipeToRecord" = "Disable Swipe to Record";
+
+"Settings.Translation.QuickTranslateButton" = "Quick Translate button";
+"Settings.Translation.Backend" = "Service";
+/* Do not translate */
+"Settings.Translation.Backend.default" = "Telegram";
+/* Product name: use Google's own localized name (e.g. ru "Google Переводчик") */
+"Settings.Translation.Backend.gtranslate" = "Google Translate";
+"Settings.Translation.Backend.system" = "System";
+/* Zenlygram — #60: %@ is the Google backend name. Shown only when Telegram or System is selected. */
+"Settings.Translation.Backend.Notice" = "There is no automatic fallback to another service. With System, the Translate window translates on the device, except copy-protected messages; quick, pinned-message, whole-chat and Send-menu translation use Telegram. Without Telegram Premium, whole-chat translation needs %@.";
+/* Zenlygram — #60/#61: %@ is the localized "Telegram Premium". */
+"Settings.Translation.EntireChat.Notice" = "Whole-chat translation uses the selected service. With Telegram it needs %@, except in channels with auto-translation. With Google Translate it starts only after you tap Translate. Secret chats are never translated, and copy-protected messages are never sent to Google.";
+/* Zenlygram — #60: shown instead of Settings.Translation.Backend.Notice when Google Translate is selected. No arguments. */
+"Settings.Translation.Backend.Notice.Google" = "Quick, pinned-message and whole-chat translation, and translating your text from the Send button menu (touch and hold Send), send the text from your device to Google Translate. The Translate window uses Telegram.";
+/* Zenlygram — #60: alert on the locked "Translate Entire Chat" switch (no Premium upsell). %@ is the localized "Telegram Premium". */
+"Settings.Translation.EntireChat.PremiumRequired" = "Translating whole chats with Telegram requires %@. To translate them without it, choose Google Translate in Zenlygram settings → Translation & Voice → Service.";
+
+"Settings.Transcription.Header" = "VOICE-TO-TEXT";
+"Settings.Transcription.Backend" = "Service";
+/* Do not translate */
+"Settings.Transcription.Backend.default" = "Telegram";
+/* Do not translate */
+"Settings.Transcription.Backend.apple" = "Apple";
+"Settings.Transcription.Backend.Notice" = "Zenlygram will fallback to %@ if selected transcription service is not available.";
+
+"Stories.Warning.Author" = "Author";
+"Stories.Warning.ViewStory" = "View Story?";
+/* Author will be able to see that you viewed their Story */
+"Stories.Warning.Notice" = "%@ WILL BE ABLE TO SEE that you viewed their Story.";
+"Stories.Warning.NoticeStealth" = "%@ will not be able to see that you viewed their Story.";
+
+"Settings.Photo.Quality.Notice" = "Quality of uploaded photos and stories. Higher quality keeps photos sharp but makes files larger; lower quality saves data but adds visible compression.";
+"Settings.Photo.SendLarge" = "Send HD Photos";
+"Settings.Photo.SendLarge.Notice" = "Raises the size limit for compressed photos to 2560px on the longest side, so large images stay sharp instead of being shrunk.";
+
+"Settings.VideoNotes.Header" = "ROUND VIDEOS";
+"Settings.VideoNotes.StartWithRearCam" = "Start with Rear Camera";
+
+"Settings.CustomColors.Header" = "ACCOUNT COLORS";
+"Settings.CustomColors.Saturation" = "SATURATION";
+/* Make sure to escape Percentage sign % */
+"Settings.CustomColors.Saturation.Notice" = "Set to 0%% to disable account colors.";
+
+"Settings.UploadsBoost" = "Upload Boost";
+"Settings.DownloadsBoost" = "Download Boost";
+"Settings.DownloadsBoost.Notice" = "Increases the number of parallel connections and the size of file chunks. Higher settings open more parallel connections at once, so downloads are faster but your network activity becomes a more distinctive pattern to anyone observing your traffic. If your network can't handle the load, pick a lower option that suits your connection.";
+"Settings.DownloadsBoost.none" = "Disabled";
+"Settings.DownloadsBoost.medium" = "Medium";
+"Settings.DownloadsBoost.maximum" = "Maximum";
+
+"Settings.ShowProfileID" = "Show Profile ID";
+"Settings.ViewFirstMessage" = "Jump to First Message";
+"Settings.ViewFirstMessage.Desc" = "Adds a \"View First Message\" entry to the profile menu.";
+"Settings.ShowDeletedMessages" = "Show Deleted Messages";
+"Settings.ShowDeletedMessages.Desc" = "Keeps a copy of messages that others delete in private chats and groups and marks it with 🗑. Stored only on this device and removed automatically after 30 days. Showing what they said is part of Zenlygram Pro.";
+/* Zenlygram — the same description while no Pro surface is shown (the signed policy is free for a non-holder): no Pro branding. */
+"Settings.ShowDeletedMessages.Desc.Free" = "Keeps a copy of messages that others delete in private chats and groups and marks it with 🗑. Stored only on this device and removed automatically after 30 days.";
+"Settings.ShowDeletedMessages.Notice" = "Telegram doesn't say who deleted a message, so in private chats and small groups messages you delete for yourself on another device may also be kept. Not kept: your own messages, Saved Messages, service and self-destructing messages, channel posts, bulk deletions by group admins or Telegram anti-spam, deletions that also remove your messages (like clearing a chat), and chats where you can delete others' messages. At most 5,000 messages are kept per account. Clearing Telegram's cache also permanently removes the media of kept messages. Long-press a kept message → Delete to remove it. Turning this off deletes all kept messages.";
+"Settings.ShowDC" = "Show Data Center";
+"Settings.ShowCreationDate" = "Show Chat Creation Date";
+"Settings.ShowCreationDate.Notice" = "The creation date may be unknown for some chats.";
+
+"Settings.ShowRegDate" = "Show Registration Date";
+"Settings.ShowRegDate.Notice" = "The registration date is approximate.";
+
+"Settings.SendWithReturnKey" = "Send with \"return\" key";
+"Settings.HidePhoneInSettingsUI" = "Hide Phone in Settings";
+"Settings.HidePhoneInSettingsUI.Notice" = "This will only hide your phone number from the settings interface. To hide it from others, go to Privacy and Security.";
+
+"PasscodeSettings.AutoLock.InFiveSeconds" = "If away for 5 seconds";
+
+"ProxySettings.UseSystemDNS" = "Use system DNS";
+"ProxySettings.UseSystemDNS.Notice" = "Use system DNS to bypass timeout if you don't have access to Google DNS";
+
+/* Preserve markdown asterisks! Example: You **don't** need Telegram Premium! */
+"Common.NoTelegramPremiumNeeded" = "You **don't need** %@!";
+"Common.RestartRequired" = "Restart required";
+"Common.RestartNow" = "Restart Now";
+"Common.OpenTelegram" = "Open Telegram";
+"Common.UseTelegramForPremium" = "Telegram Premium is not available for purchase in Zenlygram.";
+"Common.StarsUnavailable" = "Telegram Stars aren't available for purchase in Zenlygram.";
+"Common.UpdateOS" = "iOS update required";
+"Common.KnowWhatYouDo" = "Please, change these settings only if you know what they do.";
+
+"Message.HoldToShowOrReport" = "Hold to Show or Report.";
+
+"Auth.AccountBackupReminder" = "Make sure you have a backup access method. Keep a SIM for SMS or an additional session logged in to avoid being locked out.";
+"Auth.UnofficialAppCodeTitle" = "You can get the code only with official app";
+/* Zenlygram — #59 (Telegram API ToS §2): shown on the login phone-entry screen. */
+"Auth.UnofficialClientNotice" = "Zenlygram is an unofficial Telegram client.";
+"Auth.Fee.Unavailable" = "Telegram requires a sign-up fee for this phone number, and it can't be paid in this app.";
+
+"Settings.SmallReactions" = "Small Reactions";
+"Settings.HideReactions" = "Hide Reactions";
+
+"ContextMenu.SaveToCloud" = "Save to Cloud";
+"ContextMenu.SelectFromUser" = "Select from Author";
+"ContextMenu.EditedHistory" = "Edit History";
+
+"Settings.ContextMenu" = "CONTEXT MENU";
+"Settings.ContextMenu.Notice" = "Disabled entries will be available in \"Zenlygram\" sub-menu.";
+
+
+"Settings.ChatSwipeOptions" = "Chat List Swipe Options";
+"Settings.DeleteChatSwipeOption" = "Swipe to Delete Chat";
+/* Re-word like this string on offical app https://translations.telegram.org/en/ios/groups_and_channels/Chat.NextChannelSameLocationSwipeProgress */
+"Settings.PullToNextChannel" = "Pull to Next Unread Channel";
+/* Re-word like this string on offical app https://translations.telegram.org/en/ios/groups_and_channels/Chat.NextUnreadTopicSwipeProgress */
+"Settings.PullToNextTopic" = "Pull to Next Topic";
+"Settings.GalleryCamera" = "Camera in Gallery";
+"Settings.GalleryCameraPreview" = "Camera Preview in Gallery";
+/* "Send Message As..." button */
+"Settings.SendAsButton" = "\"%@\" Button";
+"Settings.SnapDeletionEffect" = "Message Deletion Effects";
+
+"Settings.Stickers.Size" = "SIZE";
+"Settings.Stickers.Timestamp" = "Show Timestamp";
+
+"Settings.RecordingButton" = "Voice Recording Button";
+
+"Settings.DefaultEmojisFirst" = "Standard emojis first";
+"Settings.DefaultEmojisFirst.Notice" = "Show standard emojis before premium in emoji keyboard";
+
+/* Date when chat was created. "created: 24 May 2016" */
+"Chat.Created" = "created: %@";
+
+/* Date when user joined the chat. "Joined Swiftgram Chat" */
+"Chat.JoinedDateTitle" = "Joined %@";
+/* Date when user registered in Telegram. Will be shown like "Registered\n24 May 2016" */
+"Chat.RegDate" = "Registered";
+
+"Settings.messageDoubleTapActionOutgoingEdit" = "Double-tap to edit message";
+
+"Settings.wideChannelPosts" = "Wide posts in channels";
+"Settings.ForceEmojiTab" = "Emoji tab first";
+
+"Settings.forceBuiltInMic" = "Force Device Microphone";
+"Settings.forceBuiltInMic.Notice" = "If enabled, app will use only device microphone even if headphones are connected.";
+
+"Settings.showChannelBottomButton" = "Channel Bottom Panel";
+
+"Settings.secondsInMessages" = "Seconds in Messages";
+
+"Settings.CallConfirmation" = "Call Confirmation";
+"Settings.CallConfirmation.Notice" = "Zenlygram will ask for your confirmation before making a call.";
+
+/* Confirmation before making a Call */
+"CallConfirmation.Audio.Title" = "Make a Call?";
+
+/* Confirmation before making a Video Call */
+"CallConfirmation.Video.Title" = "Make a Video Call?";
+
+"MutualContact.Label" = "mutual contact";
+
+"Settings.swipeForVideoPIP" = "Video PIP with Swipe";
+"Settings.swipeForVideoPIP.Notice" = "If enabled, swiping video will open it in Picture-in-Picture mode.";
+
+"SessionBackup.Title" = "Accounts Backup";
+"SessionBackup.Sessions.Title" = "Sessions";
+"SessionBackup.Actions.Backup" = "Backup to Keychain";
+"SessionBackup.Actions.Restore" = "Restore from Keychain";
+"SessionBackup.Actions.DeleteAll" = "Delete Keychain Backup";
+"SessionBackup.Actions.DeleteOne" = "Delete from Backup";
+"SessionBackup.Actions.RemoveFromApp" = "Remove from App";
+"SessionBackup.LastBackupAt" = "Last Backup: %@";
+"SessionBackup.RestoreOK" = "OK. Sessions restored: %@";
+"SessionBackup.LoggedIn" = "Logged In";
+"SessionBackup.LoggedOut" = "Logged Out";
+"SessionBackup.DeleteAll.Title" = "Delete All Sessions?";
+"SessionBackup.DeleteAll.Text" = "All sessions will be removed from Keychain.\n\nAccounts will not be logged out from Zenlygram.";
+"SessionBackup.DeleteSingle.Title" = "Delete 1 (one) Session?";
+"SessionBackup.DeleteSingle.Text" = "%@ session will be removed from Keychain.\n\nAccount will not be logged out from Zenlygram.";
+"SessionBackup.RemoveFromApp.Title" = "Remove account from App?";
+"SessionBackup.RemoveFromApp.Text" = "%@ session WILL BE REMOVED from Zenlygram! Session will remain active, so you can restore it later.";
+"SessionBackup.Notice" = "Sessions are encrypted and stored in this device's Keychain and are marked device-only.\n\nIMPORTANT: They are NOT copied to a new device — neither an encrypted backup nor Quick Start transfers them. Sign in on the new device before you erase this one.\n\nThey do survive deleting and reinstalling Zenlygram on this device. Viewing or restoring a saved session asks for Face ID, Touch ID or the device passcode.\n\nNOTE: Sessions may still be revoked by Telegram or from another device.";
+"SessionBackup.Locked.Title" = "Accounts Backup is locked";
+"SessionBackup.Locked.Text" = "Saved sessions can sign in to your accounts. Unlock with Face ID, Touch ID or the device passcode to see them.";
+"SessionBackup.Locked.Action" = "Unlock";
+"SessionBackup.AuthReason" = "Unlock the accounts backup";
+"SessionBackup.RestoreConfirm.Title" = "Restore sessions?";
+"SessionBackup.RestoreConfirm.Text" = "%@ saved account(s) will be added to Zenlygram. Each restored session signs in without a code.";
+"SessionBackup.PreviousInstall.Notice" = "These sessions were saved by an earlier installation of Zenlygram on this device.";
+"SessionBackup.ReadError" = "The backup could not be read. Unlock this device and try again.";
+
+"MessageFilter.Title" = "Message Filter";
+"MessageFilter.SubTitle" = "Remove distractions and reduce visibility of messages containing keywords below.\nKeywords are case-sensitive.";
+"MessageFilter.Keywords.Title" = "Keywords";
+"MessageFilter.InputPlaceholder" = "Enter keyword";
+
+"InputToolbar.Title" = "Formatting Panel";
+
+"Notifications.MentionsAndReplies.Title" = "@Mentions and Replies";
+"Notifications.MentionsAndReplies.value.default" = "Default";
+"Notifications.MentionsAndReplies.value.silenced" = "Muted";
+"Notifications.MentionsAndReplies.value.disabled" = "Disabled";
+"Notifications.PinnedMessages.Title" = "Pinned Messages";
+"Notifications.PinnedMessages.value.default" = "Default";
+"Notifications.PinnedMessages.value.silenced" = "Muted";
+"Notifications.PinnedMessages.value.disabled" = "Disabled";
+
+
+"PayWall.Text" = "Secret Vault, Chat Lock, Tasks and Edit History — in one subscription.";
+
+"PayWall.SessionBackup.Title" = "Accounts Backup";
+"PayWall.SessionBackup.Notice" = "Log-in to accounts without code, even after reinstall on this device. Secure storage with on-device Keychain.";
+"PayWall.SessionBackup.Description" = "Deleting and reinstalling Zenlygram on this device is no longer an issue. Restore all Sessions that are still Active on Telegram servers. Saved sessions stay on this device and are not moved to a new one.";
+
+"PayWall.MessageFilter.Title" = "Message Filter";
+"PayWall.MessageFilter.Notice" = "Reduce visibility of SPAM, promotions and annoying messages.";
+"PayWall.MessageFilter.Description" = "Create a list of keywords you don't want to see often and Zenlygram will reduce distractions.";
+
+"PayWall.Notifications.Title" = "Disable @mentions and replies";
+"PayWall.Notifications.Notice" = "Hide or mute non-important notifications.";
+"PayWall.Notifications.Description" = "No more Pinned Messages or @mentions when you need some peace of mind.";
+
+"PayWall.InputToolbar.Title" = "Formatting Panel";
+"PayWall.InputToolbar.Notice" = "Bold, Italic, Links? Formatting with just a single tap.";
+"PayWall.InputToolbar.Description" = "Apply and clear Formatting or insert new lines like a Pro.";
+
+"PayWall.AppIcons.Title" = "Unique App Icons and Badges";
+"PayWall.AppIcons.Notice" = "Customize Zenlygram look on your home screen and screenshots.";
+
+"PayWall.About.Title" = "About Zenlygram Pro";
+"PayWall.About.Notice" = "Zenlygram is an open-source Telegram client that respects your privacy and adds no ads or tracking of its own. Keeping it in step with Telegram's monthly updates takes time and hardware, and Zenlygram Pro is what pays for that work.\n\nEverything else in Zenlygram stays free.";
+
+"PayWall.RestorePurchases" = "Restore Purchases";
+"PayWall.Terms" = "Terms of Service";
+"PayWall.Privacy" = "Privacy Policy";
+/* Zenlygram — an auto-renewable subscription must link a EULA and a privacy policy from the
+   paywall. NEITHER URL LIVES HERE any more: they are deployment facts, not translations, and as
+   localized strings they drifted (seven locales still pointed at telegram.org/tos under a
+   "Zenlygram Terms of Service" label). The EULA is Apple's standard one, a constant in SGPayWall;
+   the privacy policy is `sg_config.privacy_policy_url`, which must point at the hosted copy of
+   appstore/privacy-policy.html — the policy that describes the entitlement server. With no
+   privacy URL configured the paywall renders PayWall.Notice.Raw, i.e. no links at all, rather
+   than link somebody else's policy. */
+"PayWall.Notice.Markdown" = "By subscribing you agree to the [Terms of Use (EULA)](%1$@) and the [Privacy Policy](%2$@).";
+"PayWall.Notice.Raw" = "By subscribing you agree to the Terms of Use (EULA) and the Privacy Policy.";
+
+"PayWall.Button.OpenPro" = "Use Pro features";
+"PayWall.Button.Purchasing" = "Purchasing...";
+"PayWall.Button.Restoring" = "Restoring Purchases...";
+"PayWall.Button.Validating" = "Confirming…";
+"PayWall.Button.PaymentsUnavailable" = "Payments unavailable";
+"PayWall.Button.Subscribe" = "Subscribe for %@";
+"PayWall.Button.ContactingAppStore" = "Contacting App Store...";
+
+"Paywall.Error.Title" = "Error";
+"PayWall.ValidationError" = "Validation Error";
+"PayWall.ValidationError.TryAgain" = "Something went wrong during purchase validation. No worries! Try to Restore Purchases a bit later.";
+"PayWall.ValidationError.Expired" = "Your subscription expired. Subscribe again to regain access to Pro features.";
+
+"AppBadge.Title" = "App Badge";
+"AppBadge.Notice" = "Customize App Badge shown on screenshots";
+
+"Settings.NY.Header" = "HOLIDAY EFFECTS";
+"Settings.NY.Style" = "Style";
+"Settings.NY.Style.default" = "Disabled";
+"Settings.NY.Style.snow" = "Snow";
+"Settings.NY.Style.lightning" = "Lightning";
+"Settings.NY.Notice" = "Available for a limited time only!";
+
+"Settings.AiAssistant" = "AI ASSISTANT";
+"Settings.AiAssistant.Enable" = "Enable AI Assistant";
+"Settings.AiAssistant.ApiKey" = "Anthropic API Key";
+"Settings.AiAssistant.Notice" = "Stored only in this device's Keychain and sent directly to api.anthropic.com. Get a key at console.anthropic.com.";
+"Settings.AiAssistant.Save" = "Save";
+"Settings.AiAssistant.Clear" = "Clear";
+"Settings.AiAssistant.Cancel" = "Cancel";
+"Settings.AiAssistant.ApiKey.Missing" = "Set your Anthropic API key first.";
+"Chat.ContextMenu.AiAssistant" = "AI Assistant";
+"Chat.ContextMenu.AiAssistant.Summarize" = "Summarize Message";
+"Chat.ContextMenu.AiAssistant.Translate" = "Translate";
+"Chat.ContextMenu.AiAssistant.DraftReply" = "Draft Reply";
+"Chat.ContextMenu.AiAssistant.InsertReply" = "Insert into Message";
+"Chat.ContextMenu.AiAssistant.SetApiKey" = "Set API Key…";
+"Settings.AiAssistant.ApiKey.MissingDetail" = "The AI Assistant needs your own Anthropic API key. It is stored only in this device's Keychain and used to send requests directly to api.anthropic.com. Get a key at console.anthropic.com.";
+"Chat.ContextMenu.AiAssistant.SendNotice" = "The text of the selected message will be sent to Anthropic (api.anthropic.com) for processing. Only continue with content you are comfortable sharing.";
+"Chat.ContextMenu.AiAssistant.SendNotice.Continue" = "Send to Anthropic";
+"AiAssistant.Disclosure.Text" = "When you use AI Assistant, the text of the selected message is sent to Anthropic (api.anthropic.com) for processing. Your API key is stored only in this device's Keychain and is used only for these requests.";
+"AiAssistant.Disclosure.Continue" = "Continue";
+"AiAssistant.KeychainError.Title" = "Keychain Error";
+"AiAssistant.KeychainError.Save" = "Could not save the API key to this device's Keychain. Please try again.";
+"AiAssistant.KeychainError.Clear" = "Could not remove the API key from this device's Keychain. Please try again.";
+"AiAssistant.Error.KeychainRead" = "Could not read the API key from this device's Keychain. Unlock the device and try again.";
+"AiAssistant.Error.InvalidKey" = "Your Anthropic API key was rejected as invalid or expired. Check the key and try again.";
+"AiAssistant.Error.RateLimited" = "Too many requests right now. Please try again later.";
+"AiAssistant.Error.RateLimited.Retry" = "Too many requests right now. Try again in %@ seconds.";
+"AiAssistant.Error.Network" = "The request failed. Check your internet connection and try again.";
+
+"Settings.AutoProxy" = "Auto Proxy";
+"Settings.DisableAutoDownload" = "Disable Auto-Download";
+"Settings.DisableAutoDownload.Desc" = "Turns off media auto-download on all networks.";
+"Settings.AutoAcceptRequests" = "Auto-Accept Requests";
+"Settings.AutoAcceptRequests.Desc" = "Automatically accepts join requests for groups and channels you admin.";
+"Settings.AutoProxy.Notice" = "When enabled, on launch the app automatically picks and keeps a working proxy from a built-in list. A proxy you configured yourself is never overridden. Off by default.";
+"AutoProxy.Title" = "Auto Proxy";
+"AutoProxy.Status.On" = "Auto Proxy is on. A working proxy is kept selected automatically.";
+"AutoProxy.Status.Off" = "Auto Proxy is off. Turn it on to auto-select a working proxy if your connection is blocked.";
+"AutoProxy.Enable" = "Enable Auto Proxy";
+"AutoProxy.Disable" = "Disable Auto Proxy";
+
+// MARK: Novagram-style setting descriptions
+"Settings.AutoProxy.Desc" = "Automatically enable a proxy when Telegram is blocked.";
+"Settings.HelperBots.Desc" = "Manage quick-access helper bots.";
+"Settings.HelperBots.Unavailable" = "This helper bot isn't available yet.";
+"Settings.Tasks.Desc" = "Keep a personal to-do list inside the app.";
+"Settings.ChatLock.Desc" = "Protect selected chats with a pincode of their own, separate from your device passcode.";
+"Settings.ChatLock.On" = "On";
+"Settings.ChatLock.Off" = "Off";
+"Settings.ChatLock.Disable.Title" = "Disable Chat Lock?";
+"Settings.ChatLock.Disable.Text" = "This removes the master pincode and unlocks all chats. Your messages are not deleted.";
+"Settings.ChatLock.Disable.Action" = "Disable";
+"ChatLock.Notification.RedactedTitle" = "New Message";
+"ChatLock.Notification.RedactedText" = "Message in a locked chat";
+"Settings.UnreadReminder.Desc" = "Remind you about unread messages.";
+"Settings.BlockForeignUsers.Desc" = "Hides your one-on-one chats whose phone country code differs from yours. A local visual filter only — it doesn't block, ban or filter anyone.";
+"Settings.RoundVideoFromGallery.Desc" = "Send round video messages from your gallery.";
+"Settings.Translation.QuickTranslateButton.Desc" = "Show a quick translate button in the message menu. Not shown in secret chats or for copy-protected messages.";
+"Settings.forceBuiltInMic.Desc" = "Always record voice messages with the built-in microphone.";
+"Settings.ForceTCP" = "Force TCP";
+"Settings.ForceTCP.Desc" = "Force calls to use TCP instead of UDP.";
+"Settings.Photo.SendLarge.Desc" = "Send photos in higher resolution.";
+"Settings.Stickers.Timestamp.Desc" = "Show a timestamp on stickers in chats.";
+"Settings.VideoNotes.StartWithRearCam.Desc" = "Start recording video messages with the rear camera.";
+"Settings.Tabs.HideTabBar.Desc" = "Hide the bottom tab bar completely.";
+"Settings.Tabs.ShowContacts.Desc" = "Show the Contacts tab in the tab bar.";
+"Settings.Tabs.ShowCalls.Desc" = "Show the Calls tab in the tab bar.";
+"Settings.Tabs.ShowTasks.Desc" = "Show the Tasks tab in the tab bar. Hiding it only removes the tab: your tasks are kept and still open from Tasks in Settings → Zenlygram.";
+"Settings.Tabs.ShowNames.Desc" = "Show text labels under tab bar icons.";
+"Settings.Tabs.SearchButton.Desc" = "Add a search button to the tab bar.";
+"Settings.Tabs.WideTabBar.Desc" = "Use a wider layout for the tab bar.";
+"Settings.Folders.BottomTab.Desc" = "Show folders as a bar at the bottom.";
+"Settings.Folders.AllChatsHidden.Desc" = "Hide the All Chats folder tab.";
+"Settings.Folders.CompactNames.Desc" = "Use shorter folder names to save space.";
+"Settings.Folders.RememberLast.Desc" = "Reopen the last used folder on launch.";
+"Settings.ShowProfileID.Desc" = "Display the internal Telegram ID on user and chat profiles.";
+"Settings.ShowDC.Desc" = "Show which data center the account is hosted on.";
+"Settings.ShowRegDate.Desc" = "Show an approximate account registration date on profiles.";
+"Settings.ShowCreationDate.Desc" = "Show the approximate creation date of chats and channels.";
+"Settings.CallConfirmation.Desc" = "Ask for confirmation before starting a call.";
+"Settings.Stories.Hide.Desc" = "Hide the stories bar from the chat list.";
+"Settings.Stories.DisableSwipeToRecord.Desc" = "Prevent swiping in the camera to record a story.";
+"Settings.Stories.WarnBeforeView.Desc" = "Warn before opening a story so the author isn't notified accidentally.";
+"Settings.Stories.RepostToStory.Desc" = "Show the repost-to-story button on messages.";
+"Settings.Stories.StealthMode.Desc" = "View stories without leaving a trace in the viewer list.";
+"Settings.AiAssistant.Enable.Desc" = "Enable the built-in AI assistant in chats.";
+"Settings.AiAssistant.ApiKey.Desc" = "Set the API key used by the AI assistant.";
+"ContextMenu.SaveToCloud.Desc" = "Show \"Save to Cloud\" in the message context menu.";
+"Settings.ContextShowHideForwardName.Desc" = "Show the option to hide sender names when forwarding.";
+"ContextMenu.SelectFromUser.Desc" = "Show \"Select messages from this user\" in the menu.";
+"Settings.ContextShowRestrict.Desc" = "Show the restrict/ban option in the context menu.";
+"Settings.ContextShowReport.Desc" = "Show the report option in the context menu.";
+"Settings.ContextShowReply.Desc" = "Show the reply option in the context menu.";
+"Settings.ContextShowPin.Desc" = "Show the pin option in the context menu.";
+"Settings.ContextShowSaveMedia.Desc" = "Show \"Save to Files\" for media in the context menu.";
+"Settings.ContextShowMessageReplies.Desc" = "Show the view thread option in the context menu.";
+"Settings.ContextShowJson.Desc" = "Show a raw JSON view of the message in the context menu.";
+"ContextMenu.EditedHistory.Desc" = "Show the edit history of a message from the context menu. Only the last 20 edits of a message are kept.";
+"Settings.swipeForVideoPIP.Desc" = "Swipe up on a video to open Picture-in-Picture mode.";
+"Settings.showChannelBottomButton.Desc" = "Show the join or mute button at the bottom of channels.";
+"Settings.wideChannelPosts.Desc" = "Display channel posts across the full width of the screen.";
+"Settings.secondsInMessages.Desc" = "Show seconds in message timestamps.";
+"Settings.messageDoubleTapActionOutgoingEdit.Desc" = "Double-tap your own message to edit it.";
+"Settings.RecordingButton.Desc" = "Show the voice and video recording button in the input bar.";
+"Settings.SnapDeletionEffect.Desc" = "Play the dissolve animation when a message is deleted.";
+"Settings.SendAsButton.Desc" = "Show the button to choose which identity sends the message.";
+"Settings.GalleryCamera.Desc" = "Show the camera cell inside the media gallery.";
+"Settings.GalleryCameraPreview.Desc" = "Show a live preview in the gallery camera cell.";
+"Settings.PullToNextChannel.Desc" = "Scroll past the end to open the next unread channel.";
+"Settings.PullToNextTopic.Desc" = "Scroll past the end to open the next topic.";
+"Settings.HideReactions.Desc" = "Hide reactions on messages.";
+"Settings.UploadsBoost.Desc" = "Speed up media uploads with more parallel connections. Faster, but a more distinctive network pattern.";
+"Settings.SendWithReturnKey.Desc" = "Send messages by pressing the return key.";
+"Settings.ForceEmojiTab.Desc" = "Always open the emoji tab first in the sticker panel.";
+"Settings.DefaultEmojisFirst.Desc" = "Show standard emoji before custom ones.";
+"Settings.HidePhoneInSettingsUI.Desc" = "Hide your phone number on the settings screen.";
+
+
+/* Zenlygram — new IA section headers */
+"Settings.Privacy.HiddenChats.Header" = "HIDDEN & LOCKED CHATS";
+"Settings.Privacy.Invisible.Header" = "EXTRA PRIVACY";
+"Settings.Composing.Header" = "COMPOSING & INPUT";
+"Settings.CameraPicker.Header" = "CAMERA & GALLERY";
+
+/* Zenlygram — kept-deleted messages and edit history retention (Batch 6) */
+"Settings.ShowDeletedMessages.Disable.Title" = "Turn Off Deleted Messages?";
+"Settings.ShowDeletedMessages.Disable.Text" = "Kept messages on this device: %@. They will be deleted. This can't be undone.";
+"Settings.ShowDeletedMessages.Disable.Action" = "Turn Off and Delete";
+"Settings.EditHistory" = "Save Edit History";
+"Settings.EditHistory.Desc" = "Saves earlier versions of edited messages on this device only: up to 20 per message, each deleted after 30 days. Open with long press → Edit History. Viewing them is part of Zenlygram Pro. Turning this off deletes saved versions.";
+/* Zenlygram — the same description while no Pro surface is shown (the signed policy is free for a non-holder): no Pro branding. */
+"Settings.EditHistory.Desc.Free" = "Saves earlier versions of edited messages on this device only: up to 20 per message, each deleted after 30 days. Open with long press → Edit History. Turning this off deletes saved versions.";
+"Settings.EditHistory.Disable.Title" = "Turn Off Edit History?";
+"Settings.EditHistory.Disable.Text" = "Messages with saved versions on this device: %@. The saved versions will be deleted. This can't be undone.";
+"Settings.EditHistory.Disable.Action" = "Turn Off and Delete";
+"Settings.Retention.Removed" = "Removed from this device";
+"ContextMenu.KeptDeleted.RemoveAllInChat" = "Remove All Deleted in This Chat";
+"ContextMenu.KeptDeleted.RemoveAllInChat.Text" = "Kept deleted messages in this chat: %@. They will be removed from this device.";
+"Chat.KeptDeleted.VoiceOver" = "Deleted message, removed %@";
+"Chat.KeptDeleted.VoiceOver.NoDate" = "Deleted message";
+"Chat.KeptDeleted.MediaUnavailable" = "Unavailable";
+"Chat.KeptDeleted.MediaUnavailable.Text" = "This media isn't stored on this device and can't be downloaded because the message was deleted.";
+
+
+/* Zenlygram — entitlement (SGEntitlement). Degraded mode, the bind flow and the 401 family.
+   None of these strings may contain, or lead to, a purchase outside the App Store (guideline 3.1.3(b)). */
+"Entitlement.Message.NotLinked" = "Link your Telegram account to use Zenlygram Pro on this device.";
+"Entitlement.Message.SubscriptionEnded" = "Your Zenlygram Pro subscription has ended. Your vault, locked chats and tasks stay available, and deleted and edited messages already kept stay readable. New ones aren't kept until you subscribe again.";
+"Entitlement.Message.PaidModeNotice" = "Zenlygram Pro is now a subscription. Your vault, locked chats and tasks stay available, and deleted and edited messages already kept stay readable. Creating new ones needs Zenlygram Pro.";
+"Entitlement.Message.ReconnectToRestore" = "Reconnect to restore Zenlygram Pro. Your vault, locked chats and tasks stay available, and deleted and edited messages already kept stay readable.";
+"Entitlement.Message.UpdateTheApp" = "Update Zenlygram to keep using Pro features.";
+"Entitlement.Message.CheckDateAndTime" = "Check your device date and time, then try again.";
+"Entitlement.Message.SignInAgain" = "Sign in again to link this device.";
+"Entitlement.Message.SignedOutForSecurity" = "This device was signed out for security. Sign in again to link it.";
+"Entitlement.Message.LinkingUnavailable" = "Linking is temporarily unavailable. Please try again shortly.";
+"Entitlement.Message.LinkingDeclined" = "Linking was declined.";
+"Entitlement.Message.LinkingCodeExpired" = "That code expired.";
+"Entitlement.Message.LinkingDidNotGoThrough" = "That didn't go through. Get a new code and try again.";
+"Entitlement.Message.LinkingMergeConflict" = "You're signed in. A separate subscription was already on this device — nothing was lost, and both stay active.";
+"Entitlement.Message.NoConnection" = "No connection.";
+"Entitlement.Message.TooManyAttempts" = "Too many attempts. Please try again in a moment.";
+"Entitlement.Message.TrialAlreadyUsed" = "You've already used your free trial.";
+"Entitlement.Message.TrialDeviceCap" = "This device has already used the free trial.";
+"Entitlement.Message.TrialDeviceBlocked" = "The free trial isn't available on this device.";
+"Entitlement.Message.TrialUnavailable" = "The free trial is temporarily unavailable.";
+"Entitlement.Message.TrialNotOffered" = "Free trials aren't offered right now.";
+"Entitlement.Message.PurchaseNeedsHelp" = "Your purchase hasn't been confirmed yet. Nothing was charged twice — tap Restore Purchases to try again.";
+"Entitlement.Message.TemporarilyUnavailable" = "Temporarily unavailable. Please try again later.";
+
+
+/* Zenlygram — the subscription rows in Settings (design §8.3 item 20).
+   NONE of these may contain, or lead to, a purchase outside the App Store (guideline 3.1.3(b)):
+   no "also available on the web", no "cheaper on Telegram", no Mini App button, no support link
+   that leads to one. Linking a Telegram account is an identity step, not a purchase path. */
+"Settings.Pro.Header" = "ZENLYGRAM PRO";
+"Settings.Pro.Subscription" = "Subscription";
+"Settings.Pro.Status.Inactive" = "Off";
+"Settings.Pro.Status.FreeUntil" = "Free until %@";
+"Settings.Pro.Restore" = "Restore Purchases";
+"Settings.Pro.Restore.InProgress" = "Restoring…";
+"Settings.Pro.Restore.Done" = "Done. Any purchase found on this Apple Account has been restored.";
+"Settings.Pro.LinkAccount" = "Telegram Account";
+"Settings.Pro.LinkAccount.Linked" = "Linked";
+"Settings.Pro.LinkAccount.NotLinked" = "Not linked";
+"Settings.Pro.Notice" = "Pro unlocks Secret Vault, Chat Lock, Tasks and Edit History. Everything you have already hidden, locked or written stays fully available — with or without a subscription. Deleted and edited messages are kept while Show Deleted Messages and Save Edit History are on (both under Deleted & Edited Messages, on by default) and Pro is free or your subscription is active; what was kept always stays readable and removable.";
+"Settings.Pro.Restore.NothingFound" = "No Zenlygram Pro purchase was found on this Apple Account. If you paid with a different one, sign in to it in Settings and try again.";
+/* Zenlygram — the neutral header over the "Telegram Account" link row: linking is an identity step
+   (Cloud Tasks, the customer-data consent), shown whether or not the ZENLYGRAM PRO section is. */
+"Settings.Account.Header" = "ACCOUNT";
+/* Zenlygram — Settings → Zenlygram is a hub and pages (settings IA, 2026-11): the hub's three block
+   headers and the titles of the rows that open a page (also the page titles). Settings.Account.Header,
+   Settings.Tools.Header, Settings.Privacy.HiddenChats.Header and Settings.CallRecording stay in the
+   tables, unused on this screen, until a later strings sweep. */
+"Settings.Hub.Features.Header" = "MAIN FEATURES";
+"Settings.AccountData.Header" = "ACCOUNT & DATA";
+"Settings.Hub.Groups.Header" = "MORE SETTINGS";
+"Settings.Hub.History" = "Deleted & Edited Messages";
+"Settings.Hub.CallRecording" = "Call Recording";
+"Settings.Hub.Chats" = "Chats & Folders";
+"Settings.Hub.Messages" = "Messages & Input";
+"Settings.Hub.MessageMenu" = "Message Menu";
+"Settings.Hub.TabBar" = "Tab Bar";
+"Settings.Hub.Privacy" = "Privacy & Profiles";
+"Settings.Hub.Translation" = "Translation & Voice";
+"Settings.Hub.Media" = "Media";
+"Settings.Hub.Colors" = "Colors & Effects";
+"Settings.Hub.CallsAdvanced" = "Calls & Advanced";
+"Settings.DeletedMessages.Header" = "DELETED MESSAGES";
+"Settings.Reminders.Header" = "REMINDERS";
+
+
+/* Zenlygram — the App Store purchase flow (SGIAP). Guideline 3.1.3(b): none of these may contain,
+   or lead to, a purchase outside the App Store. */
+"IAP.Message.PaymentsUnavailable" = "Purchases aren't available on this device.";
+"IAP.Message.RequiresNewerOS" = "Subscribing needs a newer version of iOS. Your vault, locked chats and tasks stay available.";
+"IAP.Message.ProductsUnavailable" = "The App Store didn't answer. Please try again in a moment.";
+"IAP.Message.PurchasePending" = "Waiting for approval. Zenlygram Pro unlocks as soon as the purchase is approved.";
+"IAP.Message.StoreOperationInProgress" = "Another App Store purchase or restore is still in progress. Nothing new was started and nothing was charged — wait for it to finish, then try again.";
+"IAP.Message.PurchaseCompleted" = "Zenlygram Pro is active. Thank you!";
+"IAP.Message.RestoreCompleted" = "Your purchase was restored.";
+"IAP.Message.NothingToRestore" = "No purchase was found for this Apple ID. Check that you're signed in with the Apple ID you subscribed with.";
+
+
+/* Zenlygram — Zenlygram Pro paywall, account linking and degraded mode (SGPayWall).
+   Guideline 3.1.3(b): nothing in this block may contain, or lead to, a purchase outside the App
+   Store — no "also available on the web", no "cheaper on Telegram", no support link that itself
+   leads to a purchase page. The two legal URLs are NOT strings — see the note above
+   PayWall.Notice.Markdown. */
+"Common.Cancel" = "Cancel";
+"Common.Close" = "Close";
+"PayWall.Vault.Title" = "Secret Vault";
+"PayWall.Vault.Notice" = "Hide chats behind a PIN of their own.";
+"PayWall.Vault.Description" = "Hidden chats disappear from your chat list, from in-app search and from contacts, and come back only after you enter the vault PIN. A local lock in this app on this device — your chats stay in your Telegram account.";
+"PayWall.ChatLock.Title" = "Chat Lock";
+"PayWall.ChatLock.Notice" = "Lock individual chats with a pincode.";
+"PayWall.ChatLock.Description" = "A locked chat opens only with its pincode, and its message previews stay hidden in the chat list and in notifications. Preview hiding is a privacy setting: it keeps working whatever happens to your subscription.";
+"PayWall.Tasks.Title" = "Tasks";
+"PayWall.Tasks.Notice" = "A to-do list that lives next to your chats.";
+"PayWall.Tasks.Description" = "Tasks and checklists. With your data consent they sync through Zenlygram's server, and the tasks already on this device are copied there once; without it they stay on this device.";
+"PayWall.EditHistory.Title" = "Edit History";
+"PayWall.EditHistory.Notice" = "Keep deleted and edited messages.";
+"PayWall.EditHistory.Description" = "Show Deleted Messages and Save Edit History are on by default and can be turned off in Settings. While they are on, Zenlygram keeps messages that others delete and the earlier versions of messages they edit — on this device only, for 30 days (up to 5,000 deleted messages per account, up to 20 versions per message). Everything kept stays readable and removable, with or without a subscription. When Zenlygram Pro is a paid subscription, keeping new ones needs it.";
+"PayWall.LapsePolicy.Short" = "If your subscription ends, your vault, locked chats and tasks stay open exactly as before, and deleted and edited messages already kept stay readable. New ones are kept again once you subscribe.";
+"PayWall.Degraded.Reassurance" = "Nothing was deleted, un-hidden or unlocked. Your vault, your locked chats and your tasks open exactly as before, and the deleted and edited messages already kept stay readable.";
+"PayWall.Degraded.StillWorks.Title" = "Still works without a subscription";
+"PayWall.Degraded.StillWorks.Vault" = "Open the Secret Vault with your PIN, read every hidden chat, and unhide any of them";
+"PayWall.Degraded.StillWorks.ChatLock" = "Unlock a locked chat with its pincode, remove a pincode, and keep previews hidden in the chat list and in notifications";
+"PayWall.Degraded.StillWorks.Tasks" = "Read, edit, complete and delete the tasks you already have";
+"PayWall.Degraded.StillWorks.EditHistory" = "Read and remove the deleted and edited messages already kept — they still expire after 30 days as usual";
+"PayWall.Degraded.Blocked.Title" = "Needs an active subscription";
+"PayWall.Degraded.Blocked.Vault" = "Adding a new chat to the vault";
+"PayWall.Degraded.Blocked.ChatLock" = "Setting a pincode on a chat that doesn't have one yet";
+"PayWall.Degraded.Blocked.Tasks" = "Creating a new task";
+"PayWall.Degraded.Blocked.EditHistory" = "Keeping new deleted and edited messages";
+"PayWall.Degraded.Nothing" = "A subscription never deletes, un-hides or unlocks anything, and it is never needed to reach what you already have — your vault, locked chats, tasks and kept messages work offline, even if Zenlygram can never check your subscription again.";
+"PayWall.Plan.Monthly" = "Monthly";
+"PayWall.Plan.Yearly" = "Yearly";
+"PayWall.Plan.Other" = "Subscription";
+"PayWall.Plan.PerMonth" = "%@ / month";
+"PayWall.Plan.PerYear" = "%@ / year";
+"PayWall.Plan.Save" = "Save %@";
+"PayWall.Plan.Trial" = "%@ days free";
+"PayWall.Button.StartTrial" = "Start Free Trial";
+"PayWall.Trial.Notice" = "%1$@ days free, then %2$@. Cancel any time.";
+/* Zenlygram — the server's OWN trial (the signed policy's trial_days, 1…30), not an App Store introductory offer: the three PayWall.*Trial* keys above stay for StoreKit offers. Plural forms by SGCustomerPlural (the DataConsent.Withdraw.Confirm.Unsent.* convention): en One = 1 day, Few = Many = N days; ru день / дня / дней; uz one form. */
+"PayWall.ServerTrial.Button.One" = "Try %@ day free";
+"PayWall.ServerTrial.Button.Few" = "Try %@ days free";
+"PayWall.ServerTrial.Button.Many" = "Try %@ days free";
+"PayWall.ServerTrial.Disclosure.One" = "This %@-day trial is Zenlygram's own, not an App Store offer: no payment details are taken and nothing is charged when it ends. Afterwards, creating new Vault, Chat Lock and Tasks items and keeping new deleted or edited messages needs a subscription; everything already saved stays readable.";
+"PayWall.ServerTrial.Disclosure.Few" = "This %@-day trial is Zenlygram's own, not an App Store offer: no payment details are taken and nothing is charged when it ends. Afterwards, creating new Vault, Chat Lock and Tasks items and keeping new deleted or edited messages needs a subscription; everything already saved stays readable.";
+"PayWall.ServerTrial.Disclosure.Many" = "This %@-day trial is Zenlygram's own, not an App Store offer: no payment details are taken and nothing is charged when it ends. Afterwards, creating new Vault, Chat Lock and Tasks items and keeping new deleted or edited messages needs a subscription; everything already saved stays readable.";
+"PayWall.Grace.Notice" = "Everything in Zenlygram Pro is free until %@ — nothing to do. After that, a subscription lets you create new protected items and keep new deleted and edited messages; what was already kept stays readable.";
+"PayWall.Disclosure" = "Zenlygram Pro is an auto-renewing subscription. Payment is charged to your Apple Account at confirmation of purchase. It renews automatically unless auto-renew is turned off at least 24 hours before the end of the current period; your account is charged for renewal within 24 hours before the period ends. Manage or cancel it in Settings > [your name] > Subscriptions.";
+"PayWall.Disclosure.Short" = "Renews automatically until cancelled.";
+"PayWall.ManageSubscription" = "Manage Subscription";
+"PayWall.EULA" = "Terms of Use (EULA)";
+"PayWall.LinkAccount.Notice" = "Optional. Linking lets your subscription follow you to your other devices; buying works without it.";
+"LinkAccount.Title" = "Link Telegram Account";
+"LinkAccount.Intro" = "Linking proves which Telegram account this subscription belongs to, so it follows you to your other devices and comes back after a reinstall. Your hidden chats and locked chats stay on this device. With your data consent, your tasks are synced through our server.";
+"LinkAccount.Intro.Free" = "Linking proves which Telegram account this is, so your data consent and synced tasks follow you to your other devices and come back after a reinstall. Your hidden chats and locked chats stay on this device. With your data consent, your tasks are synced through our server.";
+"LinkAccount.Linking" = "Linking…";
+"LinkAccount.Step.Code" = "YOUR LINKING CODE";
+"LinkAccount.Code.Hint" = "Send this code to @%@ in Telegram.";
+"LinkAccount.Code.Copied" = "Copied.";
+"LinkAccount.Code.CopyHint" = "Copies the code.";
+"LinkAccount.Expires" = "Expires in %@";
+"LinkAccount.Waiting" = "Waiting for confirmation…";
+"LinkAccount.Warning" = "Only confirm if you just tapped Link in Zenlygram on this device.";
+"LinkAccount.GetNewCode" = "Get a New Code";
+"LinkAccount.Success.Title" = "Telegram account linked";
+"LinkAccount.Success.Text" = "Zenlygram Pro now follows this Telegram account on every device you link.";
+"LinkAccount.Success.Text.Free" = "Zenlygram now recognises this Telegram account on every device you link.";
+"LinkAccount.Unlink" = "Unlink This Device";
+"LinkAccount.Unlink.Text" = "Unlinking signs this device out. It does not cancel your subscription — link again and the paid period continues where it left off. Your vault, locked chats, tasks and saved versions are never touched. While your data consent is on, Zenlygram will not link this account again by itself; link it again here.";
+"LinkAccount.Unlink.Text.Free" = "Unlinking signs this device out of your Zenlygram account. Your vault, locked chats, tasks and saved versions are never touched. While your data consent is on, Zenlygram will not link this account again by itself; link it again here.";
+"LinkAccount.Unlink.Action" = "Unlink";
+/* Zenlygram — Pro status screen. The status line is ACCESS (whether Pro works here and until when),
+   never a claim of payment: a server horizon can be a trial or a grant. Only the Entitlement.Plan.*
+   lines speak about a purchase, and only from the App Store's own answer. */
+"Entitlement.Status.AvailableUntil" = "Pro available until %@";
+"Entitlement.Status.Available" = "Pro available";
+"Entitlement.Status.ViaAppStore" = "Active through your App Store subscription";
+"Entitlement.Status.UnlockedBuild" = "All features open in this build";
+"Entitlement.Status.Reconnect" = "Can't check right now — reconnect";
+"Entitlement.Status.Lapsed" = "Subscription ended";
+"Entitlement.Status.OtherAccount" = "Another account is active";
+"Entitlement.Status.OtherAccount.Notice" = "This screen was opened for a different account. Go back and open Zenlygram Pro again to see the active account.";
+"Entitlement.Status.Linked" = "Linked. Your subscription follows this Telegram account to your other devices.";
+"Entitlement.Status.Restore.Detail" = "Looks for a subscription bought with the Apple ID on this device.";
+"Entitlement.Plan.RenewsOn" = "App Store subscription renews on %@.";
+"Entitlement.Plan.EndsOn" = "App Store subscription ends on %@ and won't renew.";
+"Entitlement.Plan.Active" = "App Store subscription active on this Apple ID.";
+"Entitlement.Plan.BillingRetry" = "Apple couldn't renew your App Store subscription. Update your payment method in Manage Subscription.";
+"Entitlement.Plan.None" = "No active App Store subscription on this Apple ID.";
+"Entitlement.Status.Inactive" = "Not active on this device";
+"Entitlement.Status.Subscribe" = "Subscribe";
+"Entitlement.Status.ViewPlans" = "View Plans";
+"Entitlement.Status.FreeUntil" = "Free until %@";
+/* Zenlygram — free-first: the signed monetization policy says Pro is free for everyone. No countdown, no purchase, no claim of a subscription. Existing App Store subscriptions are Apple's and are never cancelled by the app. */
+"Entitlement.Status.FreeAccess" = "Free for everyone right now";
+"Entitlement.Status.FreeAccess.Notice" = "Zenlygram Pro is free for everyone right now. Nothing is sold or charged in the app.";
+"Entitlement.Status.FreeAccess.ExistingSubscription" = "Your existing App Store subscription is managed by Apple and keeps renewing until you cancel it in Manage Subscription.";
+"Entitlement.Status.FreeAccess.ManagedByApple" = "An existing App Store subscription is managed by Apple. You can check, change or cancel it in Manage Subscription.";
+"Entitlement.Status.FreeAccess.AccountUntil" = "Your account's own Pro access runs until %@.";
+"PayWall.Text.Free" = "Secret Vault, Chat Lock, Tasks and Edit History — free for everyone right now.";
+"PayWall.FreeAccess.Notice" = "Zenlygram Pro is free for everyone right now. No purchase is required.";
+"Settings.Pro.Status.Free" = "Free";
+"IAP.Message.SubscriptionsNotOffered" = "Zenlygram Pro is free right now, so nothing new can be bought. Nothing was charged.";
+"IAP.Message.PurchaseCheckFailed" = "Couldn't confirm that subscriptions are available. Check your connection and the date and time, then try again. Nothing was charged.";
+"IAP.Message.PurchaseCheckBusy" = "Still checking — try again in a moment. Nothing was charged.";
+"PayWall.Button.CurrentPlan" = "Your current plan";
+"PayWall.Button.Upgrade" = "Upgrade for %@";
+"PayWall.Button.SwitchPlan" = "Switch to This Plan";
+"PayWall.Plan.DowngradeNotice" = "The switch takes effect when your current period ends. Nothing is charged now.";
+"PayWall.Plan.Renews" = "Renews on %@";
+"PayWall.Plan.Ends" = "Ends on %@";
+/* A plan change is already queued with Apple (a downgrade applies at renewal). %1$@ is the renewal date,
+   %2$@ the queued plan's name (PayWall.Plan.Monthly / .Yearly). "Manage Subscription" is PayWall.ManageSubscription. */
+"PayWall.Plan.ChangesAtRenewal" = "Active until %1$@, then %2$@ takes over. To keep this plan, use Manage Subscription.";
+"PayWall.Plan.ScheduledNotice" = "Starts on %@, when your current plan ends. Nothing is charged until then. To undo or change it, use Manage Subscription.";
+"PayWall.Plan.Badge.Current" = "Current";
+"PayWall.Plan.Badge.Scheduled" = "Scheduled";
+
+/* Zenlygram — local call recording. Export is explicit through Share or Saved Messages;
+   automatic Saved Messages delivery is opt-in. Consent and a visible recording indicator
+   remain required. The user must obtain any consent required where they are. */
+"Settings.CallRecording" = "CALL RECORDING";
+"Settings.CallRecording.Notify" = "Tell the other party";
+"Settings.CallRecording.Notify.Desc" = "When you start recording, send a message in the chat saying so, and play a short tone for you. It cannot put a sound into the call itself — the other person hears nothing new.";
+"Settings.CallRecording.Notice" = "Recordings are created on this device and excluded from backups. They can leave it through Share or Saved Messages. Automatic sending is off by default. Saved Messages is a Telegram cloud chat: recordings sent there are stored on Telegram's servers and are not end-to-end encrypted. Recording another person may require their consent; you are responsible for obtaining it.";
+"CallRecording.Button" = "Record";
+"CallRecording.Indicator" = "Recording this call";
+"CallRecording.Consent.Title" = "Record this call?";
+"CallRecording.Consent.Text" = "This records both sides of the call: your voice and the other person's. The recording is saved on this device.\n\nShare exports a copy to the app or destination you choose. Sending to Saved Messages uploads it to Telegram's servers, where it is not end-to-end encrypted. Automatic sending happens only if you enable that setting.\n\nRecording a conversation may require every participant's consent. You are responsible for obtaining any required consent before recording.";
+"CallRecording.Consent.Accept" = "I understand, start recording";
+"CallRecording.Notice.Message" = "🔴 I am recording this call.";
+"CallRecording.List.Title" = "Call recordings";
+"CallRecording.List.Empty" = "No recordings yet. Start one with the Record button during a call.";
+"CallRecording.List.Empty.NoCallKit" = "No recordings yet. Calls cannot be recorded on this device: recording needs iOS Call Integration, which is not available here.";
+"CallRecording.List.Footer" = "Stored on this device. A recording leaves this device only when you share it or send it to Saved Messages — and a recording sent to Saved Messages is stored on Telegram's servers, not end-to-end encrypted.";
+"CallRecording.List.DeleteAll" = "Delete All Recordings";
+"CallRecording.Play" = "Play";
+"CallRecording.Stop" = "Stop";
+"CallRecording.Playing" = "Playing";
+"CallRecording.Share" = "Share…";
+"CallRecording.Delete" = "Delete";
+"CallRecording.Delete.Title" = "Delete recording";
+"CallRecording.Delete.Text" = "The original is removed from Call Recordings. Sent, exported or Telegram-cached copies may remain. This cannot be undone.";
+"CallRecording.DeleteAll.Title" = "Delete all recordings";
+"CallRecording.DeleteAll.Text" = "All originals are removed from Call Recordings. Sent, exported or Telegram-cached copies may remain. This cannot be undone.";
+"CallRecording.UnknownPeer" = "Unknown";
+"CallRecording.Indicator.Short" = "REC";
+"CallRecording.Incomplete" = "stops early";
+"CallRecording.NeedsCallKit" = "Call recording needs iOS Call Integration turned on. It is the only thing that can show you a recording marker once you leave the app, and recording without one is not something this app will do.\n\nTurn it on in Settings ▸ Privacy & Security ▸ Calls.";
+"CallRecording.Problem.Title" = "Call recording";
+"CallRecording.Problem.Lost" = "The recording could not be saved and nothing was kept. This is usually free space on the device.";
+"CallRecording.Problem.Truncated" = "The recording was saved, but a write failed part-way through, so it stops before the call did.";
+"CallRecording.Problem.NoSpace" = "There is not enough free space on this device to start a recording.";
+"Settings.CallRecording.SendToSaved" = "Send to Saved Messages";
+"Settings.CallRecording.SendToSaved.Desc" = "Automatically send finished, unprotected recordings to your own Saved Messages. This cloud chat stores both voices on Telegram's servers without end-to-end encryption. After delivery is confirmed, the original is removed from Call Recordings; Telegram may retain cached copies. Off by default. Turning it off does not cancel sends already queued in Telegram. You can still send an individual recording from the list.";
+"CallRecording.SendToSaved" = "Send to Saved Messages";
+"CallRecording.SendToSaved.Again" = "Try sending again";
+"CallRecording.SendToSaved.Waiting" = "sending to Saved Messages";
+"CallRecording.SendToSaved.Failed" = "not sent";
+"CallRecording.SendToSaved.Caption" = "Call recording · %1$@ · %2$@";
+"CallRecording.SendToSaved.Leg.Local" = "your microphone";
+"CallRecording.SendToSaved.Leg.Remote" = "the other party";
+"CallRecording.SendToSaved.Confirm.Title" = "Send to Saved Messages";
+"CallRecording.SendToSaved.Confirm.Text" = "This sends both voices to your own Saved Messages on Telegram's servers, without end-to-end encryption. The original stays in Call Recordings until delivery is confirmed, then is removed. Telegram may keep cached copies on this device; exported copies are not erased.";
+"CallRecording.SendToSaved.Confirm.Send" = "Send";
+"CallRecording.Delete.CancelFailed" = "This recording is still being sent to Saved Messages and the upload could not be cancelled right now, so the recording was NOT deleted. Try again in a moment.";
+"CallRecording.Delete.Text.Sending" = "Deleting requests cancellation of pending sends before removing the original recording. If cancellation cannot be requested, nothing is deleted. Sent, exported or Telegram-cached copies may remain. This cannot be undone.";
+"CallRecording.DeleteAll.Text.Sending" = "Delete all original call recordings. Cancellation of pending sends is requested first; if any request fails, nothing is deleted. Sent, exported or Telegram-cached copies may remain. This cannot be undone.";
+"CallRecording.DeleteAll.CancelFailed" = "Some uploads to Saved Messages could not be cancelled. No recordings were deleted. Try again in a moment.";
+"Tasks.Cloud.LogoutNotice" = "Unsent changes to your tasks will be lost. Synced tasks stay on the server.";
+"CallRecording.Live" = "recording now";
+"CallRecording.Live.Text" = "This call is still being recorded. You can play or share the recording after the call ends.";
+"CallRecording.Protected.Title" = "Protected recording";
+"CallRecording.Protected.Unverifiable.Text" = "This recording belongs to a protected chat or an account that cannot be verified on this iPhone. It cannot be played, shared or sent while its access is unverified. You can still delete it.";
+"CallRecording.Play.DuringCall" = "You cannot play a recording during a call.";
+"CallRecording.Play.Failed" = "This recording could not be played right now.";
+"CallRecording.Delete.Failed" = "The recording could not be deleted right now. Try again in a moment.";
+"CallRecording.Started" = "Recording started";
+"CallRecording.Stopped" = "Recording stopped";
+"CallRecording.Problem.NoticeNotSent" = "The recording notice could not be sent. Before continuing, make sure the other person knows about the recording and consents to it.";
+"CallRecording.DeleteAll.Failed" = "Some recordings could not be deleted. Unlock this iPhone and try again.";
+"CallRecording.Problem.NoticeUnconfirmed" = "The recording notice has not been confirmed as sent. Do not rely on it to inform the other person; make sure you have their consent.";
+"CallRecording.SendToSaved.Caption.Neutral" = "Call recording · %@";
+"CallRecording.Problem.CleanupPending" = "Recording could not start because local storage is unavailable or cleanup is still pending. Unlock this iPhone and check Call Recordings in Settings.";
+"CallRecording.Damaged.Title" = "Recording unavailable";
+"CallRecording.Damaged.Text" = "This recording cannot be opened on this iPhone right now. You can delete it.";
+"CallRecording.SendToSaved.AccountUnavailable" = "The account that made this recording is not signed in on this iPhone, so it cannot be sent.";
+"CallRecording.SendToSaved.Refused" = "This recording cannot be sent to Saved Messages.";
+"CallRecording.SendToSaved.NotQueued" = "The recording could not be sent to Saved Messages right now. Try again in a moment.";
+"CallRecording.Unavailable.Text" = "Starting new recordings or exports is unavailable in this build. Existing recordings can be managed or deleted. Sent, exported or Telegram-cached copies may remain.";
+
+/* Zenlygram — data consent (design 40 §14): the consent wall and prompt, the decline page, Settings → Zenlygram →
+   Data & consent, My data and the account deletion. The wording is normative (compliance ui-strings rev 3); iOS owns the
+   key names. The three coupled labels (Data & Consent, My Data, Delete My Zenlygram Account and Data) must read as in §5
+   of the hashed consent text of the same locale (SGConsentLabelParityTests); changing them needs a new text version. */
+"Consent.Wall.Title" = "Data & consent";
+"Consent.Wall.Account" = "Account: %@";
+"Consent.Wall.Summary" = "To use Zenlygram with this account, we need your consent to keep its Telegram ID, phone number, name, usage statistics, subscription status and synced tasks on our server in Tashkent.";
+"Consent.Wall.Language" = "Text language";
+"Consent.Wall.Agree" = "I agree";
+"Consent.Wall.Decline" = "I don't agree";
+"Consent.Wall.AgeHint" = "Confirm your age to continue.";
+"Consent.Wall.ModeNote.Required" = "Without this consent, Zenlygram can't be used with this Telegram account. Your other accounts are not affected.";
+"Consent.Wall.ModeNote.Optional" = "Consent is optional. If you don't agree, no profile, statistics or synced tasks are collected for this account and it is not linked automatically; the app keeps working on this device as before. You can agree later in Settings → Zenlygram → Data & consent.";
+"Consent.Wall.Notice.Reconsent" = "The consent text has changed. Please read it and agree again.";
+"Consent.Wall.Notice.Withdrawn" = "You withdrew your consent on %@.";
+"Consent.Wall.Notice.WithdrawnRemote" = "Consent for this account was withdrawn on another device on %@.";
+"Consent.Wall.Notice.LinkEnded" = "This account's link to our server has ended (for example, its Zenlygram account was deleted). Zenlygram will not link it again by itself until you agree again.";
+"Consent.Wall.TextUnavailable" = "This version of Zenlygram can't show the consent text. Update the app.";
+"Consent.Wall.SaveFailed" = "Couldn't save your choice. Try again.";
+"Consent.Declined.Title" = "Consent needed";
+"Consent.Declined.Text" = "Zenlygram keeps your subscription, synced tasks and account data on its own server, and it needs your consent to do that. Without consent, Zenlygram can't be used with this Telegram account.\n\nYou can go back and read the consent again, delete your Zenlygram account and the data on our server, or log out of this account on this device. Logging out does not delete your Telegram account: it keeps working in other Telegram apps. This account's Zenlygram data that is stored only on this device (for example local tasks) may be removed when you log out.";
+"Consent.Declined.Back" = "Back";
+"Consent.Declined.Delete" = "Delete my Zenlygram account and data";
+"Consent.Declined.Logout" = "Log out of this account";
+"Consent.Declined.SwitchAccount" = "Use another account";
+"Consent.Declined.PrivacyPolicy" = "Privacy Policy";
+"Consent.Declined.Logout.LastAccount" = "This is the only account signed in on this device. Logging out also deletes this device's Zenlygram data: local tasks, the synced task copy, call recordings, and the Secret Vault and Chat Lock settings.";
+"Settings.Data.Header" = "Data & privacy";
+"Settings.Data.Consent" = "Data & Consent";
+"Settings.Data.State.Granted" = "Agreed";
+"Settings.Data.State.None" = "Not agreed";
+"Settings.Data.State.Declined" = "Declined";
+"Settings.Data.State.Withdrawn" = "Withdrawn";
+"Settings.Data.State.Review" = "Review needed";
+"Settings.Data.PrivacyPolicy" = "Privacy Policy";
+"DataConsent.Title" = "Data & Consent";
+"DataConsent.Status.Granted" = "Consent given on %@ (text version %@).";
+"DataConsent.Status.Pending" = "Consent given; not sent to the server yet.";
+"DataConsent.Status.None" = "No consent given. No profile, statistics or synced tasks are collected for this account.";
+"DataConsent.Status.Declined" = "You declined. No profile, statistics or synced tasks are collected for this account.";
+"DataConsent.Status.Withdrawn" = "You withdrew consent on %@. Your data on our server is deleted no later than the next working day.";
+"DataConsent.Status.WithdrawPending" = "You withdrew consent on %@. The withdrawal hasn't reached our server yet; the app keeps trying.";
+"DataConsent.Status.Reconsent" = "The consent text has changed — please review it.";
+"DataConsent.Status.LinkEnded" = "The link to our server has ended. Give consent again to link this account automatically.";
+"DataConsent.Status.Rejected" = "Your consent couldn't be recorded. Update the app and give consent again.";
+"DataConsent.ReadText" = "Consent text";
+"DataConsent.Grant" = "Give consent";
+"DataConsent.MyData" = "My Data";
+"DataConsent.Withdraw" = "Withdraw consent";
+"DataConsent.Delete" = "Delete My Zenlygram Account and Data";
+"DataConsent.Operator" = "Data operator: %@ · %@";
+"DataConsent.Storage" = "Data is stored on a server in Tashkent, Uzbekistan.";
+"DataConsent.Footer" = "This section applies only to this Telegram account.";
+"DataConsent.ResetDebug" = "Reset consent on this device (debug build)";
+"DataConsent.Withdraw.Confirm.Title" = "Withdraw consent?";
+"DataConsent.Withdraw.Confirm.Text" = "Your profile, statistics and synced tasks will be deleted from our server no later than the next working day after the withdrawal reaches it. Your synced tasks stay on this device as a read-only copy. The link between this account and your Zenlygram account stays for your subscription; to remove the link and all data too, delete your Zenlygram account instead.";
+"DataConsent.Withdraw.Confirm.Unsent.One" = "%d unsent task change will be lost.";
+"DataConsent.Withdraw.Confirm.Unsent.Few" = "%d unsent task changes will be lost.";
+"DataConsent.Withdraw.Confirm.Unsent.Many" = "%d unsent task changes will be lost.";
+"DataConsent.Withdraw.Confirm.UnsentUnknown" = "Task changes that haven't reached the server yet will be lost.";
+"DataConsent.Withdraw.Required" = "After this, you can use Zenlygram with this account only after you agree again.";
+"DataConsent.Withdraw.Optional" = "The app keeps working on this device and sends no more profile, statistics or synced tasks for this account.";
+"DataConsent.Withdraw.Confirm.Action" = "Withdraw";
+"DataConsent.Withdraw.DeleteInstead" = "Delete my Zenlygram account and data";
+"DataConsent.Withdraw.PendingUpload" = "This device isn't linked to our server, so your withdrawal can't be sent from here; it is sent if you link this device again. If you use this Telegram account in Zenlygram on another device, withdraw there too, or delete your data at zenlygram.org/account/delete, or write to the contact shown below.";
+"DataConsent.Withdraw.Sending" = "Sending your withdrawal…";
+"AccountDelete.Title" = "Delete Zenlygram account";
+"AccountDelete.Deleted" = "This deletes your Zenlygram account and the data we hold for it: your profile, devices, statistics, synced tasks, invitations and the account link. All devices linked to this account are signed out of Zenlygram.";
+"AccountDelete.Kept" = "Payment records are kept only as long as the law requires, with the details that identify you removed. A record that you gave and withdrew consent (account number, text versions and dates) is kept for 3 years.";
+"AccountDelete.Telegram" = "Your Telegram account is not deleted.";
+"AccountDelete.Timing" = "Deletion starts at once and is completed no later than the next working day. Copies in encrypted backups and server logs disappear within 14 days.";
+"AccountDelete.Billing" = "If you have a subscription, it keeps renewing and you keep being charged until you cancel it in %@. Cancel it first if you no longer want it.";
+"AccountDelete.ManageSubscription" = "Manage subscription";
+"AccountDelete.Confirm" = "Delete my account and data";
+"AccountDelete.Confirm2.Title" = "Delete your Zenlygram account?";
+"AccountDelete.Confirm2.Text" = "This can't be undone.";
+"AccountDelete.Confirm2.Action" = "Delete";
+"AccountDelete.Done.Title" = "Zenlygram account deleted";
+"AccountDelete.Done.Text" = "Your Zenlygram account has been deleted. Copies in our other services are removed no later than the next working day, and copies in encrypted backups and server logs within 14 days. If you keep using Zenlygram with this account, it will ask for your consent again.";
+"AccountDelete.NotLinked" = "This account isn't linked to the Zenlygram server from this device. To delete a Zenlygram account, open zenlygram.org/account/delete and sign in with Telegram.";
+"AccountDelete.OpenWeb" = "Open page";
+"AccountDelete.Error.Offline" = "No connection. Check your internet and try again, or use zenlygram.org/account/delete.";
+"AccountDelete.Error.RateLimited" = "Too many attempts. Try again a little later.";
+"AccountDelete.Error.Unavailable" = "The server is unavailable right now. Try again later, or use zenlygram.org/account/delete.";
+"AccountDelete.Failed" = "The account couldn't be deleted right now. Check your connection and try again, or use zenlygram.org/account/delete.";
+"MyData.Title" = "My data";
+"MyData.Loading" = "Loading…";
+"MyData.NotLinked" = "This account isn't linked to the Zenlygram server from this device, so there is no server data to show.";
+"MyData.Unavailable" = "Your data couldn't be loaded right now. Try again later.";
+"MyData.Error.Offline" = "No connection.";
+"MyData.Error.Unavailable" = "The server is unavailable. Try again later.";
+"MyData.Error.RateLimited" = "Too many requests. Try again later.";
+"MyData.Retry" = "Try again";
+"MyData.Section.Account" = "Account";
+"MyData.Section.Consent" = "Consent";
+"MyData.Section.History" = "Consent history";
+"MyData.Section.Profile" = "Profile";
+"MyData.Section.Devices" = "Devices";
+"MyData.Section.Activity" = "Activity";
+"MyData.Section.Events" = "Statistics events (last 180 days)";
+"MyData.Section.Subscription" = "Subscription";
+"MyData.Section.Retention" = "Retention";
+"MyData.Source.telegram_attest" = "Confirmed by Telegram";
+"MyData.Source.telegram_bot" = "Telegram (via our bot)";
+"MyData.Source.client" = "From the app";
+"MyData.Source.telegram_session" = "From your Telegram session";
+"MyData.Field.Id" = "Account ID";
+"MyData.Field.TelegramId" = "Telegram ID";
+"MyData.Field.Created" = "Created";
+"MyData.Field.Phone" = "Phone number";
+"MyData.Field.Country" = "Country (from the phone code)";
+"MyData.Field.Usernames" = "Usernames";
+"MyData.Field.FirstName" = "First name";
+"MyData.Field.LastName" = "Last name";
+"MyData.Field.Language" = "Telegram language";
+"MyData.Field.Premium" = "Telegram Premium";
+"MyData.Field.Model" = "Device model";
+"MyData.Field.Os" = "Operating system";
+"MyData.Field.App" = "App version";
+"MyData.Field.Locale" = "Region format";
+"MyData.Field.TimeZone" = "Time zone";
+"MyData.Field.Distribution" = "Install source";
+"MyData.Field.FirstSeen" = "First seen";
+"MyData.Field.LastSeen" = "Last seen";
+"MyData.Field.FirstActive" = "First active";
+"MyData.Field.LastActive" = "Last active";
+"MyData.Field.ActiveDays" = "Active days";
+"MyData.Field.Sessions30" = "Sessions (30 days)";
+"MyData.Field.Seconds30" = "Time in the app (30 days)";
+"MyData.Field.Total" = "Events in total";
+"MyData.Field.Retained" = "Kept for";
+"LinkAccount.AttestDisclosure" = "To link without a code, Zenlygram asks Telegram in the background, as this account, for a confirmation from %@'s Mini App; Telegram then gives the bot your public profile. Without your data consent we keep only your Telegram ID. The app never sends a message to the bot, opens the Mini App or shares your contact.";
+"PayWall.LinkAccount.Notice.Required" = "Your account is linked automatically after your data consent, so your subscription follows you to your other devices.";
+
+/* Zenlygram Pro paywall — cosmic design */
+"PayWall.Hero.Subtitle" = "Zenlygram's premium version — more control, more privacy and more powerful features.";
+"PayWall.Hero.Premium" = "PREMIUM";
+"PayWall.Hero.Features" = "features";
+"PayWall.Hero.Unlimited" = "Unlimited";
+"PayWall.Hero.Freedom" = "freedom";
+"PayWall.Plan.Yearly.Short" = "Yearly";
+"PayWall.Plan.Monthly.Short" = "Monthly";
+"PayWall.Plan.Summary" = "%1$@ months • %2$@";
+"PayWall.Plan.PerMonth.Compact" = "%@/mo";
+"PayWall.Plan.PerYear.Compact" = "%@/yr";
+"PayWall.Plan.Discount" = "-%@";
+"PayWall.Button.GoPro" = "Get Zenlygram Pro";
+"PayWall.Disclosure.WithPrice" = "%@. Renews automatically until cancelled.";
+"Contacts.SelectAll" = "Select All";
+"Contacts.DeselectAll" = "Deselect All";
+// MARK: Zenlygram — the app-update policy (update_policy_spec §4i): the "Update required" block and the "Update available" reminder
+"AppUpdate.Required.Title" = "Update required";
+"AppUpdate.Required.Text" = "This version of Zenlygram is no longer supported. Update the app to continue.";
+"AppUpdate.Required.Button" = "Open App Store";
+"AppUpdate.Required.TestFlightButton" = "Open TestFlight";
+"AppUpdate.Required.Help" = "Help";
+"AppUpdate.Required.DeviceNote" = "If the update is not offered for this device, it may need a newer iOS; the App Store can also take a while to show it.";
+"AppUpdate.Available.Title" = "Update available";
+"AppUpdate.Available.Text" = "Zenlygram %@ is available in the App Store.";
+"AppUpdate.Available.Update" = "Update";
+"AppUpdate.Available.Later" = "Later";

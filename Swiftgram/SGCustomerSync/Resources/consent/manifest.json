@@ -1,0 +1,36 @@
+{
+  "schema": "zenlygram-consent-manifest/1",
+  "current_version": 1,
+  "min_valid_version": 1,
+  "placeholders": [
+    "OPERATOR_NAME",
+    "OPERATOR_STIR",
+    "RESPONSIBLE_PERSON",
+    "CONTACT_EMAIL"
+  ],
+  "versions": {
+    "1": {
+      "published_at": "2026-11-01",
+      "scopes": [
+        "link",
+        "profile",
+        "statistics",
+        "tasks_sync"
+      ],
+      "locales": {
+        "uz": {
+          "file": "v1/uz.md",
+          "template_sha256": "384fe0cb77d998b29fa1e6843feea647b80cd69b1af35bf4d146b6be2d07df65"
+        },
+        "ru": {
+          "file": "v1/ru.md",
+          "template_sha256": "6a05dd9db184d84911b0a3459b8e93c8000ad3bfec87381fb784d066f5e6b06b"
+        },
+        "en": {
+          "file": "v1/en.md",
+          "template_sha256": "daae5d134f3774b2638a1e72e53bb6e4881d1ca22eec6da73e29179feb50441e"
+        }
+      }
+    }
+  }
+}

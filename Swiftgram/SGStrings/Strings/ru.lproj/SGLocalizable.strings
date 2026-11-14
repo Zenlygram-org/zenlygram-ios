@@ -1,0 +1,889 @@
+"Settings.ContentSettings" = "Настройки контента";
+"Settings.UnlimitedPinnedChats" = "Неограниченное количество закреплённых чатов";
+"Settings.UnlimitedPinnedChats.Notice" = "Закрепления сверх лимита Telegram хранятся только на этом устройстве, ниже синхронизированных.";
+"Settings.HelperBots" = "Полезные боты";
+"Settings.HelperBots.Downloaders" = "ЗАГРУЗЧИКИ";
+"Settings.HelperBots.MediaTools" = "МЕДИА-ИНСТРУМЕНТЫ";
+"Settings.HelperBots.Utilities" = "УТИЛИТЫ";
+"Settings.HelperBots.FunInfo" = "РАЗВЛЕЧЕНИЯ И ИНФО";
+"Settings.Tasks" = "Задачи";
+"Settings.ChatLock" = "Блокировка чатов";
+"Settings.RoundVideoFromGallery" = "Кружок из галереи";
+"Settings.UnreadReminder" = "Напоминание о непрочитанных";
+"Settings.UnreadReminder.Notice" = "Отправляет локальное напоминание через 5 минут в фоне, если остались непрочитанные сообщения.";
+"Settings.BlockForeignUsers" = "Скрывать иностранные номера";
+"Settings.BlockForeignUsers.Notice" = "Скрывает личные чаты, код страны которых отличается от вашего. Только локальный визуальный фильтр — никого не блокирует и не может скрыть тех, кто скрывает свой номер. Требуется перезапуск.";
+
+"Settings.Tabs.Header" = "ВКЛАДКИ";
+"Settings.Tabs.HideTabBar" = "Скрыть панель вкладок";
+"Settings.Tabs.ShowContacts" = "Вкладка «Контакты»";
+"Settings.Tabs.ShowTasks" = "Вкладка «Задачи»";
+"Settings.Tabs.ShowNames" = "Имена вкладок";
+"Settings.Tabs.SearchButton" = "Кнопка поиска";
+"Settings.Tabs.WideTabBar" = "Широкая панель";
+"Settings.Tabs.WideTabBar.Notice" = "Сохраняет полную ширину панели вкладок, когда некоторые вкладки скрыты.";
+
+"Settings.Folders.BottomTab" = "Папки снизу";
+"Settings.Folders.BottomTabStyle" = "Стиль папок внизу";
+
+/* Do not translate */
+"Settings.Folders.BottomTabStyle.ios" = "iOS";
+/* Do not translate */
+"Settings.Folders.BottomTabStyle.telegram" = "Telegram";
+/* Example: Hide "All Chats" */
+"Settings.Folders.AllChatsHidden" = "Скрыть \"%@\"";
+"Settings.Folders.RememberLast" = "Открывать последнюю папку";
+"Settings.Folders.DisplayStyle" = "Стиль отображения папок";
+"Settings.Folders.DisplayStyle.auto" = "Автоматически";
+"Settings.Folders.DisplayStyle.icon" = "Иконки";
+"Settings.Folders.DisplayStyle.text" = "Текст";
+"Settings.Folders.RememberLast.Notice" = "Zenlygram откроет последнюю использованную папку после перезапуска или переключения учетной записи";
+
+"Settings.Folders.CompactNames" = "Уменьшенные расстояния";
+"Settings.Folders.AllChatsTitle" = "Название \"Все чаты\"";
+"Settings.Folders.AllChatsTitle.short" = "Короткое";
+"Settings.Folders.AllChatsTitle.long" = "Длинное";
+/* Default behaviour for All Chats Folder Title. "All Chats" title: Default */
+"Settings.Folders.AllChatsTitle.none" = "По умолчанию";
+
+
+"Settings.ChatList.Header" = "СПИСОК ЧАТОВ";
+"Settings.PrivacySecurity.Header" = "КОНФИДЕНЦИАЛЬНОСТЬ И БЕЗОПАСНОСТЬ";
+"Settings.Messages.Header" = "ЧАТЫ И СООБЩЕНИЯ";
+"Settings.Media.Header" = "МЕДИА И ЗАГРУЗКИ";
+"Settings.Tools.Header" = "ИНСТРУМЕНТЫ";
+"Settings.Advanced.Header" = "ДОПОЛНИТЕЛЬНО";
+"Settings.CompactChatList" = "Компактный список чатов";
+"Settings.CompactChatList.Desc" = "Больше чатов на экране за счёт компактной вёрстки.";
+"Settings.RestartRequiredHint" = " (нужен перезапуск)";
+"Settings.SecretVault.Title" = "Секретное хранилище";
+"Settings.SecretVault.Desc" = "Скрыть чаты за отдельным PIN-кодом, не связанным с код-паролем устройства. Это локальная блокировка в этом приложении на этом устройстве, а не шифрование.";
+"Settings.SecretVault.Notice" = "Скрытые чаты исчезают из списка в этом приложении и открываются только после ввода PIN хранилища. Зажмите чат и выберите «В хранилище», чтобы скрыть его. При выключении запрашивается PIN, и все скрытые чаты возвращаются.\n\nPIN хранилища не связан с код-паролем устройства. Это локальная блокировка в этом приложении на этом устройстве, а не шифрование: скрытые чаты остаются в вашем аккаунте Telegram и видны в других клиентах Telegram.\n\nЕсли вы забыли PIN, войти можно по Face ID или Touch ID (пока лицо или отпечаток не изменялись) либо по главному пин-коду блокировки чатов, если он уже был задан, когда вы устанавливали PIN хранилища (если главный пин-код создан позже, один раз смените PIN хранилища, чтобы связать их). Код-пароль устройства не принимается.\n\nСкрытые чаты и блокировка чатов хранятся только на этом устройстве — на новое устройство они не переносятся, там их нужно настроить заново.";
+"Settings.SecretVault.ChangePin" = "Изменить PIN хранилища";
+"Settings.SecretVault.UseSecretCode" = "Открывать секретным кодом";
+"Settings.SecretVault.UseSecretCode.Desc" = "Открывайте хранилище, вводя PIN в поиск чатов, вместо удержания заголовка «Чаты». Изменение настройки требует PIN хранилища.";
+"Settings.SecretVault.UseSecretCode.Notice" = "Когда включено, видимого жеста нет: введите PIN хранилища в поиск списка чатов целиком и на мгновение остановитесь — хранилище откроется. Если в хранилище текстовый пароль, введите его и нажмите «Найти».\n\nВаши чаты и контакты по-прежнему находятся при вводе, но текст остаётся на этом устройстве: в поиск Telegram ничего не уходит, пока вы не нажмёте «Найти». После нескольких неверных кодов проверка на время приостанавливается.\n\nPIN хранилища не связан с код-паролем устройства и является локальной блокировкой в этом приложении на этом устройстве, а не шифрованием — скрытые чаты остаются в вашем аккаунте Telegram и видны в других клиентах Telegram. Забыли PIN? Используйте Face ID или Touch ID (если лицо или отпечаток не менялись) либо главный пин-код блокировки чатов — он подходит, только если уже был задан, когда вы устанавливали PIN хранилища; код-пароль устройства не принимается. Скрытые чаты и блокировка чатов на новое устройство не переносятся.";
+"Settings.SecretVault.RevealHint.Title" = "Секретное хранилище включено";
+"Settings.SecretVault.RevealHint.SecretCode" = "Ваши скрытые чаты теперь под защитой. Чтобы открыть их снова, введите PIN целиком в поиск чатов и на мгновение остановитесь (с текстовым паролем нажмите «Найти» после ввода). Пока это включено, набранный текст остаётся на этом устройстве — чтобы искать по всему Telegram, нажмите «Найти» на клавиатуре.";
+"Settings.SecretVault.RevealHint.LongTap" = "Чтобы открыть хранилище, зажмите заголовок «Чаты» вверху списка чатов.";
+"SecretVault.Screenshot.NoticeTitle" = "Обнаружен скриншот";
+"SecretVault.Screenshot.NoticeText" = "Скриншот может раскрыть ваши скрытые чаты.";
+"Settings.CompactMessagePreview.Desc" = "Показывать превью сообщений в одну строку.";
+"Settings.ChatSwipeOptions.Desc" = "Включить действия по свайпу в списке чатов.";
+"Settings.DeleteChatSwipeOption.Desc" = "Показывать действие «удалить» по свайпу.";
+"Settings.CompactMessagePreview" = "Компактное превью сообщений";
+"Settings.ChatList.Lines" = "Строки списка чатов";
+"Settings.ChatList.Lines.1" = "1 строка";
+"Settings.ChatList.Lines.2" = "2 строки";
+"Settings.ChatList.Lines.3" = "3 строки (по умолчанию)";
+
+"Settings.Profiles.Header" = "ПРОФИЛИ";
+
+"Settings.Stories.Hide" = "Скрыть истории";
+"Settings.Stories.WarnBeforeView" = "Спросить перед просмотром";
+"Settings.Stories.DisableSwipeToRecord" = "Отключить свайп для записи";
+
+"Settings.Translation.QuickTranslateButton" = "Кнопка быстрого перевода";
+"Settings.Translation.Backend" = "Сервис";
+/* Do not translate */
+"Settings.Translation.Backend.default" = "Telegram";
+"Settings.Translation.Backend.gtranslate" = "Google Переводчик";
+"Settings.Translation.Backend.system" = "Система";
+"Settings.Translation.Backend.Notice" = "Автоматического переключения на другой сервис нет. С «Системой» окно перевода переводит на устройстве, кроме сообщений с запретом копирования; быстрый перевод, перевод закреплённого сообщения, целых чатов и перевод из меню отправки выполняет Telegram. Без Telegram Premium перевод целых чатов работает только через %@.";
+"Settings.Translation.EntireChat.Notice" = "Перевод целых чатов выполняет выбранный сервис. С Telegram для него нужен %@, кроме каналов с автопереводом. С Google Переводчиком перевод начинается только после нажатия «Перевести». Секретные чаты никогда не переводятся, а сообщения с запретом копирования никогда не отправляются в Google.";
+"Settings.Translation.Backend.Notice.Google" = "Быстрый перевод, перевод закреплённого сообщения и целых чатов, а также перевод вашего текста из меню кнопки «Отправить» (удерживайте её) отправляют текст с устройства в Google Переводчик. Окно перевода использует Telegram.";
+"Settings.Translation.EntireChat.PremiumRequired" = "Для перевода целых чатов через Telegram нужен %@. Чтобы переводить их без него, выберите Google Переводчик в настройках Zenlygram → Перевод и голос → Сервис.";
+
+"Settings.Transcription.Header" = "ГОЛОС В ТЕКСТ";
+"Settings.Transcription.Backend" = "Сервис";
+/* Do not translate */
+"Settings.Transcription.Backend.default" = "Telegram";
+/* Do not translate */
+"Settings.Transcription.Backend.apple" = "Apple";
+"Settings.Transcription.Backend.Notice" = "Zenlygram будет использовать %@, если выбранный сервис транскрипции недоступен.";
+
+"Stories.Warning.Author" = "Автор";
+"Stories.Warning.ViewStory" = "Просмотреть историю?";
+/* Author will be able to see that you viewed their Story */
+"Stories.Warning.Notice" = "%@ СМОЖЕТ УВИДЕТЬ, что вы просмотрели историю.";
+"Stories.Warning.NoticeStealth" = "%@ не сможет увидеть, что вы просмотрели историю.";
+
+"Settings.Photo.Quality.Notice" = "Качество исходящих фото и фото-историй. Выше качество — фото чётче, но файлы больше; ниже качество — меньше трафик, но заметнее сжатие.";
+"Settings.Photo.SendLarge" = "Отправлять большие фото";
+"Settings.Photo.SendLarge.Notice" = "Повышает лимит размера сжатых фото до 2560пкс по длинной стороне, чтобы крупные изображения оставались чёткими и не уменьшались.";
+
+"Settings.VideoNotes.Header" = "КРУГЛЫЕ ВИДЕО";
+"Settings.VideoNotes.StartWithRearCam" = "На заднюю камеру";
+
+"Settings.CustomColors.Header" = "ПЕРСОНАЛЬНЫЕ ЦВЕТА";
+"Settings.CustomColors.Saturation" = "НАСЫЩЕННОСТЬ";
+/* Make sure to escape Percentage sign % */
+"Settings.CustomColors.Saturation.Notice" = "Установите насыщенность на 0%%, чтобы отключить персональные цвета";
+
+"Settings.UploadsBoost" = "Ускорение загрузки";
+"Settings.DownloadsBoost" = "Ускорение скачивания";
+"Settings.DownloadsBoost.Notice" = "Увеличивает количество параллельных соединений и размер частей файлов. При более высоких значениях открывается больше параллельных соединений одновременно: скачивание быстрее, но ваша сетевая активность становится более узнаваемой для тех, кто наблюдает за вашим трафиком. Если ваша сеть не справляется с нагрузкой, выберите вариант поменьше, подходящий для вашего соединения.";
+"Settings.DownloadsBoost.none" = "Выключено";
+"Settings.DownloadsBoost.medium" = "Средне";
+"Settings.DownloadsBoost.maximum" = "Максимум";
+
+"Settings.ShowProfileID" = "ID профилей";
+"Settings.ViewFirstMessage" = "Перейти к первому сообщению";
+"Settings.ViewFirstMessage.Desc" = "Добавляет пункт «Первое сообщение» в меню профиля.";
+"Settings.ShowDeletedMessages" = "Показывать удалённые сообщения";
+"Settings.ShowDeletedMessages.Desc" = "Сохраняет копию сообщений, удалённых другими в личных чатах и группах, и помечает её значком 🗑. Хранится только на этом устройстве и автоматически удаляется через 30 дней. Показ их содержимого — часть Zenlygram Pro.";
+/* Zenlygram — то же описание, пока ни один экран Pro не показывается (подписанная политика бесплатна, подписки нет): без упоминания Pro. */
+"Settings.ShowDeletedMessages.Desc.Free" = "Сохраняет копию сообщений, удалённых другими в личных чатах и группах, и помечает её значком 🗑. Хранится только на этом устройстве и автоматически удаляется через 30 дней.";
+"Settings.ShowDeletedMessages.Notice" = "Telegram не сообщает, кто удалил сообщение, поэтому в личных чатах и небольших группах могут сохраниться и сообщения, которые вы удалили у себя на другом устройстве. Не сохраняются: ваши сообщения, «Избранное», служебные и исчезающие сообщения, посты в каналах, массовые удаления администраторами групп или антиспамом Telegram, удаления вместе с вашими сообщениями (например, очистка чата) и чаты, где вы можете удалять чужие сообщения. Хранится не более 5000 сообщений на аккаунт. Очистка кэша Telegram безвозвратно удаляет и медиа сохранённых сообщений. Чтобы убрать сохранённое сообщение, удерживайте его → «Удалить». При отключении все сохранённые сообщения удаляются.";
+"Settings.ShowDC" = "Показать дата-центр (DC)";
+"Settings.ShowCreationDate" = "Показать дату создания чата";
+"Settings.ShowCreationDate.Notice" = "Дата создания может быть неизвестна для некоторых чатов.";
+
+"Settings.ShowRegDate" = "Показать дату регистрации";
+"Settings.ShowRegDate.Notice" = "Дата регистрации приблизительная.";
+
+"Settings.SendWithReturnKey" = "Отправка кнопкой \"Ввод\"";
+"Settings.HidePhoneInSettingsUI" = "Скрыть номер";
+"Settings.HidePhoneInSettingsUI.Notice" = "Ваш номер будет скрыт только в интерфейсе настроек. Используйте настройки Конфиденциальности, чтобы скрыть его от других.";
+
+"PasscodeSettings.AutoLock.InFiveSeconds" = "Через 5 секунд";
+
+"ProxySettings.UseSystemDNS" = "Системный DNS";
+"ProxySettings.UseSystemDNS.Notice" = "Используйте системный DNS, чтобы избежать задержки, если у вас нет доступа к DNS Google";
+
+/* Preserve markdown asterisks! Example: You **don't** need Telegram Premium! */
+"Common.NoTelegramPremiumNeeded" = "Вам **не нужен** %@!";
+"Common.RestartRequired" = "Необходим перезапуск";
+"Common.RestartNow" = "Перезапустить Сейчас";
+"Common.OpenTelegram" = "Открыть Telegram";
+"Common.UseTelegramForPremium" = "Telegram Premium нельзя купить в Zenlygram.";
+"Common.StarsUnavailable" = "Telegram Stars нельзя купить в Zenlygram.";
+"Common.UpdateOS" = "Требуется обновление iOS";
+"Common.KnowWhatYouDo" = "Пожалуйста, меняйте эти настройки только если вы знаете, что они делают.";
+
+"Message.HoldToShowOrReport" = "Удерживайте для Показа или Жалобы.";
+
+"Auth.AccountBackupReminder" = "Убедитесь, что у вас есть запасной вариант входа: Активная SIM-карта или дополнительная сессия, чтобы не потерять доступ к аккаунту.";
+"Auth.UnofficialAppCodeTitle" = "Вы можете получить код только в официальном приложении";
+"Auth.UnofficialClientNotice" = "Zenlygram — неофициальный клиент Telegram.";
+"Auth.Fee.Unavailable" = "Telegram требует плату за регистрацию этого номера телефона, и в этом приложении её нельзя оплатить.";
+
+"Settings.SmallReactions" = "Маленькие реакции";
+"Settings.HideReactions" = "Скрыть реакции";
+
+"ContextMenu.SaveToCloud" = "Сохранить в Избранное";
+"ContextMenu.SelectFromUser" = "Выбрать от Автора";
+"ContextMenu.EditedHistory" = "История изменений";
+
+"Settings.ContextMenu" = "КОНТЕКСТНОЕ МЕНЮ";
+"Settings.ContextMenu.Notice" = "Выключенные пункты будут доступны в подменю «Zenlygram».";
+
+
+"Settings.ChatSwipeOptions" = "Опции чатов при свайпе";
+"Settings.DeleteChatSwipeOption" = "Свайп для удаления чата";
+/* Re-word like this string on offical app https://translations.telegram.org/en/ios/groups_and_channels/Chat.NextChannelSameLocationSwipeProgress */
+"Settings.PullToNextChannel" = "Свайп между каналами";
+/* Re-word like this string on offical app https://translations.telegram.org/en/ios/groups_and_channels/Chat.NextUnreadTopicSwipeProgress */
+"Settings.PullToNextTopic" = "Свайп между топиками";
+"Settings.GalleryCamera" = "Камера в галерее";
+"Settings.GalleryCameraPreview" = "Превью камеры в галерее";
+/* "Send Message As..." button */
+"Settings.SendAsButton" = "Кнопка \"%@\"";
+"Settings.SnapDeletionEffect" = "Эффекты удаления сообщений";
+
+"Settings.Stickers.Size" = "РАЗМЕР";
+"Settings.Stickers.Timestamp" = "Показывать время";
+
+"Settings.RecordingButton" = "Кнопка записи голоса";
+
+"Settings.DefaultEmojisFirst" = "Сначала стандартные смайлы";
+"Settings.DefaultEmojisFirst.Notice" = "Показывать стандартные эмодзи перед Premium в эмодзи-клавиатуре";
+
+/* Date when chat was created. "created: 24 May 2016" */
+"Chat.Created" = "создан: %@";
+
+/* Date when user joined the chat. "Joined Swiftgram Chat" */
+"Chat.JoinedDateTitle" = "Присоединился к %@";
+/* Date when user registered in Telegram. Will be shown like "Registered\n24 May 2016" */
+"Chat.RegDate" = "Дата регистрации";
+
+"Settings.messageDoubleTapActionOutgoingEdit" = "Редактирование двойным тапом";
+
+"Settings.wideChannelPosts" = "Широкие посты в каналах";
+"Settings.ForceEmojiTab" = "Сначала вкладка смайлов";
+
+"Settings.forceBuiltInMic" = "Микрофон устройства";
+"Settings.forceBuiltInMic.Notice" = "Если включено, то приложение будет использовать только встроенный микрофон устройства, даже если подключены наушники.";
+
+"Settings.showChannelBottomButton" = "Нижняя панель канала";
+
+"Settings.secondsInMessages" = "Секунды в Сообщениях";
+
+"Settings.CallConfirmation" = "Подтверждение вызова";
+"Settings.CallConfirmation.Notice" = "Zenlygram запросит подтверждение перед совершением звонка.";
+
+/* Confirmation before making a Call */
+"CallConfirmation.Audio.Title" = "Позвонить?";
+
+/* Confirmation before making a Video Call */
+"CallConfirmation.Video.Title" = "Позвонить с видео?";
+
+"MutualContact.Label" = "взаимный контакт";
+
+"Settings.swipeForVideoPIP" = "Видео PIP свайпом";
+"Settings.swipeForVideoPIP.Notice" = "Если включено, свайп видео откроет его в режиме «Картинка в картинке».";
+
+"SessionBackup.Title" = "Бэкап аккаунтов";
+"SessionBackup.Sessions.Title" = "Сессии";
+"SessionBackup.Actions.Backup" = "Бэкап в Keychain";
+"SessionBackup.Actions.Restore" = "Восстановить из Keychain";
+"SessionBackup.Actions.DeleteAll" = "Удалить Бэкап из Keychain";
+"SessionBackup.Actions.DeleteOne" = "Удалить из Бэкапа";
+"SessionBackup.Actions.RemoveFromApp" = "Удалить из приложения";
+"SessionBackup.LastBackupAt" = "Последний бэкап: %@";
+"SessionBackup.RestoreOK" = "ОК. Восстановлено: %@";
+"SessionBackup.LoggedIn" = "Залогинен";
+"SessionBackup.LoggedOut" = "Разлогинен";
+"SessionBackup.DeleteAll.Title" = "Удалить все сессии?";
+"SessionBackup.DeleteAll.Text" = "Все сессии будут удалены из Keychain.\n\nАккаунты не будут разлогинены из Zenlygram.";
+"SessionBackup.DeleteSingle.Title" = "Удалить 1 (одну) сессию?";
+"SessionBackup.DeleteSingle.Text" = "%@ сессия будет удалена из Keychain.\n\nАккаунт не будет разлогинен из Zenlygram.";
+"SessionBackup.RemoveFromApp.Title" = "Удалить аккаунт из приложения?";
+"SessionBackup.RemoveFromApp.Text" = "%@ сессия БУДЕТ УДАЛЕНА из Zenlygram! Сессия останется активной, чтобы вы могли восстановить ее позже.";
+"SessionBackup.Notice" = "Сессии шифруются и хранятся в Keychain этого устройства с пометкой «только для этого устройства».\n\nВАЖНО: они НЕ переносятся на новое устройство — ни зашифрованной резервной копией, ни «Быстрым началом». Войдите в аккаунт на новом устройстве до того, как сотрёте старое.\n\nПри этом они сохраняются, если удалить и заново установить Zenlygram на этом устройстве. Для просмотра и восстановления сохранённой сессии запрашивается Face ID, Touch ID или код-пароль устройства.\n\nПРИМЕЧАНИЕ: сессии всё ещё могут быть отозваны самим Telegram или с другого устройства.";
+"SessionBackup.Locked.Title" = "Бэкап аккаунтов заблокирован";
+"SessionBackup.Locked.Text" = "Сохранённые сессии дают вход в ваши аккаунты. Разблокируйте с помощью Face ID, Touch ID или код-пароля устройства, чтобы увидеть их.";
+"SessionBackup.Locked.Action" = "Разблокировать";
+"SessionBackup.AuthReason" = "Разблокировать бэкап аккаунтов";
+"SessionBackup.RestoreConfirm.Title" = "Восстановить сессии?";
+"SessionBackup.RestoreConfirm.Text" = "В Zenlygram будет добавлено сохранённых аккаунтов: %@. Каждая восстановленная сессия входит без кода.";
+"SessionBackup.PreviousInstall.Notice" = "Эти сессии сохранены прежней установкой Zenlygram на этом устройстве.";
+"SessionBackup.ReadError" = "Не удалось прочитать бэкап. Разблокируйте устройство и попробуйте снова.";
+
+"MessageFilter.Title" = "Фильтр сообщений";
+"MessageFilter.SubTitle" = "Убирает отвлекающие факторы и уменьшает видимость сообщений, содержащих ключевые слова ниже.\nКлючевые слова чувствительны к регистру.";
+"MessageFilter.Keywords.Title" = "Ключевые слова";
+"MessageFilter.InputPlaceholder" = "Введите слово";
+
+"InputToolbar.Title" = "Панель форматирования";
+
+"Notifications.MentionsAndReplies.Title" = "@Упоминания и ответы";
+"Notifications.MentionsAndReplies.value.default" = "По умолчанию";
+"Notifications.MentionsAndReplies.value.silenced" = "Без звука";
+"Notifications.MentionsAndReplies.value.disabled" = "Выключено";
+"Notifications.PinnedMessages.Title" = "Сообщение закреплено";
+"Notifications.PinnedMessages.value.default" = "По умолчанию";
+"Notifications.PinnedMessages.value.silenced" = "Без звука";
+"Notifications.PinnedMessages.value.disabled" = "Выключено";
+
+
+"PayWall.Text" = "Секретное хранилище, блокировка чатов, задачи и история изменений — в одной подписке.";
+
+"PayWall.SessionBackup.Title" = "Бэкап Аккаунтов";
+"PayWall.SessionBackup.Notice" = "Вход в аккаунты без кода, даже после переустановки на этом устройстве. Безопасное хранение в Keychain на устройстве.";
+"PayWall.SessionBackup.Description" = "Удаление и повторная установка Zenlygram на этом устройстве больше не проблема. Восстановите все Сессии, которые активны на серверах Telegram. Сохранённые сессии остаются на этом устройстве и не переносятся на новое.";
+
+"PayWall.MessageFilter.Title" = "Фильтр сообщений";
+"PayWall.MessageFilter.Notice" = "Уменьшает видимость навязчивых сообщений со СПАМом или рекламой.";
+"PayWall.MessageFilter.Description" = "Создайте список ключевых слов, которые вы не хотите встречать, и Zenlygram снизит их видимость.";
+
+"PayWall.Notifications.Title" = "Отключение @тэгов и ответов";
+"PayWall.Notifications.Notice" = "Скрывает или приглушает неважные уведомления.";
+"PayWall.Notifications.Description" = "Никаких больше Закрепов или @тэгов, когда нужно побыть в тишине.";
+
+"PayWall.InputToolbar.Title" = "Панель форматирования";
+"PayWall.InputToolbar.Notice" = "Экономит время, форматируя сообщения всего одним касанием.";
+"PayWall.InputToolbar.Description" = "Применяйте и очищайте форматирование, переносите абзацы как Pro.";
+
+"PayWall.AppIcons.Title" = "Уникальные иконки приложения";
+"PayWall.AppIcons.Notice" = "Настройка внешнего вида Zenlygram на главном экране.";
+
+"PayWall.About.Title" = "О Zenlygram Pro";
+"PayWall.About.Notice" = "Zenlygram — клиент Telegram с открытым исходным кодом, который уважает вашу конфиденциальность и не добавляет собственной рекламы или отслеживания. Поддерживать его в ногу с ежемесячными обновлениями Telegram — большой труд, и именно его оплачивает Zenlygram Pro.\n\nВсё остальное в Zenlygram остаётся бесплатным.";
+
+"PayWall.RestorePurchases" = "Восстановить покупки";
+"PayWall.Terms" = "Условия использования";
+"PayWall.Privacy" = "Политика конфиденциальности";
+"PayWall.Notice.Markdown" = "Оформляя подписку, вы соглашаетесь с [Условиями использования (EULA)](%1$@) и [Политикой конфиденциальности](%2$@).";
+"PayWall.Notice.Raw" = "Оформляя подписку, вы соглашаетесь с Условиями использования (EULA) и Политикой конфиденциальности.";
+
+"PayWall.Button.OpenPro" = "Pro функции";
+"PayWall.Button.Purchasing" = "Покупка...";
+"PayWall.Button.Restoring" = "Восстановление покупок...";
+"PayWall.Button.Validating" = "Подтверждение…";
+"PayWall.Button.PaymentsUnavailable" = "Платежи недоступны";
+"PayWall.Button.Subscribe" = "Подписаться за %@";
+"PayWall.Button.ContactingAppStore" = "Подключение к App Store...";
+
+"Paywall.Error.Title" = "Ошибка";
+"PayWall.ValidationError" = "Ошибка проверки";
+"PayWall.ValidationError.TryAgain" = "Что-то пошло не так во время проверки оплаты. Не волнуйтесь! Попробуйте Восстановить Покупки чуть позже.";
+"PayWall.ValidationError.Expired" = "Ваша подписка истекла. Подпишитесь снова, чтобы восстановить доступ к Pro функциям.";
+
+"AppBadge.Title" = "Бэйдж приложения";
+"AppBadge.Notice" = "Настройка Бэйджа приложения на скриншотах";
+
+"Settings.NY.Header" = "НОВОГОДНИЕ ЭФФЕКТЫ";
+"Settings.NY.Style" = "Стиль";
+"Settings.NY.Style.default" = "Выключено";
+"Settings.NY.Style.snow" = "Снег";
+"Settings.NY.Style.lightning" = "Молнии";
+"Settings.NY.Notice" = "Доступны только на ограниченное время!";
+
+"Settings.AiAssistant" = "ИИ-ПОМОЩНИК";
+"Settings.AiAssistant.Enable" = "Включить ИИ-помощника";
+"Settings.AiAssistant.ApiKey" = "Ключ API Anthropic";
+"Settings.AiAssistant.Notice" = "Хранится только в Keychain этого устройства и отправляется напрямую на api.anthropic.com. Получить ключ: console.anthropic.com.";
+"Settings.AiAssistant.Save" = "Сохранить";
+"Settings.AiAssistant.Clear" = "Очистить";
+"Settings.AiAssistant.Cancel" = "Отмена";
+"Settings.AiAssistant.ApiKey.Missing" = "Сначала укажите ключ API Anthropic.";
+"Chat.ContextMenu.AiAssistant" = "ИИ-помощник";
+"Chat.ContextMenu.AiAssistant.Summarize" = "Изложить сообщение";
+"Chat.ContextMenu.AiAssistant.Translate" = "Перевести";
+"Chat.ContextMenu.AiAssistant.DraftReply" = "Черновик ответа";
+"Chat.ContextMenu.AiAssistant.InsertReply" = "Вставить в сообщение";
+"Chat.ContextMenu.AiAssistant.SetApiKey" = "Указать ключ API…";
+"Settings.AiAssistant.ApiKey.MissingDetail" = "ИИ-помощнику нужен ваш собственный ключ API Anthropic. Он хранится только в Keychain этого устройства и используется для отправки запросов напрямую на api.anthropic.com. Получить ключ: console.anthropic.com.";
+"Chat.ContextMenu.AiAssistant.SendNotice" = "Текст выбранного сообщения будет отправлен в Anthropic (api.anthropic.com) для обработки. Продолжайте только с тем содержимым, которым вы готовы поделиться.";
+"Chat.ContextMenu.AiAssistant.SendNotice.Continue" = "Отправить в Anthropic";
+"AiAssistant.Disclosure.Text" = "При использовании ИИ-ассистента текст выбранного сообщения отправляется на серверы Anthropic (api.anthropic.com) для обработки. Ваш API-ключ хранится только в Связке ключей этого устройства и используется только для этих запросов.";
+"AiAssistant.Disclosure.Continue" = "Продолжить";
+"AiAssistant.KeychainError.Title" = "Ошибка Связки ключей";
+"AiAssistant.KeychainError.Save" = "Не удалось сохранить API-ключ в Связке ключей устройства. Попробуйте ещё раз.";
+"AiAssistant.KeychainError.Clear" = "Не удалось удалить API-ключ из Связки ключей устройства. Попробуйте ещё раз.";
+"AiAssistant.Error.KeychainRead" = "Не удалось прочитать API-ключ из Связки ключей устройства. Разблокируйте устройство и попробуйте ещё раз.";
+"AiAssistant.Error.InvalidKey" = "Ваш API-ключ Anthropic отклонён: он недействителен или просрочен. Проверьте ключ и попробуйте ещё раз.";
+"AiAssistant.Error.RateLimited" = "Слишком много запросов. Попробуйте позже.";
+"AiAssistant.Error.RateLimited.Retry" = "Слишком много запросов. Повторите через %@ сек.";
+"AiAssistant.Error.Network" = "Не удалось выполнить запрос. Проверьте подключение к интернету и попробуйте ещё раз.";
+
+"Settings.AutoProxy" = "Авто-прокси";
+"Settings.DisableAutoDownload" = "Отключить автозагрузку";
+"Settings.DisableAutoDownload.Desc" = "Отключает автозагрузку медиа во всех сетях.";
+"Settings.AutoAcceptRequests" = "Авто-приём заявок";
+"Settings.AutoAcceptRequests.Desc" = "Автоматически принимает заявки на вступление в группы и каналы, где вы админ.";
+"Settings.AutoProxy.Notice" = "Если включено, при запуске приложение автоматически выбирает и поддерживает рабочий прокси из встроенного списка. Настроенный вами прокси никогда не заменяется. По умолчанию выключено.";
+"AutoProxy.Title" = "Авто-прокси";
+"AutoProxy.Status.On" = "Авто-прокси включён. Рабочий прокси выбирается автоматически.";
+"AutoProxy.Status.Off" = "Авто-прокси выключен. Включите, чтобы автоматически выбрать рабочий прокси, если соединение заблокировано.";
+"AutoProxy.Enable" = "Включить авто-прокси";
+"AutoProxy.Disable" = "Выключить авто-прокси";
+
+// MARK: Novagram-style setting descriptions
+"Settings.AutoProxy.Desc" = "Автоматически включать прокси при блокировке Telegram.";
+"Settings.HelperBots.Desc" = "Управление ботами-помощниками для быстрого доступа.";
+"Settings.HelperBots.Unavailable" = "Этот бот-помощник пока недоступен.";
+"Settings.Tasks.Desc" = "Ведите личный список задач прямо в приложении.";
+"Settings.ChatLock.Desc" = "Защитите выбранные чаты отдельным пин-кодом, не связанным с код-паролем устройства.";
+"Settings.ChatLock.On" = "Вкл";
+"Settings.ChatLock.Off" = "Выкл";
+"Settings.ChatLock.Disable.Title" = "Отключить блокировку чатов?";
+"Settings.ChatLock.Disable.Text" = "Это удалит главный пин-код и разблокирует все чаты. Сообщения не удаляются.";
+"Settings.ChatLock.Disable.Action" = "Отключить";
+"ChatLock.Notification.RedactedTitle" = "Новое сообщение";
+"ChatLock.Notification.RedactedText" = "Сообщение в заблокированном чате";
+"Settings.UnreadReminder.Desc" = "Напоминает о непрочитанных сообщениях.";
+"Settings.BlockForeignUsers.Desc" = "Скрывает ваши личные чаты, код страны которых отличается от вашего. Только локальный визуальный фильтр — никого не блокирует и не фильтрует.";
+"Settings.RoundVideoFromGallery.Desc" = "Отправляйте кружочки из галереи.";
+"Settings.Translation.QuickTranslateButton.Desc" = "Показывать кнопку быстрого перевода в меню сообщения. Не показывается в секретных чатах и для сообщений с запретом копирования.";
+"Settings.forceBuiltInMic.Desc" = "Всегда записывать голосовые сообщения на встроенный микрофон.";
+"Settings.ForceTCP" = "Принудительный TCP";
+"Settings.ForceTCP.Desc" = "Принудительно использовать TCP вместо UDP для звонков.";
+"Settings.Photo.SendLarge.Desc" = "Отправлять фотографии в более высоком разрешении.";
+"Settings.Stickers.Timestamp.Desc" = "Показывать время на стикерах в чатах.";
+"Settings.VideoNotes.StartWithRearCam.Desc" = "Начинать запись видеосообщений с задней камеры.";
+"Settings.Tabs.HideTabBar.Desc" = "Полностью скрыть нижнюю панель вкладок.";
+"Settings.Tabs.ShowContacts.Desc" = "Показывать вкладку «Контакты» на панели вкладок.";
+"Settings.Tabs.ShowCalls.Desc" = "Показывать вкладку «Звонки» на панели вкладок.";
+"Settings.Tabs.ShowTasks.Desc" = "Показывать вкладку «Задачи» на панели вкладок. Скрытие убирает только вкладку: задачи сохраняются и открываются через «Задачи» в разделе Настройки → Zenlygram.";
+"Settings.Tabs.ShowNames.Desc" = "Показывать подписи под иконками вкладок.";
+"Settings.Tabs.SearchButton.Desc" = "Добавить кнопку поиска на панель вкладок.";
+"Settings.Tabs.WideTabBar.Desc" = "Использовать более широкий вид панели вкладок.";
+"Settings.Folders.BottomTab.Desc" = "Показывать папки панелью внизу экрана.";
+"Settings.Folders.AllChatsHidden.Desc" = "Скрыть вкладку папки «Все чаты».";
+"Settings.Folders.CompactNames.Desc" = "Использовать короткие названия папок для экономии места.";
+"Settings.Folders.RememberLast.Desc" = "Открывать последнюю использованную папку при запуске.";
+"Settings.ShowProfileID.Desc" = "Показывать внутренний ID Telegram в профилях пользователей и чатов.";
+"Settings.ShowDC.Desc" = "Показывать, в каком дата-центре размещён аккаунт.";
+"Settings.ShowRegDate.Desc" = "Показывать примерную дату регистрации аккаунта в профиле.";
+"Settings.ShowCreationDate.Desc" = "Показывать примерную дату создания чатов и каналов.";
+"Settings.CallConfirmation.Desc" = "Запрашивать подтверждение перед началом звонка.";
+"Settings.Stories.Hide.Desc" = "Скрыть ленту историй из списка чатов.";
+"Settings.Stories.DisableSwipeToRecord.Desc" = "Отключить запись истории свайпом в камере.";
+"Settings.Stories.WarnBeforeView.Desc" = "Предупреждать перед открытием истории, чтобы автор не был уведомлён случайно.";
+"Settings.Stories.RepostToStory.Desc" = "Показывать кнопку репоста в историю на сообщениях.";
+"Settings.Stories.StealthMode.Desc" = "Просматривать истории, не оставляя следа в списке просмотров.";
+"Settings.AiAssistant.Enable.Desc" = "Включить встроенного ИИ-ассистента в чатах.";
+"Settings.AiAssistant.ApiKey.Desc" = "Задайте API-ключ для ИИ-ассистента.";
+"ContextMenu.SaveToCloud.Desc" = "Показывать «Сохранить в облако» в контекстном меню сообщения.";
+"Settings.ContextShowHideForwardName.Desc" = "Показывать опцию скрытия имён отправителей при пересылке.";
+"ContextMenu.SelectFromUser.Desc" = "Показывать «Выбрать сообщения этого пользователя» в меню.";
+"Settings.ContextShowRestrict.Desc" = "Показывать опцию ограничения/бана в контекстном меню.";
+"Settings.ContextShowReport.Desc" = "Показывать опцию жалобы в контекстном меню.";
+"Settings.ContextShowReply.Desc" = "Показывать опцию ответа в контекстном меню.";
+"Settings.ContextShowPin.Desc" = "Показывать опцию закрепления в контекстном меню.";
+"Settings.ContextShowSaveMedia.Desc" = "Показывать «Сохранить в Файлы» для медиа в контекстном меню.";
+"Settings.ContextShowMessageReplies.Desc" = "Показывать опцию просмотра обсуждения в контекстном меню.";
+"Settings.ContextShowJson.Desc" = "Показывать необработанный JSON сообщения в контекстном меню.";
+"ContextMenu.EditedHistory.Desc" = "Показывать историю изменений сообщения из контекстного меню. Хранятся только последние 20 изменений сообщения.";
+"Settings.swipeForVideoPIP.Desc" = "Смахните видео вверх, чтобы открыть режим «Картинка в картинке».";
+"Settings.showChannelBottomButton.Desc" = "Показывать кнопку присоединения или отключения звука внизу каналов.";
+"Settings.wideChannelPosts.Desc" = "Показывать посты каналов на всю ширину экрана.";
+"Settings.secondsInMessages.Desc" = "Показывать секунды во времени сообщений.";
+"Settings.messageDoubleTapActionOutgoingEdit.Desc" = "Двойное касание своего сообщения открывает редактирование.";
+"Settings.RecordingButton.Desc" = "Показывать кнопку записи голоса и видео в панели ввода.";
+"Settings.SnapDeletionEffect.Desc" = "Проигрывать анимацию распада при удалении сообщения.";
+"Settings.SendAsButton.Desc" = "Показывать кнопку выбора отправителя сообщения.";
+"Settings.GalleryCamera.Desc" = "Показывать ячейку камеры в медиагалерее.";
+"Settings.GalleryCameraPreview.Desc" = "Показывать живой предпросмотр в ячейке камеры галереи.";
+"Settings.PullToNextChannel.Desc" = "Прокрутите за конец, чтобы открыть следующий непрочитанный канал.";
+"Settings.PullToNextTopic.Desc" = "Прокрутите за конец, чтобы открыть следующую тему.";
+"Settings.HideReactions.Desc" = "Скрывать реакции на сообщениях.";
+"Settings.UploadsBoost.Desc" = "Ускорить загрузку медиа за счёт большего числа параллельных соединений. Быстрее, но сетевой шаблон более узнаваем.";
+"Settings.SendWithReturnKey.Desc" = "Отправлять сообщения нажатием клавиши ввода.";
+"Settings.ForceEmojiTab.Desc" = "Всегда открывать вкладку эмодзи первой в панели стикеров.";
+"Settings.DefaultEmojisFirst.Desc" = "Показывать стандартные эмодзи перед пользовательскими.";
+"Settings.HidePhoneInSettingsUI.Desc" = "Скрывать номер телефона на экране настроек.";
+
+
+/* Zenlygram — new IA section headers */
+"Settings.Privacy.HiddenChats.Header" = "СКРЫТЫЕ И ЗАБЛОКИРОВАННЫЕ ЧАТЫ";
+"Settings.Privacy.Invisible.Header" = "ДОПОЛНИТЕЛЬНАЯ ПРИВАТНОСТЬ";
+"Settings.Composing.Header" = "ВВОД И ОТПРАВКА";
+"Settings.CameraPicker.Header" = "КАМЕРА И ГАЛЕРЕЯ";
+
+/* Zenlygram — kept-deleted messages and edit history retention (Batch 6) */
+"Settings.ShowDeletedMessages.Disable.Title" = "Отключить сохранение удалённых?";
+"Settings.ShowDeletedMessages.Disable.Text" = "Сохранено сообщений на этом устройстве: %@. Они будут удалены. Это действие нельзя отменить.";
+"Settings.ShowDeletedMessages.Disable.Action" = "Отключить и удалить";
+"Settings.EditHistory" = "Сохранять историю изменений";
+"Settings.EditHistory.Desc" = "Сохраняет прежние версии изменённых сообщений только на этом устройстве: до 20 на сообщение, каждая удаляется через 30 дней. Открыть: долгое нажатие → «История изменений». Просмотр версий — часть Zenlygram Pro. При отключении сохранённые версии удаляются.";
+/* Zenlygram — то же описание, пока ни один экран Pro не показывается (подписанная политика бесплатна, подписки нет): без упоминания Pro. */
+"Settings.EditHistory.Desc.Free" = "Сохраняет прежние версии изменённых сообщений только на этом устройстве: до 20 на сообщение, каждая удаляется через 30 дней. Открыть: долгое нажатие → «История изменений». При отключении сохранённые версии удаляются.";
+"Settings.EditHistory.Disable.Title" = "Отключить историю изменений?";
+"Settings.EditHistory.Disable.Text" = "Сообщений с сохранёнными версиями на этом устройстве: %@. Сохранённые версии будут удалены. Это действие нельзя отменить.";
+"Settings.EditHistory.Disable.Action" = "Отключить и удалить";
+"Settings.Retention.Removed" = "Удалено с этого устройства";
+"ContextMenu.KeptDeleted.RemoveAllInChat" = "Убрать все удалённые в этом чате";
+"ContextMenu.KeptDeleted.RemoveAllInChat.Text" = "Сохранённых удалённых сообщений в этом чате: %@. Они будут удалены с этого устройства.";
+"Chat.KeptDeleted.VoiceOver" = "Удалённое сообщение, удалено %@";
+"Chat.KeptDeleted.VoiceOver.NoDate" = "Удалённое сообщение";
+"Chat.KeptDeleted.MediaUnavailable" = "Недоступно";
+"Chat.KeptDeleted.MediaUnavailable.Text" = "Этот файл не сохранён на устройстве, и его нельзя загрузить, потому что сообщение удалено.";
+
+
+/* Zenlygram — подписка (SGEntitlement): ограниченный режим, привязка аккаунта и семейство 401. */
+"Entitlement.Message.NotLinked" = "Привяжите аккаунт Telegram, чтобы пользоваться Zenlygram Pro на этом устройстве.";
+"Entitlement.Message.SubscriptionEnded" = "Подписка Zenlygram Pro закончилась. Хранилище, заблокированные чаты и задачи остаются доступными, а уже сохранённые удалённые и изменённые сообщения можно по-прежнему читать. Новые не сохраняются, пока вы снова не оформите подписку.";
+"Entitlement.Message.PaidModeNotice" = "Zenlygram Pro теперь доступен по подписке. Хранилище, заблокированные чаты и задачи остаются доступными, а уже сохранённые удалённые и изменённые сообщения можно по-прежнему читать. Для создания новых нужна подписка Zenlygram Pro.";
+"Entitlement.Message.ReconnectToRestore" = "Подключитесь, чтобы восстановить Zenlygram Pro. Хранилище, заблокированные чаты и задачи остаются доступными, а уже сохранённые удалённые и изменённые сообщения можно по-прежнему читать.";
+"Entitlement.Message.UpdateTheApp" = "Обновите Zenlygram, чтобы продолжить пользоваться функциями Pro.";
+"Entitlement.Message.CheckDateAndTime" = "Проверьте дату и время на устройстве и попробуйте ещё раз.";
+"Entitlement.Message.SignInAgain" = "Войдите снова, чтобы привязать это устройство.";
+"Entitlement.Message.SignedOutForSecurity" = "Устройство было отключено в целях безопасности. Войдите снова, чтобы привязать его.";
+"Entitlement.Message.LinkingUnavailable" = "Привязка временно недоступна. Попробуйте чуть позже.";
+"Entitlement.Message.LinkingDeclined" = "Привязка отклонена.";
+"Entitlement.Message.LinkingCodeExpired" = "Срок действия кода истёк.";
+"Entitlement.Message.LinkingDidNotGoThrough" = "Не получилось. Получите новый код и попробуйте снова.";
+"Entitlement.Message.LinkingMergeConflict" = "Вы вошли. На этом устройстве уже была отдельная подписка — ничего не потеряно, обе остаются активными.";
+"Entitlement.Message.NoConnection" = "Нет соединения.";
+"Entitlement.Message.TooManyAttempts" = "Слишком много попыток. Повторите чуть позже.";
+"Entitlement.Message.TrialAlreadyUsed" = "Пробный период уже использован.";
+"Entitlement.Message.TrialDeviceCap" = "На этом устройстве пробный период уже использовали.";
+"Entitlement.Message.TrialDeviceBlocked" = "Пробный период недоступен на этом устройстве.";
+"Entitlement.Message.TrialUnavailable" = "Пробный период временно недоступен.";
+"Entitlement.Message.TrialNotOffered" = "Пробный период сейчас не предлагается.";
+"Entitlement.Message.PurchaseNeedsHelp" = "Покупка пока не подтверждена. Повторно деньги не списаны — нажмите «Восстановить покупки».";
+"Entitlement.Message.TemporarilyUnavailable" = "Временно недоступно. Попробуйте позже.";
+
+
+/* Zenlygram — строки подписки в настройках (design §8.3 item 20).
+   Ни одна из них не должна содержать ссылку или призыв к покупке вне App Store (пункт 3.1.3(b)). */
+"Settings.Pro.Header" = "ZENLYGRAM PRO";
+"Settings.Pro.Subscription" = "Подписка";
+"Settings.Pro.Status.Inactive" = "Выкл.";
+"Settings.Pro.Status.FreeUntil" = "Бесплатно до %@";
+"Settings.Pro.Restore" = "Восстановить покупки";
+"Settings.Pro.Restore.InProgress" = "Восстанавливаем…";
+"Settings.Pro.Restore.Done" = "Готово. Покупки, найденные в этом Apple Account, восстановлены.";
+"Settings.Pro.LinkAccount" = "Аккаунт Telegram";
+"Settings.Pro.LinkAccount.Linked" = "Привязан";
+"Settings.Pro.LinkAccount.NotLinked" = "Не привязан";
+"Settings.Pro.Notice" = "Pro открывает Секретное хранилище, Замок чата, Задачи и Историю изменений. Всё, что вы уже скрыли, заперли или записали, остаётся полностью доступным — с подпиской и без неё. Удалённые и изменённые сообщения сохраняются, пока включены «Показывать удалённые сообщения» и «Сохранять историю изменений» (в разделе «Удалённые и изменённые», по умолчанию включены) и Pro бесплатен или ваша подписка активна; сохранённое всегда можно прочитать и удалить.";
+"Settings.Pro.Restore.NothingFound" = "На этом Apple Account покупок Zenlygram Pro не найдено. Если вы платили с другого — войдите в него в настройках и повторите.";
+/* Zenlygram — нейтральный заголовок над строкой «Аккаунт Telegram»: привязка — шаг идентификации
+   (облачные Задачи, согласие на обработку данных), показывается независимо от раздела ZENLYGRAM PRO. */
+"Settings.Account.Header" = "АККАУНТ";
+/* Zenlygram — Настройки → Zenlygram: хаб и страницы (IA настроек, 2026-11): три заголовка блоков хаба
+   и названия строк, открывающих страницу (они же заголовки страниц). Settings.Account.Header,
+   Settings.Tools.Header, Settings.Privacy.HiddenChats.Header и Settings.CallRecording остаются в таблицах,
+   на этом экране не используются — до следующей чистки строк. */
+"Settings.Hub.Features.Header" = "ОСНОВНЫЕ ФУНКЦИИ";
+"Settings.AccountData.Header" = "АККАУНТ И ДАННЫЕ";
+"Settings.Hub.Groups.Header" = "ДРУГИЕ НАСТРОЙКИ";
+"Settings.Hub.History" = "Удалённые и изменённые";
+"Settings.Hub.CallRecording" = "Запись звонков";
+"Settings.Hub.Chats" = "Чаты и папки";
+"Settings.Hub.Messages" = "Сообщения и ввод";
+"Settings.Hub.MessageMenu" = "Меню сообщения";
+"Settings.Hub.TabBar" = "Панель вкладок";
+"Settings.Hub.Privacy" = "Приватность и профили";
+"Settings.Hub.Translation" = "Перевод и голос";
+"Settings.Hub.Media" = "Медиа";
+"Settings.Hub.Colors" = "Цвета и эффекты";
+"Settings.Hub.CallsAdvanced" = "Звонки и дополнительно";
+"Settings.DeletedMessages.Header" = "УДАЛЁННЫЕ СООБЩЕНИЯ";
+"Settings.Reminders.Header" = "НАПОМИНАНИЯ";
+
+
+/* Zenlygram — покупки в App Store (SGIAP). Ни одна из этих строк не ведёт к оплате вне App Store. */
+"IAP.Message.PaymentsUnavailable" = "Покупки на этом устройстве недоступны.";
+"IAP.Message.RequiresNewerOS" = "Для подписки нужна более новая версия iOS. Хранилище, заблокированные чаты и задачи остаются доступными.";
+"IAP.Message.ProductsUnavailable" = "App Store не ответил. Попробуйте ещё раз чуть позже.";
+"IAP.Message.PurchasePending" = "Ждём подтверждения. Zenlygram Pro включится сразу после одобрения покупки.";
+"IAP.Message.StoreOperationInProgress" = "Другая покупка или восстановление в App Store ещё не завершены. Ничего нового не начато и ничего не списано — дождитесь окончания и попробуйте снова.";
+"IAP.Message.PurchaseCompleted" = "Zenlygram Pro активен. Спасибо!";
+"IAP.Message.RestoreCompleted" = "Покупка восстановлена.";
+"IAP.Message.NothingToRestore" = "Для этого Apple ID покупок не найдено. Проверьте, что вы вошли с того Apple ID, с которого оформляли подписку.";
+
+
+/* Zenlygram — экран подписки, привязка аккаунта и ограниченный режим (SGPayWall). */
+"Common.Cancel" = "Отмена";
+"Common.Close" = "Закрыть";
+"PayWall.Vault.Title" = "Секретное хранилище";
+"PayWall.Vault.Notice" = "Скрывайте чаты за отдельным PIN-кодом.";
+"PayWall.Vault.Description" = "Скрытые чаты исчезают из списка чатов, из поиска в приложении и из контактов и возвращаются только после ввода PIN-кода хранилища. Это локальная блокировка в этом приложении на этом устройстве — чаты остаются в вашем аккаунте Telegram.";
+"PayWall.ChatLock.Title" = "Блокировка чатов";
+"PayWall.ChatLock.Notice" = "Закрывайте отдельные чаты пинкодом.";
+"PayWall.ChatLock.Description" = "Заблокированный чат открывается только по пинкоду, а предпросмотр его сообщений скрыт в списке чатов и в уведомлениях. Скрытие предпросмотра — это настройка конфиденциальности: оно работает независимо от подписки.";
+"PayWall.Tasks.Title" = "Задачи";
+"PayWall.Tasks.Notice" = "Список дел рядом с чатами.";
+"PayWall.Tasks.Description" = "Задачи и чек-листы. С вашим согласием на обработку данных они синхронизируются через сервер Zenlygram, а задачи, которые уже есть на этом устройстве, один раз копируются туда; без согласия они остаются на этом устройстве.";
+"PayWall.EditHistory.Title" = "История изменений";
+"PayWall.EditHistory.Notice" = "Сохраняйте удалённые и изменённые сообщения.";
+"PayWall.EditHistory.Description" = "«Показывать удалённые сообщения» и «Сохранять историю изменений» включены по умолчанию, их можно выключить в настройках. Пока они включены, Zenlygram сохраняет сообщения, которые удаляют другие, и прежние версии сообщений, которые они редактируют, — только на этом устройстве, на 30 дней (до 5 000 удалённых сообщений на аккаунт и до 20 версий на сообщение). Всё сохранённое можно читать и удалять — с подпиской и без неё. Когда Zenlygram Pro — платная подписка, для сохранения новых она нужна.";
+"PayWall.LapsePolicy.Short" = "Если подписка закончится, хранилище, заблокированные чаты и задачи останутся открытыми, как и раньше, а уже сохранённые удалённые и изменённые сообщения можно по-прежнему читать. Новые снова будут сохраняться после оформления подписки.";
+"PayWall.Degraded.Reassurance" = "Ничего не удалено, не раскрыто и не разблокировано. Хранилище, заблокированные чаты и задачи открываются точно так же, как раньше, а уже сохранённые удалённые и изменённые сообщения можно по-прежнему читать.";
+"PayWall.Degraded.StillWorks.Title" = "Работает и без подписки";
+"PayWall.Degraded.StillWorks.Vault" = "Открывать Секретное хранилище по PIN-коду, читать скрытые чаты и возвращать любой из них";
+"PayWall.Degraded.StillWorks.ChatLock" = "Разблокировать чат пинкодом, удалять пинкод, а предпросмотр сообщений остаётся скрытым в списке чатов и в уведомлениях";
+"PayWall.Degraded.StillWorks.Tasks" = "Читать, изменять, завершать и удалять уже созданные задачи";
+"PayWall.Degraded.StillWorks.EditHistory" = "Читать и удалять уже сохранённые удалённые и изменённые сообщения — они, как обычно, хранятся 30 дней";
+"PayWall.Degraded.Blocked.Title" = "Требует активной подписки";
+"PayWall.Degraded.Blocked.Vault" = "Добавление нового чата в хранилище";
+"PayWall.Degraded.Blocked.ChatLock" = "Установка пинкода на чат, где его ещё нет";
+"PayWall.Degraded.Blocked.Tasks" = "Создание новой задачи";
+"PayWall.Degraded.Blocked.EditHistory" = "Сохранение новых удалённых и изменённых сообщений";
+"PayWall.Degraded.Nothing" = "Подписка никогда ничего не удаляет, не раскрывает и не разблокирует, и она не нужна, чтобы добраться до уже сохранённого: хранилище, заблокированные чаты, задачи и сохранённые сообщения работают офлайн, даже если Zenlygram больше никогда не сможет проверить подписку.";
+"PayWall.Plan.Monthly" = "На месяц";
+"PayWall.Plan.Yearly" = "На год";
+"PayWall.Plan.Other" = "Подписка";
+"PayWall.Plan.PerMonth" = "%@ / месяц";
+"PayWall.Plan.PerYear" = "%@ / год";
+"PayWall.Plan.Save" = "Выгода %@";
+"PayWall.Plan.Trial" = "%@ дней бесплатно";
+"PayWall.Button.StartTrial" = "Начать бесплатный период";
+"PayWall.Trial.Notice" = "%1$@ дней бесплатно, затем %2$@. Отменить можно в любой момент.";
+"PayWall.ServerTrial.Button.One" = "Попробовать %@ день бесплатно";
+"PayWall.ServerTrial.Button.Few" = "Попробовать %@ дня бесплатно";
+"PayWall.ServerTrial.Button.Many" = "Попробовать %@ дней бесплатно";
+"PayWall.ServerTrial.Disclosure.One" = "Этот пробный период на %@ день предоставляет Zenlygram, а не App Store: платёжные данные не нужны, и по его окончании ничего не списывается. Затем для создания новых элементов в Хранилище, Блокировке чатов и Задачах и для сохранения новых удалённых или изменённых сообщений нужна подписка; всё уже сохранённое остаётся доступным.";
+"PayWall.ServerTrial.Disclosure.Few" = "Этот пробный период на %@ дня предоставляет Zenlygram, а не App Store: платёжные данные не нужны, и по его окончании ничего не списывается. Затем для создания новых элементов в Хранилище, Блокировке чатов и Задачах и для сохранения новых удалённых или изменённых сообщений нужна подписка; всё уже сохранённое остаётся доступным.";
+"PayWall.ServerTrial.Disclosure.Many" = "Этот пробный период на %@ дней предоставляет Zenlygram, а не App Store: платёжные данные не нужны, и по его окончании ничего не списывается. Затем для создания новых элементов в Хранилище, Блокировке чатов и Задачах и для сохранения новых удалённых или изменённых сообщений нужна подписка; всё уже сохранённое остаётся доступным.";
+"PayWall.Grace.Notice" = "Всё в Zenlygram Pro бесплатно до %@ — ничего делать не нужно. Затем подписка позволит создавать новые защищённые элементы и сохранять новые удалённые и изменённые сообщения; уже сохранённое останется доступным.";
+"PayWall.Disclosure" = "Zenlygram Pro — автопродлеваемая подписка. Оплата списывается с вашего аккаунта Apple при подтверждении покупки. Подписка продлевается автоматически, если автопродление не отключено минимум за 24 часа до конца текущего периода; списание за продление происходит в течение 24 часов до конца периода. Управлять подпиской или отменить её можно в Настройках > [ваше имя] > Подписки.";
+"PayWall.Disclosure.Short" = "Продлевается автоматически до отмены.";
+"PayWall.ManageSubscription" = "Управление подпиской";
+"PayWall.EULA" = "Условия использования (EULA)";
+"PayWall.LinkAccount.Notice" = "Необязательно. Привязка переносит подписку на ваши другие устройства; покупка работает и без неё.";
+"LinkAccount.Title" = "Привязать аккаунт Telegram";
+"LinkAccount.Intro" = "Привязка подтверждает, какому аккаунту Telegram принадлежит подписка: так она работает на других ваших устройствах и возвращается после переустановки. Скрытые и заблокированные чаты остаются на этом устройстве. С вашим согласием на обработку данных задачи синхронизируются через наш сервер.";
+"LinkAccount.Intro.Free" = "Привязка подтверждает, какой это аккаунт Telegram: так ваше согласие на обработку данных и синхронизированные задачи работают на других ваших устройствах и возвращаются после переустановки. Скрытые и заблокированные чаты остаются на этом устройстве. С вашим согласием на обработку данных задачи синхронизируются через наш сервер.";
+"LinkAccount.Linking" = "Привязываем…";
+"LinkAccount.Step.Code" = "ВАШ КОД ПРИВЯЗКИ";
+"LinkAccount.Code.Hint" = "Отправьте этот код боту @%@ в Telegram.";
+"LinkAccount.Code.Copied" = "Скопировано.";
+"LinkAccount.Code.CopyHint" = "Копирует код.";
+"LinkAccount.Expires" = "Истекает через %@";
+"LinkAccount.Waiting" = "Ждём подтверждения…";
+"LinkAccount.Warning" = "Подтверждайте, только если вы только что нажали «Привязать» в Zenlygram на этом устройстве.";
+"LinkAccount.GetNewCode" = "Получить новый код";
+"LinkAccount.Success.Title" = "Аккаунт Telegram привязан";
+"LinkAccount.Success.Text" = "Теперь Zenlygram Pro следует за этим аккаунтом Telegram на всех привязанных устройствах.";
+"LinkAccount.Success.Text.Free" = "Теперь Zenlygram узнаёт этот аккаунт Telegram на всех привязанных устройствах.";
+"LinkAccount.Unlink" = "Отвязать это устройство";
+"LinkAccount.Unlink.Text" = "Отвязка выйдет из аккаунта на этом устройстве. Подписка при этом не отменяется — привяжите снова, и оплаченный период продолжится. Хранилище, заблокированные чаты, задачи и сохранённые версии не затрагиваются. Даже при действующем согласии на обработку данных Zenlygram не будет сам заново привязывать этот аккаунт; привяжите его снова здесь.";
+"LinkAccount.Unlink.Text.Free" = "Отвязка выйдет из аккаунта Zenlygram на этом устройстве. Хранилище, заблокированные чаты, задачи и сохранённые версии не затрагиваются. Даже при действующем согласии на обработку данных Zenlygram не будет сам заново привязывать этот аккаунт; привяжите его снова здесь.";
+"LinkAccount.Unlink.Action" = "Отвязать";
+"Entitlement.Status.AvailableUntil" = "Pro доступен до %@";
+"Entitlement.Status.Available" = "Pro доступен";
+"Entitlement.Status.ViaAppStore" = "Активен по подписке App Store";
+"Entitlement.Status.UnlockedBuild" = "В этой сборке открыты все функции";
+"Entitlement.Status.Reconnect" = "Сейчас не проверить — подключитесь к сети";
+"Entitlement.Status.Lapsed" = "Подписка закончилась";
+"Entitlement.Status.OtherAccount" = "Активен другой аккаунт";
+"Entitlement.Status.OtherAccount.Notice" = "Этот экран открыт для другого аккаунта. Вернитесь назад и снова откройте Zenlygram Pro, чтобы увидеть активный аккаунт.";
+"Entitlement.Status.Linked" = "Привязан. Подписка доступна с этим аккаунтом Telegram на других ваших устройствах.";
+"Entitlement.Status.Restore.Detail" = "Ищет подписку, оформленную с Apple ID на этом устройстве.";
+"Entitlement.Plan.RenewsOn" = "Подписка App Store продлится %@";
+"Entitlement.Plan.EndsOn" = "Подписка App Store закончится %@ и не продлится.";
+"Entitlement.Plan.Active" = "Подписка App Store активна на этом Apple ID.";
+"Entitlement.Plan.BillingRetry" = "Apple не удалось продлить подписку App Store. Обновите способ оплаты в разделе «Управление подпиской».";
+"Entitlement.Plan.None" = "На этом Apple ID нет активной подписки App Store.";
+"Entitlement.Status.Inactive" = "Не активна на этом устройстве";
+"Entitlement.Status.Subscribe" = "Оформить подписку";
+"Entitlement.Status.ViewPlans" = "Тарифы";
+"Entitlement.Status.FreeUntil" = "Бесплатно до %@";
+/* Zenlygram — бесплатный режим: подписанная политика монетизации говорит, что Pro бесплатен для всех. Без обратного отсчёта, без покупки, без утверждения о подписке. Существующие подписки App Store принадлежат Apple, приложение их не отменяет. */
+"Entitlement.Status.FreeAccess" = "Сейчас бесплатно для всех";
+"Entitlement.Status.FreeAccess.Notice" = "Zenlygram Pro сейчас бесплатен для всех. В приложении ничего не продаётся и не списывается.";
+"Entitlement.Status.FreeAccess.ExistingSubscription" = "Ваша текущая подписка App Store управляется Apple и продлевается, пока вы не отмените её в разделе «Управление подпиской».";
+"Entitlement.Status.FreeAccess.ManagedByApple" = "Текущей подпиской App Store управляет Apple. Проверить, изменить или отменить её можно в разделе «Управление подпиской».";
+"Entitlement.Status.FreeAccess.AccountUntil" = "Собственный доступ Pro вашего аккаунта действует до %@";
+"PayWall.Text.Free" = "Секретное хранилище, блокировка чатов, задачи и история изменений — сейчас бесплатно для всех.";
+"PayWall.FreeAccess.Notice" = "Zenlygram Pro сейчас бесплатен для всех. Покупка не требуется.";
+"Settings.Pro.Status.Free" = "Бесплатно";
+"IAP.Message.SubscriptionsNotOffered" = "Zenlygram Pro сейчас бесплатен, поэтому купить ничего нового нельзя. Ничего не списано.";
+"IAP.Message.PurchaseCheckFailed" = "Не удалось проверить, доступна ли подписка. Проверьте подключение, дату и время и попробуйте снова. Ничего не списано.";
+"IAP.Message.PurchaseCheckBusy" = "Проверка ещё идёт — попробуйте через несколько секунд. Ничего не списано.";
+"PayWall.Button.CurrentPlan" = "Ваш текущий план";
+"PayWall.Button.Upgrade" = "Перейти за %@";
+"PayWall.Button.SwitchPlan" = "Перейти на этот план";
+"PayWall.Plan.DowngradeNotice" = "Переход произойдёт по окончании текущего периода. Сейчас ничего не списывается.";
+"PayWall.Plan.Renews" = "Продлится %@";
+"PayWall.Plan.Ends" = "Закончится %@";
+"PayWall.Plan.ChangesAtRenewal" = "Действует до %1$@, затем начнётся план «%2$@». Чтобы оставить этот план, откройте «Управление подпиской».";
+"PayWall.Plan.ScheduledNotice" = "Начнётся %@, когда закончится текущий план. До этого ничего не списывается. Отменить или изменить переход можно в «Управлении подпиской».";
+"PayWall.Plan.Badge.Current" = "Текущий";
+"PayWall.Plan.Badge.Scheduled" = "Запланирован";
+
+/* Zenlygram — локальная запись звонков. См. комментарий в en.lproj. */
+"Settings.CallRecording" = "ЗАПИСЬ ЗВОНКОВ";
+"Settings.CallRecording.Notify" = "Сообщать собеседнику";
+"Settings.CallRecording.Notify.Desc" = "При начале записи отправлять в чат сообщение об этом и проигрывать короткий сигнал вам. Звук в сам звонок добавить нельзя — собеседник ничего нового не услышит.";
+"Settings.CallRecording.Notice" = "Записи создаются на этом устройстве и не включаются в резервные копии. Они могут покинуть устройство через «Поделиться» или «Избранное». Автоматическая отправка по умолчанию выключена. «Избранное» — облачный чат Telegram: отправленные туда записи хранятся на серверах Telegram и не защищены сквозным шифрованием. Для записи может требоваться согласие собеседника; получить его — ваша ответственность.";
+"CallRecording.Button" = "Запись";
+"CallRecording.Indicator" = "Идёт запись звонка";
+"CallRecording.Consent.Title" = "Записать этот звонок?";
+"CallRecording.Consent.Text" = "Записываются обе стороны звонка: ваш голос и голос собеседника. Запись сохраняется на этом устройстве.\n\n«Поделиться» передаёт копию выбранному вами приложению или получателю. Отправка в «Избранное» загружает запись на серверы Telegram, где она не защищена сквозным шифрованием. Автоматическая отправка происходит только при включённой вами настройке.\n\nДля записи разговора может требоваться согласие всех участников. Вы отвечаете за получение необходимого согласия до начала записи.";
+"CallRecording.Consent.Accept" = "Понимаю, начать запись";
+"CallRecording.Notice.Message" = "🔴 Я записываю этот звонок.";
+"CallRecording.List.Title" = "Записи звонков";
+"CallRecording.List.Empty" = "Пока нет записей. Начните запись кнопкой «Запись» во время звонка.";
+"CallRecording.List.Empty.NoCallKit" = "Пока нет записей. На этом устройстве звонки записывать нельзя: для записи нужна интеграция со звонками iOS, а здесь она недоступна.";
+"CallRecording.List.Footer" = "Хранятся на этом устройстве. Запись покидает устройство, только если вы поделитесь ею или отправите её в «Избранное», — а отправленная в «Избранное» запись хранится на серверах Telegram и не защищена сквозным шифрованием.";
+"CallRecording.List.DeleteAll" = "Удалить все записи";
+"CallRecording.Play" = "Воспроизвести";
+"CallRecording.Stop" = "Остановить";
+"CallRecording.Playing" = "Играет";
+"CallRecording.Share" = "Поделиться…";
+"CallRecording.Delete" = "Удалить";
+"CallRecording.Delete.Title" = "Удалить запись";
+"CallRecording.Delete.Text" = "Оригинал будет удалён из раздела «Записи звонков». Отправленные, экспортированные или сохранённые в кэше Telegram копии могут остаться. Отменить удаление нельзя.";
+"CallRecording.DeleteAll.Title" = "Удалить все записи";
+"CallRecording.DeleteAll.Text" = "Все оригиналы будут удалены из раздела «Записи звонков». Отправленные, экспортированные или сохранённые в кэше Telegram копии могут остаться. Отменить удаление нельзя.";
+"CallRecording.UnknownPeer" = "Неизвестно";
+"CallRecording.Indicator.Short" = "ЗАПИСЬ";
+"CallRecording.Incomplete" = "обрывается";
+"CallRecording.NeedsCallKit" = "Для записи звонков нужна включённая интеграция со звонками iOS. Это единственное, что может показать вам отметку о записи после выхода из приложения, а записывать без такой отметки приложение не станет.\n\nВключите её в «Настройки ▸ Конфиденциальность и безопасность ▸ Звонки».";
+"CallRecording.Problem.Title" = "Запись звонка";
+"CallRecording.Problem.Lost" = "Запись не удалось сохранить, ничего не осталось. Обычно причина — нехватка места на устройстве.";
+"CallRecording.Problem.Truncated" = "Запись сохранена, но при записи на диск произошёл сбой, поэтому она обрывается раньше конца звонка.";
+"CallRecording.Problem.NoSpace" = "На этом устройстве недостаточно свободного места, чтобы начать запись.";
+"Settings.CallRecording.SendToSaved" = "Отправлять в «Избранное»";
+"Settings.CallRecording.SendToSaved.Desc" = "Автоматически отправлять завершённые незащищённые записи в ваше «Избранное». В этом облачном чате оба голоса хранятся на серверах Telegram без сквозного шифрования. После подтверждения доставки оригинал удаляется из раздела «Записи звонков»; копии могут остаться в кэше Telegram. По умолчанию выключено. Отключение не отменяет отправки, уже поставленные в очередь Telegram. Отдельную запись можно отправить вручную из списка.";
+"CallRecording.SendToSaved" = "Отправить в «Избранное»";
+"CallRecording.SendToSaved.Again" = "Отправить ещё раз";
+"CallRecording.SendToSaved.Waiting" = "отправляется в «Избранное»";
+"CallRecording.SendToSaved.Failed" = "не отправлено";
+"CallRecording.SendToSaved.Caption" = "Запись звонка · %1$@ · %2$@";
+"CallRecording.SendToSaved.Leg.Local" = "ваш микрофон";
+"CallRecording.SendToSaved.Leg.Remote" = "собеседник";
+"CallRecording.SendToSaved.Confirm.Title" = "Отправить в «Избранное»";
+"CallRecording.SendToSaved.Confirm.Text" = "Оба голоса будут отправлены в ваше «Избранное» на серверах Telegram без сквозного шифрования. Оригинал останется в разделе «Записи звонков» до подтверждения доставки, затем будет удалён. В кэше Telegram на этом устройстве могут остаться копии; экспортированные копии не удаляются.";
+"CallRecording.SendToSaved.Confirm.Send" = "Отправить";
+"CallRecording.Delete.CancelFailed" = "Эта запись всё ещё отправляется в «Избранное», и отменить отправку сейчас не удалось, поэтому запись НЕ удалена. Попробуйте ещё раз через мгновение.";
+"CallRecording.Delete.Text.Sending" = "Перед удалением оригинала запрашивается отмена ожидающих отправок. Если запросить отмену не удастся, ничего не удаляется. Отправленные, экспортированные или сохранённые в кэше Telegram копии могут остаться. Отменить удаление нельзя.";
+"CallRecording.DeleteAll.Text.Sending" = "Удалить все оригиналы записей звонков. Сначала запрашивается отмена ожидающих отправок; если какой-либо запрос не удастся, ничего не удаляется. Отправленные, экспортированные или сохранённые в кэше Telegram копии могут остаться. Отменить удаление нельзя.";
+"CallRecording.DeleteAll.CancelFailed" = "Не удалось отменить некоторые отправки в «Избранное». Ни одна запись не удалена. Попробуйте ещё раз через мгновение.";
+"Tasks.Cloud.LogoutNotice" = "Неотправленные изменения задач будут потеряны. Синхронизированные задачи останутся на сервере.";
+"CallRecording.Live" = "идёт запись";
+"CallRecording.Live.Text" = "Этот звонок ещё записывается. Воспроизвести запись или поделиться ею можно после завершения звонка.";
+"CallRecording.Protected.Title" = "Защищённая запись";
+"CallRecording.Protected.Unverifiable.Text" = "Эта запись относится к защищённому чату или аккаунту, который нельзя проверить на этом iPhone. Пока право доступа не подтверждено, запись нельзя воспроизвести, передать или отправить. Удалить её по-прежнему можно.";
+"CallRecording.Play.DuringCall" = "Нельзя воспроизводить запись во время звонка.";
+"CallRecording.Play.Failed" = "Сейчас не удалось воспроизвести эту запись.";
+"CallRecording.Delete.Failed" = "Сейчас не удалось удалить запись. Попробуйте ещё раз через мгновение.";
+"CallRecording.Started" = "Запись началась";
+"CallRecording.Stopped" = "Запись остановлена";
+"CallRecording.Problem.NoticeNotSent" = "Не удалось отправить уведомление о записи. Прежде чем продолжить, убедитесь, что собеседник знает о записи и согласен на неё.";
+"CallRecording.DeleteAll.Failed" = "Не удалось удалить некоторые записи. Разблокируйте iPhone и попробуйте ещё раз.";
+"CallRecording.Problem.NoticeUnconfirmed" = "Отправка уведомления о записи пока не подтверждена. Не полагайтесь на него: сообщите собеседнику о записи и получите его согласие.";
+"CallRecording.SendToSaved.Caption.Neutral" = "Запись звонка · %@";
+"CallRecording.Problem.CleanupPending" = "Не удалось начать запись: локальное хранилище недоступно или очистка ещё не завершена. Разблокируйте iPhone и проверьте раздел «Записи звонков» в настройках.";
+"CallRecording.Damaged.Title" = "Запись недоступна";
+"CallRecording.Damaged.Text" = "Эту запись сейчас нельзя открыть на этом iPhone. Её можно удалить.";
+"CallRecording.SendToSaved.AccountUnavailable" = "Аккаунт, с которого сделана эта запись, не авторизован на этом iPhone, поэтому отправить её нельзя.";
+"CallRecording.SendToSaved.Refused" = "Эту запись нельзя отправить в «Избранное».";
+"CallRecording.SendToSaved.NotQueued" = "Сейчас не удалось отправить запись в «Избранное». Попробуйте ещё раз через мгновение.";
+"CallRecording.Unavailable.Text" = "Начать новую запись или экспорт в этой сборке нельзя. Существующими записями можно управлять или удалять их. Отправленные, экспортированные или сохранённые в кэше Telegram копии могут остаться.";
+
+/* Zenlygram — согласие на обработку данных (design 40 §14). См. комментарий в en.lproj. */
+"Consent.Wall.Title" = "Данные и согласие";
+"Consent.Wall.Account" = "Аккаунт: %@";
+"Consent.Wall.Summary" = "Чтобы пользоваться Zenlygram с этим аккаунтом, нужно ваше согласие хранить его Telegram ID, номер телефона, имя, статистику использования, статус подписки и синхронизированные задачи на нашем сервере в Ташкенте.";
+"Consent.Wall.Language" = "Язык текста";
+"Consent.Wall.Agree" = "Принимаю";
+"Consent.Wall.Decline" = "Не принимаю";
+"Consent.Wall.AgeHint" = "Чтобы продолжить, подтвердите возраст.";
+"Consent.Wall.ModeNote.Required" = "Без этого согласия пользоваться Zenlygram с этим аккаунтом Telegram нельзя. На другие ваши аккаунты это не влияет.";
+"Consent.Wall.ModeNote.Optional" = "Согласие необязательно. Если вы не согласитесь, для этого аккаунта не будут собираться профиль, статистика и синхронизированные задачи, и аккаунт не будет привязан автоматически; приложение продолжит работать на этом устройстве как раньше. Дать согласие можно позже в разделе Настройки → Zenlygram → Данные и согласие.";
+"Consent.Wall.Notice.Reconsent" = "Текст согласия изменился. Прочитайте его и дайте согласие снова.";
+"Consent.Wall.Notice.Withdrawn" = "Вы отозвали согласие %@.";
+"Consent.Wall.Notice.WithdrawnRemote" = "Согласие для этого аккаунта отозвано на другом устройстве %@.";
+"Consent.Wall.Notice.LinkEnded" = "Связь этого аккаунта с нашим сервером прекращена (например, его учётная запись Zenlygram удалена). Пока вы снова не дадите согласие, Zenlygram не будет сам привязывать его заново.";
+"Consent.Wall.TextUnavailable" = "Эта версия Zenlygram не может показать текст согласия. Обновите приложение.";
+"Consent.Wall.SaveFailed" = "Не удалось сохранить ваш выбор. Попробуйте ещё раз.";
+"Consent.Declined.Title" = "Нужно согласие";
+"Consent.Declined.Text" = "Zenlygram хранит вашу подписку, синхронизированные задачи и данные аккаунта на собственном сервере, и для этого нужно ваше согласие. Без согласия пользоваться Zenlygram с этим аккаунтом Telegram нельзя.\n\nВы можете вернуться и ещё раз прочитать согласие, удалить учётную запись Zenlygram и данные на нашем сервере или выйти из этого аккаунта на этом устройстве. Выход не удаляет ваш аккаунт Telegram: он продолжит работать в других приложениях Telegram. Данные Zenlygram этого аккаунта, которые хранятся только на этом устройстве (например, локальные задачи), при выходе могут быть удалены.";
+"Consent.Declined.Back" = "Назад";
+"Consent.Declined.Delete" = "Удалить мою учётную запись Zenlygram и данные";
+"Consent.Declined.Logout" = "Выйти из этого аккаунта";
+"Consent.Declined.SwitchAccount" = "Использовать другой аккаунт";
+"Consent.Declined.PrivacyPolicy" = "Политика конфиденциальности";
+"Consent.Declined.Logout.LastAccount" = "Это единственный аккаунт, в который выполнен вход на этом устройстве. Выход также удалит данные Zenlygram на этом устройстве: локальные задачи, копию синхронизированных задач, записи звонков, а также настройки Секретного хранилища и Блокировки чатов.";
+"Settings.Data.Header" = "Данные и конфиденциальность";
+"Settings.Data.Consent" = "Данные и согласие";
+"Settings.Data.State.Granted" = "Дано";
+"Settings.Data.State.None" = "Не дано";
+"Settings.Data.State.Declined" = "Отклонено";
+"Settings.Data.State.Withdrawn" = "Отозвано";
+"Settings.Data.State.Review" = "Требует внимания";
+"Settings.Data.PrivacyPolicy" = "Политика конфиденциальности";
+"DataConsent.Title" = "Данные и согласие";
+"DataConsent.Status.Granted" = "Согласие дано %@ (версия текста %@).";
+"DataConsent.Status.Pending" = "Согласие дано; ещё не отправлено на сервер.";
+"DataConsent.Status.None" = "Согласие не дано. Профиль, статистика и синхронизированные задачи для этого аккаунта не собираются.";
+"DataConsent.Status.Declined" = "Вы отказались. Профиль, статистика и синхронизированные задачи для этого аккаунта не собираются.";
+"DataConsent.Status.Withdrawn" = "Вы отозвали согласие %@. Ваши данные на нашем сервере удаляются не позднее следующего рабочего дня.";
+"DataConsent.Status.WithdrawPending" = "Вы отозвали согласие %@. Отзыв ещё не дошёл до нашего сервера; приложение продолжает попытки.";
+"DataConsent.Status.Reconsent" = "Текст согласия обновлён — ознакомьтесь снова.";
+"DataConsent.Status.LinkEnded" = "Связь с нашим сервером прекращена. Чтобы аккаунт привязывался автоматически, дайте согласие снова.";
+"DataConsent.Status.Rejected" = "Не удалось записать ваше согласие. Обновите приложение и дайте согласие снова.";
+"DataConsent.ReadText" = "Текст согласия";
+"DataConsent.Grant" = "Дать согласие";
+"DataConsent.MyData" = "Мои данные";
+"DataConsent.Withdraw" = "Отозвать согласие";
+"DataConsent.Delete" = "Удалить мою учётную запись Zenlygram и данные";
+"DataConsent.Operator" = "Оператор данных: %@ · %@";
+"DataConsent.Storage" = "Данные хранятся на сервере в Ташкенте (Узбекистан).";
+"DataConsent.Footer" = "Этот раздел относится только к этому аккаунту Telegram.";
+"DataConsent.ResetDebug" = "Reset consent on this device (debug build)";
+"DataConsent.Withdraw.Confirm.Title" = "Отозвать согласие?";
+"DataConsent.Withdraw.Confirm.Text" = "Ваш профиль, статистика и синхронизированные задачи будут удалены с нашего сервера не позднее следующего рабочего дня после того, как отзыв до него дойдёт. Синхронизированные задачи останутся на этом устройстве как копия только для чтения. Связь этого аккаунта с учётной записью Zenlygram сохранится ради подписки; чтобы удалить и её, и все данные, вместо отзыва удалите учётную запись Zenlygram.";
+"DataConsent.Withdraw.Confirm.Unsent.One" = "Будет потеряно %d неотправленное изменение задач.";
+"DataConsent.Withdraw.Confirm.Unsent.Few" = "Будут потеряны %d неотправленных изменения задач.";
+"DataConsent.Withdraw.Confirm.Unsent.Many" = "Будут потеряны %d неотправленных изменений задач.";
+"DataConsent.Withdraw.Confirm.UnsentUnknown" = "Изменения задач, которые ещё не дошли до сервера, будут потеряны.";
+"DataConsent.Withdraw.Required" = "После этого пользоваться Zenlygram с этим аккаунтом можно будет, только снова дав согласие.";
+"DataConsent.Withdraw.Optional" = "Приложение продолжит работать на этом устройстве и больше не будет отправлять профиль, статистику и синхронизированные задачи этого аккаунта.";
+"DataConsent.Withdraw.Confirm.Action" = "Отозвать";
+"DataConsent.Withdraw.DeleteInstead" = "Удалить мою учётную запись Zenlygram и данные";
+"DataConsent.Withdraw.PendingUpload" = "Это устройство не привязано к нашему серверу, поэтому отзыв нельзя отправить отсюда; он будет отправлен, если вы снова привяжете это устройство. Если вы пользуетесь этим аккаунтом Telegram в Zenlygram на другом устройстве, отзовите согласие и там, или удалите данные на странице zenlygram.org/account/delete, или напишите по адресу, указанному ниже.";
+"DataConsent.Withdraw.Sending" = "Отправляем отзыв согласия…";
+"AccountDelete.Title" = "Удаление учётной записи Zenlygram";
+"AccountDelete.Deleted" = "Будут удалены ваша учётная запись Zenlygram и данные, которые мы для неё храним: профиль, устройства, статистика, синхронизированные задачи, приглашения и привязка аккаунта. На всех устройствах, привязанных к этой учётной записи, будет выполнен выход из Zenlygram.";
+"AccountDelete.Kept" = "Платёжные записи хранятся только в течение срока, которого требует закон, и из них удаляются данные, по которым можно установить вашу личность. Запись о том, что вы давали и отзывали согласие (номер учётной записи, версии текста и даты), хранится 3 года.";
+"AccountDelete.Telegram" = "Ваш аккаунт Telegram не удаляется.";
+"AccountDelete.Timing" = "Удаление начинается сразу и завершается не позднее следующего рабочего дня. Копии в зашифрованных резервных копиях и журналах сервера исчезают в течение 14 дней.";
+"AccountDelete.Billing" = "Если у вас есть подписка, она продолжит продлеваться и оплачиваться, пока вы не отмените её в %@. Если она вам больше не нужна, сначала отмените её.";
+"AccountDelete.ManageSubscription" = "Управление подпиской";
+"AccountDelete.Confirm" = "Удалить учётную запись и данные";
+"AccountDelete.Confirm2.Title" = "Удалить учётную запись Zenlygram?";
+"AccountDelete.Confirm2.Text" = "Это действие нельзя отменить.";
+"AccountDelete.Confirm2.Action" = "Удалить";
+"AccountDelete.Done.Title" = "Учётная запись Zenlygram удалена";
+"AccountDelete.Done.Text" = "Ваша учётная запись Zenlygram удалена. Копии в других наших сервисах будут удалены не позднее следующего рабочего дня, а копии в зашифрованных резервных копиях и журналах сервера — в течение 14 дней. Если вы продолжите пользоваться Zenlygram с этим аккаунтом, согласие будет запрошено снова.";
+"AccountDelete.NotLinked" = "Этот аккаунт не привязан к серверу Zenlygram с этого устройства. Чтобы удалить учётную запись Zenlygram, откройте страницу zenlygram.org/account/delete и войдите через Telegram.";
+"AccountDelete.OpenWeb" = "Открыть страницу";
+"AccountDelete.Error.Offline" = "Нет подключения. Проверьте интернет и попробуйте ещё раз или воспользуйтесь страницей zenlygram.org/account/delete.";
+"AccountDelete.Error.RateLimited" = "Слишком много попыток. Попробуйте немного позже.";
+"AccountDelete.Error.Unavailable" = "Сервер сейчас недоступен. Попробуйте позже или воспользуйтесь страницей zenlygram.org/account/delete.";
+"AccountDelete.Failed" = "Сейчас не удалось удалить учётную запись. Проверьте подключение и попробуйте ещё раз или воспользуйтесь страницей zenlygram.org/account/delete.";
+"MyData.Title" = "Мои данные";
+"MyData.Loading" = "Загрузка…";
+"MyData.NotLinked" = "Этот аккаунт не привязан к серверу Zenlygram с этого устройства, поэтому показывать нечего.";
+"MyData.Unavailable" = "Сейчас не удалось загрузить данные. Попробуйте позже.";
+"MyData.Error.Offline" = "Нет подключения.";
+"MyData.Error.Unavailable" = "Сервер сейчас недоступен. Попробуйте позже.";
+"MyData.Error.RateLimited" = "Слишком много запросов. Попробуйте позже.";
+"MyData.Retry" = "Повторить";
+"MyData.Section.Account" = "Учётная запись";
+"MyData.Section.Consent" = "Согласие";
+"MyData.Section.History" = "История согласия";
+"MyData.Section.Profile" = "Профиль";
+"MyData.Section.Devices" = "Устройства";
+"MyData.Section.Activity" = "Активность";
+"MyData.Section.Events" = "События статистики (последние 180 дней)";
+"MyData.Section.Subscription" = "Подписка";
+"MyData.Section.Retention" = "Сроки хранения";
+"MyData.Source.telegram_attest" = "Подтверждено Telegram";
+"MyData.Source.telegram_bot" = "Telegram (через бота)";
+"MyData.Source.client" = "Из приложения";
+"MyData.Source.telegram_session" = "Из сессии Telegram";
+"MyData.Field.Id" = "ID учётной записи";
+"MyData.Field.TelegramId" = "Telegram ID";
+"MyData.Field.Created" = "Создана";
+"MyData.Field.Phone" = "Номер телефона";
+"MyData.Field.Country" = "Страна (по коду телефона)";
+"MyData.Field.Usernames" = "Имена пользователя";
+"MyData.Field.FirstName" = "Имя";
+"MyData.Field.LastName" = "Фамилия";
+"MyData.Field.Language" = "Язык Telegram";
+"MyData.Field.Premium" = "Telegram Premium";
+"MyData.Field.Model" = "Модель устройства";
+"MyData.Field.Os" = "Операционная система";
+"MyData.Field.App" = "Версия приложения";
+"MyData.Field.Locale" = "Региональный формат";
+"MyData.Field.TimeZone" = "Часовой пояс";
+"MyData.Field.Distribution" = "Источник установки";
+"MyData.Field.FirstSeen" = "Впервые";
+"MyData.Field.LastSeen" = "Последний раз";
+"MyData.Field.FirstActive" = "Первая активность";
+"MyData.Field.LastActive" = "Последняя активность";
+"MyData.Field.ActiveDays" = "Активных дней";
+"MyData.Field.Sessions30" = "Сеансы (30 дней)";
+"MyData.Field.Seconds30" = "Время в приложении (30 дней)";
+"MyData.Field.Total" = "Всего событий";
+"MyData.Field.Retained" = "Срок хранения";
+"LinkAccount.AttestDisclosure" = "Чтобы привязать аккаунт без кода, Zenlygram в фоне и от имени этого аккаунта запрашивает у Telegram подтверждение через мини-приложение бота %@; при этом Telegram передаёт боту ваш публичный профиль. Без согласия на обработку данных мы сохраняем только ваш Telegram ID. Приложение никогда не отправляет боту сообщений, не открывает мини-приложение и не делится вашим контактом.";
+"PayWall.LinkAccount.Notice.Required" = "После согласия на обработку данных ваш аккаунт привязывается автоматически, и подписка работает на других ваших устройствах.";
+
+/* Zenlygram Pro paywall — cosmic design */
+"PayWall.Hero.Subtitle" = "Премиум-версия Zenlygram — больше контроля, приватности и мощных возможностей.";
+"PayWall.Hero.Premium" = "PREMIUM";
+"PayWall.Hero.Features" = "функции";
+"PayWall.Hero.Unlimited" = "Полная";
+"PayWall.Hero.Freedom" = "свобода";
+"PayWall.Plan.Yearly.Short" = "На год";
+"PayWall.Plan.Monthly.Short" = "На месяц";
+"PayWall.Plan.Summary" = "%1$@ мес. • %2$@";
+"PayWall.Plan.PerMonth.Compact" = "%@/мес";
+"PayWall.Plan.PerYear.Compact" = "%@/год";
+"PayWall.Plan.Discount" = "-%@";
+"PayWall.Button.GoPro" = "Перейти на Zenlygram Pro";
+"PayWall.Disclosure.WithPrice" = "%@. Продлевается автоматически до отмены.";
+"Contacts.SelectAll" = "Выбрать все";
+"Contacts.DeselectAll" = "Снять выбор";
+// MARK: Zenlygram — the app-update policy (update_policy_spec §4i): the "Update required" block and the "Update available" reminder
+"AppUpdate.Required.Title" = "Требуется обновление";
+"AppUpdate.Required.Text" = "Эта версия Zenlygram больше не поддерживается. Обновите приложение, чтобы продолжить.";
+"AppUpdate.Required.Button" = "Открыть App Store";
+"AppUpdate.Required.TestFlightButton" = "Открыть TestFlight";
+"AppUpdate.Required.Help" = "Помощь";
+"AppUpdate.Required.DeviceNote" = "Если обновление недоступно для этого устройства, может требоваться более новая iOS; App Store также может показать его с задержкой.";
+"AppUpdate.Available.Title" = "Доступно обновление";
+"AppUpdate.Available.Text" = "В App Store доступна версия Zenlygram %@.";
+"AppUpdate.Available.Update" = "Обновить";
+"AppUpdate.Available.Later" = "Позже";

@@ -1,0 +1,142 @@
+{
+  "schema": "zenlygram-consents-fixture/1",
+  "description": "Valid POST /v1/profile/consents bodies (contract §2.4.1) and what the server answers for an account with no consent yet. Hashes are the v1-uz / v1-ru text_sha256 of consent-vectors.json, so the server, iOS and Android must hold the v1-uz vector's operator values. tg_user_id is an obviously fake id.",
+  "tg_user_id": 555000111,
+  "cases": [
+    {
+      "id": "grant",
+      "description": "One grant of the v1 uz text (the v1-uz vector's operator values) from iOS.",
+      "body": {
+        "schema_version": 1,
+        "consents": [
+          {
+            "consent_id": "3a1c6f0e-5b7d-4e2a-9c8b-1f2e3d4c5b6a",
+            "tg_user_id": 555000111,
+            "action": "grant",
+            "scopes": [
+              "link",
+              "profile",
+              "statistics",
+              "tasks_sync"
+            ],
+            "text_version": 1,
+            "text_sha256": "229fd61b5ac4c2711e1b9635b6e5b24ab44ab5564baac8a2c1067a5b127f64d9",
+            "locale": "uz",
+            "consent_mode": "required",
+            "age_confirmed": true,
+            "recorded_at": "2026-11-01T09:00:00Z",
+            "platform": "ios",
+            "app_version": "12.0.1"
+          }
+        ]
+      },
+      "expected": {
+        "outcomes": [
+          "recorded"
+        ],
+        "consent": {
+          "state": "granted",
+          "consent_id": "3a1c6f0e-5b7d-4e2a-9c8b-1f2e3d4c5b6a",
+          "text_version": 1,
+          "effective_at": "2026-11-01T09:00:00Z"
+        },
+        "erasure": null
+      }
+    },
+    {
+      "id": "withdraw",
+      "description": "One withdrawal from Android, naming the version withdrawn (text_version is optional on a withdrawal).",
+      "body": {
+        "schema_version": 1,
+        "consents": [
+          {
+            "consent_id": "9b2d4f6a-8c0e-4a1b-b3d5-e7f9a1c3e5d7",
+            "tg_user_id": 555000111,
+            "action": "withdraw",
+            "scopes": [
+              "link",
+              "profile",
+              "statistics",
+              "tasks_sync"
+            ],
+            "text_version": 1,
+            "locale": "ru",
+            "consent_mode": "optional",
+            "recorded_at": "2026-11-01T09:30:00Z",
+            "platform": "android",
+            "app_version": "12.1.0"
+          }
+        ]
+      },
+      "expected": {
+        "outcomes": [
+          "recorded"
+        ],
+        "consent": {
+          "state": "withdrawn",
+          "consent_id": "9b2d4f6a-8c0e-4a1b-b3d5-e7f9a1c3e5d7",
+          "text_version": 1,
+          "effective_at": "2026-11-01T09:30:00Z"
+        },
+        "erasure": null
+      }
+    },
+    {
+      "id": "grant-then-withdraw",
+      "description": "A two-event batch in ascending recorded_at: a ru grant, then a withdrawal without text_version.",
+      "body": {
+        "schema_version": 1,
+        "consents": [
+          {
+            "consent_id": "c4e6a8b0-d2f4-4a6c-8e0a-2b4d6f8a0c2e",
+            "tg_user_id": 555000111,
+            "action": "grant",
+            "scopes": [
+              "link",
+              "profile",
+              "statistics",
+              "tasks_sync"
+            ],
+            "text_version": 1,
+            "text_sha256": "7aeb6fe1bd40dff533c6d54469532a5362064053e245415ec595fc0e6684fa51",
+            "locale": "ru",
+            "consent_mode": "required",
+            "age_confirmed": true,
+            "recorded_at": "2026-11-01T09:00:00Z",
+            "platform": "android",
+            "app_version": "12.1.0"
+          },
+          {
+            "consent_id": "e1f3a5c7-b9d1-4e3f-a5b7-c9d1e3f5a7b9",
+            "tg_user_id": 555000111,
+            "action": "withdraw",
+            "scopes": [
+              "link",
+              "profile",
+              "statistics",
+              "tasks_sync"
+            ],
+            "locale": "ru",
+            "consent_mode": "required",
+            "recorded_at": "2026-11-01T09:05:00Z",
+            "platform": "android",
+            "app_version": "12.1.0"
+          }
+        ]
+      },
+      "expected": {
+        "outcomes": [
+          "recorded",
+          "recorded"
+        ],
+        "consent": {
+          "state": "withdrawn",
+          "consent_id": "e1f3a5c7-b9d1-4e3f-a5b7-c9d1e3f5a7b9",
+          "text_version": null,
+          "effective_at": "2026-11-01T09:05:00Z"
+        },
+        "erasure": null
+      }
+    }
+  ]
+}
