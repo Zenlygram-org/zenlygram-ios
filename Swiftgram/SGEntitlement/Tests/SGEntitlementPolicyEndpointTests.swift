@@ -55,9 +55,33 @@ final class SGEntitlementPolicyEndpointTests: XCTestCase {
         XCTAssertFalse(names.contains("authorization"), "the policy names no one: no bearer of any kind")
         XCTAssertFalse(names.contains("cookie"))
         XCTAssertTrue(names.filter { $0.hasPrefix("x-") }.isEmpty, "no X-Device-Id / nonce / signature / proof: \(names)")
-        // The v2 shape (`trial_days`) is asked for by its exact vendor type; the frozen v1 stays the
-        // fallback. Nothing else is negotiated: still no credential, no device header.
-        XCTAssertEqual(request.value(forHTTPHeaderField: "Accept"), "application/vnd.zenlygram.monetization.v2+json, application/json;q=0.9")
+        // The v3 shape (`trial_days` + `local_grace_days`) is asked for by its exact vendor type, the
+        // v2 shape (`trial_days`) by its own right behind it — what a server that does not know v3
+        // yet answers — and the frozen v1 stays the last fallback. Nothing else is negotiated: still
+        // no credential, no device header.
+        XCTAssertEqual(request.value(forHTTPHeaderField: "Accept"), "application/vnd.zenlygram.monetization.v3+json, application/vnd.zenlygram.monetization.v2+json;q=0.9, application/json;q=0.8")
+    }
+
+    func test_theMonetizationAcceptListsV3ThenV2ThenPlainJSON_eachByItsExactType() {
+        XCTAssertEqual(SGEntitlementPolicyEndpoint.monetizationAccept, "application/vnd.zenlygram.monetization.v3+json, application/vnd.zenlygram.monetization.v2+json;q=0.9, application/json;q=0.8")
+        // The server matches each entry by exact string (split on `,`, parameters stripped, a
+        // non-zero q): v3 if listed, else v2 if listed, else v1.
+        let entries = SGEntitlementPolicyEndpoint.monetizationAccept.split(separator: ",").map { $0.trimmingCharacters(in: .whitespaces) }
+        XCTAssertEqual(entries, ["application/vnd.zenlygram.monetization.v3+json", "application/vnd.zenlygram.monetization.v2+json;q=0.9", "application/json;q=0.8"])
+        let types = entries.map { String($0.split(separator: ";")[0]) }
+        XCTAssertEqual(types, ["application/vnd.zenlygram.monetization.v3+json", "application/vnd.zenlygram.monetization.v2+json", "application/json"], "v3 first, v2 kept for a server that does not know v3 yet, plain JSON (v1) last")
+        let qualities = entries.map { entry -> Double in
+            guard let parameter = entry.split(separator: ";").dropFirst().first, parameter.hasPrefix("q=") else {
+                return 1
+            }
+            return Double(parameter.dropFirst(2)) ?? -1
+        }
+        XCTAssertEqual(qualities, [1, 0.9, 0.8], "the preference order is also the q order, and no entry is refused (q=0)")
+        XCTAssertFalse(SGEntitlementPolicyEndpoint.monetizationAccept.contains("*"), "no wildcard: a client is never sent a shape it did not declare")
+        // The legacy (authenticated base URL) endpoint declares exactly the same shapes.
+        XCTAssertEqual(SGEntitlementPolicyEndpoint.legacy(baseURL: URL(string: "https://api.zenlygram.test/v1")!, timeout: 5, protocolClasses: nil).accept, SGEntitlementPolicyEndpoint.monetizationAccept)
+        // The app-update policy's Accept is its own and did not move.
+        XCTAssertEqual(SGEntitlementPolicyEndpoint.appPolicyAccept, "application/vnd.zenlygram.app-policy.v1+json, application/json;q=0.9")
     }
 
     func test_aV2PolicyAnswerIsReturnedUnverifiedLikeAnyOther() async {
@@ -67,8 +91,28 @@ final class SGEntitlementPolicyEndpointTests: XCTestCase {
         self.serve(["policy_token": token, "server_time": "2026-10-24T13:37:40Z"])
         let result = await self.endpoint().fetch()
         XCTAssertEqual(try? result.get(), token)
-        XCTAssertEqual(SGEntitlementPolicyEndpoint.monetizationAccept.split(separator: ",").map { $0.trimmingCharacters(in: .whitespaces) }.first, "application/vnd.zenlygram.monetization.v2+json", "the vendor type is listed first and without a q parameter")
+        XCTAssertEqual(SGEntitlementPolicyEndpoint.monetizationAccept.split(separator: ",").map { $0.trimmingCharacters(in: .whitespaces) }.first, "application/vnd.zenlygram.monetization.v3+json", "the newest vendor type is listed first and without a q parameter")
+        XCTAssertTrue(SGEntitlementPolicyEndpoint.monetizationAccept.split(separator: ",").map { $0.trimmingCharacters(in: .whitespaces) }.contains("application/vnd.zenlygram.monetization.v2+json;q=0.9"), "the v2 vendor type is still declared: a server without v3 answers it as before")
         XCTAssertEqual(self.endpoint().accept, SGEntitlementPolicyEndpoint.monetizationAccept, "a monetization endpoint declares the monetization shapes")
+    }
+
+    func test_aV3PolicyAnswerIsReturnedUnverifiedLikeAnyOther() async {
+        // Neither the shape nor `local_grace_days` is the transport's business: the compact JWS
+        // comes back as is — a well-formed one and one the verifier will refuse alike.
+        let token = SGEntitlementTestPolicy.make(key: self.key, mode: "paid", revision: 3, version: 3, trialDays: 7, localGraceDays: 0)
+        self.serve(["policy_token": token, "server_time": "2026-11-15T13:37:40Z"])
+        let result = await self.endpoint().fetch()
+        XCTAssertEqual(try? result.get(), token)
+
+        let outOfRange = SGEntitlementTestPolicy.make(key: self.key, mode: "paid", revision: 4, version: 3, trialDays: 7, localGraceDays: 31)
+        self.serve(["policy_token": outOfRange, "server_time": "2026-11-15T13:37:40Z", "local_grace_days": 7])
+        let unverified = await self.endpoint().fetch()
+        XCTAssertEqual(try? unverified.get(), outOfRange, "the endpoint reads `policy_token` only — never an unsigned field beside it")
+        let ring = SGEntitlementTestToken.pinned(self.key, kid: "k2026a")
+        guard case let .failure(failure) = SGEntitlementPolicyVerifier.authenticate(outOfRange, pinnedKeys: ring) else {
+            return XCTFail("the verifier refuses what the transport merely carried")
+        }
+        XCTAssertEqual(failure, .invalidClaims)
     }
 
     func test_anOversizedPolicyAnswerIsAFailureNotATruncatedToken() async {

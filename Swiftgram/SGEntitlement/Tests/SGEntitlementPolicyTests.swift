@@ -3,8 +3,8 @@ import CryptoKit
 @testable import SGEntitlement
 
 /// Zenlygram — the signed monetization policy (`GET /v1/monetization`, contracts
-/// `monetization-policy.v1` / `.v2`): exactly one of the two claim shapes with `ver` naming it, the
-/// pinned ES256 ring, the freshness window applied only to newly fetched tokens, the
+/// `monetization-policy.v1` / `.v2` / `.v3`): exactly one of the three claim shapes with `ver`
+/// naming it, the pinned ES256 ring, the freshness window applied only to newly fetched tokens, the
 /// `(revision, iat)` order, and persistence that re-verifies but never re-expires. Every token here
 /// is really signed; nothing is mocked.
 final class SGEntitlementPolicyVerifierTests: XCTestCase {
@@ -105,14 +105,36 @@ final class SGEntitlementPolicyVerifierTests: XCTestCase {
     }
 
     func test_theVersionMustNameTheClaimSetItCameWith() {
-        // Seven claims are version 1, eight are version 2: a mismatch is another purpose, not a
-        // policy with an odd field — the same answer as for an entitlement token.
+        // Seven claims are version 1, eight are version 2, nine are version 3: a mismatch is
+        // another purpose, not a policy with an odd field — the same answer as for an entitlement
+        // token.
         let v2KeysUnderV1 = SGEntitlementTestPolicy.claims(mode: "paid", iat: self.iat, version: 1, trialDays: 7)
         XCTAssertEqual(self.authenticate(self.token(v2KeysUnderV1)), .wrongPurpose, "trial_days under ver 1")
         let v1KeysUnderV2 = SGEntitlementTestPolicy.claims(mode: "paid", iat: self.iat, version: 2)
         XCTAssertEqual(self.authenticate(self.token(v1KeysUnderV2)), .wrongPurpose, "ver 2 without trial_days")
-        let v3 = SGEntitlementTestPolicy.claims(mode: "paid", iat: self.iat, version: 3, trialDays: 7)
-        XCTAssertEqual(self.authenticate(self.token(v3)), .wrongPurpose, "a shape this build does not know never sets the mode")
+        let v2KeysUnderV3 = SGEntitlementTestPolicy.claims(mode: "paid", iat: self.iat, version: 3, trialDays: 7)
+        XCTAssertEqual(self.authenticate(self.token(v2KeysUnderV3)), .wrongPurpose, "ver 3 without local_grace_days never sets the mode")
+        let v1KeysUnderV3 = SGEntitlementTestPolicy.claims(mode: "paid", iat: self.iat, version: 3)
+        XCTAssertEqual(self.authenticate(self.token(v1KeysUnderV3)), .wrongPurpose, "ver 3 with neither of its two extra claims")
+        let graceWithoutTrialUnderV3 = SGEntitlementTestPolicy.claims(mode: "paid", iat: self.iat, version: 3, localGraceDays: 7)
+        XCTAssertEqual(self.authenticate(self.token(graceWithoutTrialUnderV3)), .wrongPurpose, "ver 3 without trial_days: v3 is the v2 set plus one claim")
+        for version: Int64 in [1, 2] {
+            let v3KeysUnderOlder = SGEntitlementTestPolicy.claims(mode: "paid", iat: self.iat, version: version, trialDays: 7, localGraceDays: 7)
+            XCTAssertEqual(self.authenticate(self.token(v3KeysUnderOlder)), .wrongPurpose, "local_grace_days under ver \(version)")
+        }
+        let graceUnderV1 = SGEntitlementTestPolicy.claims(mode: "paid", iat: self.iat, version: 1, localGraceDays: 7)
+        XCTAssertEqual(self.authenticate(self.token(graceUnderV1)), .wrongPurpose, "local_grace_days is a claim of the v3 SET, not an extra a v1 token may carry")
+        let v4 = SGEntitlementTestPolicy.claims(mode: "paid", iat: self.iat, version: 4, trialDays: 7, localGraceDays: 7)
+        XCTAssertEqual(self.authenticate(self.token(v4)), .wrongPurpose, "a shape this build does not know never sets the mode")
+        for version: Int64 in [0, 4, 5] {
+            for claims in [
+                SGEntitlementTestPolicy.claims(mode: "paid", iat: self.iat, version: version),
+                SGEntitlementTestPolicy.claims(mode: "paid", iat: self.iat, version: version, trialDays: 7),
+                SGEntitlementTestPolicy.claims(mode: "paid", iat: self.iat, version: version, trialDays: 7, localGraceDays: 7)
+            ] {
+                XCTAssertEqual(self.authenticate(self.token(claims)), .wrongPurpose, "ver \(version) names none of the three sets")
+            }
+        }
     }
 
     func test_trialDaysMustBeAJSONIntegerWithinAMonth() {
@@ -133,7 +155,7 @@ final class SGEntitlementPolicyVerifierTests: XCTestCase {
     }
 
     func test_aV2PolicyWithAnyExtraClaimIsRejected() {
-        for extra in ["sub", "dev", "ent", "until", "account_ent", "account_until", "tgid", "jti", "server_time", "trial_ends_at", "trial_enabled"] {
+        for extra in ["sub", "dev", "ent", "until", "account_ent", "account_until", "tgid", "jti", "server_time", "trial_ends_at", "trial_enabled", "local_grace_days"] {
             var claims = SGEntitlementTestPolicy.claims(mode: "paid", iat: self.iat, version: 2, trialDays: 7)
             claims[extra] = extra == "ent" || extra == "account_ent" ? ["*"] : "x"
             XCTAssertEqual(self.authenticate(self.token(claims)), .wrongPurpose, "a v2 policy with `\(extra)` must not authenticate")
@@ -143,6 +165,142 @@ final class SGEntitlementPolicyVerifierTests: XCTestCase {
             claims.removeValue(forKey: missing)
             XCTAssertEqual(self.authenticate(self.token(claims)), .wrongPurpose, "a v2 policy without `\(missing)` must not authenticate")
         }
+    }
+
+    // MARK: - The v3 shape (`local_grace_days`)
+
+    private func v3(mode: String = "paid", revision: Int64 = 7, trialDays: Int = 0, localGraceDays: Int) -> String {
+        return SGEntitlementTestPolicy.make(key: self.key, mode: mode, revision: revision, iat: self.iat, version: 3, trialDays: trialDays, localGraceDays: localGraceDays)
+    }
+
+    func test_aV3PolicyCarriesItsSignedLocalGraceDays() {
+        for days in [0, 1, 7, 30] {
+            let token = self.v3(trialDays: 14, localGraceDays: days)
+            guard case let .success(policy) = SGEntitlementPolicyVerifier.authenticate(token, pinnedKeys: self.pinned) else {
+                return XCTFail("a well-formed v3 policy with local_grace_days \(days) signed by the pinned ring must authenticate")
+            }
+            XCTAssertEqual(policy.version, 3)
+            XCTAssertEqual(policy.localGraceDays, days, "the signed value is kept as signed, 0 included")
+            XCTAssertEqual(policy.trialDays, 14, "v3 is the v2 claim set plus one claim: the trial is still read")
+            XCTAssertTrue(policy.offersServerTrial)
+            XCTAssertEqual(policy.mode, .paid)
+            XCTAssertEqual(policy.revision, 7)
+            XCTAssertEqual(policy.issuedAt, self.iat)
+            XCTAssertEqual(policy.expiresAt, self.iat + 86400)
+            XCTAssertEqual(policy.token, token, "the exact signed bytes are what gets persisted and re-verified")
+        }
+        XCTAssertEqual(SGEntitlementPolicyVerifier.maximumLocalGraceDays, 30)
+        XCTAssertEqual(SGEntitlementLocalGrace.maximumDays, 30)
+    }
+
+    func test_aFreeV3PolicyKeepsItsConfiguredLocalGraceDays() {
+        // The server signs the configured value in both modes; it is not zeroed while free (it
+        // simply has no effect there — the evaluator never consults the grace in free mode).
+        let token = self.v3(mode: "free", trialDays: 7, localGraceDays: 21)
+        guard case let .success(policy) = SGEntitlementPolicyVerifier.authenticate(token, pinnedKeys: self.pinned) else {
+            return XCTFail("a free v3 policy authenticates like any other")
+        }
+        XCTAssertEqual(policy.mode, .free)
+        XCTAssertEqual(policy.localGraceDays, 21)
+        XCTAssertFalse(policy.offersServerTrial, "nothing is sold while free, a trial included")
+    }
+
+    func test_aV1OrV2PolicyCannotSayAndMeansTheDefaultSevenDays() {
+        XCTAssertEqual(SGEntitlementLocalGrace.defaultDays, 7)
+        let v1 = SGEntitlementTestPolicy.make(key: self.key, mode: "paid", revision: 7, iat: self.iat)
+        let v2 = SGEntitlementTestPolicy.make(key: self.key, mode: "paid", revision: 7, iat: self.iat, version: 2, trialDays: 30)
+        for (name, token) in [("v1", v1), ("v2", v2)] {
+            guard case let .success(policy) = SGEntitlementPolicyVerifier.authenticate(token, pinnedKeys: self.pinned) else {
+                return XCTFail("premise: a \(name) policy still authenticates in this build")
+            }
+            XCTAssertEqual(policy.localGraceDays, 7, "a \(name) token cannot say: the default seven days")
+        }
+    }
+
+    func test_localGraceDaysMustBeAJSONIntegerWithinAMonth() {
+        // The same strictness as `trial_days`: the WHOLE token is refused, never read as "7".
+        let invalid: [Any] = [-1, 31, 365, "7", true, false, NSNull(), [7], ["days": 7]]
+        for value in invalid {
+            var claims = SGEntitlementTestPolicy.claims(mode: "paid", iat: self.iat, version: 3, trialDays: 0, localGraceDays: 7)
+            claims["local_grace_days"] = value
+            XCTAssertEqual(self.authenticate(self.token(claims)), .invalidClaims, "local_grace_days \(value) must not authenticate")
+        }
+        // `JSONSerialization` would normalise 7.0 to 7: sign the raw bytes.
+        let header = try! JSONSerialization.data(withJSONObject: ["alg": "ES256", "typ": "JWT", "kid": self.kid], options: [.sortedKeys])
+        for fraction in ["7.0", "7.5", "0.0"] {
+            let fractional = Data("{\"aud\":\"zenlygram-monetization\",\"exp\":\(self.iat + 86400),\"iat\":\(self.iat),\"iss\":\"zenlygram\",\"local_grace_days\":\(fraction),\"mode\":\"paid\",\"revision\":1,\"trial_days\":0,\"ver\":3}".utf8)
+            XCTAssertEqual(self.authenticate(SGEntitlementTestToken.sign(key: self.key, headerData: header, payloadData: fractional)), .invalidClaims, "\(fraction) is not a JSON integer")
+        }
+        // Missing altogether: the eight v2 claims under `ver: 3` — refused as a whole too.
+        var missing = SGEntitlementTestPolicy.claims(mode: "paid", iat: self.iat, version: 3, trialDays: 0, localGraceDays: 7)
+        missing.removeValue(forKey: "local_grace_days")
+        XCTAssertNotNil(self.authenticate(self.token(missing)), "a ver-3 token without local_grace_days must not authenticate")
+
+        XCTAssertNil(self.authenticate(self.v3(localGraceDays: 30)), "30 is the contract's maximum")
+        XCTAssertNil(self.authenticate(self.v3(localGraceDays: 0)), "0 is 'no local grace'")
+        XCTAssertNil(self.authenticate(self.v3(mode: "free", localGraceDays: 0)))
+    }
+
+    func test_aV3PolicyStillNeedsAValidTrialDays() {
+        let invalid: [Any] = [-1, 31, "7", true]
+        for value in invalid {
+            var claims = SGEntitlementTestPolicy.claims(mode: "paid", iat: self.iat, version: 3, trialDays: 0, localGraceDays: 7)
+            claims["trial_days"] = value
+            XCTAssertEqual(self.authenticate(self.token(claims)), .invalidClaims, "trial_days \(value) under ver 3 must not authenticate")
+        }
+    }
+
+    func test_aFreeV3PolicyIsValidatedJustAsStrictlyAsAPaidOne() {
+        // The value has no effect while free, but the token is held to the same contract: a free
+        // policy with a bad `local_grace_days` is no policy at all — it cannot turn the app free.
+        let header = try! JSONSerialization.data(withJSONObject: ["alg": "ES256", "typ": "JWT", "kid": self.kid], options: [.sortedKeys])
+        for mode in ["free", "paid"] {
+            let invalid: [Any] = [-1, 31, "7", true, NSNull()]
+            for value in invalid {
+                var claims = SGEntitlementTestPolicy.claims(mode: mode, iat: self.iat, version: 3, trialDays: 0, localGraceDays: 7)
+                claims["local_grace_days"] = value
+                XCTAssertEqual(self.authenticate(self.token(claims)), .invalidClaims, "\(mode): local_grace_days \(value) must not authenticate")
+            }
+            let fractional = Data("{\"aud\":\"zenlygram-monetization\",\"exp\":\(self.iat + 86400),\"iat\":\(self.iat),\"iss\":\"zenlygram\",\"local_grace_days\":7.0,\"mode\":\"\(mode)\",\"revision\":1,\"trial_days\":0,\"ver\":3}".utf8)
+            XCTAssertEqual(self.authenticate(SGEntitlementTestToken.sign(key: self.key, headerData: header, payloadData: fractional)), .invalidClaims, "\(mode): 7.0 is not the integer 7")
+            var missing = SGEntitlementTestPolicy.claims(mode: mode, iat: self.iat, version: 3, trialDays: 0, localGraceDays: 7)
+            missing.removeValue(forKey: "local_grace_days")
+            XCTAssertEqual(self.authenticate(self.token(missing)), .wrongPurpose, "\(mode): a missing claim is never read as 7 or 0")
+            var extra = SGEntitlementTestPolicy.claims(mode: mode, iat: self.iat, version: 3, trialDays: 0, localGraceDays: 7)
+            extra["local_grace_enabled"] = true
+            XCTAssertEqual(self.authenticate(self.token(extra)), .wrongPurpose, "\(mode): exactly the nine claims")
+            XCTAssertNil(self.authenticate(SGEntitlementTestPolicy.make(key: self.key, mode: mode, iat: self.iat, version: 3, trialDays: 0, localGraceDays: 0)), "\(mode): the well-formed token authenticates")
+        }
+    }
+
+    func test_theV3ClaimSetIsExactlyItsNineClaims() {
+        let claims = SGEntitlementTestPolicy.claims(mode: "paid", iat: self.iat, version: 3, trialDays: 7, localGraceDays: 7)
+        XCTAssertEqual(Set(claims.keys), ["iss", "aud", "ver", "mode", "revision", "trial_days", "local_grace_days", "iat", "exp"], "the ver-2 set plus one")
+        XCTAssertNil(self.authenticate(self.token(claims)))
+    }
+
+    func test_aV3PolicyWithAnyExtraOrMissingClaimIsRejected() {
+        for extra in ["sub", "dev", "ent", "until", "account_ent", "account_until", "tgid", "jti", "server_time", "trial_ends_at", "trial_enabled", "local_grace", "local_grace_enabled", "grace_days"] {
+            var claims = SGEntitlementTestPolicy.claims(mode: "paid", iat: self.iat, version: 3, trialDays: 7, localGraceDays: 7)
+            claims[extra] = extra == "ent" || extra == "account_ent" ? ["*"] : "x"
+            XCTAssertEqual(self.authenticate(self.token(claims)), .wrongPurpose, "a v3 policy with `\(extra)` must not authenticate")
+        }
+        for missing in ["iss", "aud", "ver", "mode", "revision", "iat", "exp", "trial_days", "local_grace_days"] {
+            var claims = SGEntitlementTestPolicy.claims(mode: "paid", iat: self.iat, version: 3, trialDays: 7, localGraceDays: 7)
+            claims.removeValue(forKey: missing)
+            XCTAssertEqual(self.authenticate(self.token(claims)), .wrongPurpose, "a v3 policy without `\(missing)` must not authenticate")
+        }
+    }
+
+    func test_aV3PolicyIsNeverAnEntitlementAndIsBoundToItsSignature() {
+        let token = self.v3(localGraceDays: 0)
+        XCTAssertEqual(SGEntitlementTokenVerifier.verify(token, pinnedKeys: self.pinned, boundDeviceId: nil).failureValue, .wrongPurpose)
+        // An unsigned length is never trusted: 0 days re-written to 30 under the same signature.
+        var parts = token.split(separator: ".").map(String.init)
+        let forged = try! JSONSerialization.data(withJSONObject: SGEntitlementTestPolicy.claims(mode: "paid", revision: 7, iat: self.iat, version: 3, trialDays: 0, localGraceDays: 30), options: [.sortedKeys])
+        parts[1] = SGEntitlementTestToken.base64url(forged)
+        XCTAssertEqual(self.authenticate(parts.joined(separator: ".")), .badSignature)
+        XCTAssertEqual(self.authenticate(SGEntitlementTestPolicy.make(key: P256.Signing.PrivateKey(), mode: "paid", iat: self.iat, version: 3, trialDays: 0, localGraceDays: 30)), .badSignature, "another key's length is no length")
     }
 
     // MARK: - Signature and header
@@ -337,6 +495,11 @@ final class SGEntitlementPolicyStateTests: XCTestCase {
         return SGEntitlementTestPolicy.make(key: self.key, kid: self.kid, mode: mode, revision: revision, iat: iat ?? self.iat, version: 2, trialDays: trialDays)
     }
 
+    /// The same issuance in the v3 shape, with its `trial_days` and its `local_grace_days`.
+    private func policyV3(_ mode: String, revision: Int64, iat: Int64? = nil, trialDays: Int = 0, localGraceDays: Int) -> String {
+        return SGEntitlementTestPolicy.make(key: self.key, kid: self.kid, mode: mode, revision: revision, iat: iat ?? self.iat, version: 3, trialDays: trialDays, localGraceDays: localGraceDays)
+    }
+
     private func accept(_ token: String, into state: SGEntitlementPolicyState, now: Int64? = nil) -> SGEntitlementPolicyAcceptance {
         return state.accepting(fetched: token, pinnedKeys: self.pinned, now: Date(timeIntervalSince1970: TimeInterval(now ?? (self.iat + 60))))
     }
@@ -495,6 +658,203 @@ final class SGEntitlementPolicyStateTests: XCTestCase {
         let relaunched = SGEntitlementPolicyStore(defaults: UserDefaults(suiteName: self.suiteName))
         XCTAssertEqual(relaunched.load(), v2, "the exact signed v2 bytes are persisted under the unchanged key")
         XCTAssertEqual(SGEntitlementPolicyState.restoring(stored: relaunched.load(), pinnedKeys: self.pinned).accepted?.trialDays, 10)
+    }
+
+    // MARK: - The three shapes under one order (`local_grace_days`)
+
+    func test_theLocalGraceLengthIsTheAcceptedPolicys_andSevenDaysWhereItCannotSay() {
+        XCTAssertEqual(SGEntitlementPolicyState.initial.localGraceDays, 7, "no policy: the default seven days")
+        let v1 = self.accept(self.policy("paid", revision: 1), into: .initial).state
+        XCTAssertEqual(v1.localGraceDays, 7, "a v1 policy cannot say: seven days")
+        let v2 = self.accept(self.policyV2("paid", revision: 2, trialDays: 30), into: v1).state
+        XCTAssertEqual(v2.localGraceDays, 7, "a v2 policy cannot say either — never its trial_days")
+        var state = v2
+        var revision: Int64 = 3
+        for days in [0, 1, 7, 30, 3] {
+            let adopted = self.accept(self.policyV3("paid", revision: revision, localGraceDays: days), into: state)
+            XCTAssertEqual(adopted.outcome, .adopted)
+            XCTAssertEqual(adopted.state.localGraceDays, days, "a v3 policy's signed local_grace_days is the length")
+            XCTAssertEqual(adopted.state.accepted?.version, 3)
+            state = adopted.state
+            revision += 1
+        }
+        // Signed in both modes: a free v3 policy keeps the configured value (it has no effect there).
+        let free = self.accept(self.policyV3("free", revision: revision, localGraceDays: 12), into: state)
+        XCTAssertEqual(free.outcome, .adopted)
+        XCTAssertEqual(free.state.mode, .free)
+        XCTAssertEqual(free.state.localGraceDays, 12)
+    }
+
+    func test_theSameIssuanceFetchedAsV3IsAdoptedAndAnOlderShapeOfItChangesNothing() {
+        // This build's first fetch after the server started minting v3: the issuance it already
+        // holds as v2 (or v1), with its local_grace_days now legible.
+        let v2 = self.accept(self.policyV2("paid", revision: 3, trialDays: 7), into: .initial).state
+        XCTAssertEqual(v2.localGraceDays, 7)
+        let upgraded = self.accept(self.policyV3("paid", revision: 3, trialDays: 7, localGraceDays: 0), into: v2)
+        XCTAssertEqual(upgraded.outcome, .adopted, "a v2 -> v3 upgrade of the same issuance is adopted")
+        XCTAssertEqual(upgraded.state.accepted?.version, 3)
+        XCTAssertEqual(upgraded.state.localGraceDays, 0)
+        XCTAssertEqual(upgraded.state.accepted?.trialDays, 7)
+
+        let v1 = self.accept(self.policy("paid", revision: 3), into: .initial).state
+        let fromV1 = self.accept(self.policyV3("paid", revision: 3, trialDays: 7, localGraceDays: 21), into: v1)
+        XCTAssertEqual(fromV1.outcome, .adopted, "a v1 -> v3 upgrade of the same issuance is adopted")
+        XCTAssertEqual(fromV1.state.localGraceDays, 21)
+        XCTAssertEqual(fromV1.state.accepted?.trialDays, 7)
+
+        // An older shape of the issuance held as v3 (a proxy, a cache, a server one release
+        // behind): the v3 stands — its length is not replaced by the default.
+        for older in [self.policyV2("paid", revision: 3, trialDays: 7), self.policy("paid", revision: 3)] {
+            let downgraded = self.accept(older, into: upgraded.state)
+            XCTAssertEqual(downgraded.outcome, .unchanged, "an older shape of the same issuance never takes the signed length away")
+            XCTAssertEqual(downgraded.state, upgraded.state)
+            XCTAssertEqual(downgraded.state.localGraceDays, 0)
+        }
+
+        // Another mode under the same tuple is a conflict, whatever the shapes.
+        let conflict = self.accept(self.policyV3("free", revision: 3, trialDays: 7, localGraceDays: 0), into: v2)
+        XCTAssertEqual(conflict.outcome, .rejected(.conflictingIssuance))
+        XCTAssertEqual(conflict.state, v2)
+        let conflictBack = self.accept(self.policyV2("free", revision: 3, trialDays: 7), into: upgraded.state)
+        XCTAssertEqual(conflictBack.outcome, .rejected(.conflictingIssuance))
+        XCTAssertEqual(conflictBack.state, upgraded.state)
+    }
+
+    func test_twoV3PoliciesOfTheSameIssuanceMustAgreeOnTheirTrialDaysAndTheirLocalGraceDays() {
+        let held = self.accept(self.policyV3("paid", revision: 3, trialDays: 7, localGraceDays: 7), into: .initial).state
+        // Re-signed (a fresh ECDSA nonce) with the same claims: a routine refresh.
+        let again = self.accept(self.policyV3("paid", revision: 3, trialDays: 7, localGraceDays: 7), into: held)
+        XCTAssertEqual(again.outcome, .unchanged)
+        XCTAssertEqual(again.state, held)
+
+        // The server bumps the revision for every change of the local grace: an equal tuple with
+        // another length is a conflict, and the accepted length stands — shorter or longer.
+        for other in [0, 6, 8, 30] {
+            let conflict = self.accept(self.policyV3("paid", revision: 3, trialDays: 7, localGraceDays: other), into: held)
+            XCTAssertEqual(conflict.outcome, .rejected(.conflictingIssuance), "local_grace_days \(other) under the accepted (revision, iat)")
+            XCTAssertEqual(conflict.state, held, "a conflicting equal tuple must change nothing")
+            XCTAssertEqual(conflict.state.localGraceDays, 7)
+        }
+        let otherTrial = self.accept(self.policyV3("paid", revision: 3, trialDays: 14, localGraceDays: 7), into: held)
+        XCTAssertEqual(otherTrial.outcome, .rejected(.conflictingIssuance), "two v3 tokens of one issuance agree on trial_days too")
+        XCTAssertEqual(otherTrial.state, held)
+
+        // The rule compares two tokens of the SAME shape. Across shapes the matrix is the v1 / v2
+        // one, extended: the newer shape of the issuance is adopted and the older one is ignored,
+        // whatever the claim only one of them is asked about.
+        let v2 = self.accept(self.policyV2("paid", revision: 3, trialDays: 7), into: .initial).state
+        let upgrade = self.accept(self.policyV3("paid", revision: 3, trialDays: 7, localGraceDays: 0), into: v2)
+        XCTAssertEqual(upgrade.outcome, .adopted)
+        XCTAssertEqual(upgrade.state.localGraceDays, 0)
+        let older = self.accept(self.policyV2("paid", revision: 3, trialDays: 7), into: held)
+        XCTAssertEqual(older.outcome, .unchanged)
+        XCTAssertEqual(older.state, held)
+    }
+
+    func test_aNewerOlderShapedIssuanceWinsOverAStoredV3_andTheGraceIsSevenDaysUntilTheNextV3() {
+        let v3 = self.accept(self.policyV3("paid", revision: 3, trialDays: 7, localGraceDays: 0), into: .initial).state
+        XCTAssertEqual(v3.localGraceDays, 0)
+
+        // `(revision, iat)` alone orders policies: the shape never does. The last accepted policy
+        // is then ver 2, which cannot say — seven days, by the one rule.
+        let newerV2 = self.accept(self.policyV2("paid", revision: 3, iat: self.iat + 10, trialDays: 7), into: v3, now: self.iat + 60)
+        XCTAssertEqual(newerV2.outcome, .adopted)
+        XCTAssertEqual(newerV2.state.accepted?.version, 2)
+        XCTAssertEqual(newerV2.state.localGraceDays, 7)
+        XCTAssertEqual(newerV2.state.accepted?.trialDays, 7, "the v2 still carries the trial")
+
+        let newerV1 = self.accept(self.policy("paid", revision: 3, iat: self.iat + 15), into: newerV2.state, now: self.iat + 60)
+        XCTAssertEqual(newerV1.outcome, .adopted)
+        XCTAssertEqual(newerV1.state.localGraceDays, 7)
+
+        // The next fetch carries a newer iat still and, as v3, re-adopts the signed length.
+        let readopted = self.accept(self.policyV3("paid", revision: 3, iat: self.iat + 20, trialDays: 7, localGraceDays: 0), into: newerV1.state, now: self.iat + 60)
+        XCTAssertEqual(readopted.outcome, .adopted)
+        XCTAssertEqual(readopted.state.localGraceDays, 0)
+
+        // An older v3 cannot bring another length back over a newer issuance.
+        let replay = self.accept(self.policyV3("paid", revision: 3, iat: self.iat, trialDays: 7, localGraceDays: 30), into: readopted.state, now: self.iat + 60)
+        XCTAssertEqual(replay.outcome, .rejected(.older))
+        XCTAssertEqual(replay.state, readopted.state)
+        XCTAssertEqual(replay.state.localGraceDays, 0)
+    }
+
+    func test_aV3WithAnInvalidLocalGraceDaysIsRefusedAsAWhole_andTheAcceptedPolicyStays() {
+        let held = self.accept(self.policyV3("paid", revision: 3, trialDays: 7, localGraceDays: 5), into: .initial).state
+        let bad: [Any] = [31, -1, "7", true, NSNull()]
+        for value in bad {
+            // A NEWER revision that would also flip the mode: nothing of it is taken.
+            var claims = SGEntitlementTestPolicy.claims(mode: "free", revision: 9, iat: self.iat + 10, version: 3, trialDays: 0, localGraceDays: 7)
+            claims["local_grace_days"] = value
+            let refused = self.accept(SGEntitlementTestToken.make(key: self.key, kid: self.kid, payload: claims), into: held)
+            XCTAssertEqual(refused.outcome, .rejected(.verification(.invalidClaims)), "local_grace_days \(value)")
+            XCTAssertEqual(refused.state, held, "the last accepted policy stays, with its own length and mode")
+            XCTAssertEqual(refused.state.localGraceDays, 5)
+            XCTAssertEqual(refused.state.mode, .paid)
+        }
+        var missing = SGEntitlementTestPolicy.claims(mode: "free", revision: 9, iat: self.iat + 10, version: 3, trialDays: 0, localGraceDays: 7)
+        missing.removeValue(forKey: "local_grace_days")
+        let refused = self.accept(SGEntitlementTestToken.make(key: self.key, kid: self.kid, payload: missing), into: held)
+        XCTAssertEqual(refused.outcome, .rejected(.verification(.wrongPurpose)), "a ver-3 token without the claim is no policy at all")
+        XCTAssertEqual(refused.state, held)
+        // With nothing accepted, a refused v3 leaves the install without a policy: free, seven days.
+        var first = SGEntitlementTestPolicy.claims(mode: "paid", revision: 9, iat: self.iat, version: 3, trialDays: 0, localGraceDays: 7)
+        first["local_grace_days"] = 31
+        let none = self.accept(SGEntitlementTestToken.make(key: self.key, kid: self.kid, payload: first), into: .initial)
+        XCTAssertEqual(none.outcome, .rejected(.verification(.invalidClaims)))
+        XCTAssertEqual(none.state, .initial)
+        XCTAssertEqual(none.state.localGraceDays, 7)
+    }
+
+    func test_aBadTrialDaysInsideAV3RefusesTheWholeToken_andItsLocalGraceDaysIsNotAdopted() {
+        let held = self.accept(self.policyV3("paid", revision: 3, trialDays: 7, localGraceDays: 5), into: .initial).state
+        let bad: [Any] = [-1, 31, "7", true, NSNull()]
+        for value in bad {
+            // A newer revision whose `local_grace_days` is perfectly valid — and would switch the
+            // grace off — beside a `trial_days` that is not: nothing of the token is taken.
+            var claims = SGEntitlementTestPolicy.claims(mode: "paid", revision: 9, iat: self.iat + 10, version: 3, trialDays: 0, localGraceDays: 0)
+            claims["trial_days"] = value
+            let refused = self.accept(SGEntitlementTestToken.make(key: self.key, kid: self.kid, payload: claims), into: held)
+            XCTAssertEqual(refused.outcome, .rejected(.verification(.invalidClaims)), "trial_days \(value) inside a ver-3 token")
+            XCTAssertEqual(refused.state, held)
+            XCTAssertEqual(refused.state.localGraceDays, 5, "the refused token's local_grace_days is not adopted either")
+            XCTAssertEqual(refused.state.accepted?.trialDays, 7)
+        }
+        var missing = SGEntitlementTestPolicy.claims(mode: "paid", revision: 9, iat: self.iat + 10, version: 3, trialDays: 0, localGraceDays: 0)
+        missing.removeValue(forKey: "trial_days")
+        let refused = self.accept(SGEntitlementTestToken.make(key: self.key, kid: self.kid, payload: missing), into: held)
+        XCTAssertEqual(refused.outcome, .rejected(.verification(.wrongPurpose)), "a ver-3 token is the ver-2 set plus one: trial_days is not optional in it")
+        XCTAssertEqual(refused.state.localGraceDays, 5)
+    }
+
+    func test_aRestoredV3KeepsItsLocalGraceDays_andTheTokenIsItsOnlyStore() {
+        for days in [0, 3, 30] {
+            let v3 = self.policyV3("paid", revision: 4, trialDays: 10, localGraceDays: days)
+            let restored = SGEntitlementPolicyState.restoring(stored: v3, pinnedKeys: self.pinned)
+            XCTAssertEqual(restored.mode, .paid)
+            XCTAssertEqual(restored.accepted?.version, 3)
+            XCTAssertEqual(restored.localGraceDays, days, "the stored v3 keeps its local_grace_days across a relaunch")
+            XCTAssertEqual(restored.accepted?.trialDays, 10)
+        }
+        XCTAssertEqual(SGEntitlementPolicyState.restoring(stored: self.policyV2("paid", revision: 4, trialDays: 10), pinnedKeys: self.pinned).localGraceDays, 7, "a stored v2 has no length to restore")
+        XCTAssertEqual(SGEntitlementPolicyState.restoring(stored: self.policy("paid", revision: 4), pinnedKeys: self.pinned).localGraceDays, 7)
+        // A stored v3 that no longer verifies is no policy: free, and the default length.
+        let rotatedOut = SGEntitlementTestPolicy.make(key: P256.Signing.PrivateKey(), kid: self.kid, mode: "paid", revision: 4, iat: self.iat, version: 3, trialDays: 0, localGraceDays: 0)
+        XCTAssertEqual(SGEntitlementPolicyState.restoring(stored: rotatedOut, pinnedKeys: self.pinned), .initial)
+        XCTAssertEqual(SGEntitlementPolicyState.restoring(stored: rotatedOut, pinnedKeys: self.pinned).localGraceDays, 7)
+
+        // The store key names the store's layout, not the token's `ver`: a v3 lands in the slot the
+        // v1 / v2 had, and that one string is everything the policy store holds — the length has no
+        // key of its own.
+        let defaults = UserDefaults(suiteName: self.suiteName)
+        let store = SGEntitlementPolicyStore(defaults: defaults)
+        XCTAssertEqual(store.key, "zg.ent.policy.v1")
+        let v3 = self.policyV3("paid", revision: 4, trialDays: 10, localGraceDays: 3)
+        XCTAssertTrue(store.save(v3))
+        let relaunched = SGEntitlementPolicyStore(defaults: UserDefaults(suiteName: self.suiteName))
+        XCTAssertEqual(relaunched.load(), v3, "the exact signed v3 bytes are persisted under the unchanged key")
+        XCTAssertEqual(SGEntitlementPolicyState.restoring(stored: relaunched.load(), pinnedKeys: self.pinned).localGraceDays, 3)
+        XCTAssertEqual(defaults?.persistentDomain(forName: self.suiteName).map { Array($0.keys) }, ["zg.ent.policy.v1"], "nothing but the signed token is stored")
     }
 
     func test_anUnverifiableOrExpiredFetchKeepsTheLastVerifiedMode() {

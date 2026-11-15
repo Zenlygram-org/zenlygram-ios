@@ -83,6 +83,11 @@ final class SGEntitlementMonetizationTests: XCTestCase {
         return SGEntitlementTestPolicy.make(key: self.key, kid: self.kid, mode: mode, revision: revision, iat: self.policyNow, version: 2, trialDays: trialDays)
     }
 
+    /// The v3 shape, with its signed `trial_days` and `local_grace_days`.
+    private func policyV3(_ mode: String, revision: Int64, trialDays: Int = 0, localGraceDays: Int) -> String {
+        return SGEntitlementTestPolicy.make(key: self.key, kid: self.kid, mode: mode, revision: revision, iat: self.policyNow, version: 3, trialDays: trialDays, localGraceDays: localGraceDays)
+    }
+
     private func answering(_ result: Result<String, SGEntitlementRequestError>) -> SGEntitlementPolicyTransport {
         return SGEntitlementPolicyTransport(fetch: { result })
     }
@@ -151,7 +156,7 @@ final class SGEntitlementMonetizationTests: XCTestCase {
         guard let flip = self.entitlement.paidModeMarkForTesting else {
             return XCTFail("the first paid evaluation mints the mark")
         }
-        XCTAssertEqual(self.entitlement.localGraceEndsAt, flip.addingTimeInterval(SGEntitlementLocalGrace.duration), "free until seven days after the flip")
+        XCTAssertEqual(self.entitlement.localGraceEndsAt, flip.addingTimeInterval(SGEntitlementLocalGrace.defaultDuration), "free until seven days after the flip")
 
         let free = await self.entitlement.performPolicyRefresh(transport: self.answering(.success(self.policy("free", revision: 2))), uptime: 1_061)
         XCTAssertEqual(free, .adopted)
@@ -186,7 +191,7 @@ final class SGEntitlementMonetizationTests: XCTestCase {
         guard let flip = self.entitlement.paidModeMarkForTesting else {
             return XCTFail("the first paid evaluation mints the mark")
         }
-        let endsAt = flip.addingTimeInterval(SGEntitlementLocalGrace.duration)
+        let endsAt = flip.addingTimeInterval(SGEntitlementLocalGrace.defaultDuration)
         XCTAssertEqual(self.entitlement.localGraceEndsAt, endsAt)
 
         _ = await self.entitlement.performPolicyRefresh(transport: self.answering(.success(self.policy("free", revision: 2))), uptime: 1_061)
@@ -201,6 +206,326 @@ final class SGEntitlementMonetizationTests: XCTestCase {
         XCTAssertEqual(relaunched.monetizationMode, .paid)
         XCTAssertEqual(relaunched.localGraceEndsAt?.timeIntervalSince1970 ?? 0, endsAt.timeIntervalSince1970, accuracy: 0.001)
         XCTAssertEqual(relaunched.paidModeMarkForTesting?.timeIntervalSince1970 ?? 0, flip.timeIntervalSince1970, accuracy: 0.001)
+    }
+
+    // MARK: - The local grace's length is the accepted signed policy's `local_grace_days`
+
+    private let day: TimeInterval = 86400
+
+    /// "Now" on the ACCOUNT evaluation clock, which is what the grace window is evaluated against
+    /// (`SGEntitlementClock.effectiveNow`). Deliberately not `Date()`: the shared clock mark that
+    /// other tests in this process move can hold it days away from the wall clock, and a window
+    /// pinned "three days ago" must be three days ago on the clock that judges it.
+    private var graceNow: Date {
+        return SGEntitlementClock.shared.effectiveNow()
+    }
+
+    /// An install first launched two months ago that the paid policy reached `daysAgo` days ago:
+    /// both records pinned, on the evaluation clock. Returns the flip.
+    private func pinGrace(flippedDaysAgo daysAgo: Double) -> Date {
+        let now = self.graceNow
+        let flip = now.addingTimeInterval(-daysAgo * self.day)
+        self.entitlement.overrideLocalGrace(SGEntitlementLocalGrace(firstLaunchAt: now.addingTimeInterval(-60 * self.day), firstPaidPolicyAt: flip))
+        return flip
+    }
+
+    private func adopt(_ token: String, uptime: TimeInterval) async {
+        let result = await self.entitlement.performPolicyRefresh(transport: self.answering(.success(token)), uptime: uptime)
+        XCTAssertEqual(result, .adopted, "premise: the policy was adopted")
+    }
+
+    private func assertGraceEnds(_ expected: Date, _ message: String, file: StaticString = #filePath, line: UInt = #line) {
+        guard let endsAt = self.entitlement.localGraceEndsAt else {
+            return XCTFail("no 'free until' date: \(message)", file: file, line: line)
+        }
+        XCTAssertEqual(endsAt.timeIntervalSince1970, expected.timeIntervalSince1970, accuracy: 0.001, message, file: file, line: line)
+    }
+
+    private func assertNoGrace(_ message: String, file: StaticString = #filePath, line: UInt = #line) {
+        XCTAssertEqual(self.entitlement.state, .degraded(reason: .noToken), message, file: file, line: line)
+        XCTAssertEqual(self.entitlement.source, SGEntitlementSource.none, message, file: file, line: line)
+        XCTAssertNil(self.entitlement.localGraceEndsAt, "no 'free until' date: \(message)", file: file, line: line)
+        XCTAssertEqual(self.entitlement.gate(.createVaultEntry), .blocked(reason: .noToken), message, file: file, line: line)
+    }
+
+    func test_theGraceLastsTheSignedDaysFromTheFlip_oneSevenAndThirty() async {
+        // The real paid-policy mark (D9): minted by the first paid evaluation, through the owned store.
+        self.entitlement.resetPaidModeMarkForTesting()
+        XCTAssertEqual(self.entitlement.localGraceDays, 7, "no policy yet: the default seven days")
+        XCTAssertNil(self.entitlement.localGraceEndsAt, "and no countdown while free")
+
+        await self.adopt(self.policyV3("paid", revision: 1, localGraceDays: 1), uptime: 1_000)
+        guard let flip = self.entitlement.paidModeMarkForTesting else {
+            return XCTFail("the first paid evaluation mints the mark")
+        }
+        XCTAssertEqual(self.entitlement.signedMonetizationPolicy?.version, 3)
+        XCTAssertEqual(self.entitlement.signedMonetizationPolicy?.localGraceDays, 1, "the signed value is kept as signed")
+        XCTAssertEqual(self.entitlement.localGraceDays, 1)
+        XCTAssertEqual(self.entitlement.source, .localGrace)
+        XCTAssertEqual(self.entitlement.state, .unlocked(capabilities: self.base))
+        self.assertGraceEnds(flip.addingTimeInterval(self.day), "free until one day after the flip")
+
+        var uptime: TimeInterval = 1_061
+        var revision: Int64 = 2
+        for days in [7, 30] {
+            await self.adopt(self.policyV3("paid", revision: revision, localGraceDays: days), uptime: uptime)
+            XCTAssertEqual(self.entitlement.localGraceDays, days)
+            XCTAssertEqual(self.entitlement.source, .localGrace)
+            self.assertGraceEnds(flip.addingTimeInterval(TimeInterval(days) * self.day), "free until \(days) days after the flip")
+            XCTAssertEqual(self.entitlement.paidModeMarkForTesting, flip, "a change of the length never re-bases the start")
+            uptime += 61
+            revision += 1
+        }
+    }
+
+    func test_aZeroDayPolicyNeverGrants_showsNoFreeUntil_andStillMintsTheMark() async {
+        self.entitlement.resetPaidModeMarkForTesting()
+        await self.adopt(self.policyV3("paid", revision: 1, trialDays: 7, localGraceDays: 0), uptime: 1_000)
+        XCTAssertEqual(self.entitlement.monetizationMode, .paid)
+        XCTAssertEqual(self.entitlement.localGraceDays, 0)
+        self.assertNoGrace("0 days: 'not active' as soon as the paid policy is read, as for an install whose grace has ended")
+        XCTAssertFalse(self.entitlement.can(.createTask))
+        XCTAssertFalse(self.entitlement.can(.createRetainedHistoryRecord))
+        for action in SGEntitlementUnrestrictedAction.allCases {
+            XCTAssertTrue(self.entitlement.can(action), "\(action.rawValue): the user's own data never depends on the grace")
+        }
+        XCTAssertTrue(self.entitlement.offersNewSubscriptions, "the offer is what an install without a grant meets")
+        XCTAssertEqual(self.entitlement.serverTrialDays, 7, "the server's own trial is another thing, and still offered")
+        // The mark records when the flip reached this install even though nothing was granted…
+        guard let flip = self.entitlement.paidModeMarkForTesting else {
+            return XCTFail("the first paid evaluation mints the mark under a 0-day policy too")
+        }
+        // …so a later, longer length counts from it.
+        await self.adopt(self.policyV3("paid", revision: 2, trialDays: 7, localGraceDays: 7), uptime: 1_061)
+        XCTAssertEqual(self.entitlement.source, .localGrace)
+        self.assertGraceEnds(flip.addingTimeInterval(7 * self.day), "seven days from the moment the paid policy was first adopted")
+        XCTAssertEqual(self.entitlement.paidModeMarkForTesting, flip)
+    }
+
+    func test_aNewlyAdoptedLengthAppliesAtOnce_toTheDecisionTheFreeUntilDateAndTheExtensionsMirror() async {
+        // An account is known, so the decision is mirrored for the extensions (`writeMirror`).
+        self.entitlement.setActiveAccount(peerId: self.account)
+        self.entitlement.resetPaidModeMarkForTesting()
+        await self.adopt(self.policyV3("paid", revision: 1, localGraceDays: 7), uptime: 1_000)
+        guard let flip = self.entitlement.paidModeMarkForTesting else {
+            return XCTFail("the first paid evaluation mints the mark")
+        }
+        XCTAssertEqual(self.entitlement.source, .localGrace, "premise: a running grace")
+        self.assertGraceEnds(flip.addingTimeInterval(7 * self.day), "premise: seven days")
+        let now = SGEntitlementClock.shared.effectiveNow()
+        var mirror = self.entitlement.lastWrittenMirrorForTesting
+        XCTAssertEqual(mirror?.source, SGEntitlementSource.localGrace.rawValue)
+        XCTAssertEqual(mirror?.until, Int64(flip.addingTimeInterval(7 * self.day).timeIntervalSince1970), "the extensions get the grace's own end")
+        XCTAssertEqual(mirror?.state(now: now), .unlocked(capabilities: self.base))
+
+        // Lowered to 0: the running grace ends with the adoption itself — no relaunch, no timer.
+        let ended = XCTNSNotificationExpectation(name: SGEntitlement.didChangeNotification)
+        ended.assertForOverFulfill = false
+        ended.handler = { [entitlement = self.entitlement!] _ in
+            return entitlement.state == .degraded(reason: .noToken)
+        }
+        await self.adopt(self.policyV3("paid", revision: 2, localGraceDays: 0), uptime: 1_061)
+        self.assertNoGrace("a shorter length ends a running grace at once")
+        await self.fulfillment(of: [ended], timeout: 5)
+        mirror = self.entitlement.lastWrittenMirrorForTesting
+        XCTAssertEqual(mirror?.capabilities, [], "the extensions see the same answer the app computes")
+        XCTAssertNil(mirror?.until)
+        XCTAssertEqual(mirror?.source, SGEntitlementSource.none.rawValue)
+        XCTAssertEqual(mirror?.state(now: now), .degraded(reason: .noToken))
+        XCTAssertEqual(mirror?.storeKitWithheld.map { $0.capabilities }, [], "…with or without the StoreKit fallback")
+        XCTAssertEqual(self.entitlement.paidModeMarkForTesting, flip, "never re-minted")
+
+        // Raised to 30: the ended grace is revived, from the SAME start.
+        let revived = XCTNSNotificationExpectation(name: SGEntitlement.didChangeNotification)
+        revived.assertForOverFulfill = false
+        revived.handler = { [entitlement = self.entitlement!] _ in
+            return entitlement.source == .localGrace
+        }
+        await self.adopt(self.policyV3("paid", revision: 3, localGraceDays: 30), uptime: 1_122)
+        XCTAssertEqual(self.entitlement.source, .localGrace, "a longer length revives an ended grace at once")
+        XCTAssertEqual(self.entitlement.state, .unlocked(capabilities: self.base))
+        XCTAssertTrue(self.entitlement.can(.createTask))
+        self.assertGraceEnds(flip.addingTimeInterval(30 * self.day), "thirty days from the original start")
+        await self.fulfillment(of: [revived], timeout: 5)
+        mirror = self.entitlement.lastWrittenMirrorForTesting
+        XCTAssertEqual(mirror?.source, SGEntitlementSource.localGrace.rawValue)
+        XCTAssertEqual(mirror?.until, Int64(flip.addingTimeInterval(30 * self.day).timeIntervalSince1970), "the mirror carries the new end")
+        XCTAssertEqual(mirror?.state(now: now), .unlocked(capabilities: self.base))
+        XCTAssertEqual(mirror?.state(now: flip.addingTimeInterval(30 * self.day)), .degraded(reason: .noToken), "and an extension stops on that second by itself")
+        XCTAssertEqual(self.entitlement.paidModeMarkForTesting, flip)
+
+        // A purchase's own fresh policy is adopted the same way: its length applies before it returns.
+        let authorization = await self.entitlement.authorizeNewPurchase(transport: self.answering(.success(self.policyV3("paid", revision: 4, localGraceDays: 0))))
+        XCTAssertEqual(authorization, .paid)
+        self.assertNoGrace("the policy fetched for a purchase carries the length too")
+        XCTAssertEqual(self.entitlement.lastWrittenMirrorForTesting?.capabilities, [])
+    }
+
+    func test_midGrace_aShorterLengthEndsIt_aLongerOneExtendsIt_andAnEndedOneIsRevived() async {
+        // First launched two months ago; the paid policy reached this install three days ago.
+        let flip = self.pinGrace(flippedDaysAgo: 3)
+
+        await self.adopt(self.policyV3("paid", revision: 1, localGraceDays: 7), uptime: 1_000)
+        XCTAssertEqual(self.entitlement.source, .localGrace, "day 3 of 7: running")
+        self.assertGraceEnds(flip.addingTimeInterval(7 * self.day), "four days left")
+
+        await self.adopt(self.policyV3("paid", revision: 2, localGraceDays: 2), uptime: 1_061)
+        self.assertNoGrace("lowered to 2 on day 3: the window ended yesterday")
+
+        await self.adopt(self.policyV3("paid", revision: 3, localGraceDays: 30), uptime: 1_122)
+        XCTAssertEqual(self.entitlement.source, .localGrace, "raised to 30: the ended grace runs again")
+        self.assertGraceEnds(flip.addingTimeInterval(30 * self.day), "27 days left — counted from the original start, not 30 fresh ones")
+
+        await self.adopt(self.policyV3("paid", revision: 4, localGraceDays: 5), uptime: 1_183)
+        XCTAssertEqual(self.entitlement.source, .localGrace, "lowered to 5 on day 3: still running, with the nearer end")
+        self.assertGraceEnds(flip.addingTimeInterval(5 * self.day), "two days left")
+
+        await self.adopt(self.policyV3("paid", revision: 5, localGraceDays: 0), uptime: 1_244)
+        self.assertNoGrace("0 switches the grace off whatever day it is")
+
+        // The length is the POLICY's: nothing on the pinned record can supply one.
+        self.entitlement.overrideLocalGrace(SGEntitlementLocalGrace(firstLaunchAt: self.graceNow.addingTimeInterval(-60 * self.day), firstPaidPolicyAt: flip, days: 30))
+        self.assertNoGrace("a length that is not the signed policy's is never used")
+    }
+
+    func test_theHorizonOneShotIsReArmedAtTheNewEnd_whenAnAdoptedPolicyMovesIt() async {
+        // The paid policy reached this install one day minus three seconds ago. Under a 30-day
+        // policy the grace ends in 29 days, and that is where the one-shot is armed.
+        let now = self.graceNow
+        let flip = now.addingTimeInterval(-self.day + 3)
+        self.entitlement.overrideLocalGrace(SGEntitlementLocalGrace(firstLaunchAt: now.addingTimeInterval(-60 * self.day), firstPaidPolicyAt: flip))
+        await self.adopt(self.policyV3("paid", revision: 1, localGraceDays: 30), uptime: 1_000)
+        XCTAssertEqual(self.entitlement.source, .localGrace, "premise: a running grace, 29 days left")
+        self.assertGraceEnds(flip.addingTimeInterval(30 * self.day), "premise: thirty days")
+
+        // Lowered to one day: the window now closes three seconds after `now`.
+        await self.adopt(self.policyV3("paid", revision: 2, localGraceDays: 1), uptime: 1_061)
+        XCTAssertEqual(self.entitlement.source, .localGrace, "premise: still inside the one-day window, for a moment more")
+        self.assertGraceEnds(flip.addingTimeInterval(self.day), "the new end")
+
+        // From here on NOTHING asks a gate: the close must arrive from the one-shot the adoption's
+        // recompute re-armed at the NEW end — one still armed 29 days away would never post it.
+        let closed = XCTNSNotificationExpectation(name: SGEntitlement.didChangeNotification)
+        closed.assertForOverFulfill = false
+        closed.handler = { [entitlement = self.entitlement!] _ in
+            return entitlement.state == .degraded(reason: .noToken)
+        }
+        await self.fulfillment(of: [closed], timeout: 15)
+        XCTAssertNil(self.entitlement.localGraceEndsAt)
+        XCTAssertEqual(self.entitlement.gate(.createVaultEntry), .blocked(reason: .noToken))
+    }
+
+    func test_aVer2PolicyAVer1PolicyAndNoPolicyMeanSevenDays_andAnOlderShapeAfterAV3PutsItBack() async {
+        let flip = self.pinGrace(flippedDaysAgo: 3)
+        XCTAssertEqual(self.entitlement.localGraceDays, 7, "no policy: seven days")
+
+        // What a server that does not know v3 yet answers this build: v2. Its trial_days is not the
+        // grace's length.
+        await self.adopt(self.policyV2("paid", revision: 1, trialDays: 30), uptime: 1_000)
+        XCTAssertEqual(self.entitlement.localGraceDays, 7, "a ver-2 policy cannot say: seven days")
+        XCTAssertEqual(self.entitlement.source, .localGrace)
+        self.assertGraceEnds(flip.addingTimeInterval(7 * self.day), "seven days from the flip, exactly as before this build")
+
+        await self.adopt(self.policyV3("paid", revision: 2, trialDays: 30, localGraceDays: 0), uptime: 1_061)
+        XCTAssertEqual(self.entitlement.localGraceDays, 0)
+        self.assertNoGrace("the first ver-3 policy applies its length")
+
+        // The last ACCEPTED policy decides: a newer ver-2 (then ver-1) issuance is seven days again.
+        await self.adopt(self.policyV2("paid", revision: 3, trialDays: 30), uptime: 1_122)
+        XCTAssertEqual(self.entitlement.localGraceDays, 7)
+        XCTAssertEqual(self.entitlement.source, .localGrace)
+        self.assertGraceEnds(flip.addingTimeInterval(7 * self.day), "last accepted policy is ver 2: seven days")
+        await self.adopt(self.policy("paid", revision: 4), uptime: 1_183)
+        XCTAssertEqual(self.entitlement.localGraceDays, 7)
+        self.assertGraceEnds(flip.addingTimeInterval(7 * self.day), "last accepted policy is ver 1: seven days")
+    }
+
+    func test_aVer3PolicyWithABadLocalGraceDaysIsRefused_andTheAcceptedLengthStays() async {
+        let flip = self.pinGrace(flippedDaysAgo: 3)
+        await self.adopt(self.policyV3("paid", revision: 1, localGraceDays: 5), uptime: 1_000)
+        self.assertGraceEnds(flip.addingTimeInterval(5 * self.day), "premise: five days")
+
+        var uptime: TimeInterval = 1_061
+        let bad: [Any] = [31, -1, "7", true, NSNull()]
+        for value in bad {
+            // A newer revision that would also turn the app free: none of it is taken.
+            var claims = SGEntitlementTestPolicy.claims(mode: "free", revision: 9, iat: self.policyNow, version: 3, trialDays: 0, localGraceDays: 7)
+            claims["local_grace_days"] = value
+            let token = SGEntitlementTestToken.make(key: self.key, kid: self.kid, payload: claims)
+            let refused = await self.entitlement.performPolicyRefresh(transport: self.answering(.success(token)), uptime: uptime)
+            XCTAssertEqual(refused, .rejected, "local_grace_days \(value)")
+            XCTAssertEqual(self.entitlement.monetizationMode, .paid)
+            XCTAssertEqual(self.entitlement.localGraceDays, 5, "the last accepted policy stays, with its own length")
+            self.assertGraceEnds(flip.addingTimeInterval(5 * self.day), "unchanged by the refused token")
+            uptime += 61
+        }
+        var missing = SGEntitlementTestPolicy.claims(mode: "free", revision: 9, iat: self.policyNow, version: 3, trialDays: 0, localGraceDays: 7)
+        missing.removeValue(forKey: "local_grace_days")
+        let withoutClaim = await self.entitlement.performPolicyRefresh(transport: self.answering(.success(SGEntitlementTestToken.make(key: self.key, kid: self.kid, payload: missing))), uptime: uptime)
+        XCTAssertEqual(withoutClaim, .rejected)
+        XCTAssertEqual(self.entitlement.localGraceDays, 5)
+        // A bad `trial_days` inside a ver-3 token refuses the whole token: its own, valid
+        // `local_grace_days` (0 here, which would end the grace) is not adopted either.
+        var badTrial = SGEntitlementTestPolicy.claims(mode: "paid", revision: 9, iat: self.policyNow, version: 3, trialDays: 0, localGraceDays: 0)
+        badTrial["trial_days"] = 31
+        let withBadTrial = await self.entitlement.performPolicyRefresh(transport: self.answering(.success(SGEntitlementTestToken.make(key: self.key, kid: self.kid, payload: badTrial))), uptime: uptime + 61)
+        XCTAssertEqual(withBadTrial, .rejected)
+        XCTAssertEqual(self.entitlement.localGraceDays, 5)
+        XCTAssertEqual(self.entitlement.source, .localGrace)
+        self.assertGraceEnds(flip.addingTimeInterval(5 * self.day), "unchanged by a token refused for its trial_days")
+        // A refused policy admits no purchase either.
+        var outOfRange = SGEntitlementTestPolicy.claims(mode: "paid", revision: 9, iat: self.policyNow, version: 3, trialDays: 0, localGraceDays: 7)
+        outOfRange["local_grace_days"] = 31
+        let authorization = await self.entitlement.authorizeNewPurchase(transport: self.answering(.success(SGEntitlementTestToken.make(key: self.key, kid: self.kid, payload: outOfRange))))
+        XCTAssertEqual(authorization, .unavailable)
+        XCTAssertEqual(self.entitlement.signedMonetizationPolicy?.revision, 1)
+        XCTAssertEqual(self.entitlement.localGraceDays, 5)
+    }
+
+    func test_theLengthIsDerivedFromTheStoredSignedTokenByEveryProcess_andStoredNowhereElse() async {
+        self.entitlement.resetPaidModeMarkForTesting()
+        await self.adopt(self.policyV3("paid", revision: 1, localGraceDays: 3), uptime: 1_000)
+        guard let flip = self.entitlement.paidModeMarkForTesting else {
+            return XCTFail("the first paid evaluation mints the mark")
+        }
+        self.assertGraceEnds(flip.addingTimeInterval(3 * self.day), "premise: three days")
+
+        // Another instance over the same Keychain records and the same policy slot — the next
+        // launch, or another process of the app group — re-verifies the stored token and derives
+        // the same length from it.
+        let other = self.makeEntitlement()
+        other.resetPaidModeMarkForTesting()
+        XCTAssertEqual(other.monetizationMode, .paid)
+        XCTAssertEqual(other.localGraceDays, 3)
+        XCTAssertEqual(other.source, .localGrace)
+        XCTAssertEqual(other.localGraceEndsAt?.timeIntervalSince1970 ?? 0, flip.addingTimeInterval(3 * self.day).timeIntervalSince1970, accuracy: 0.001)
+
+        // The policy slot holds the signed token and the notice marker — no length of its own.
+        let stored = UserDefaults(suiteName: self.policySuite)?.persistentDomain(forName: self.policySuite) ?? [:]
+        let tokenKeys = stored.keys.filter { !$0.hasSuffix(".noticed") }
+        XCTAssertEqual(tokenKeys.count, 1, "one policy slot: \(stored.keys.sorted())")
+        XCTAssertTrue(tokenKeys.allSatisfy { $0.hasPrefix("\(SGEntitlementPolicyStore.defaultsKey)@") })
+        XCTAssertEqual(tokenKeys.first.flatMap { stored[$0] as? String }, self.entitlement.signedMonetizationPolicy?.token, "the exact signed bytes")
+        XCTAssertEqual(Set(stored.keys), Set(tokenKeys + tokenKeys.map { "\($0).noticed" }), "nothing else is stored beside it")
+
+        // A ring that no longer verifies the stored token has no policy at all: free — and, were it
+        // paid, the default seven days, never the length of a token it cannot verify.
+        let rotatedRing = self.makeEntitlement(pinned: SGEntitlementTestToken.pinned(P256.Signing.PrivateKey(), kid: self.kid))
+        XCTAssertEqual(rotatedRing.monetizationMode, .free)
+        XCTAssertEqual(rotatedRing.localGraceDays, 7)
+        XCTAssertNil(rotatedRing.localGraceEndsAt)
+    }
+
+    func test_whileFreeTheSignedLengthHasNoEffect() async {
+        self.entitlement.overrideLocalGrace(SGEntitlementLocalGrace(firstLaunchAt: self.graceNow.addingTimeInterval(-86400)))
+        await self.adopt(self.policyV3("free", revision: 1, localGraceDays: 0), uptime: 1_000)
+        XCTAssertEqual(self.entitlement.localGraceDays, 0, "signed in both modes")
+        XCTAssertEqual(self.entitlement.source, .freeAccess, "a 0-day length takes nothing away while free")
+        XCTAssertEqual(self.entitlement.state, .unlocked(capabilities: self.base))
+        XCTAssertNil(self.entitlement.localGraceEndsAt)
+        await self.adopt(self.policyV3("free", revision: 2, localGraceDays: 30), uptime: 1_061)
+        XCTAssertEqual(self.entitlement.source, .freeAccess, "and a long one adds no countdown")
+        XCTAssertNil(self.entitlement.localGraceEndsAt)
     }
 
     // MARK: - D9: the one-time notice on the first blocked create, once per flip to paid
@@ -709,6 +1034,31 @@ final class SGEntitlementMonetizationTests: XCTestCase {
         XCTAssertEqual(self.entitlement.monetizationMode, .paid)
         XCTAssertEqual(self.entitlement.state, .degraded(reason: .noToken), "an old install with nothing paid must not keep free access after paid was enabled")
         XCTAssertNotEqual(self.entitlement.source, .freeAccess)
+    }
+
+    func test_aGraceDecisionComputedBeforeAShorterLengthWasAdoptedNeverSticks() {
+        // A running grace under a seven-day policy; a recompute is caught between evaluation and
+        // commit while a 0-day policy is adopted. Its "granted until day 7" must not be cached.
+        let entitlement = self.entitlement!
+        _ = self.pinGrace(flippedDaysAgo: 3)
+        let seven = self.answering(.success(self.policyV3("paid", revision: 1, localGraceDays: 7)))
+        let premise = self.expectation(description: "seven days adopted")
+        Task {
+            _ = await entitlement.performPolicyRefresh(transport: seven, uptime: 1_000)
+            premise.fulfill()
+        }
+        self.wait(for: [premise], timeout: 5)
+        XCTAssertEqual(entitlement.source, .localGrace, "premise: a running grace")
+
+        self.adoptWhileARecomputeIsInFlight(self.policyV3("paid", revision: 2, localGraceDays: 0), uptime: 1_061)
+        XCTAssertEqual(entitlement.localGraceDays, 0)
+        XCTAssertEqual(entitlement.state, .degraded(reason: .noToken), "a decision made under the older length must not outlive the adoption")
+        XCTAssertNil(entitlement.localGraceEndsAt)
+
+        // …and the other way: "ended" computed under 0 days must not stick once 30 are adopted.
+        self.adoptWhileARecomputeIsInFlight(self.policyV3("paid", revision: 3, localGraceDays: 30), uptime: 1_122)
+        XCTAssertEqual(entitlement.source, .localGrace, "the user must not stay paywalled after the owner lengthened the grace")
+        XCTAssertTrue(entitlement.can(.createTask))
     }
 
     func test_aPaidDecisionComputedBeforeFreeWasAdoptedNeverSticks() {

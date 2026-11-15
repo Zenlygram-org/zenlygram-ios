@@ -96,12 +96,14 @@ enum SGEntitlementTestToken {
 }
 
 /// Zenlygram — real ES256 monetization POLICY tokens (`GET /v1/monetization`, contracts
-/// `monetization-policy.v1` / `.v2`), signed with the same pinned ring as the entitlement.
+/// `monetization-policy.v1` / `.v2` / `.v3`), signed with the same pinned ring as the entitlement.
 ///
-/// `version` is what `ver` claims and `trialDays` adds the `trial_days` claim when non-nil; the
-/// two are deliberately independent, so the verifier's rejection cases can be minted (v2 keys under
-/// `ver: 1`, v1 keys under `ver: 2`). A well-formed v2 token is `version: 2, trialDays: n`; the
-/// defaults mint the frozen v1 shape.
+/// `version` is what `ver` claims, `trialDays` adds the `trial_days` claim when non-nil and
+/// `localGraceDays` the `local_grace_days` claim when non-nil; the three are deliberately
+/// independent, so the verifier's rejection cases can be minted (v2 keys under `ver: 1`, v1 keys
+/// under `ver: 2`, a `ver: 3` without its `local_grace_days`). A well-formed v2 token is
+/// `version: 2, trialDays: n`, a well-formed v3 one `version: 3, trialDays: n, localGraceDays: m`;
+/// the defaults mint the frozen v1 shape.
 enum SGEntitlementTestPolicy {
     static func claims(
         mode: String = "paid",
@@ -109,7 +111,8 @@ enum SGEntitlementTestPolicy {
         iat: Int64 = 1_790_000_000,
         exp: Int64? = nil,
         version: Int64 = 1,
-        trialDays: Int? = nil
+        trialDays: Int? = nil,
+        localGraceDays: Int? = nil
     ) -> [String: Any] {
         var claims: [String: Any] = [
             "iss": "zenlygram",
@@ -123,6 +126,9 @@ enum SGEntitlementTestPolicy {
         if let trialDays {
             claims["trial_days"] = trialDays
         }
+        if let localGraceDays {
+            claims["local_grace_days"] = localGraceDays
+        }
         return claims
     }
 
@@ -134,9 +140,10 @@ enum SGEntitlementTestPolicy {
         iat: Int64 = 1_790_000_000,
         exp: Int64? = nil,
         version: Int64 = 1,
-        trialDays: Int? = nil
+        trialDays: Int? = nil,
+        localGraceDays: Int? = nil
     ) -> String {
-        return SGEntitlementTestToken.make(key: key, kid: kid, payload: self.claims(mode: mode, revision: revision, iat: iat, exp: exp, version: version, trialDays: trialDays))
+        return SGEntitlementTestToken.make(key: key, kid: kid, payload: self.claims(mode: mode, revision: revision, iat: iat, exp: exp, version: version, trialDays: trialDays, localGraceDays: localGraceDays))
     }
 
     /// An accepted state holding `token`, re-verified exactly as a relaunch would.

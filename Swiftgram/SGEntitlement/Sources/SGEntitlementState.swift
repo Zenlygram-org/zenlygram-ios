@@ -35,9 +35,11 @@ public enum SGEntitlementSource: String, CaseIterable, Hashable {
     /// This BUILD carries no entitlement configuration, so there is nothing to enforce. See
     /// `SGEntitlementEnforcement`.
     case unconfigured
-    /// The local 7-day grace after first launch (`SGEntitlementLocalGrace`): a configured build,
-    /// no token and no StoreKit subscription granting, inside the window. The paywall / status UI
-    /// shows "free until `SGEntitlement.localGraceEndsAt`" for this source.
+    /// The local grace after first launch (`SGEntitlementLocalGrace`): a configured build, no
+    /// token and no StoreKit subscription granting, inside the window — whose length is the
+    /// accepted signed policy's `local_grace_days` (seven days where the policy cannot say). The
+    /// paywall / status UI shows "free until `SGEntitlement.localGraceEndsAt`" for this source.
+    /// Never the source under a 0-day policy: that grace never grants.
     case localGrace
     /// The signed monetization policy is FREE (`SGEntitlementPolicy`, the initial mode of every
     /// install): the four shipped capabilities for everyone, with no horizon of its own and no

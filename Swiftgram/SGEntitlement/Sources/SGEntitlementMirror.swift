@@ -24,8 +24,10 @@ public struct SGEntitlementMirror: Codable, Equatable {
     /// (`SGEntitlement.composeMirror`).
     public var capabilities: [String]
     /// `until`, unix seconds; nil means locked. For `source == "localGrace"` it is the end of the
-    /// local 7-day grace (`SGEntitlementLocalGrace.endsAt`), mirrored like any other horizon so the
-    /// extension stops capturing when the window closes; for `"storeKit"` it is the snapshot's
+    /// local grace (`SGEntitlementLocalGrace.endsAt`: its start plus the days the accepted signed
+    /// policy names), mirrored like any other horizon so the extension stops capturing when the
+    /// window closes — and rewritten by the recompute a newly adopted policy triggers, so a changed
+    /// length reaches the extensions with the same write; for `"storeKit"` it is the snapshot's
     /// expiry plus `SGEntitlementStoreKitSnapshot.renewalAllowance`. When the union widened the
     /// list it is the earliest horizon among the decisions that grant.
     public var until: Int64?

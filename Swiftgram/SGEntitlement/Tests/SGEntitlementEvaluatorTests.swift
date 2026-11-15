@@ -206,7 +206,9 @@ final class SGEntitlementEvaluatorTests: XCTestCase {
         XCTAssertEqual(decision.state, .degraded(reason: .noToken))
     }
 
-    // MARK: - The local 7-day grace: everything is free for 7 days after first launch, then Pro
+    // MARK: - The local grace at its default length (no signed `local_grace_days`): everything is
+    // free for 7 days after first launch, then Pro. The signed lengths are covered by
+    // `SGEntitlementMonetizationEvaluatorTests` and `SGEntitlementMonetizationTests`.
 
     private var firstLaunch: Date {
         return self.date(self.issuedAt)
@@ -233,7 +235,9 @@ final class SGEntitlementEvaluatorTests: XCTestCase {
 
     func test_localGrace_lastsSevenDays_notSevenDaysPlusOneSecond() {
         let sevenDays: TimeInterval = 7 * 86400
-        XCTAssertEqual(SGEntitlementLocalGrace.duration, sevenDays)
+        XCTAssertEqual(SGEntitlementLocalGrace.defaultDuration, sevenDays)
+        XCTAssertEqual(SGEntitlementLocalGrace.defaultDays, 7)
+        XCTAssertEqual(self.grace.duration, sevenDays, "a record no signed length was combined with lasts the default seven days")
         let inside = self.evaluateWithGrace(now: self.firstLaunch.addingTimeInterval(sevenDays - 1))
         XCTAssertEqual(inside.source, .localGrace)
         let atTheEnd = self.evaluateWithGrace(now: self.firstLaunch.addingTimeInterval(sevenDays))

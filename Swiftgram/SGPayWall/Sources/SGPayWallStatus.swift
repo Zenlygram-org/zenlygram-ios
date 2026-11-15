@@ -115,12 +115,16 @@ public var sgPayWallIsFreeAccess: Bool {
     return SGEntitlement.shared.source == .freeAccess
 }
 
-// MARK: - The local 7-day grace
+// MARK: - The local grace
 
 /// The formatted end of the local grace — "Free until <date>" — when the grace is what currently
-/// grants; nil otherwise (a token or a purchase in front of it, the window over, an unconfigured
-/// build, or the monetization policy free, which never counts down). Read from the already-cached
-/// decision, synchronously, never from a network call. Shared with the Settings row.
+/// grants; nil otherwise (a token or a purchase in front of it, the window over, a signed length
+/// of 0 days — `local_grace_days`, under which the grace never grants — an unconfigured build, or
+/// the monetization policy free, which never counts down). The date is the window's end at the
+/// length the accepted signed policy names, so it moves when a new policy is adopted (every
+/// adoption posts `SGEntitlementDidChange`, on which the paywall, the status screen and the
+/// Settings row re-read it). Read from the already-cached decision, synchronously, never from a
+/// network call. Shared with the Settings row.
 public func sgPayWallGraceUntilText(lang: String) -> String? {
     guard SGEntitlement.shared.source == .localGrace, let endsAt = SGEntitlement.shared.localGraceEndsAt else {
         return nil

@@ -1,7 +1,7 @@
 import Foundation
 import CryptoKit
 
-// MARK: Zenlygram — the signed monetization policy (contracts `monetization-policy.v1` / `.v2`).
+// MARK: Zenlygram — the signed monetization policy (contracts `monetization-policy.v1` / `.v2` / `.v3`).
 //
 // `GET /v1/monetization` answers ONE question for every install: is Zenlygram free for everyone, or
 // does it sell subscriptions? Every install starts FREE and stays free until the owner deliberately
@@ -12,24 +12,33 @@ import CryptoKit
 // Nothing here grants an account anything: the policy carries no identity,
 // and genuine paid rights stay in the entitlement's `account_ent` / `account_until`.
 //
-// Two claim SHAPES exist, and the client chooses which it is sent (`SGEntitlementPolicyEndpoint`'s
-// `Accept` header): the frozen v1 — exactly `iss, aud, ver: 1, mode, revision, iat, exp` — and v2,
+// Three claim SHAPES exist, and the client chooses which it is sent (`SGEntitlementPolicyEndpoint`'s
+// `Accept` header): the frozen v1 — exactly `iss, aud, ver: 1, mode, revision, iat, exp` — v2,
 // the same seven plus `trial_days` (0...30: the server's OWN trial, offered to eligible accounts
-// while paid; 0 = none). `trial_days` is an offer the paywall shows, never purchase admission and
-// never the trial's real end (that is `trial_ends_at` from `POST /v1/trial/start`).
+// while paid; 0 = none), and v3, those eight plus `local_grace_days` (0...30: how long the
+// install's local grace lasts, `SGEntitlementLocalGrace`; 0 = no local grace). `trial_days` is an
+// offer the paywall shows, never purchase admission and never the trial's real end (that is
+// `trial_ends_at` from `POST /v1/trial/start`). `local_grace_days` is present in every v3 token,
+// in both modes (it has no effect while free), and is the ONLY source of that length: it is
+// derived from the accepted token each time and stored nowhere else.
 //
 // Rules this file enforces (the contract's `x-signing` / `x-client-state`):
-//  - only the exact header and exactly one of the two exact claim sets authenticates, with `ver`
-//    naming that set (seven claims are 1, eight are 2); unknown or account-shaped claims do not;
+//  - only the exact header and exactly one of the three exact claim sets authenticates, with `ver`
+//    naming that set (seven claims are 1, eight are 2, nine are 3); unknown or account-shaped
+//    claims do not, and a v3 token whose `local_grace_days` is missing, not an integer or outside
+//    0...30 is refused as a whole, exactly like a bad `trial_days`;
 //  - a NEWLY FETCHED policy must also be inside its signed window (± 300 s of skew, ≤ 24 h lifetime);
 //    a previously accepted one is re-verified on load but never re-expired — expiry does not change
-//    an authenticated mode, and a stored v2 keeps its `trial_days`;
-//  - acceptance follows `(revision, iat)` alone, whatever the shape: a v1 with a newer `iat` wins
-//    over a stored v2 and hides the trial until the next v2 (fail-safe); an equal tuple is
-//    idempotent for the same mode and shape, adopts a v1 -> v2 upgrade, keeps a v2 against a v1,
-//    and is a conflict for another mode or another `trial_days`;
-//  - no timer, no network failure and no build setting can turn paid mode on or offer a trial: only
-//    a newer signed policy can.
+//    an authenticated mode, and a stored v2 / v3 keeps its `trial_days` / `local_grace_days`;
+//  - acceptance follows `(revision, iat)` alone, whatever the shape: an older shape with a newer
+//    `iat` wins over a stored newer one and cannot say what that one said until the next fetch —
+//    a v1 hides the trial (fail-safe), a v1 or v2 puts the local grace back at its default seven
+//    days; an equal tuple is idempotent for the same mode and shape, adopts an upgrade to a newer
+//    shape (v1 -> v2, v1 -> v3, v2 -> v3), keeps the newer shape against an older one, and is a
+//    conflict for another mode or — between two tokens of the SAME shape — another `trial_days`
+//    or another `local_grace_days`;
+//  - no timer, no network failure and no build setting can turn paid mode on, offer a trial or
+//    change the local grace's length: only a newer signed policy can.
 //
 // Foundation + CryptoKit only, so it runs on the host (`Tests/run-policy-core-tests.sh`).
 
@@ -47,11 +56,18 @@ public struct SGEntitlementPolicy: Equatable {
     public let revision: Int64
     public let issuedAt: Int64
     public let expiresAt: Int64
-    /// The claim shape the token was minted in: 1 (the frozen seven claims) or 2 (plus `trial_days`).
+    /// The claim shape the token was minted in: 1 (the frozen seven claims), 2 (plus `trial_days`)
+    /// or 3 (plus `local_grace_days`).
     public let version: Int64
     /// The server's own trial, in days, offered to eligible accounts while paid: the signed
-    /// `trial_days` of a v2 token; 0 for a v1 token (which cannot say) and whenever none is offered.
+    /// `trial_days` of a v2 or v3 token; 0 for a v1 token (which cannot say) and whenever none is
+    /// offered.
     public let trialDays: Int
+    /// How long the install's local grace lasts, in days (`SGEntitlementLocalGrace.days`): the
+    /// signed `local_grace_days` of a v3 token — 0...30, the owner's configured value in both modes,
+    /// 0 meaning the grace never grants — and `SGEntitlementLocalGrace.defaultDays` (7) for a v1 or
+    /// v2 token, which cannot say. It only ever has an effect while the policy is paid.
+    public let localGraceDays: Int
     /// The compact JWS, persisted and re-verified as is.
     public let token: String
 
@@ -85,12 +101,13 @@ public enum SGEntitlementPolicyFailure: Error, Equatable, Hashable {
     /// Not a policy of the verifier's purpose: another issuer or audience (the OTHER public policy's
     /// token included), a claim set the verifier's contract does not define (a missing claim, any
     /// claim added — an entitlement / account-shaped token included), or a `ver` that does not name
-    /// the set it came with. For the monetization policy that is neither the seven v1 claims nor
-    /// the eight v2 claims; for the app-update policy, not exactly its eight.
+    /// the set it came with. For the monetization policy that is none of the seven v1 claims, the
+    /// eight v2 claims and the nine v3 claims (a v3 token without its `local_grace_days` included);
+    /// for the app-update policy, not exactly its eight.
     case wrongPurpose
     /// A known claim set, but with a wrong type or out of range (`exp <= iat`, a lifetime over
-    /// 24 h, a `trial_days` outside 0...30 or not an integer, a platform object that is not exactly
-    /// `{min, latest}` with `min <= latest`).
+    /// 24 h, a `trial_days` or a `local_grace_days` outside 0...30 or not an integer, a platform
+    /// object that is not exactly `{min, latest}` with `min <= latest`).
     case invalidClaims
     /// Fetched, and issued more than the allowed skew after `effectiveNow`.
     case notYetValid
@@ -188,16 +205,23 @@ public enum SGEntitlementPolicyVerifier {
     /// The shape with `trial_days`: exactly `claimKeysV2`. Minted only for a client whose `Accept`
     /// lists its vendor type (`SGEntitlementPolicyEndpoint.monetizationAccept`).
     static let versionV2: Int64 = 2
+    /// The shape with `trial_days` and `local_grace_days`: exactly `claimKeysV3`. Minted only for a
+    /// client whose `Accept` lists ITS vendor type (`SGEntitlementPolicyEndpoint.monetizationAccept`
+    /// lists it first); a server that does not know it yet answers v2.
+    static let versionV3: Int64 = 3
     public static let maximumLifetime: Int64 = 86400
     public static let maximumClockSkew: Int64 = 300
     /// The contract's ceiling for `trial_days`.
     public static let maximumTrialDays = 30
+    /// The contract's ceiling for `local_grace_days` (`SGEntitlementLocalGrace.maximumDays`).
+    public static let maximumLocalGraceDays = SGEntitlementLocalGrace.maximumDays
     static let maximumRevision: Int64 = 9_007_199_254_740_991
 
     private static let claimKeysV1: Set<String> = ["iss", "aud", "ver", "mode", "revision", "iat", "exp"]
     private static let claimKeysV2: Set<String> = SGEntitlementPolicyVerifier.claimKeysV1.union(["trial_days"])
+    private static let claimKeysV3: Set<String> = SGEntitlementPolicyVerifier.claimKeysV2.union(["local_grace_days"])
 
-    /// Authentic (`SGSignedPolicyJWS`), exactly one of the two shapes, and the policy's purpose.
+    /// Authentic (`SGSignedPolicyJWS`), exactly one of the three shapes, and the policy's purpose.
     /// Says nothing about time: a stored policy is re-verified with this alone.
     public static func authenticate(_ token: String, pinnedKeys: SGEntitlementPinnedKeys) -> Result<SGEntitlementPolicy, SGEntitlementPolicyFailure> {
         switch SGSignedPolicyJWS.authenticate(token, pinnedKeys: pinnedKeys) {
@@ -226,16 +250,20 @@ public enum SGEntitlementPolicyVerifier {
     }
 
     private static func policy(claims: [String: Any], token: String) -> Result<SGEntitlementPolicy, SGEntitlementPolicyFailure> {
-        // Exactly one of the two claim sets, and `ver` must name that set: seven claims are version
-        // 1, eight (with `trial_days`) are version 2. Any other set — a claim missing, a claim
-        // added, an account-shaped one — and any other `ver` is another purpose. A shape this
-        // build does not know is never read as "unknown claims ignored": it would freeze the mode.
+        // Exactly one of the three claim sets, and `ver` must name that set: seven claims are
+        // version 1, eight (with `trial_days`) are version 2, nine (with `local_grace_days` too)
+        // are version 3. Any other set — a claim missing (a ver-3 token without its
+        // `local_grace_days` is the eight v2 claims under `ver: 3`), a claim added, an
+        // account-shaped one — and any other `ver` is another purpose. A shape this build does
+        // not know is never read as "unknown claims ignored": it would freeze the mode.
         let keys = Set(claims.keys)
         let version: Int64
         if keys == self.claimKeysV1 {
             version = self.versionV1
         } else if keys == self.claimKeysV2 {
             version = self.versionV2
+        } else if keys == self.claimKeysV3 {
+            version = self.versionV3
         } else {
             return .failure(.wrongPurpose)
         }
@@ -254,14 +282,24 @@ public enum SGEntitlementPolicyVerifier {
             return .failure(.invalidClaims)
         }
         var trialDays = 0
-        if version == self.versionV2 {
+        if version >= self.versionV2 {
             // A JSON integer in 0...30: never a boolean, a fraction or a string.
             guard let signedTrialDays = SGSignedPolicyJWS.integer(claims["trial_days"]), signedTrialDays >= 0, signedTrialDays <= Int64(self.maximumTrialDays) else {
                 return .failure(.invalidClaims)
             }
             trialDays = Int(signedTrialDays)
         }
-        return .success(SGEntitlementPolicy(mode: mode, revision: revision, issuedAt: issuedAt, expiresAt: expiresAt, version: version, trialDays: trialDays, token: token))
+        // A v1 / v2 token cannot say how long the local grace lasts: the default seven days.
+        var localGraceDays = SGEntitlementLocalGrace.defaultDays
+        if version >= self.versionV3 {
+            // The same strictness as `trial_days`: a JSON integer in 0...30, or the whole token is
+            // refused and the last accepted policy — with ITS length — stays.
+            guard let signedLocalGraceDays = SGSignedPolicyJWS.integer(claims["local_grace_days"]), signedLocalGraceDays >= 0, signedLocalGraceDays <= Int64(self.maximumLocalGraceDays) else {
+                return .failure(.invalidClaims)
+            }
+            localGraceDays = Int(signedLocalGraceDays)
+        }
+        return .success(SGEntitlementPolicy(mode: mode, revision: revision, issuedAt: issuedAt, expiresAt: expiresAt, version: version, trialDays: trialDays, localGraceDays: localGraceDays, token: token))
     }
 }
 
@@ -270,17 +308,19 @@ public enum SGEntitlementPolicyRejection: Error, Equatable, Hashable {
     case verification(SGEntitlementPolicyFailure)
     /// Its `(revision, iat)` is behind the accepted one: a replay can never undo a newer decision.
     case older
-    /// Same `(revision, iat)` as the accepted one, another mode — or two v2 tokens of that issuance
-    /// with different `trial_days`. The server never issues either (every trial change bumps the
-    /// revision); the accepted policy stands.
+    /// Same `(revision, iat)` as the accepted one, another mode — or two tokens of that issuance
+    /// in the same shape with different `trial_days` (v2, v3) or different `local_grace_days` (v3).
+    /// The server never issues either (every change of the mode, the trial or the local grace
+    /// bumps the revision); the accepted policy stands.
     case conflictingIssuance
 }
 
 public enum SGEntitlementPolicyOutcome: Equatable {
-    /// A newer issuance, or the accepted issuance in its v2 shape (`trial_days` now legible).
+    /// A newer issuance, or the accepted issuance in a newer shape (`trial_days` — and, as v3,
+    /// `local_grace_days` — now legible).
     case adopted
-    /// The same issuance again (a routine refresh), or its v1 shape while the v2 is held; nothing
-    /// changed.
+    /// The same issuance again (a routine refresh), or an older shape of it while the newer one is
+    /// held; nothing changed.
     case unchanged
     case rejected(SGEntitlementPolicyRejection)
 }
@@ -305,6 +345,14 @@ public struct SGEntitlementPolicyState: Equatable {
     /// Free unless an authenticated policy says paid.
     public var mode: SGEntitlementPolicyMode {
         return self.accepted?.mode ?? .free
+    }
+
+    /// How long the install's local grace lasts, in days (`SGEntitlementLocalGrace.lasting(days:)`):
+    /// the accepted policy's `localGraceDays` — the signed `local_grace_days` of a v3 policy, the
+    /// default seven under a v1 / v2 one — and the default seven with nothing accepted. Derived
+    /// from the accepted signed policy every time it is asked: there is no other copy of it.
+    public var localGraceDays: Int {
+        return self.accepted?.localGraceDays ?? SGEntitlementLocalGrace.defaultDays
     }
 
     /// The state after a freshly fetched `token`, and what happened to it.
@@ -338,7 +386,9 @@ public struct SGEntitlementPolicyState: Equatable {
         }
         // `(revision, iat)` alone orders policies, whatever their shape: a v1 with a newer `iat`
         // replaces a stored v2 and, carrying no `trial_days`, hides the trial — intended fail-safe.
-        // The next fetch carries a newer `iat` still and, as v2, re-adopts it.
+        // Likewise a v1 or v2 with a newer `iat` replaces a stored v3 and, carrying no
+        // `local_grace_days`, puts the local grace back at its default seven days. The next fetch
+        // carries a newer `iat` still and, in the newest shape the server knows, re-adopts both.
         guard current.isOrdered(before: candidate) else {
             return SGEntitlementPolicyAcceptance(state: self, outcome: .rejected(.older))
         }
@@ -348,9 +398,13 @@ public struct SGEntitlementPolicyState: Equatable {
     /// The accepted issuance again. The server never signs two different policies under one
     /// `(revision, iat)`, so a different MODE is a conflict and the accepted policy stands. The
     /// claim SHAPE, though, is this client's choice (its `Accept` header), not the server's: the
-    /// same issuance fetched as v2 after a v1 — this build's first fetch after the server started
-    /// minting v2 — is adopted, its `trial_days` now legible; a v1 of an issuance held as v2 (a
-    /// proxy, a cache) changes nothing; two v2 tokens must agree on `trial_days`, or they conflict.
+    /// same issuance fetched in a newer shape — as v2 after a v1, as v3 after a v1 or v2: this
+    /// build's first fetch after the server started minting that shape — is adopted, its
+    /// `trial_days` / `local_grace_days` now legible; an older shape of an issuance held in a
+    /// newer one (a proxy, a cache) changes nothing — a v2 never takes a held v3's length away;
+    /// and two tokens of the SAME shape must agree on everything they carry, or they conflict:
+    /// two v2 on `trial_days`, two v3 on `trial_days` and on `local_grace_days`. (The contracts'
+    /// `x-client-state.equal_tuple` matrix, extended by one shape.)
     private func acceptingSameIssuance(_ candidate: SGEntitlementPolicy, current: SGEntitlementPolicy) -> SGEntitlementPolicyAcceptance {
         guard candidate.mode == current.mode else {
             return SGEntitlementPolicyAcceptance(state: self, outcome: .rejected(.conflictingIssuance))
@@ -361,16 +415,19 @@ public struct SGEntitlementPolicyState: Equatable {
         if candidate.version < current.version {
             return SGEntitlementPolicyAcceptance(state: self, outcome: .unchanged)
         }
-        guard candidate.trialDays == current.trialDays else {
+        // The same shape: a v1 carries neither claim (0 and the default on both sides), a v2 only
+        // `trial_days` (the default length on both sides), a v3 both.
+        guard candidate.trialDays == current.trialDays, candidate.localGraceDays == current.localGraceDays else {
             return SGEntitlementPolicyAcceptance(state: self, outcome: .rejected(.conflictingIssuance))
         }
         return SGEntitlementPolicyAcceptance(state: self, outcome: .unchanged)
     }
 
     /// A previously accepted policy, re-verified against the pinned ring and never re-expired, in
-    /// the shape it was stored (a v2 keeps its `trial_days`; a v1 has none). A stored policy that
-    /// no longer authenticates (another key, damaged bytes, another purpose — a v2 under a build
-    /// that only knows v1 included, which then re-adopts the next fetch) is no policy at all: free.
+    /// the shape it was stored (a v3 keeps its `trial_days` and `local_grace_days`, a v2 its
+    /// `trial_days`; a v1 has neither). A stored policy that no longer authenticates (another key,
+    /// damaged bytes, another purpose — a v3 under a build that only knows v1 / v2 included, which
+    /// then re-adopts the next fetch) is no policy at all: free.
     public static func restoring(stored token: String?, pinnedKeys: SGEntitlementPinnedKeys) -> SGEntitlementPolicyState {
         guard let token, case let .success(policy) = SGEntitlementPolicyVerifier.authenticate(token, pinnedKeys: pinnedKeys) else {
             return .initial
@@ -383,7 +440,9 @@ public struct SGEntitlementPolicyState: Equatable {
 /// per public policy, each under its own LAYOUT key — `zg.ent.policy.v1` for the monetization policy,
 /// `zg.app.policy.v1` for the app-update policy (`SGAppUpdatePolicy`) — holding one compact JWS. The
 /// key names the store's layout, not the token's `ver`: a v1 monetization install reads its first v2
-/// straight into the slot it had.
+/// — and a v2 one its first v3 — straight into the slot it had. That token is also the only place
+/// the local grace's length lives (`SGEntitlementPolicyState.localGraceDays`): every process that
+/// loads this slot re-verifies the token and derives the length from it.
 ///
 /// Every slot is scoped (`scoped(toOrigin:)`): an explicit public policy under its canonical HTTPS
 /// origin, any other build under its backend store scope (`SGEntitlementStoreScope.identifier`). Bytes

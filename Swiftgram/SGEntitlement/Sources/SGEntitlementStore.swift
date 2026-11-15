@@ -471,7 +471,7 @@ public final class SGEntitlementStore {
 
     /// Logout. Drops the session material for ONE account and nothing else: never the device id,
     /// never the Enclave key, never the clock mark, never the outbox, never the local grace record
-    /// (a logout must not re-grant the 7 days), and never any vault / lock / task data.
+    /// (a logout must not re-grant the window), and never any vault / lock / task data.
     ///
     /// Returns the material it removed, read under the same lock that empties the cache, so the
     /// caller can still present the old refresh token to `/bind/revoke` after the local copy is gone.

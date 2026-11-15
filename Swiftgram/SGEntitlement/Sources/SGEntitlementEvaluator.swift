@@ -99,8 +99,9 @@ public struct SGEntitlementCachedToken: Equatable {
 /// with `account_ent` as the capabilities. The legacy `ent` / `until` — widened by the server for
 /// old clients while free — is never paid proof. Two local rescues follow when the token does not
 /// grant: the StoreKit fallback (§5.1.1) and, after it, the install's local grace
-/// (`SGEntitlementLocalGrace`, re-based on the first adopted paid policy — D9), kept as the
-/// existing paid-mode fallback. Precedence, highest first: genuine granting token → StoreKit
+/// (`SGEntitlementLocalGrace`, re-based on the first adopted paid policy — D9 — and lasting the
+/// days the accepted signed policy names; 0 days never grant), kept as the existing paid-mode
+/// fallback. Precedence, highest first: genuine granting token → StoreKit
 /// subscription → local grace → degraded. A null `account_until` degrades as `.noToken`, never as
 /// `.lapsed` (D9; see `evaluatePaid`).
 ///
@@ -237,7 +238,7 @@ public enum SGEntitlementEvaluator {
     }
 
     /// `storeKitFallback()` — the "bought before linking Telegram" hole (client contract §5.1.1) —
-    /// and, after it, the local 7-day grace.
+    /// and, after it, the local grace.
     ///
     /// `/apple/attach` on an unbound device returns `entitlement: null`, so a user who paid before
     /// ever linking Telegram holds no JWS at all. Leaving them degraded would violate invariant I2.
@@ -246,8 +247,9 @@ public enum SGEntitlementEvaluator {
     ///
     /// The local grace (`SGEntitlementLocalGrace`) is consulted last and grants the same four, in
     /// PAID mode only (the free mode never shows a countdown). It applies whatever the reason the
-    /// token did not grant — no token, lapsed, stale, unverifiable — and past its end it changes
-    /// nothing, so the decision degrades with the reason the token produced.
+    /// token did not grant — no token, lapsed, stale, unverifiable — and past its end, or at a
+    /// signed length of 0 days (`SGEntitlementLocalGrace.isActive`), it changes nothing, so the
+    /// decision degrades with the reason the token produced.
     private static func fallback(
         storeKit: SGEntitlementStoreKitSnapshot?,
         eligibility: SGEntitlementStoreKitEligibility?,

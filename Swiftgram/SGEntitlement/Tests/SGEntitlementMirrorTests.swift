@@ -61,6 +61,44 @@ final class SGEntitlementMirrorTests: XCTestCase {
         XCTAssertEqual(value.state(now: self.date(graceEnd)), .degraded(reason: .noToken), "a closed grace is 'never subscribed', not 'your subscription ended'")
     }
 
+    func test_theMirroredGraceEndsWhereTheSignedLengthPutsIt_andAZeroDayGraceMirrorsAsNotActive() {
+        // The extensions never read the policy for this: they get the decision the app made under
+        // it, with the grace's own end — its start plus the accepted policy's `local_grace_days`.
+        let base = Set(SGEntitlementCapability.base.map { $0.rawValue })
+        let start = self.date(self.iat)
+        let record = SGEntitlementLocalGrace(firstLaunchAt: self.date(self.iat - 60 * 86400)).rebased(firstPaidPolicyAt: start)
+        let now = self.date(self.iat + 3600)
+        func graceMirror(days: Int) -> SGEntitlementMirror {
+            let grace = record.lasting(days: days)
+            let decision = SGEntitlementEvaluator.evaluate(cached: nil, storeKit: nil, pinnedKeys: SGEntitlementPinnedKeys(keysByKid: [:]), now: now, enforcement: .enforcing, localGrace: grace, monetization: .paid)
+            return SGEntitlement.composeMirror(decision: decision, localGrace: grace, storeKitExpiry: nil, deviceWide: SGEntitlementDeviceWideDecision(capabilities: decision.state.capabilities, validUntil: decision.validUntil), withheldDecision: decision, withheldDeviceWide: nil, updatedAt: self.iat)
+        }
+        for days in [1, 7, 30] {
+            let value = graceMirror(days: days)
+            let end = self.iat + Int64(days) * 86400
+            XCTAssertEqual(value.source, SGEntitlementSource.localGrace.rawValue)
+            XCTAssertEqual(value.until, end, "\(days) day(s): the mirror carries start + L x 86 400 s")
+            XCTAssertNil(value.exp)
+            XCTAssertEqual(value.state(now: now), .unlocked(capabilities: base))
+            XCTAssertEqual(value.state(now: self.date(end - 1)), .unlocked(capabilities: base))
+            XCTAssertEqual(value.state(now: self.date(end)), .degraded(reason: .noToken), "the extension stops on the second the app does")
+            XCTAssertEqual(value.state(now: self.date(end - 1), isLedgerReadable: false), .unlocked(capabilities: base), "the grace does not come from StoreKit")
+        }
+        // 0 days: the app's decision is "not active", and that is what the extensions are handed —
+        // no window, no horizon, the same reason as an install whose grace has ended.
+        let none = graceMirror(days: 0)
+        XCTAssertEqual(none.capabilities, [])
+        XCTAssertNil(none.until)
+        XCTAssertEqual(none.source, SGEntitlementSource.none.rawValue)
+        XCTAssertEqual(none.degradedReason, SGEntitlementDegradedReason.noToken.rawValue)
+        for at in [start, now, self.date(self.iat + 400 * 86400)] {
+            XCTAssertEqual(none.state(now: at), .degraded(reason: .noToken))
+            XCTAssertEqual(none.state(now: at, isLedgerReadable: false), .degraded(reason: .noToken))
+        }
+        XCTAssertEqual(SGEntitlementMirrorStore.retainedHistoryCaptureBlockedFlag(mirror: none, storedLedger: nil, now: now, enforcement: .enforcing), true, "new capture stops in the extension's replay too")
+        XCTAssertEqual(SGEntitlementMirrorStore.retainedHistoryCaptureBlockedFlag(mirror: graceMirror(days: 7), storedLedger: nil, now: now, enforcement: .enforcing), false)
+    }
+
     func test_aFreeModeMirrorUnlocksTheExtensionsWithNoHorizon() {
         // The app decided free access: the Notification Service Extension must reveal exactly what
         // the app reveals, and never self-expire it while the app is not running.

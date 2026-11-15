@@ -41,8 +41,9 @@ public struct SGEntitlementAccounts: Equatable {
 /// 2. **Fail toward the paying user, never toward data loss.** A 5xx or a timeout is "offline", never
 ///    "unsubscribed". A lapse never deletes, never un-hides, never un-locks and never hides retained
 ///    history; it only stops creating new material. Only a successfully verified
-///    token, a genuine lapse in a configured build, or the end of the local 7-day grace can ever
-///    reduce what the user may do — no transport outcome may.
+///    token, a genuine lapse in a configured build, or the end of the local grace — at the length
+///    the last accepted SIGNED monetization policy names — can ever reduce what the user may do: no
+///    transport outcome may.
 ///
 /// Threading: every member of this class is safe from any thread. Verification (one P-256 check)
 /// happens when the decision is (re)computed, not on every query, and `prewarm()` moves the first
@@ -118,8 +119,11 @@ public final class SGEntitlement {
     /// overwritten by this process (`mutateAppleProvenance`).
     private var isAppleProvenanceStoreReadOnly = false
     private var didRequestStoreKitProvenance = false
-    /// The local 7-day grace record, per install (`SGEntitlementLocalGrace`). Loaded — and, in the
-    /// main app, minted — on the first evaluation; nil in an extension that finds no record.
+    /// The local grace's first-launch record, per install (`SGEntitlementLocalGrace`). Loaded — and,
+    /// in the main app, minted — on the first evaluation; nil in an extension that finds no record.
+    /// Kept un-rebased and at the default length: the paid-policy mark and the length of the last
+    /// accepted signed policy are combined with it at every evaluation (`localGrace(now:...)`),
+    /// never stored in it.
     private var localGraceValue: SGEntitlementLocalGrace?
     private var didLoadLocalGrace = false
     /// The `lastSeenAt` last proven persisted, so the record's high-water mark is rewritten as it
@@ -607,11 +611,14 @@ public final class SGEntitlement {
     /// an extension on an install that has never evaluated. The paid-policy mark (D9) is pinned from
     /// the same value: `value.firstPaidPolicyAt`, so nil unless the test asks for the re-based
     /// window; a test that wants the REAL mark read (or minted) from the store calls
-    /// `resetPaidModeMarkForTesting()` afterwards.
+    /// `resetPaidModeMarkForTesting()` afterwards. The LENGTH is never pinned from it: `value.days`
+    /// is dropped, because the length only ever comes from the accepted signed policy — a test
+    /// that wants another length adopts (or pins) a policy that signs it.
     func overrideLocalGrace(_ value: SGEntitlementLocalGrace?) {
         self.lock.lock()
-        // Stored un-rebased, as the real load does; `localGrace(now:monetization:)` recombines.
-        self.localGraceValue = value?.rebased(firstPaidPolicyAt: nil)
+        // Stored un-rebased and at the default length, as the real load does;
+        // `localGrace(now:monetization:days:)` recombines both.
+        self.localGraceValue = value?.rebased(firstPaidPolicyAt: nil).lasting(days: SGEntitlementLocalGrace.defaultDays)
         self.didLoadLocalGrace = true
         self.paidModeMarkValue = value?.firstPaidPolicyAt
         self.didLoadPaidModeMark = true
@@ -650,6 +657,16 @@ public final class SGEntitlement {
             self.lock.unlock()
         }
         return self.paidModeMarkValue
+    }
+
+    /// Tests only: the mirror this instance last wrote for the extensions (`writeMirror`); nil before
+    /// its first write — no account known yet, or the grace record still unverified.
+    var lastWrittenMirrorForTesting: SGEntitlementMirror? {
+        self.lock.lock()
+        defer {
+            self.lock.unlock()
+        }
+        return self.lastWrittenMirror
     }
 
     /// Tests only: pin the policy state (built from a really signed policy).
@@ -882,22 +899,42 @@ public final class SGEntitlement {
         return policy.trialDays
     }
 
-    /// The end of the local 7-day grace — "free until <date>" — or nil once it has passed (or, in an
+    /// The end of the local grace — "free until <date>" — or nil once it has passed (or, in an
     /// extension on an install that has never evaluated, never). It is the window's own horizon,
     /// independent of what is currently granting: a paywall / status surface shows it when `source`
     /// is `.localGrace`, and may still mention it while a token or a purchase grants in front of it.
     /// Always nil while the policy is free: free access is not a countdown. In paid mode it is the
-    /// re-based window (D9): seven days from the later of first launch and the first adopted paid
-    /// policy.
+    /// re-based window (D9) at the length the accepted signed policy names (`localGraceDays`): that
+    /// many days from the later of first launch and the first adopted paid policy — and always nil
+    /// under a 0-day policy, where the grace never grants and there is no date to show. Read from
+    /// the accepted policy each time, so a newly adopted length shows at the next read (every
+    /// adoption posts `didChangeNotification`).
     public var localGraceEndsAt: Date? {
-        guard self.monetizationMode == .paid else {
+        self.lock.lock()
+        let monetization = self.effectiveMonetizationLocked()
+        let days = self.localGraceDaysLocked()
+        self.lock.unlock()
+        guard monetization == .paid else {
             return nil
         }
         let now = self.clock.effectiveNow()
-        guard let grace = self.localGrace(now: now, monetization: .paid).grace, grace.isActive(at: now) else {
+        guard let grace = self.localGrace(now: now, monetization: .paid, days: days).grace, grace.isActive(at: now) else {
             return nil
         }
         return grace.endsAt
+    }
+
+    /// How long the local grace lasts on this install right now, in days: the accepted signed
+    /// policy's `local_grace_days` when that policy is ver 3, otherwise — a ver-1 / ver-2 policy, or
+    /// none — the default seven (`SGEntitlementPolicyState.localGraceDays`). 0 means the grace
+    /// never grants. Derived from the cached and re-verified policy every time. Tests read it; the
+    /// app needs no reader of its own — the decision, the mirror and `localGraceEndsAt` follow it.
+    var localGraceDays: Int {
+        self.lock.lock()
+        defer {
+            self.lock.unlock()
+        }
+        return self.localGraceDaysLocked()
     }
 
     /// The account's genuine grant horizon (`account_until`) read the CHEAP way: for the active
@@ -1254,9 +1291,13 @@ public final class SGEntitlement {
         switch outcome {
         case .adopted:
             if !self.isPublicPolicyOnly {
-                // `notify: true` posts `didChangeNotification` whether or not the decision moved:
-                // an adopted policy may change only its `trial_days` (`serverTrialDays`), which
-                // no decision reflects but an open paywall must re-read.
+                // Re-decided at once under the adopted policy: its mode AND its local grace length
+                // (`local_grace_days`) — a shorter length ends a running grace here, a longer one
+                // re-opens a closed one — which also rewrites the extensions' mirror and re-arms
+                // the horizon one-shot at the new end. `notify: true` posts
+                // `didChangeNotification` whether or not the decision moved: an adopted policy may
+                // change only its `trial_days` (`serverTrialDays`), which no decision reflects but
+                // an open paywall must re-read, or only the "free until" date.
                 self.recompute(now: self.clock.effectiveNow(), notify: true)
             }
             return .adopted
@@ -1323,8 +1364,10 @@ public final class SGEntitlement {
 
     /// Ends the attempt and applies a fetched token: what happened to it, and the mode that results.
     /// nil after a transport failure. `.adopted` covers a newer issuance AND the accepted issuance
-    /// in its v2 shape (`trial_days` now legible); the caller re-decides and publishes for both,
-    /// since `serverTrialDays` may have changed without the mode.
+    /// in a newer shape (`trial_days` / `local_grace_days` now legible); the caller re-decides and
+    /// publishes for both, since `serverTrialDays` or the local grace's length may have changed
+    /// without the mode. A refused token — a ver-3 one with a bad `local_grace_days` included —
+    /// changes nothing: the last accepted policy, with its own length, stays.
     private func finishPolicyAttempt(_ answer: Result<String, SGEntitlementRequestError>, now: Date) -> (SGEntitlementPolicyOutcome, SGEntitlementPolicyMode)? {
         self.lock.lock()
         defer {
@@ -1404,6 +1447,15 @@ public final class SGEntitlement {
             return .free
         }
         return self.loadPolicyLocked().mode
+    }
+
+    /// Caller holds `lock`. The local grace's length every decision is made under, in days: the
+    /// accepted signed policy's (`SGEntitlementPolicyState.localGraceDays` — ver 3: its
+    /// `local_grace_days`; ver 1 / 2 or nothing accepted: the default seven). Read under the same
+    /// lock, from the same policy state, as the mode beside it — never cached on its own, so the
+    /// policy a decision was made under names both, and a newly adopted one replaces both at once.
+    private func localGraceDaysLocked() -> Int {
+        return self.loadPolicyLocked().localGraceDays
     }
 
     // MARK: - App-update policy
@@ -2209,18 +2261,22 @@ public final class SGEntitlement {
 
     /// The install's local grace for an evaluation under `monetization` (`SGEntitlementLocalGrace`):
     /// the first-launch record, and — in PAID mode — re-based on the paid-policy mark (D9), the
-    /// later of the two windows. Free mode never consults the grace, so the mark is neither read nor
-    /// minted there; and without a first-launch record (an extension on an install the app has never
-    /// evaluated) there is no window to re-base. The combined load is verified only when both
-    /// records are: an unreadable mark, like an unreadable first-launch record, grants this
-    /// evaluation only and is never cached or mirrored.
-    private func localGrace(now: Date, monetization: SGEntitlementPolicyMode) -> SGEntitlementLocalGraceLoad {
+    /// later of the two windows, lasting `days`: the length the accepted signed policy names
+    /// (`localGraceDaysLocked`, read by the caller together with `monetization`). Free mode never
+    /// consults the grace, so the mark is neither read nor minted there; and without a first-launch
+    /// record (an extension on an install the app has never evaluated) there is no window to
+    /// re-base. The mark is read — and, in the main app, minted — whatever the length, a 0-day
+    /// policy included: it records when the flip reached this install, and a later, longer length
+    /// counts from it. The combined load is verified only when both records are: an unreadable
+    /// mark, like an unreadable first-launch record, grants this evaluation only (for `days` from
+    /// now — nothing under a 0-day policy) and is never cached or mirrored.
+    private func localGrace(now: Date, monetization: SGEntitlementPolicyMode, days: Int) -> SGEntitlementLocalGraceLoad {
         let load = self.firstLaunchGrace(now: now)
         guard monetization == .paid, let grace = load.grace else {
             return load
         }
         let mark = self.paidModeMark(now: now)
-        return SGEntitlementLocalGraceLoad(grace: grace.rebased(firstPaidPolicyAt: mark.firstPaidPolicyAt), isVerified: load.isVerified && mark.isVerified, persistedSeenAt: load.persistedSeenAt)
+        return SGEntitlementLocalGraceLoad(grace: grace.rebased(firstPaidPolicyAt: mark.firstPaidPolicyAt).lasting(days: days), isVerified: load.isVerified && mark.isVerified, persistedSeenAt: load.persistedSeenAt)
     }
 
     /// The install's first-launch grace record, read once from the Keychain and — in the main app,
@@ -2235,7 +2291,7 @@ public final class SGEntitlement {
     ///
     /// "Once" is only true if a record that could not be READ is never re-minted. Before the first
     /// unlock after a reboot the item's Keychain class is unavailable, and a launch there (a VoIP
-    /// push) would otherwise mint a fresh 7 days over an expired record, keep it for the process and
+    /// push) would otherwise mint a fresh window over an expired record, keep it for the process and
     /// mirror it to the extensions. So the rule (`resolveLocalGrace`, pure and tested) is: mint only
     /// on a definite "absent", and only count a record as loaded once it is proven persisted. Any
     /// other outcome — unreadable, or a write that did not verify — grants the window in memory for
@@ -2329,7 +2385,8 @@ public final class SGEntitlement {
     /// and — in the main app, on the first evaluation under a PAID policy — minted at `now`
     /// (`effectiveNow`). That first paid evaluation is the recompute the adoption itself triggers,
     /// so the mark is the moment the flip reached this install. Only ever called for a paid
-    /// evaluation (`localGrace(now:monetization:)`), never from free mode.
+    /// evaluation (`localGrace(now:monetization:days:)`), never from free mode — and for every paid
+    /// one, whatever the local grace's length: under a 0-day policy too.
     ///
     /// Exactly the first-launch record's rules (`resolvePaidModeMark`, pure and tested): minted once
     /// and never rewritten — a later free → paid flip re-bases nothing — minted only on a definite
@@ -2467,6 +2524,10 @@ public final class SGEntitlement {
         let keys = self.pinnedKeys
         let enforcement = self.enforcement
         let monetization = self.effectiveMonetizationLocked()
+        // The local grace's length, from the SAME accepted policy as the mode and under the same
+        // lock: an adoption bumps `inputGeneration`, so a decision made under an older length is
+        // never committed either.
+        let localGraceDays = self.localGraceDaysLocked()
         // Held: the cached snapshot (bytes untouched) grants nothing, and asks for no provenance re-read.
         let storeKit = self.isAppleBackendEnabled ? self.loadStoreKitLocked() : nil
         let provenance = self.loadAppleProvenanceLocked()
@@ -2479,7 +2540,7 @@ public final class SGEntitlement {
         let willCommit = self.recomputeWillCommitHook
         self.lock.unlock()
 
-        let graceLoad = self.localGrace(now: now, monetization: monetization)
+        let graceLoad = self.localGrace(now: now, monetization: monetization, days: localGraceDays)
         let localGrace = graceLoad.grace
 
         // Paid mode only: the accounts whose verifying token carries no genuine account claims. It
@@ -2553,7 +2614,10 @@ public final class SGEntitlement {
         // cold launch would otherwise stamp `capabilities: []` / `degradedReason: "noToken"` over a
         // perfectly good mirror and hand that to the extensions — "unknown", published as "no".
         // Likewise never while the grace record is unverified (a launch before the first unlock):
-        // an in-memory window must not reach the extensions as seven mirrored days.
+        // an in-memory window must not reach the extensions as mirrored days. What IS mirrored for
+        // a granting grace is its own end at the accepted policy's length (`composeMirror`), so
+        // the recompute an adoption triggers rewrites it: the extensions stop — or resume — on
+        // the same second the app does.
         if !SGEntitlement.isAppExtension, account != nil, graceLoad.isVerified {
             // The same decisions with the StoreKit fallback withheld, mirrored alongside for the
             // extensions to use if the shared ledger becomes unreadable after this write
@@ -2664,9 +2728,11 @@ public final class SGEntitlement {
     }
 
     /// A one-shot for the next horizon, so the end of the grace, of a token or of a purchase reaches
-    /// an app that stays in the foreground — an open chat on day 7 re-renders at `firstLaunchAt +
-    /// 7 d`, not when something next happens to ask a gate. Wall-clock deadline: it survives sleep
-    /// and lands at the horizon itself. Re-armed by every `recompute`, cancelled by the next.
+    /// an app that stays in the foreground — an open chat on the grace's last day re-renders at the
+    /// window's end, not when something next happens to ask a gate. Wall-clock deadline: it
+    /// survives sleep and lands at the horizon itself. Re-armed by every `recompute`, cancelled by
+    /// the next — so when a newly adopted policy moves the grace's end (another
+    /// `local_grace_days`), the recompute that adoption triggers re-arms it at the new end.
     private func scheduleHorizon(_ horizon: Date, now: Date) {
         guard !SGEntitlement.isAppExtension else {
             return

@@ -1,4 +1,4 @@
-# Files of this tree (appstore/12.9.2-6708) that differ from Swiftgram 12.9.2, commit cf8b23beaaac4126a396337ac2d5be13f9f76b66.
+# Files of this tree (appstore/12.9.2-6717) that differ from Swiftgram 12.9.2, commit cf8b23beaaac4126a396337ac2d5be13f9f76b66.
 # A = added (not in that commit), M = modified, D = deleted. 1296 entries.
 M	.github/CONTRIBUTING.md
 M	.github/ISSUE_TEMPLATE/bug_report.md

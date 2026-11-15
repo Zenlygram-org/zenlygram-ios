@@ -49,6 +49,7 @@ struct StatusRulesTests {
         plan()
         screen()
         freeAccess()
+        zeroDayGrace()
         legacyManage()
         manageSubscriptionOnEvidence()
         payWallOffer()
@@ -167,6 +168,45 @@ struct StatusRulesTests {
         check(noManager.showsRestore && !noManager.isRestoreEnabled, "A missing manager must only disable the row")
         check(tokenOnly.showsRestore && paid.showsRestore && grace.showsRestore)
         check(!other.showsRestore, "Another account's screen offered Restore")
+    }
+
+    private static func zeroDayGrace() {
+        // The signed policy's `local_grace_days` is 0: the local grace never grants, so under a paid
+        // policy an install without a grant reads exactly as one whose grace has ended — the
+        // entitlement is degraded (`.noToken`), its source is `.none` and `localGraceEndsAt` is nil
+        // (`SGEntitlementStatusSnapshot.read`). No "free until" line anywhere.
+        let zero = inputs(unlocked: false, source: .none, degradation: .noAccess, grace: nil, snapshot: false, monetization: .paid)
+        check(sgProStatusAccess(zero) == .notActive, "A 0-day grace rendered as access")
+        let screen = SGProStatusScreen(inputs: zero, restorePhase: .idle, isRestoreAvailable: true)
+        check(screen.graceEndsAt == nil, "Showed 'free until' under a 0-day grace")
+        check(screen.access == .notActive)
+        check(screen.offersPurchaseEntry && !screen.offersPlansAsSwitch, "The offer is what an install without a grant meets")
+        check(screen.showsRestore && screen.isRestoreEnabled && !screen.showsManageSubscription)
+        check(screen.accountAccessUntil == nil && screen.existingSubscriptionNotice == nil)
+        // Identical to the screen of an install whose seven days are over.
+        let ended = inputs(unlocked: false, source: .none, degradation: .noAccess, grace: nil, snapshot: false, monetization: .paid)
+        check(SGProStatusScreen(inputs: ended, restorePhase: .idle, isRestoreAvailable: true) == screen)
+
+        // The date alone never makes the line: it needs an UNLOCKED decision whose source is the
+        // grace. A policy adopted between the screen's two reads (the decision, then the date) can
+        // leave them one step apart until the change notification re-reads both — neither
+        // combination may print "free until".
+        let staleDate = inputs(unlocked: false, source: .none, degradation: .noAccess, grace: future, monetization: .paid)
+        check(sgProStatusAccess(staleDate) == .notActive, "A date without a granting grace rendered as 'free until'")
+        check(SGProStatusScreen(inputs: staleDate, restorePhase: .idle, isRestoreAvailable: true).graceEndsAt == nil)
+        let staleSource = inputs(unlocked: true, source: .localGrace, grace: nil, monetization: .paid)
+        check(sgProStatusAccess(staleSource) == .available, "A grace source without a date invented one")
+        check(SGProStatusScreen(inputs: staleSource, restorePhase: .idle, isRestoreAvailable: true).graceEndsAt == nil)
+
+        // Whatever the length, the line quotes the date it is given: one day or thirty.
+        for days in [1.0, 7.0, 30.0] {
+            let end = now.addingTimeInterval(days * 86400)
+            let running = SGProStatusScreen(inputs: inputs(source: .localGrace, grace: end), restorePhase: .idle, isRestoreAvailable: true)
+            check(running.access == .freeUntil(end) && running.graceEndsAt == end)
+        }
+        // A real grant under a 0-day grace is unaffected: the token's own horizon, no grace line.
+        let granted = SGProStatusScreen(inputs: inputs(source: .token, grace: nil, tokenUntil: future), restorePhase: .idle, isRestoreAvailable: true)
+        check(granted.access == .availableUntil(future) && granted.graceEndsAt == nil)
     }
 
     private static func legacyManage() {

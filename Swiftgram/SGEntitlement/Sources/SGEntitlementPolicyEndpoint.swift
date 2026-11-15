@@ -23,12 +23,14 @@ public struct SGEntitlementPolicyEndpoint {
     static let path = "/v1/monetization"
     /// The app-update policy's path on the same origin (`appPolicy(origin:)`).
     static let appPolicyPath = "/v1/app-policy"
-    /// What this build can read of the monetization policy, in order of preference: the v2 claim
-    /// shape (`trial_days`) by its exact vendor media type, then the frozen v1 shape. The server
-    /// mints v2 ONLY for a request that lists that exact type with a non-zero q — never for
+    /// What this build can read of the monetization policy, in order of preference: the v3 claim
+    /// shape (`trial_days` and `local_grace_days`) by its exact vendor media type, then the v2 shape
+    /// (`trial_days`) by its own — what a server that does not know v3 yet answers, exactly as
+    /// before — then the frozen v1 shape. The server mints v3 or v2 ONLY for a request that lists
+    /// that exact type with a non-zero q (v3 if listed, else v2 if listed, else v1) — never for
     /// `application/json`, `*/*` or `application/*+json` — so a client is never sent a shape it did
     /// not declare, and the verifier (`SGEntitlementPolicyVerifier`) refuses every other one.
-    static let monetizationAccept = "application/vnd.zenlygram.monetization.v2+json, application/json;q=0.9"
+    static let monetizationAccept = "application/vnd.zenlygram.monetization.v3+json, application/vnd.zenlygram.monetization.v2+json;q=0.9, application/json;q=0.8"
     /// What this build can read of the app-update policy: its v1 shape by the exact vendor type,
     /// then plain JSON (which the server answers with v1 as well). A future shape is a new vendor
     /// type, never sent to a client that did not declare it; `SGAppUpdatePolicyVerifier` refuses

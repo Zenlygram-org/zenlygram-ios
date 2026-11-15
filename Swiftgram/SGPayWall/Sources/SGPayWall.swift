@@ -388,7 +388,8 @@ struct SGPayWallView: View {
     @State private var state: PayWallState = .ready
     @State private var entitlementState: SGEntitlementState = SGEntitlement.shared.state
     @State private var degradedMessage: SGEntitlementMessage? = SGEntitlement.shared.degradedMessage
-    /// Non-nil while the local 7-day grace is what grants (`SGEntitlementLocalGrace`).
+    /// Non-nil while the local grace is what grants (`SGEntitlementLocalGrace`); never under a
+    /// 0-day signed policy, where that grace does not grant at all.
     /// Initialized to nil because @Environment(\.lang) is not available at @State init time;
     /// set in onAppear and refreshed on entitlement changes.
     @State private var graceUntilText: String? = nil
