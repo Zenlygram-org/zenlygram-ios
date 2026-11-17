@@ -91,6 +91,57 @@
       "text_sha256": "89751cc5539c18b0e936bde8c955ae1af6e901065bdcc7643ed306409dfda67f",
       "canonical_length_scalars": 36,
       "canonical_utf8_bytes": 37
+    },
+    {
+      "id": "v2-uz",
+      "kind": "locale_text",
+      "text_version": 2,
+      "locale": "uz",
+      "file": "v2/uz.md",
+      "values": {
+        "OPERATOR_NAME": "«Zenlygram» MChJ",
+        "OPERATOR_STIR": "123456789",
+        "RESPONSIBLE_PERSON": "\u00a0Ali Valiyev\u2003",
+        "CONTACT_EMAIL": "privacy@zenlygram.org"
+      },
+      "template_sha256": "9c2f6118bbca1faf27db23c655160c2faa2b3c10ddfb5ae8dd823d0b72620f03",
+      "text_sha256": "f8a3cb7de7a643e804cf922ce4c587e2ef2d8ed3c6e695d70de5d43da766b62f",
+      "canonical_length_scalars": 11396,
+      "canonical_utf8_bytes": 11595
+    },
+    {
+      "id": "v2-ru",
+      "kind": "locale_text",
+      "text_version": 2,
+      "locale": "ru",
+      "file": "v2/ru.md",
+      "values": {
+        "OPERATOR_NAME": "«Zenlygram» MChJ",
+        "OPERATOR_STIR": "123456789",
+        "RESPONSIBLE_PERSON": "Ali Valiyev",
+        "CONTACT_EMAIL": "privacy@zenlygram.org"
+      },
+      "template_sha256": "c972c9f366fa6360e2838257675a462189bed5bc5c6aa42a22a40e7f60cd85c5",
+      "text_sha256": "e086e379817c941c85fa2d34dc279b1865580afe2d8845348ce27e95827eb5d1",
+      "canonical_length_scalars": 10679,
+      "canonical_utf8_bytes": 18334
+    },
+    {
+      "id": "v2-en",
+      "kind": "locale_text",
+      "text_version": 2,
+      "locale": "en",
+      "file": "v2/en.md",
+      "values": {
+        "OPERATOR_NAME": "Zeno\u0301 Test",
+        "OPERATOR_STIR": "12345678901234",
+        "RESPONSIBLE_PERSON": " Ali Valiyev ",
+        "CONTACT_EMAIL": "privacy@zenlygram.org"
+      },
+      "template_sha256": "9d48cfbc7fc545a7ba0d55121be2c7dc58f2db9b131aeed377633bc11d9ec900",
+      "text_sha256": "8f7736fd41331bd9839db9ed217645dec22a0d698b17c49a1f45777e299e7cb5",
+      "canonical_length_scalars": 9960,
+      "canonical_utf8_bytes": 9977
     }
   ]
 }

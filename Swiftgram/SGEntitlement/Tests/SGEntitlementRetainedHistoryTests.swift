@@ -22,6 +22,10 @@ final class SGEntitlementRetainedHistoryTests: XCTestCase {
         // A CONFIGURED build with nothing granting, after the owner enabled paid: keys pinned,
         // enforcement on, a signed paid policy, no account, no StoreKit snapshot, and no grace
         // record (pinned to nil so the test host never mints one).
+        // The app's instance never enforces paid mode in a build that cannot sell through the App
+        // Store (`paidModeRequiresAppleBackend`), and the test host ships no product list: the
+        // rule is lifted here so the paid-mode capture rules themselves can be exercised.
+        shared.overridePaidModeRequiresAppleBackend(false)
         shared.overridePinnedKeys(self.pinned)
         shared.overrideEnforcement(.enforcing)
         shared.overridePolicyState(SGEntitlementTestPolicy.state(SGEntitlementTestPolicy.make(key: self.key, kid: self.kid, mode: "paid"), pinned: self.pinned))
@@ -38,6 +42,7 @@ final class SGEntitlementRetainedHistoryTests: XCTestCase {
         shared.overrideEnforcement(.shipped)
         shared.resetPolicyForTesting()
         shared.resetLocalGraceForTesting()
+        shared.overridePaidModeRequiresAppleBackend(true)
         super.tearDown()
     }
 

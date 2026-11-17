@@ -1,6 +1,6 @@
 {
   "schema": "zenlygram-consent-manifest/1",
-  "current_version": 1,
+  "current_version": 2,
   "min_valid_version": 1,
   "placeholders": [
     "OPERATOR_NAME",
@@ -29,6 +29,29 @@
         "en": {
           "file": "v1/en.md",
           "template_sha256": "daae5d134f3774b2638a1e72e53bb6e4881d1ca22eec6da73e29179feb50441e"
+        }
+      }
+    },
+    "2": {
+      "published_at": "2026-11-16",
+      "scopes": [
+        "link",
+        "profile",
+        "statistics",
+        "tasks_sync"
+      ],
+      "locales": {
+        "uz": {
+          "file": "v2/uz.md",
+          "template_sha256": "9c2f6118bbca1faf27db23c655160c2faa2b3c10ddfb5ae8dd823d0b72620f03"
+        },
+        "ru": {
+          "file": "v2/ru.md",
+          "template_sha256": "c972c9f366fa6360e2838257675a462189bed5bc5c6aa42a22a40e7f60cd85c5"
+        },
+        "en": {
+          "file": "v2/en.md",
+          "template_sha256": "9d48cfbc7fc545a7ba0d55121be2c7dc58f2db9b131aeed377633bc11d9ec900"
         }
       }
     }

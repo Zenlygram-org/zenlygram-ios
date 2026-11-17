@@ -172,14 +172,20 @@ public final class AuthorizationSequencePhoneEntryController: ViewController, MF
     }
     
     override public func loadDisplayNode() {
-        self.displayNode = AuthorizationSequencePhoneEntryControllerNode(sharedContext: self.sharedContext, account: self.account, strings: self.presentationData.strings, theme: self.presentationData.theme, debugAction: { [weak self] in
-            // Zenlygram — the 10-tap login gesture must not reach the debug controller in App Store builds.
-            guard let strongSelf = self, !GlobalExperimentalSettings.isAppStoreBuild else {
+        // Zenlygram — the 10-tap login debug gesture is compiled out of release (App Store) builds entirely,
+        // so the debug controller is never referenced in the shipped binary (was a runtime isAppStoreBuild guard).
+        #if DEBUG
+        let debugAction: () -> Void = { [weak self] in
+            guard let strongSelf = self else {
                 return
             }
             strongSelf.view.endEditing(true)
-            self?.present(debugController(sharedContext: strongSelf.sharedContext, context: nil, modal: true), in: .window(.root), with: ViewControllerPresentationArguments(presentationAnimation: .modalSheet))
-        }, hasOtherAccounts: self.otherAccountPhoneNumbers.0 != nil)
+            strongSelf.present(debugController(sharedContext: strongSelf.sharedContext, context: nil, modal: true), in: .window(.root), with: ViewControllerPresentationArguments(presentationAnimation: .modalSheet))
+        }
+        #else
+        let debugAction: () -> Void = {}
+        #endif
+        self.displayNode = AuthorizationSequencePhoneEntryControllerNode(sharedContext: self.sharedContext, account: self.account, strings: self.presentationData.strings, theme: self.presentationData.theme, debugAction: debugAction, hasOtherAccounts: self.otherAccountPhoneNumbers.0 != nil)
         self.controllerNode.accountUpdated = { [weak self] account in
             guard let strongSelf = self else {
                 return
@@ -453,11 +459,14 @@ public final class AuthorizationSequencePhoneEntryController: ViewController, MF
                 actions.append(TextAlertAction(type: .defaultAction, title: self.presentationData.strings.Common_OK, action: {}))
                 self.present(textAlertController(sharedContext: self.sharedContext, title: nil, text: self.presentationData.strings.Login_PhoneNumberAlreadyAuthorized, actions: actions), in: .window(.root))
             } else {
-                // MARK: Swiftgram
-                if (number == "0000000000" && !GlobalExperimentalSettings.isAppStoreBuild) {
+                // MARK: Swiftgram — the Telegram test-DC switch (enter 0000000000) is compiled out of release
+                // (App Store) builds, so the magic number is not present in the shipped binary.
+                #if DEBUG
+                if number == "0000000000" {
                     self.sharedContext.beginNewAuth(testingEnvironment: true)
                     return
                 }
+                #endif
                 if let validLayout = self.validLayout, validLayout.size.width > 320.0 {
                     let (code, formattedNumber) = self.controllerNode.formattedCodeAndNumber
                     // Zenlygram — the number the sheet shows is the number that is submitted. Upstream reads the field

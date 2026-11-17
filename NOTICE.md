@@ -54,6 +54,7 @@ the files listed further down that differ are not inputs of the build.
 |---|---|---|---|
 | 12.9.2 | 6708 | `appstore/12.9.2-6708` | 2026-11-14 |
 | 12.9.2 | 6717 | `appstore/12.9.2-6717` | 2026-11-15 |
+| 12.9.2 | 6722 | `appstore/12.9.2-6722` | 2026-11-17 |
 
 Left out are files that are not part of the shipped app:
 

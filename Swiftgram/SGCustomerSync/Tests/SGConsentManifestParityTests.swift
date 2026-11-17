@@ -31,13 +31,17 @@ final class SGConsentManifestParityTests: XCTestCase {
 
     func testTheVendoredTreeLoadsWithTheContractShape() throws {
         let repository = try SGCustomerSyncTestFixtures.repository()
-        XCTAssertEqual(repository.currentVersion, 1)
+        // Version 2 (2026-11-16) is version 1 with the partner line reworded: the current text of a new
+        // consent. Version 1 stays bundled and valid, so a stored consent is kept and never asked again.
+        XCTAssertEqual(repository.currentVersion, 2)
         XCTAssertEqual(repository.minValidVersion, 1)
         XCTAssertTrue(repository.isBundled(version: 1))
-        XCTAssertFalse(repository.isBundled(version: 2))
+        XCTAssertTrue(repository.isBundled(version: 2))
+        XCTAssertFalse(repository.isBundled(version: 3))
         XCTAssertEqual(repository.manifest.placeholders, ["OPERATOR_NAME", "OPERATOR_STIR", "RESPONSIBLE_PERSON", "CONTACT_EMAIL"])
         XCTAssertEqual(repository.scopes(version: 1), ["link", "profile", "statistics", "tasks_sync"])
-        XCTAssertNil(repository.scopes(version: 2))
+        XCTAssertEqual(repository.scopes(version: 2), ["link", "profile", "statistics", "tasks_sync"])
+        XCTAssertNil(repository.scopes(version: 3))
     }
 
     func testEachLocaleRendersTheSharedFixtureHash() throws {
@@ -46,20 +50,21 @@ final class SGConsentManifestParityTests: XCTestCase {
             let id = try XCTUnwrap(vector["id"] as? String)
             let locale = try XCTUnwrap(SGConsentLocale(rawValue: try XCTUnwrap(vector["locale"] as? String)))
             let values = SGCustomerSyncTestFixtures.operatorValues(try XCTUnwrap(vector["values"] as? [String: String]))
-            let rendered = try XCTUnwrap(repository.render(version: 1, locale: locale, operatorValues: values), id)
+            let version = try XCTUnwrap(vector["text_version"] as? Int, id)
+            let rendered = try XCTUnwrap(repository.render(version: version, locale: locale, operatorValues: values), id)
             XCTAssertEqual(rendered.sha256, vector["text_sha256"] as? String, id)
-            XCTAssertEqual(rendered.version, 1)
+            XCTAssertEqual(rendered.version, version)
             XCTAssertEqual(rendered.locale, locale)
             XCTAssertEqual(rendered.scopes, ["link", "profile", "statistics", "tasks_sync"])
             XCTAssertFalse(rendered.canonical.contains("{{"), "\(id): every placeholder is filled")
             XCTAssertNotNil(rendered.document.ageStatement, id)
-            XCTAssertEqual(repository.renderedSha256(version: 1, locale: locale, operatorValues: values), rendered.sha256, id)
+            XCTAssertEqual(repository.renderedSha256(version: version, locale: locale, operatorValues: values), rendered.sha256, id)
 
-            let template = try XCTUnwrap(repository.render(version: 1, locale: locale, operatorValues: .none))
+            let template = try XCTUnwrap(repository.render(version: version, locale: locale, operatorValues: .none))
             XCTAssertEqual(template.sha256, vector["template_sha256"] as? String, "\(id): without values the placeholders stay")
         }
-        XCTAssertNil(repository.render(version: 2, locale: .uz, operatorValues: .none))
-        XCTAssertNil(repository.renderedSha256(version: 2, locale: .uz, operatorValues: .none))
+        XCTAssertNil(repository.render(version: 3, locale: .uz, operatorValues: .none))
+        XCTAssertNil(repository.renderedSha256(version: 3, locale: .uz, operatorValues: .none))
     }
 
     func testTheRenderedHashIsCachedPerValues() throws {
@@ -78,9 +83,9 @@ final class SGConsentManifestParityTests: XCTestCase {
             ("schema", { $0["schema"] = "zenlygram-consent-manifest/2" }),
             ("extra top-level key", { $0["extra"] = 1 }),
             ("missing key", { $0.removeValue(forKey: "placeholders") }),
-            ("current not a version", { $0["current_version"] = 2 }),
+            ("current not a version", { $0["current_version"] = 3 }),
             ("min 0", { $0["min_valid_version"] = 0 }),
-            ("min above current", { $0["min_valid_version"] = 2 }),
+            ("min above current", { $0["min_valid_version"] = 3 }),
             ("current as text", { $0["current_version"] = "1" }),
             ("current as boolean", { $0["current_version"] = true }),
             ("current as fraction", { $0["current_version"] = 1.5 }),

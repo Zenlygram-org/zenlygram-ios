@@ -56,7 +56,8 @@ public final class SGEntitlement {
         publicPolicy: SGEntitlementPublicPolicyConfiguration.shipped,
         isPublicPolicyRequested: SGEntitlementPublicPolicyConfiguration.isRequested,
         isAuthenticatedEntitlementConfigured: SGEntitlementClient.Configuration.isShipped,
-        appleBackend: .shipped
+        appleBackend: .shipped,
+        paidModeRequiresAppleBackend: true
     )
 
     public static let isAppExtension: Bool = Bundle.main.bundlePath.hasSuffix(".appex")
@@ -206,6 +207,15 @@ public final class SGEntitlement {
     private let isAuthenticatedEntitlementConfigured: Bool
     /// The explicit `apple_backend_enabled` flag and the product ids. A build constant, injected by tests.
     private let appleBackend: SGEntitlementAppleBackendConfiguration
+    /// A build that cannot sell through the App Store never ENFORCES paid mode: with the Apple
+    /// backend held (`isAppleBackendEnabled` false) every decision is made under FREE, whatever the
+    /// signed monetization policy says (`effectiveMonetizationLocked`). The App Store is the only
+    /// place an iOS build may sell, so a build without the product pair must not lock, count down or
+    /// offer anything because of a server response. True for the app's instance (`shared`); test
+    /// instances default to false so the evaluation rules can be exercised without a product list.
+    /// A build constant: set once in `init`, and changed afterwards only by the debug-only test hook
+    /// `overridePaidModeRequiresAppleBackend` (guarded by `lock`), which a release build does not contain.
+    private var paidModeRequiresAppleBackend: Bool
     /// Guarded by `lock`: the policy endpoint of a build without an explicit public policy, derived
     /// from the same configuration as `clientValue` by `configure(...)`.
     private var legacyPolicyEndpoint: SGEntitlementPolicyEndpoint?
@@ -270,6 +280,7 @@ public final class SGEntitlement {
         isPublicPolicyRequested: Bool = false,
         isAuthenticatedEntitlementConfigured: Bool = true,
         appleBackend: SGEntitlementAppleBackendConfiguration = .held,
+        paidModeRequiresAppleBackend: Bool = false,
         isExtensionProcess: Bool = SGEntitlement.isAppExtension
     ) {
         self.store = store
@@ -299,6 +310,7 @@ public final class SGEntitlement {
         self.isPublicPolicyRequested = isPublicPolicyRequested
         self.isAuthenticatedEntitlementConfigured = isAuthenticatedEntitlementConfigured
         self.appleBackend = appleBackend
+        self.paidModeRequiresAppleBackend = paidModeRequiresAppleBackend
         self.defaults = UserDefaults(suiteName: SGProtectedKeychain.sharedAccessGroup)
         self.registerDarwinObserver()
         if !SGEntitlement.isAppExtension {
@@ -607,6 +619,18 @@ public final class SGEntitlement {
         self.lock.unlock()
     }
 
+    #if DEBUG
+    /// Tests only, and compiled into debug builds only: lets a suite that drives the app's instance
+    /// (`shared`) exercise the paid-mode rules in a test host that ships no product list. A release
+    /// build contains no way to change `paidModeRequiresAppleBackend`.
+    func overridePaidModeRequiresAppleBackend(_ value: Bool) {
+        self.lock.lock()
+        self.paidModeRequiresAppleBackend = value
+        self.invalidateCachedDecisionLocked()
+        self.lock.unlock()
+    }
+    #endif
+
     /// Tests only: pin the local grace. `nil` means "no record, and do not mint one" — the state of
     /// an extension on an install that has never evaluated. The paid-policy mark (D9) is pinned from
     /// the same value: `value.firstPaidPolicyAt`, so nil unless the test asks for the re-based
@@ -833,8 +857,10 @@ public final class SGEntitlement {
 
     /// The mode the app acts on: the last verified monetization policy's, FREE until the owner
     /// deliberately enables paid mode — and always FREE in a public-policy-only build
-    /// (`isPublicPolicyOnly`), which has no way to sell or verify anything. Synchronous, offline,
-    /// from the cached and re-verified policy.
+    /// (`isPublicPolicyOnly`), which has no way to sell or verify anything, and in the app's own
+    /// instance whenever the Apple backend is held (`paidModeRequiresAppleBackend`): a build that
+    /// cannot sell through the App Store ignores a signed PAID policy. Synchronous, offline, from
+    /// the cached and re-verified policy.
     public var monetizationMode: SGEntitlementPolicyMode {
         self.lock.lock()
         defer {
@@ -1444,6 +1470,12 @@ public final class SGEntitlement {
     /// Caller holds `lock`. The mode every decision is made under (`monetizationMode`).
     private func effectiveMonetizationLocked() -> SGEntitlementPolicyMode {
         if self.isPublicPolicyOnly {
+            return .free
+        }
+        // A build that cannot sell through the App Store never enforces paid mode
+        // (`paidModeRequiresAppleBackend`): no server response locks, counts down or offers
+        // anything in it. Both operands are build constants.
+        if self.paidModeRequiresAppleBackend && !self.isAppleBackendEnabled {
             return .free
         }
         return self.loadPolicyLocked().mode

@@ -63,7 +63,7 @@ final class SGConsentCanonicalTextTests: XCTestCase {
     func testEveryLocaleTextVectorAgainstTheVendoredFiles() throws {
         let manifest = try XCTUnwrap(SGConsentManifest.decode(try Data(contentsOf: SGCustomerSyncTestFixtures.consentRoot.appendingPathComponent("manifest.json"))))
         let vectors = try SGCustomerSyncTestFixtures.consentVectors().filter { $0["kind"] as? String == "locale_text" }
-        XCTAssertEqual(Set(vectors.compactMap { $0["id"] as? String }), ["v1-uz", "v1-ru", "v1-en"])
+        XCTAssertEqual(Set(vectors.compactMap { $0["id"] as? String }), ["v1-uz", "v1-ru", "v1-en", "v2-uz", "v2-ru", "v2-en"])
         for vector in vectors {
             let id = try XCTUnwrap(vector["id"] as? String)
             let file = try XCTUnwrap(vector["file"] as? String)

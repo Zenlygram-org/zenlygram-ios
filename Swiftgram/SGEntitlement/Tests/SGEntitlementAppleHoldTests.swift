@@ -157,4 +157,64 @@ final class SGEntitlementAppleHoldTests: XCTestCase {
         XCTAssertEqual(held.source, .token, "the hold withdrew a verified server grant")
         XCTAssertTrue(held.has(.vault))
     }
+
+    // MARK: - A build that cannot sell never enforces paid mode (`paidModeRequiresAppleBackend`)
+
+    /// The app's own rule: an instance built as `shared` is, holding a verified PAID policy that also
+    /// offers the server trial, on an install whose local grace ended long ago.
+    private func makeShippedRuleEntitlement(appleBackend: SGEntitlementAppleBackendConfiguration) async -> SGEntitlement {
+        let now = Date()
+        let entitlement = SGEntitlement(
+            store: self.store,
+            scheduler: SGEntitlementScheduler(defaults: UserDefaults(suiteName: self.schedulerSuite)),
+            policyStore: SGEntitlementPolicyStore(defaults: UserDefaults(suiteName: self.policySuite)),
+            policyClock: { now },
+            isAuthenticatedEntitlementConfigured: true,
+            appleBackend: appleBackend,
+            paidModeRequiresAppleBackend: true
+        )
+        self.created.append(entitlement)
+        entitlement.overridePinnedKeys(self.ring)
+        entitlement.overrideEnforcement(.enforcing)
+        entitlement.overrideLocalGrace(SGEntitlementLocalGrace(firstLaunchAt: now.addingTimeInterval(-60 * 86400)))
+        let paid = SGEntitlementTestPolicy.make(key: self.key, kid: self.kid, mode: "paid", revision: 1, iat: Int64(now.timeIntervalSince1970), version: 2, trialDays: 7)
+        _ = await entitlement.performPolicyRefresh(transport: SGEntitlementPolicyTransport(fetch: { .success(paid) }), uptime: 1_000)
+        XCTAssertEqual(entitlement.signedMonetizationPolicy?.mode, .paid, "premise: the PAID policy verified and was adopted")
+        return entitlement
+    }
+
+    func test_aBuildThatCannotSellIgnoresAVerifiedPaidPolicy() async {
+        let held = await self.makeShippedRuleEntitlement(appleBackend: .held)
+        held.setActiveAccount(peerId: self.account)
+        XCTAssertFalse(held.isAppleBackendEnabled, "premise")
+        XCTAssertEqual(held.monetizationMode, .free, "a build without the product pair followed a server PAID policy")
+        XCTAssertFalse(held.offersNewSubscriptions)
+        XCTAssertNil(held.serverTrialDays, "the server's trial was offered in a build that cannot sell")
+        XCTAssertNil(held.localGraceEndsAt, "free access is not a countdown")
+        XCTAssertEqual(held.source, .freeAccess)
+        XCTAssertTrue(held.state.isUnlocked)
+        XCTAssertTrue(held.has(.vault))
+        XCTAssertTrue(held.can(.createTask), "a server response locked a feature in a build that cannot sell")
+        XCTAssertTrue(held.can(.createRetainedHistoryRecord))
+    }
+
+    func test_aBuildWithAProductListButNoFlagIgnoresAVerifiedPaidPolicyToo() async {
+        let unflagged = await self.makeShippedRuleEntitlement(appleBackend: SGEntitlementAppleBackendConfiguration(isFlagEnabled: false, productIds: self.products))
+        unflagged.setActiveAccount(peerId: self.account)
+        XCTAssertEqual(unflagged.monetizationMode, .free)
+        XCTAssertTrue(unflagged.can(.createTask))
+    }
+
+    func test_control_theSameRuleFollowsThePaidPolicyOnceAppleIsEnabled() async {
+        let enabled = await self.makeShippedRuleEntitlement(appleBackend: SGEntitlementAppleBackendConfiguration(isFlagEnabled: true, productIds: self.products))
+        enabled.setActiveAccount(peerId: self.account)
+        XCTAssertTrue(enabled.isAppleBackendEnabled, "premise")
+        XCTAssertEqual(enabled.monetizationMode, .paid, "a build that sells through the App Store follows the signed mode")
+        XCTAssertEqual(enabled.serverTrialDays, 7)
+        XCTAssertFalse(enabled.can(.createTask), "premise: the grace ended and nothing grants")
+    }
+
+    func test_theSharedInstanceNeverEnforcesPaidModeWhileHeld() {
+        XCTAssertTrue(SGEntitlement.shared.isAppleBackendEnabled || SGEntitlement.shared.monetizationMode == .free)
+    }
 }
